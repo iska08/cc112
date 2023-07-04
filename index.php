@@ -579,11 +579,7 @@ while($hasil = mysqli_fetch_array($tampil_awal)){
             $tampil_1 = mysqli_query($kominfo, "select * from lokasi where kejadian='$nama_kej' and tahun='$tahun'  "); //ambil data dari tabel lokasi
             $hasil_1 = mysqli_num_rows($tampil_1);?> <?php if($hasil_1){echo $hasil_1;}else{echo "0";} ?> <?php echo ",";?><?php } ?>
             ], <?php } ?>
-
-
-
         ]);
-
 
         // Optional; add a title and set the width and height of the chart
         var options = {
