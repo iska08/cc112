@@ -333,8 +333,8 @@ Peta Lokasi Kejadian
         
         if($_GET['kej']){ $kej = $_GET['kej']; $tampil = mysqli_query($kominfo, "select * from lokasi where kejadian='$kej' ");} //ambil data dari tabel lokasi
         else{$tampil = mysqli_query($kominfo, "select * from lokasi ");}
-        if($_GET['bulan'] OR $_GET['th']){ $bulan = $_GET['bulan']; $tahun = $_GET['th']; $tampil = mysqli_query($kominfo, "select * from lokasi where bulan='$bulan' OR tahun='$tahun' ");} //ambil data dari tabel lokasi
-        if($_GET['bulan'] AND $_GET['th']){$bulan = $_GET['bulan']; $tahun = $_GET['th']; $tampil = mysqli_query($kominfo, "select * from lokasi where bulan='$bulan' AND tahun='$tahun' ");} //ambil data dari tabel lokasi        
+        if($_GET['bulan'] || $_GET['th']){ $bulan = $_GET['bulan']; $tahun = $_GET['th']; $tampil = mysqli_query($kominfo, "select * from lokasi where bulan='$bulan' OR tahun='$tahun' ");} //ambil data dari tabel lokasi
+        if($_GET['bulan'] && $_GET['th']){$bulan = $_GET['bulan']; $tahun = $_GET['th']; $tampil = mysqli_query($kominfo, "select * from lokasi where bulan='$bulan' AND tahun='$tahun' ");} //ambil data dari tabel lokasi        
         while($hasil = mysqli_fetch_array($tampil)){   
         $id_kec = $hasil['kec'];
         $hasil_kec = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec' "); //ambil data dari tabel lokasi
