@@ -38,9 +38,26 @@
 <body>
 
 <div class="fixed-top container" style="background-color: #fff;">
+
+    <center>
+      <!-- logo -->
+					<div id="logo">
+						<h1><a href="index.php"><span class="fa fa-linode mr-10"></span>DINAS KOMUNIKASI DAN INFORMATIKA KABUPATEN SUMENEP</a></h1>
+					</div>
+					<!-- //logo -->
+    <a href="https://ekominfo.sumenepkab.go.id/cc112/"><img src="img/cc112_ok1.jpg"   class="img-fluid">
     
-    <center><a href="https://ekominfo.sumenepkab.go.id/cc112/"><img src="img/cc112_ok1.jpg"   class="img-fluid"></a></center>   
-        <form action="index.php" method="GET">
+    <li class="nav-item d-none d-sm-inline-block">
+                    <a href="adm_login.php" class="nav-link">LOGIN</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/" class="nav-link">Buat Laporan Kejadian</a>
+                </li>
+  
+  </a>
+
+      </center>   
+    <form action="index.php" method="GET">
           <div class="input-group input-group-sm">                        
             <input hidden name="hal" value="data_kej"> 
             <input type="text" class="form-control"  name="cari" placeholder="Cari kejadian dan lokasi">
@@ -49,6 +66,7 @@
             </span>   
           </div>
         </form>
+        
 </div>
 
 <main role="main" class="mobile-space">
