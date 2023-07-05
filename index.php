@@ -51,7 +51,7 @@
                     <a href="adm_login.php" class="nav-link">LOGIN</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/" class="nav-link">Buat Laporan Kejadian</a>
+                    <a href="inputLaporan.php" class="nav-link">Buat Laporan Kejadian</a>
                 </li>
   
   </a>
