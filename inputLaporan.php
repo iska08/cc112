@@ -90,7 +90,7 @@ include 'dbconfig.php';
                     <input type="text" class="form-control" id="latlong" name="latlong" required>
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Kejadiann</label>
+                    <label for="exampleFormControlInput1">Kejadian</label>
                     <select class="form-control select2-danger " name="kejadian" required>
                         <option disabled selected>== Pilih Kejadian ==</option>
                         <?php $tampil_kej = mysqli_query($kominfo, "select * from kejadian"); //ambil data dari tabel kecamatan
