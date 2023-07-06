@@ -77,13 +77,13 @@
       </div>
       <!-- //logo -->
       <a href="https://ekominfo.sumenepkab.go.id/cc112/">
-        <img src="img/cc112_ok1.jpg" class="img-fluid">
-        <li class="nav-item d-none d-sm-inline-block">
-        <a href="adm_login.php" class="nav-link">LOGIN</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
+        <img src="img/cc112_ok1.jpg" class="img-fluid" alt="">
+        <ul class="nav-item d-none d-sm-inline-block">
+          <a href="adm_login.php" class="nav-link">Login Admin</a>
+        </ul>
+        <ul class="nav-item d-none d-sm-inline-block">
           <a href="inputLaporan.php" class="nav-link">Buat Laporan Kejadian</a>
-        </li>
+        </ul>
       </a>
     </center>
     <form action="index.php" method="GET">
@@ -184,7 +184,7 @@
                                   <div class="col text-center">
                                     <div>
                                       <a href="foto/<?php echo $foto1['nama_foto'] ?>" data-toggle="lightbox">
-                                        <img class="img-thumbnail" src="foto/<?php echo $foto1['nama_foto'] ?>" />
+                                        <img class="img-thumbnail" src="foto/<?php echo $foto1['nama_foto'] ?>" alt=""/>
                                       </a>
                                     </div>
                                   </div>
@@ -250,7 +250,7 @@
                         $tampil_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_foto' ");
                         while($hasil_foto = mysqli_fetch_array($tampil_foto)){
                         ?>
-                          <img  src="foto/<?php echo $hasil_foto['nama_foto'] ?>" class="gbr">
+                          <img  src="foto/<?php echo $hasil_foto['nama_foto'] ?>" class="gbr" alt="">
                         <?php
                         }
                         ?>
@@ -500,22 +500,22 @@
           </div>
           <br/>
           <div class="text-center">
-            <img src="logo/sumenep.png" class="logo ">
-            <img src="logo/kominfo.png" class="logo ">
-            <img src="logo/polri.png" class="logo ">
-            <img src="logo/satpolpp.png" class="logo ">
-            <img src="logo/damkar.png" class="logo ">
-            <img src="logo/linmas.png" class="logo ">
-            <img src="logo/puskesmas.png" class="logo ">
-            <img src="logo/rsud.png" class="logo ">
-            <img src="logo/bpbd.png" class="logo ">
-            <img src="logo/basarnas.png" class="logo ">
-            <img src="logo/dlh.png" class="logo ">
-            <img src="logo/dishub.png" class="logo ">
-            <img src="logo/rapi.png" class="logo ">
-            <img src="logo/pln.png" class="logo ">
-            <img src="logo/telkom.jpg" class="logo ">
-            <img src="logo/putr.png" class="logo ">
+            <img src="logo/sumenep.png" class="logo" alt="">
+            <img src="logo/kominfo.png" class="logo" alt="">
+            <img src="logo/polri.png" class="logo" alt="">
+            <img src="logo/satpolpp.png" class="logo" alt="">
+            <img src="logo/damkar.png" class="logo" alt="">
+            <img src="logo/linmas.png" class="logo" alt="">
+            <img src="logo/puskesmas.png" class="logo" alt="">
+            <img src="logo/rsud.png" class="logo" alt="">
+            <img src="logo/bpbd.png" class="logo" alt="">
+            <img src="logo/basarnas.png" class="logo" alt="">
+            <img src="logo/dlh.png" class="logo" alt="">
+            <img src="logo/dishub.png" class="logo" alt="">
+            <img src="logo/rapi.png" class="logo" alt="">
+            <img src="logo/pln.png" class="logo" alt="">
+            <img src="logo/telkom.jpg" class="logo" alt="">
+            <img src="logo/putr.png" class="logo" alt="">
           </div>
         </div>
         <?php
