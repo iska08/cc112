@@ -1,7 +1,7 @@
 <?php 
 $hostname = "localhost";
-$user = "ok";
-$pass = "kabsumenep12345";
+$user = "root";
+$pass = "";
 $database = "cc112"; //sesuaikan dengan password MySQL kalian
 //create variable connectin
 $kominfo = mysqli_connect($hostname, $user, $pass, $database);
