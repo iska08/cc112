@@ -47,16 +47,10 @@
     <!-- Toastr -->
     <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
     <!-- Leaflet -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-      crossorigin="" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css"
-      integrity="sha512-Velp0ebMKjcd9RiCoaHhLXkR1sFoCCWXNp6w4zj1hfMifYB5441C+sKeBl/T/Ka6NjBiRfBBQRaQq65ekYz3UQ=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" integrity="sha512-Velp0ebMKjcd9RiCoaHhLXkR1sFoCCWXNp6w4zj1hfMifYB5441C+sKeBl/T/Ka6NjBiRfBBQRaQq65ekYz3UQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-      crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <link rel="stylesheet" href="assets/css/MarkerCluster.css" />
     <link rel="stylesheet" href="assets/css/MarkerCluster.Default.css" />
     <script src="assets/js/leaflet.markercluster-src.js"></script>
@@ -90,11 +84,14 @@
                 <label for="exampleFormControlInput1">Kejadian</label>
                 <select class="form-control select2-danger " name="kejadian" required>
                   <option disabled selected>== Pilih Kejadian ==</option>
-                  <?php $tampil_kej = mysqli_query($kominfo, "select * from kejadian"); //ambil data dari tabel kecamatan
-                          while($hasil_kej = mysqli_fetch_array($tampil_kej)){ ?>
-                  <option value="<?php echo $hasil_kej['nama_kejadian']; ?>"><?php echo $hasil_kej['nama_kejadian']; ?>
-                  </option>
-                  <?php } ?>
+                  <?php
+                  $tampil_kej = mysqli_query($kominfo, "select * from kejadian"); //ambil data dari tabel kecamatan
+                  while($hasil_kej = mysqli_fetch_array($tampil_kej)){
+                  ?>
+                    <option value="<?php echo $hasil_kej['nama_kejadian']; ?>"><?php echo $hasil_kej['nama_kejadian']; ?></option>
+                  <?php
+                  }
+                  ?>
                 </select>
               </div>
               <div class="form-group">
@@ -102,19 +99,19 @@
                 <input type="text" class="form-control" id="nama_pelapor" name="nama_pelapor">
               </div>
               <div class="form-group">
-                <label for="exampleFormControlInput1">Nomer Telpon Pelapor </label>
-                <input type="text" class="form-control" id="no_telp" name="no_telp">
+                <label for="exampleFormControlInput1">Nomor Telepon Pelapor </label>
+                <input type="number" class="form-control" id="no_telp" name="no_telp">
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Tanggal Kejadian</label>
                 <input type="datetime-local" class="form-control" id="tanggal_terima" name="tanggal_terima">
               </div>
               <div class="form-group">
-                <label for="exampleFormControlInput1">Alamat</label>
+                <label for="exampleFormControlInput1">Alamat Kejadian</label>
                 <input type="text" class="form-control" name="alamat">
               </div>
               <div class="form-group">
-                <label for="exampleFormControlInput1">Keterangan</label>
+                <label for="exampleFormControlInput1">Keterangan Kejadian</label>
                 <textarea class="form-control" name="ket" cols="30" rows="5"></textarea>
               </div>
               <div class="form-group">
@@ -133,10 +130,8 @@
         </div>
       </div>
       <script>
-        //setting maps menggunakan api mapbox bukan google maps, daftar dan dapatkan token  
         var mbAttr = 'Map data &copy; Designer : Bidang TI Kominfo Sumenep';
-        var mbUrl =
-          'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+        var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
         var jalan = L.tileLayer(mbUrl, {
           id: 'mapbox/streets-v11',
           tileSize: 512,
@@ -165,7 +160,6 @@
         var layerControl = L.control.layers(basemaps, overlays, {
           collapsed: false
         }).addTo(mymap);
-        // buat variabel berisi fugnsi L.popup 
         var popup = L.popup();
         // buat fungsi popup saat map diklik
         function onMapClick(e) {
