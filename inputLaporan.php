@@ -64,7 +64,6 @@
         height: 600px;
         width: 100%;
       }
-      .jumbotron {}
     </style>
     <div class="card card-primary card-outline">
       <div class="card-header ">
@@ -82,41 +81,31 @@
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Kejadian</label>
-                <select class="form-control select2-danger " name="kejadian" required>
-                  <option disabled selected>== Pilih Kejadian ==</option>
-                  <?php
-                  $tampil_kej = mysqli_query($kominfo, "select * from kejadian"); //ambil data dari tabel kecamatan
-                  while($hasil_kej = mysqli_fetch_array($tampil_kej)){
-                  ?>
-                    <option value="<?php echo $hasil_kej['nama_kejadian']; ?>"><?php echo $hasil_kej['nama_kejadian']; ?></option>
-                  <?php
-                  }
-                  ?>
-                </select>
+                <input type="text" class="form-control" id="kejadian" name="kejadian" required>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Nama Pelapor </label>
-                <input type="text" class="form-control" id="nama_pelapor" name="nama_pelapor">
+                <input type="text" class="form-control" id="nama_pelapor" name="nama_pelapor" required>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Nomor Telepon Pelapor </label>
-                <input type="number" class="form-control" id="no_telp" name="no_telp">
+                <input type="number" class="form-control" id="no_telp" name="no_telp" required>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Tanggal Kejadian</label>
-                <input type="datetime-local" class="form-control" id="tanggal_terima" name="tanggal_terima">
+                <input type="datetime-local" class="form-control" id="tanggal_terima" name="tanggal_terima" required>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Alamat Kejadian</label>
-                <input type="text" class="form-control" name="alamat">
+                <input type="text" class="form-control" name="alamat_kejadian" required>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Keterangan Kejadian</label>
-                <textarea class="form-control" name="ket" cols="30" rows="5"></textarea>
+                <textarea class="form-control" name="ket" cols="30" rows="5" required></textarea>
               </div>
               <div class="form-group">
-                <button type="submit" name="tambah_lokasi" class="btn btn-info btn-sm">Tambah</button> <a
-                  class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
+                <button type="submit" name="tambah_lokasi" class="btn btn-info btn-sm">Tambah</button>
+                <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
               </div>
             </form>
           </div>
