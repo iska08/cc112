@@ -99,30 +99,21 @@ include 'dbconfig.php';
                          <?php } ?>
                     </select>
                 </div>
+              
+
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Kecamatan</label>
-                    <select class="form-control" id="kecamatan" name="kec" required>
-                        <option disabled selected>== Pilih Kecamatan ==</option>
-                        <?php $tampil_kec = mysqli_query($kominfo, "select * from kecamatan"); //ambil data dari tabel kecamatan
-                        while($hasil_kec = mysqli_fetch_array($tampil_kec)){ ?> 
-                        <option value="<?php echo $hasil_kec['id']; ?>"><?php echo $hasil_kec['nama_kecamatan']; ?></option>
-                         <?php } ?>
-                    </select>
+                     <label for="exampleFormControlInput1">Nama Pelapor </label>
+                     <input type="text" class="form-control" id="nama_pelapor" name="nama_pelapor">
                 </div>
+
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Desa</label>
-                   <select class="form-control" id="desa" name="desa" required>
-                        <option disabled selected>== Pilih Desa ==</option>
-                        
-                    </select>
+                     <label for="exampleFormControlInput1">Nomer Telpon Pelapor </label>
+                     <input type="text" class="form-control" id="no_telp" name="no_telp">
                 </div>
+
                 <div class="form-group">
-                     <label for="exampleFormControlInput1">Tanggal Terima</label>
-                     <input type="text" class="form-control" id="tanggal_terima" name="tanggal_terima">
-                </div>
-                <div class="form-group">
-                     <label for="exampleFormControlInput1">Tanggal Selesai</label>
-                     <input type="text" class="form-control" id="tanggal_selesai" name="tanggal_selesai">
+                     <label for="exampleFormControlInput1">Tanggal Kejadian</label>
+                     <input type="datetime-local" class="form-control" id="tanggal_terima" name="tanggal_terima">
                 </div>
 
                 <div class="form-group">
