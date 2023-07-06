@@ -369,7 +369,7 @@ if (empty($_SESSION['112_username'])){header("Location:adm_login.php");}
     <!-- 2. Link VCalendar Javascript (Plugin automatically installed) -->
     <script src='https://unpkg.com/v-calendar'></script>
     <!-- SweetAlert2 -->
-    <script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Toastr -->
     <script src="../../plugins/toastr/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
