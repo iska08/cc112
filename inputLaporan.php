@@ -89,7 +89,7 @@
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Nomor Telepon Pelapor </label>
-                <input type="number" class="form-control" id="no_telp" name="no_telp" required>
+                <input type="text" class="form-control" id="no_telp" name="no_telp" required>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Tanggal Kejadian</label>
