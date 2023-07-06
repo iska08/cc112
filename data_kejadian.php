@@ -206,9 +206,7 @@
                             $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_lokasi'"); 
                             while($foto1 = mysqli_fetch_array($lokasi_foto)){?>
                                                 <div class="col text-center">
-                                                    <div><a href="foto/<?php echo $foto1['nama_foto'] ?>"
-                                                            data-toggle="lightbox"><img class="img-thumbnail"
-                                                                src="foto/<?php echo $foto1['nama_foto'] ?>" /></a>
+                                                    <div><a href="foto/<?php echo $foto1['nama_foto'] ?>" data-toggle="lightbox"><img class="img-thumbnail" src="foto/<?php echo $foto1['nama_foto'] ?>" alt="image" /></a>
                                                     </div>
                                                 </div>
                                                 <?php }  ?>

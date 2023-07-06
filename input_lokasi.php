@@ -10,10 +10,6 @@ include 'dbconfig.php';
     #mapid {
         height: 600px;width:100%;
     }
-    .jumbotron{
-        
-    }
-    
 </style>
 <div class="card card-primary card-outline">
 <div class="card-header ">

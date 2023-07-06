@@ -74,7 +74,7 @@
           <!-- class row digunakan sebelum membuat column  -->
           <div class="col-md-3">
             <!-- ukuruan layar dengan bootstrap adalah 12 kolom, bagian kiri dibuat sebesar 4 kolom-->
-            <form id="form_tambah_lokasi" method="post">
+            <form id="form_tambah_lokasi" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="exampleFormControlInput1">Latitude, Longitude</label>
                 <input type="text" class="form-control" id="latlong" name="latlong" required>
@@ -102,6 +102,18 @@
               <div class="form-group">
                 <label for="exampleFormControlInput1">Keterangan Kejadian</label>
                 <textarea class="form-control" name="ket" cols="30" rows="5" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Foto Kejadian (1)</label>
+                <input type="file" class="form-control" name="fotokejadian1" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Foto Kejadian (2)</label>
+                <input type="file" class="form-control" name="fotokejadian2" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Foto Kejadian (3)</label>
+                <input type="file" class="form-control" name="fotokejadian3" required>
               </div>
               <div class="form-group">
                 <button type="submit" name="tambah_lokasi" class="btn btn-info btn-sm">Tambah</button>
