@@ -233,36 +233,16 @@ if (empty($_SESSION['112_username'])){header("Location:adm_login.php");}
                     if(isset($_GET['hal'])){
                         $page = $_GET['hal'];
                         switch ($page) {
-                            case 'gis':
-                                include "gis.php";
-                            break;
-                            case 'input_lokasi':
-                                include "input_lokasi.php";
-                            break;
-                            case 'edit_lokasi':
-                                include "edit_lokasi.php";
-                            break;
-                            case 'lokasi':
-                                include "lokasi.php";
-                            break;
-                            case 'hapus':
-                                include "proses.php";
-                            break;
-                            case 'data_kej':
-                                include "data_kejadian.php";
-                            break;
-                            case 'data':
-                                include "data.php";
-                            break;
-                            case 'survey':
-                                include "data_survey.php";
-                            break;
-                            case 'counter':
-                                include "data_counter.php";
-                            break;
-                            default:
-                                echo "<center><h3>Maaf. Halaman tidak di temukan !</h3></center>";
-                            break;
+                            case 'gis': include "gis.php"; break;
+                            case 'input_lokasi': include "input_lokasi.php"; break;
+                            case 'edit_lokasi': include "edit_lokasi.php"; break;
+                            case 'lokasi': include "lokasi.php"; break;
+                            case 'hapus': include "proses.php"; break;
+                            case 'data_kej': include "data_kejadian.php"; break;
+                            case 'data': include "data.php"; break;
+                            case 'survey': include "data_survey.php"; break;
+                            case 'counter': include "data_counter.php"; break;
+                            default: echo "<center><h3>Maaf. Halaman tidak di temukan !</h3></center>"; break;
                         }
                     } else {
                         include "home.php";
