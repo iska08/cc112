@@ -1,17 +1,14 @@
- <footer class="text-muted py-5">
+<footer class="text-muted py-5">
   <div class="container">
     <p class="float-right mb-1">
-     <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
-     <i class="fas fa-arrow-up"></i>
-     </button>
+      <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+      </button>
     </p>
-   <p class="mb-1">Copyright &copy; 2022 Diskominfo Sumenep</p>
-   </div>
+    <p class="mb-1">Copyright &copy; 2022 Diskominfo Sumenep</p>
+  </div>
 </footer>
-
-
 <!-- ./wrapper -->
-
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -82,17 +79,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js" integrity="sha512-YibiFIKqwi6sZFfPm5HNHQYemJwFbyyYHjrr3UT+VobMt/YBo1kBxgui5RWc4C3B4RJMYCdCAJkbXHt+irKfSA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript">//Get the button
 let mybutton = document.getElementById("btn-back-to-top");
-
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function () {
   scrollFunction();
 };
-
 function scrollFunction() {
-  if (
-    document.body.scrollTop > 20 ||
-    document.documentElement.scrollTop > 20
-  ) {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     mybutton.style.display = "block";
   } else {
     mybutton.style.display = "none";
@@ -100,11 +92,8 @@ function scrollFunction() {
 }
 // When the user clicks on the button, scroll to the top of the document
 mybutton.addEventListener("click", backToTop);
-
 function backToTop() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
 </script>
-</body>
-</html>
