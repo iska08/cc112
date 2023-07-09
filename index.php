@@ -74,13 +74,14 @@ include 'fungsi_bulan.php';
       <!-- //logo -->
       <a href="https://ekominfo.sumenepkab.go.id/cc112/">
         <img src="img/cc112_ok1.jpg" class="img-fluid" alt="">
-        <ul class="nav-item d-none d-sm-inline-block">
+        <!-- <ul class="nav-item d-none d-sm-inline-block">
           <a href="adm_login.php" class="nav-link">Login Admin</a>
         </ul>
         <ul class="nav-item d-none d-sm-inline-block">
           <a href="inputLaporan.php" class="nav-link">Buat Laporan Kejadian</a>
-        </ul>
+        </ul> -->
       </a>
+      <a href="inputLaporan.php" class="nav-link">Buat Laporan Kejadian</a>
     </center>
     <form action="index.php" method="GET">
       <div class="input-group input-group-sm">
