@@ -1,29 +1,21 @@
 <?php
-   session_start();
-   if (empty($_SESSION['112_username'])){header("Location:/");}
-    //koneksi
-    include 'dbconfig.php';
-    $id_kec = $_GET['id_kec'];
-    $id_desa = $_GET['id_desa'];
-    $id_kej = $_GET['id_kej'];
-    $id_opd = $_GET['id_opd'];
+session_start();
+if (empty($_SESSION['112_username'])){
+  header("Location:/");
+}
+//koneksi
+include 'dbconfig.php';
+$id_kec = $_GET['id_kec'];
+$id_desa = $_GET['id_desa'];
+$id_kej = $_GET['id_kej'];
+$id_opd = $_GET['id_opd'];
 ?>
 
 <div class="row">
-<div class="col-12">
-
-<div class="card card-info card-outline">  
-
-
-
-
+  <div class="col-12">
+    <div class="card card-info card-outline"></div>
+  </div>
 </div>
-</div>
-</div>
-
-
-
-
 <script type="text/javascript">
   $(document).ready(function(){
     // program dependent ajax
@@ -40,7 +32,6 @@
          }
       });
     });
- 
     // kegiatan dependent ajax
     $("#desa").on("change", function(){
       var desa_id = $(this).val();

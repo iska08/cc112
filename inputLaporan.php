@@ -164,14 +164,8 @@
         var popup = L.popup();
         // buat fungsi popup saat map diklik
         function onMapClick(e) {
-          popup
-            .setLatLng(e.latlng)
-            .setContent("koordinatnya adalah " + e.latlng
-              .toString()
-            ) //set isi konten yang ingin ditampilkan, kali ini kita akan menampilkan latitude dan longitude
-            .openOn(mymap);
-          document.getElementById('latlong').value = e
-            .latlng //value pada form latitde, longitude akan berganti secara otomatis
+          popup.setLatLng(e.latlng).setContent("koordinatnya adalah " + e.latlng.toString()).openOn(mymap); //set isi konten yang ingin ditampilkan, kali ini kita akan menampilkan latitude dan longitude
+          document.getElementById('latlong').value = e.latlng //value pada form latitde, longitude akan berganti secara otomatis
         }
         mymap.on('click', onMapClick); //jalankan fungsi
       </script>

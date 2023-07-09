@@ -1,80 +1,76 @@
 <?php
-  include 'header.php';
-  include 'dbconfig.php';
-  include 'fungsi_bulan.php';
+include 'header.php';
+include 'dbconfig.php';
+include 'fungsi_bulan.php';
 ?>
+
 <link href="https://getbootstrap.com/docs/4.0/examples/navbar-fixed/navbar-top-fixed.css"rel="stylesheet">
 <link rel="stylesheet"href="css/wizard.css">
 <style type="text/css">
-@media screen and (max-width: 1000px) {
-  .mobile-space {
-    margin-top: 50px;
+  @media screen and (max-width: 1000px) {
+    .mobile-space {
+      margin-top: 50px;
+    }
+    .mobile-space_1 {
+      margin-top: 50px;
+    }
+    .logo {
+      height: 40px;
+    }
+    .gbr {
+      width: 50%;
+      height: 50%;
+    }
+    .chart {
+      width: 100%;
+      min-height: 300px;
+    }
   }
-  .mobile-space_1 {
-    margin-top: 50px;
+  @media screen and (max-width: 600px) {
+    .mobile-space {
+      margin-top: 30px;
+    }
+    .mobile-space_1 {
+      margin-top: 0px;
+    }
+    .logo {
+      height: 30px;
+    }
+    .gbr {
+      width: 100%;
+    }
   }
-  .logo {
-    height: 40px;
+  @media screen and (max-width: 1000px) {
+    .mapid {
+      height: 300px;
+      width: 100%;
+    }
   }
-  .gbr {
-    width: 50%;
-    height: 50%;
+  @media screen and (min-width: 1200px) {
+    .mapid {
+      height: 600px;
+      width: 100%;
+    }
   }
-  .chart {
-    width: 100%;
-    min-height: 300px;
+  @media screen and (min-width: 1200px) {
+    .mobile-space {
+      margin-top: 190px;
+    }
+    .logo {
+      height: 90px;
+    }
+    .gbr {
+      height: 200px;
+    }
+    .chart {
+      width: 100%;
+      min-height: 500px;
+    }
   }
-}
-@media screen and (max-width: 600px) {
-  .mobile-space {
-    margin-top: 30px;
-  }
-  .mobile-space_1 {
-    margin-top: 0px;
-  }
-  .logo {
-    height: 30px;
-  }
-  .gbr {
-    width: 100%;
-  }
-}
-@media screen and (max-width: 1000px) {
-  .mapid {
-    height: 300px;
-    width: 100%;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .mapid {
-    height: 600px;
-    width: 100%;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .mobile-space {
-    margin-top: 190px;
-  }
-  .logo {
-    height: 90px;
-  }
-  .gbr {
-    height: 200px;
-  }
-  .chart {
-    width: 100%;
-    min-height: 500px;
-  }
-}
 </style>
-
 <body>
   <div class="fixed-top container" style="background-color: #fff;">
     <center>
-      <!-- logo -->
-      <div id="logo">
-        <h1><a href="index.php"><span class="fa fa-linode mr-10"></span>DINAS KOMUNIKASI DAN INFORMATIKA KABUPATEN SUMENEP</a></h1>
-      </div>
       <!-- //logo -->
       <a href="https://ekominfo.sumenepkab.go.id/cc112/">
         <img src="img/cc112_ok1.jpg" class="img-fluid" alt="">
@@ -116,31 +112,17 @@
                   <div class="table-responsive">
                     <table id="data_kej" class="table table-bordered">
                       <thead class="">
-                        <th>
-                          Kejadian
-                        </th>
-                        <th>
-                          Kecamatan
-                        </th>
-                        <th>
-                          Desa
-                        </th>
-                        <th>
-                          Alamat
-                        </th>
-                        <th>
-                          Tanggal
-                        </th>
-                        <th>
-                          Keterangan
-                        </th>
-                        <th>
-                          Foto
-                        </th>
+                        <th>Kejadian</th>
+                        <th>Kecamatan</th>
+                        <th>Desa</th>
+                        <th>Alamat</th>
+                        <th>Tanggal</th>
+                        <th>Keterangan</th>
+                        <th>Foto</th>
                       </thead>
                       <tbody>
                         <?php
-                        $tampil = mysqli_query($kominfo, "select * from lokasi where ket like '%".$cari."%' or kejadian like '%".$cari."%' or alamat like '%".$cari."%' order by id desc "); //ambil data dari tabel lokasi perusahaan
+                        $tampil = mysqli_query($kominfo, "select * from lokasi where ket like '%".$cari."%' or kejadian like '%".$cari."%' or alamat like '%".$cari."%' order by id desc ");
                         $nomor=1;
                         while($hasil = mysqli_fetch_assoc($tampil)){
                           $jumlah = mysqli_num_rows($tampil);
@@ -205,8 +187,10 @@
             </div>
           </div>
         <?php
-        }else{
+        } else {
         ?>
+          <br/>
+          <br/>
           <br/>
           <div class="card card-primary card-outline mobile-space_1">
             <div class="card-header">
@@ -236,13 +220,18 @@
                           <strong class="d-inline-block mb-2 text-primary"><?php echo $hasil['kejadian']; ?></strong>
                           <h3 class="mb-0">
                             <?php
-                            $id_kec=$hasil['kec']; $tampil_id_kec = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec' "); //ambil data dari tabel lokasi
+                            $id_kec=$hasil['kec'];
+                            $tampil_id_kec = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec' "); //ambil data dari tabel lokasi
                             $hasil_id_kec = mysqli_fetch_array($tampil_id_kec)
                             ?>
                             <a class="text-dark" href="#"><?php echo $hasil_id_kec['nama_kecamatan']; ?></a>
                           </h3>
-                          <div class="mb-1 text-muted"><?php echo $hasil['tanggal_terima']; ?></div>
-                          <p class="card-text mb-auto"><?php echo $hasil['ket']; ?></p>
+                          <div class="mb-1 text-muted">
+                            <?php echo $hasil['tanggal_terima']; ?>
+                          </div>
+                          <p class="card-text mb-auto">
+                            <?php echo $hasil['ket']; ?>
+                          </p>
                           <a href="#"></a>
                         </div>
                         <?php
@@ -440,15 +429,18 @@
               $hasil_desa=mysqli_query($kominfo, "select * from desa where id='$id_desa' "); //ambil data dari tabel lokasi
               $desa=mysqli_fetch_array($hasil_desa);
             ?>
-            //menggunakan fungsi L.marker(lat, long) untuk menampilkan latitude dan longitude
-            //menggunakan fungsi str_replace() untuk menghilankan karakter yang tidak dibutuhkan
-            L.marker([<?php echo str_replace(['[', ']', 'LatLng', '(', ')'], '', $hasil['lat_long']); ?>], {
-              icon: call_center
-            })
-            .addTo(mymap) //data ditampilkan di dalam bindPopup( data ) dan dapat dikustomisasi dengan html
-            .bindPopup(`<?php echo '<div><b>Kejadian</b> : '.$hasil['kejadian'].'</div><div><b>Tanggal</b> : '.$hasil['tanggal_terima'].'</div><div><b>Kecamatan</b> : '.$kec['nama_kecamatan'].'</div><div><b>Desa</b> : '.$desa['nama_desa'].'</div><div><b>Ket.</b> : '.$hasil['ket'].'</div>'; ?><?php $id_foto=$hasil['id']; $tampil_foto=mysqli_query($kominfo, "select * from foto where id_lokasi='$id_foto' "); while($hasil_foto=mysqli_fetch_array($tampil_foto)) {
-              ?><img class="img-thumbnail"src="foto/<?php echo $hasil_foto['nama_foto'] ?>"><?php
-            }?> `) <?php
+              //menggunakan fungsi L.marker(lat, long) untuk menampilkan latitude dan longitude
+              //menggunakan fungsi str_replace() untuk menghilankan karakter yang tidak dibutuhkan
+              L.marker([<?php echo str_replace(['[', ']', 'LatLng', '(', ')'], '', $hasil['lat_long']); ?>], {
+                icon: call_center
+              }).addTo(mymap).bindPopup(`
+                <?php echo '<div><b>Kejadian</b> : '.$hasil['kejadian'].'</div><div><b>Tanggal</b> : '.$hasil['tanggal_terima'].'</div><div><b>Kecamatan</b> : '.$kec['nama_kecamatan'].'</div><div><b>Desa</b> : '.$desa['nama_desa'].'</div><div><b>Ket.</b> : '.$hasil['ket'].'</div>'; ?><?php $id_foto=$hasil['id'];
+                $tampil_foto=mysqli_query($kominfo, "select * from foto where id_lokasi='$id_foto' ");
+                while($hasil_foto=mysqli_fetch_array($tampil_foto)) {
+                  ?><img class="img-thumbnail"src="foto/<?php echo $hasil_foto['nama_foto'] ?>"><?php
+                }?>
+              `)
+            <?php
             }
             ?>
           </script>
@@ -523,8 +515,9 @@
         ?>
       </div>
   </main>
-  
+
   <?php include 'footer.php';?>
+
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
     $(window).resize(function(){
@@ -542,7 +535,12 @@
         while($hasil = mysqli_fetch_array($tampil)){
           $nama_kej=$hasil['kejadian']; 
           $tampil_1 = mysqli_query($kominfo, "select * from lokasi where kejadian='$nama_kej' "); //ambil data dari tabel lokasi
-          $hasil_1 = mysqli_num_rows($tampil_1);?><?php echo "['"; ?><?php echo $nama_kej;?> <?php echo "',";?> <?php echo $hasil_1; ?> <?php echo "],";?>
+          $hasil_1 = mysqli_num_rows($tampil_1);?>
+          <?php echo "['"; ?>
+          <?php echo $nama_kej;?>
+          <?php echo "',";?>
+          <?php echo $hasil_1; ?>
+          <?php echo "],";?>
         <?php
         }
         ?>
@@ -566,8 +564,9 @@
             <?php echo " ' ";?>
             <?php echo $nama_kej;?>
             <?php echo " ',";?>
-            <?php
-          }?>
+          <?php
+          }
+          ?>
         ],
         <?php
         $tampil_tahun = mysqli_query($kominfo, "select * from lokasi GROUP BY tahun ");//ambil data dari tabel lokasi
@@ -586,10 +585,10 @@
             } ?>
             <?php echo ",";?>
           <?php
-          }?>
-        ],
-      <?php
-      }?>]);
+          }
+          ?>
+        ],<?php } ?>
+      ]);
       // Optional; add a title and set the width and height of the chart
       var options = {'width':null,'height':600};
       var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
@@ -607,3 +606,5 @@
         $(this).ekkoLightbox();
       });
     </script>
+  </script>
+</body>
