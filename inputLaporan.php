@@ -104,16 +104,8 @@
                 <textarea class="form-control" name="ket" cols="30" rows="5" required></textarea>
               </div>
               <div class="form-group">
-                <label for="exampleFormControlInput1">Foto Kejadian (1)</label>
-                <input type="file" class="form-control" name="fotokejadian1" required>
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlInput1">Foto Kejadian (2)</label>
-                <input type="file" class="form-control" name="fotokejadian2" required>
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlInput1">Foto Kejadian (3)</label>
-                <input type="file" class="form-control" name="fotokejadian3" required>
+                <label for="exampleFormControlInput1">Foto Kejadian</label>
+                <input type="file" class="form-control" name="fotokejadian1" multiple required>
               </div>
               <div class="form-group">
                 <button type="submit" name="tambah_lokasi" class="btn btn-info btn-sm">Tambah</button>
