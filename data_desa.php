@@ -8,6 +8,7 @@ if (empty($_SESSION['112_username'])){
 <?php
 //koneksi
 include 'dbconfig.php';
+error_reporting(0);
 $id_desa = $_GET['id_desa'];
 ?>
 
