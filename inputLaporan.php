@@ -74,38 +74,6 @@
         <div class="row">
           <!-- class row digunakan sebelum membuat column  -->
           <div class="col-md-3">
-            <?php
-            // Cek apakah ada file yang dikirimkan
-            if (isset($_FILES['files'])) {
-              $total_files = count($_FILES['files']['name']);
-              $uploaded_files = 0;
-
-              // Mengecek apakah sudah memenuhi batasan minimal
-              if ($total_files >= 3) {
-                // Menggunakan loop untuk mengunggah setiap file
-                for ($i = 0; $i < $total_files; $i++) {
-                  $file_name  = $_FILES['files']['name'][$i];
-                  $file_tmp   = $_FILES['files']['tmp_name'][$i];
-                  $file_size  = $_FILES['files']['size'][$i];
-                  $file_type  = $_FILES['files']['type'][$i];
-
-                  // Menentukan direktori penyimpanan file
-                  $upload_dir = 'uploads/';
-                  $target_files = $upload_dir . $file_name;
-
-                  // Memeriksa apakah file berhasil diunggah
-                  if (move_uploaded_file($file_tmp, $target_files)) {
-                    $uploaded_files++;
-                  }
-                }
-
-                // Menampilkan pesan setelah mengunggah file
-                echo "<p>$uploaded_files file berhasil diunggah.</p>";
-              } else {
-                echo "<p>Jumlah file yang diunggah harus minimal 3.</P>";
-              }
-            }
-            ?>
             <!-- ukuruan layar dengan bootstrap adalah 12 kolom, bagian kiri dibuat sebesar 4 kolom-->
             <form id="form_tambah_lokasi" method="post" enctype="multipart/form-data">
               <div class="form-group">

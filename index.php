@@ -81,6 +81,7 @@ include 'fungsi_bulan.php';
           <a href="inputLaporan.php" class="nav-link">Buat Laporan Kejadian</a>
         </ul> -->
       </a>
+      <a href="adm_login.php" class="nav-link">Laporan Tim</a>
       <a href="inputLaporan.php" class="nav-link">Buat Laporan Kejadian</a>
     </center>
     <form action="index.php" method="GET">
@@ -571,25 +572,29 @@ include 'fungsi_bulan.php';
         ],
         <?php
         $tampil_tahun = mysqli_query($kominfo, "select * from lokasi GROUP BY tahun ");//ambil data dari tabel lokasi
-        while($hasil_tahun = mysqli_fetch_array($tampil_tahun)){ $nama_kej=$hasil['kejadian']; ?>
-        [
-          '<?php $tahun=$hasil_tahun['tahun']; echo $tahun; ?>',
-          <?php $tampil = mysqli_query($kominfo, "select * from lokasi GROUP BY kejadian ");//ambil data dari tabel lokasi
-          while($hasil = mysqli_fetch_array($tampil)){ $nama_kej=$hasil['kejadian'];
-            $tampil_1 = mysqli_query($kominfo, "select * from lokasi where kejadian='$nama_kej' and tahun='$tahun'  "); //ambil data dari tabel lokasi
-            $hasil_1 = mysqli_num_rows($tampil_1);?>
+        while($hasil_tahun = mysqli_fetch_array($tampil_tahun)){
+          $nama_kej=$hasil['kejadian']; ?>
+          [
+            '<?php $tahun=$hasil_tahun['tahun']; echo $tahun; ?>',
+            <?php $tampil = mysqli_query($kominfo, "select * from lokasi GROUP BY kejadian ");//ambil data dari tabel lokasi
+            while($hasil = mysqli_fetch_array($tampil)){ $nama_kej=$hasil['kejadian'];
+              $tampil_1 = mysqli_query($kominfo, "select * from lokasi where kejadian='$nama_kej' and tahun='$tahun'  "); //ambil data dari tabel lokasi
+              $hasil_1 = mysqli_num_rows($tampil_1);?>
+              <?php
+              if($hasil_1){
+                echo $hasil_1;
+              }else{
+                echo "0";
+              } ?>
+              <?php echo ",";?>
             <?php
-            if($hasil_1){
-              echo $hasil_1;
-            }else{
-              echo "0";
-            } ?>
-            <?php echo ",";?>
-          <?php
-          }
-          ?>
-        ],<?php } ?>
-      ]);
+            }
+            ?>
+          ],
+        <?php
+        }
+        ?>
+      ,]);
       // Optional; add a title and set the width and height of the chart
       var options = {'width':null,'height':600};
       var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
