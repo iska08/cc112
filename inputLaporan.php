@@ -65,6 +65,7 @@
         width: 100%;
       }
     </style>
+    <?php include 'dbconfig.php'; ?>
     <div class="card card-primary card-outline">
       <div class="card-header ">
         <h5 class="card-title">Input Lokasi Kejadian</h5>
@@ -113,7 +114,37 @@
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Kejadian</label>
-                <input type="text" class="form-control" id="kejadian" name="kejadian" required>
+                <select class="form-control select2-danger " name="kejadian" required>
+                  <option disabled selected>== Pilih Kejadian ==</option>
+                  <?php
+                  $tampil_kej = mysqli_query($kominfo, "select * from kejadian"); //ambil data dari tabel kecamatan
+                  while($hasil_kej = mysqli_fetch_array($tampil_kej)) {
+                  ?>
+                    <option value="<?php echo $hasil_kej['nama_kejadian']; ?>"><?php echo $hasil_kej['nama_kejadian']; ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Kecamatan</label>
+                <select class="form-control" id="kecamatan" name="kec" required>
+                  <option disabled selected>== Pilih Kecamatan ==</option>
+                  <?php
+                  $tampil_kec = mysqli_query($kominfo, "select * from kecamatan"); //ambil data dari tabel kecamatan
+                  while($hasil_kec = mysqli_fetch_array($tampil_kec)) {
+                  ?>
+                    <option value="<?php echo $hasil_kec['id']; ?>"><?php echo $hasil_kec['nama_kecamatan']; ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Desa</label>
+                <select class="form-control" id="desa" name="desa" required>
+                  <option disabled selected>== Pilih Desa ==</option>
+                </select>
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Nama Pelapor </label>
@@ -124,7 +155,7 @@
                 <input type="text" class="form-control" id="no_telp" name="no_telp" required>
               </div>
               <div class="form-group">
-                <label for="exampleFormControlInput1">Tanggal Kejadian</label>
+                <label for="exampleFormControlInput1">Waktu Kejadian</label>
                 <input type="datetime-local" class="form-control" id="tanggal_terima" name="tanggal_terima" required>
               </div>
               <div class="form-group">
