@@ -36,7 +36,6 @@ include 'dbconfig.php';
               <th>Alamat</th>
               <th>Keterangan</th>
               <th>Foto</th>
-              <th></th>
             </thead>
             <tbody>
               <?php
@@ -78,7 +77,6 @@ include 'dbconfig.php';
                             <a href="foto/<?php echo $foto1['nama_foto'] ?>" data-toggle="lightbox">
                               <img class="img-thumbnail" src="foto/<?php echo $foto1['nama_foto'] ?>" />
                             </a>
-                            <a style="position:absolute;top:10px;right:20px;" class="btn btn-danger btn-sm " id="hapus_foto" value="<?php echo $foto1['id']; ?>">Hapus</a><a style="position:absolute;top:10px;left:20px;" class="btn btn-danger btn-sm " data-target="#crop-modal_<?php echo $foto1['id']; ?>" data-toggle="modal">Edit</a>
                           </div>
                           <!-- Crop Modal -->
                           <div id="crop-modal_<?php echo $foto1['id']; ?>" class="modal fade" tabindex="-1">
@@ -107,21 +105,6 @@ include 'dbconfig.php';
                       <?php
                       }
                       ?>
-                    </div>
-                    <br/>
-                    <form method="post" id="upload_foto">
-                      <input type="file" name="foto" data-icon="false" required>
-                      <input hidden type="text" name="id" value="<?php echo $hasil['id']; ?>">
-                      <input hidden type="text" name="kej" value="<?php echo $hasil['kejadian']; ?>">
-                      <br/>
-                      <br/>
-                      <button type="submit" class="btn btn-info btn-sm" id="inputGroupFileAddon04">Upload</button>
-                    </form>
-                  </td>
-                  <td width="5%">
-                    <div class="btn-group">
-                      <a class="btn btn-info btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Edit</a>
-                      <a class="btn btn-danger btn-sm " id="hapus_lokasi" value="<?php echo $hasil['id']; ?>">Hapus</a>
                     </div>
                   </td>
                 </tr>

@@ -172,7 +172,7 @@ if (empty($_SESSION['112_username'])){
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="?hal=lokasi" class="nav-link">
+                                        <a href="?hal=lokasi_tim" class="nav-link">
                                             <i class="nav-icon far fa-circle"></i>
                                             <p>Data Lokasi</p>
                                         </a>
@@ -209,7 +209,7 @@ if (empty($_SESSION['112_username'])){
                             case 'gis': include "gis.php"; break;
                             case 'input_lokasi': include "input_lokasi.php"; break;
                             case 'edit_lokasi': include "edit_lokasi.php"; break;
-                            case 'lokasi': include "lokasi.php"; break;
+                            case 'lokasi_tim': include "lokasi_tim.php"; break;
                             case 'hapus': include "proses.php"; break;
                             case 'data_kej': include "data_kejadian.php"; break;
                             case 'data': include "data.php"; break;

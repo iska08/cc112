@@ -9,7 +9,6 @@ include 'fungsi_bulan.php';
   #mapid {
     height: 600px;width:100%;
   }
-  .jumbotron {}
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
