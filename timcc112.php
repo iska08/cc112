@@ -9,7 +9,7 @@ if (empty($_SESSION['112_username'])){
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Call Center 112 | Admin Dashboard</title>
+        <title>Call Center 112 | Tim Dashboard</title>
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -181,35 +181,6 @@ if (empty($_SESSION['112_username'])){
                                         <a href="?hal=data_kej" class="nav-link">
                                             <i class="nav-icon far fa-circle"></i>
                                             <p>Data Kejadian</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-briefcase"></i>
-                                    <p>
-                                        Data
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="?hal=survey" class="nav-link">
-                                            <i class="nav-icon far fa-circle"></i>
-                                            <p>Survey</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="?hal=data" class="nav-link">
-                                            <i class="nav-icon far fa-circle"></i>
-                                            <p>Input Data</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="?hal=counter" class="nav-link">
-                                            <i class="nav-icon far fa-circle"></i>
-                                            <p>Data Counter</p>
                                         </a>
                                     </li>
                                 </ul>

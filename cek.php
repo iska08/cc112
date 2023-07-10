@@ -544,8 +544,8 @@ include 'fungsi_bulan.php';
         while($hasil_tahun = mysqli_fetch_array($tampil_tahun)) {
           $nama_kej=$hasil['kejadian'];
         ?>
-          ['
-            <?php $tahun=$hasil_tahun['tahun']; echo $tahun; ?>',
+          [
+            '<?php $tahun=$hasil_tahun['tahun']; echo $tahun; ?>',
             <?php
             $tampil = mysqli_query($kominfo, "select * from lokasi GROUP BY kejadian ");//ambil data dari tabel lokasi
             while($hasil = mysqli_fetch_array($tampil)){
@@ -568,7 +568,7 @@ include 'fungsi_bulan.php';
         <?php
         }
         ?>
-      ]);
+      ,]);
       // Optional; add a title and set the width and height of the chart
       var options = {'width':null,'height':600};
       var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));

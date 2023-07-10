@@ -61,13 +61,19 @@
                     $data = mysqli_fetch_assoc($login);
                     $username = $data['username'];
                     // cek jika user login sebagai admin
-                    if($data['username']){
-                      // buat session login dan username
-                      $_SESSION['112_username'] = $username;
+                    if($data['hak_akses']=="Admin"){
+                      $_SESSION['112_username']   = $username;
+                      $_SESSION['hak_akses']  = "Admin";
                       $login_on = mysqli_query($kominfo,"update user set online ='1' where username='$username'");
                       // alihkan ke halaman dashboard admin
                       echo "<script>window.location='admcc112.php';</script>";
-                      // cek jika user login sebagai pegawai
+                    // cek jika user login sebagai admin
+                    }elseif($data['hak_akses']=="Tim"){
+                      $_SESSION['112_username']   = $username;
+                      $_SESSION['hak_akses']  = "Tim";
+                      $login_on = mysqli_query($kominfo,"update user set online ='1' where username='$username'");
+                      // alihkan ke halaman dashboard admin
+                      echo "<script>window.location='timcc112.php';</script>";
                     } else {
                       echo '<div class="alert alert-warning" role="alert"><strong>Akun anda belum aktif atau belum terdaftar!</strong></div>';
                     }
