@@ -12,7 +12,6 @@ include 'dbconfig.php';
   #mapid {
     height: 600px;width:100%;
   }
-  .jumbotron{}
 </style>
 
 <?php 
