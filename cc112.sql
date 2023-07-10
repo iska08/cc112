@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2023 at 04:01 AM
+-- Generation Time: Jul 10, 2023 at 06:00 AM
 -- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- PHP Version: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -860,29 +860,30 @@ INSERT INTO `kecamatan` (`id`, `nama_kecamatan`) VALUES
 
 CREATE TABLE `kejadian` (
   `id` int(11) NOT NULL,
-  `nama_kejadian` varchar(255) DEFAULT NULL
+  `nama_kejadian` varchar(255) DEFAULT NULL,
+  `opd_terkait` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kejadian`
 --
 
-INSERT INTO `kejadian` (`id`, `nama_kejadian`) VALUES
-(3, 'BENCANA ALAM'),
-(4, 'POHON TUMBANG'),
-(5, 'PERMINTAAN AMBULAN'),
-(6, 'KECELAKAAN LALU LINTAS'),
-(7, 'TIANG LISTRIK RUBUH'),
-(8, 'KEAMANAN DAN KETERTIBAN MASYARAKAT'),
-(9, 'EVAKUASI HEWAN LIAR/BUAS'),
-(18, 'KEBAKARAN'),
-(19, 'BANJIR'),
-(20, 'COVID 19'),
-(21, 'KRIMINALITAS'),
-(25, 'ORANG DENGAN GANGGUAN JIWA (ODGJ)'),
-(26, 'GIAT EVAKUASI'),
-(27, 'KECELAKAAN KERJA'),
-(28, 'KECELAKAAN LAUT');
+INSERT INTO `kejadian` (`id`, `nama_kejadian`, `opd_terkait`) VALUES
+(3, 'BENCANA ALAM', NULL),
+(4, 'POHON TUMBANG', NULL),
+(5, 'PERMINTAAN AMBULAN', NULL),
+(6, 'KECELAKAAN LALU LINTAS', NULL),
+(7, 'TIANG LISTRIK RUBUH', NULL),
+(8, 'KEAMANAN DAN KETERTIBAN MASYARAKAT', NULL),
+(9, 'EVAKUASI HEWAN LIAR/BUAS', 'DAMKAR'),
+(18, 'KEBAKARAN', NULL),
+(19, 'BANJIR', 'BPBD'),
+(20, 'COVID 19', NULL),
+(21, 'KRIMINALITAS', NULL),
+(25, 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', 'SATPOLL PP'),
+(26, 'GIAT EVAKUASI', NULL),
+(27, 'KECELAKAAN KERJA', NULL),
+(28, 'KECELAKAAN LAUT', NULL);
 
 -- --------------------------------------------------------
 
@@ -1114,7 +1115,8 @@ INSERT INTO `lokasi` (`id`, `lat_long`, `alamat`, `desa`, `kec`, `kejadian`, `ta
 (528, 'LatLng(-7.045697, 113.930197)', 'Desa Kalianget Barat', '3', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '07 Juni 2023 14:00', '', NULL, 'CC112 Tim Satpol PP mengevakuasi ODGI ke RSUD H. Moh. Anwar Sumenep\r\nPelapor : Juhari', '06', '2023'),
 (529, 'LatLng(-6.886453, 113.663306)', 'Desa Panaongan', '274', '14', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '09 Juni 2023 11:30', '', NULL, 'CC112 Tim Satpol PP mengevakuasi ODGJ di Puskesmas Pasongsongan atas laporan dari kepala desa Soddere ', '06', '2023'),
 (530, 'LatLng(-7.026945, 113.854065)', 'Jl. Trunojoyo (Pertigaan linkar timur)', '216', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '13 Juni 2023 19:00', '', NULL, 'CC112 Tim Satpol PP mengevakuasi oarang terlantar di desa babbalan (pertigaan linkar timur) ke RPS Dinsos Sumenep\r\nPelapor : Ibu Shinta', '06', '2023'),
-(531, 'LatLng(-7.004925, 113.868409)', 'Jl. Agus Salim Perempatan Jati mas', '210', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '20 Juni 2023 15:30', '', NULL, 'CC112 Tim Satpol PP mengevakuasi orang terlantar dan terduga ODGJ di perempatan Jl. Agus Salim ke RPS Dinsos\r\nPelopor : Bapak Agus', '06', '2023');
+(531, 'LatLng(-7.004925, 113.868409)', 'Jl. Agus Salim Perempatan Jati mas', '210', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '20 Juni 2023 15:30', '', NULL, 'CC112 Tim Satpol PP mengevakuasi orang terlantar dan terduga ODGJ di perempatan Jl. Agus Salim ke RPS Dinsos\r\nPelopor : Bapak Agus', '06', '2023'),
+(539, 'LatLng(-7.042272, 113.930626)', '', '251', '4', 'KECELAKAAN LALU LINTAS', '10 Juli 2023 12:00', '', NULL, '', '07', '2023');
 
 -- --------------------------------------------------------
 
@@ -1195,7 +1197,7 @@ CREATE TABLE `user` (
   `password` varchar(100) DEFAULT NULL,
   `nama` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `hak_akses` enum('1','0','','') DEFAULT NULL,
+  `hak_akses` enum('Admin','Tim') DEFAULT NULL,
   `online` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1204,7 +1206,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `nama`, `email`, `hak_akses`, `online`) VALUES
-(0, 'cc112admin', '910627536cacadd2585dd5e25c41489a', 'Arief Santoso, ST', '', '1', '1');
+(0, 'cc112admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Arief Santoso, ST', '', 'Admin', '1'),
+(1, 'tim', '5f4dcc3b5aa765d61d8327deb882cf99', 'Tim Lapangan', NULL, 'Tim', '1');
 
 --
 -- Indexes for dumped tables
@@ -1296,13 +1299,13 @@ ALTER TABLE `dusun`
 -- AUTO_INCREMENT for table `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=517;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=521;
 
 --
 -- AUTO_INCREMENT for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT for table `kejadian`
@@ -1314,7 +1317,7 @@ ALTER TABLE `kejadian`
 -- AUTO_INCREMENT for table `lokasi`
 --
 ALTER TABLE `lokasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=532;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=540;
 
 --
 -- AUTO_INCREMENT for table `opd_terkait`
