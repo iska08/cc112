@@ -28,6 +28,20 @@ $id_kej = $_GET['id_kej'];
           <input type="text" class="form-control" name="nama_kej" value="<?php echo $hasil_id_kej['nama_kejadian']; ?>" required>
         </div>
         <div class="form-group">
+          <label for="exampleFormControlInput1">OPD Terkait</label>
+          <select class="form-control" id="opd_terkait" name="opd_terkait" required>
+            <option disabled selected>== Pilih OPD Terkait ==</option>
+            <?php
+            $tampil_opd = mysqli_query($kominfo, "select * from opd_terkait");
+            while($hasil_opd = mysqli_fetch_array($tampil_opd)) {
+            ?>
+              <option value="<?php echo $hasil_opd['nama_opd']; ?>"><?php echo $hasil_opd['nama_opd']; ?></option>
+            <?php
+            }
+            ?>
+          </select>
+        </div>
+        <div class="form-group">
           <?php
           if($id_kej){
           ?>
@@ -50,6 +64,7 @@ $id_kej = $_GET['id_kej'];
         <thead class="">
           <th width="1%">No</th>
           <th>Jenis Kejadian</th>
+          <th>OPD Terkait</th>
           <th></th>
         </thead>
         <tbody>
@@ -64,6 +79,9 @@ $id_kej = $_GET['id_kej'];
               </td>
               <td>
                 <?php echo $hasil_kej['nama_kejadian']; ?>
+              </td>
+              <td>
+                <?php echo $hasil_kej['opd_terkait']; ?>
               </td>
               <td width="5%">
                 <div class="btn-group">

@@ -144,9 +144,10 @@ switch ($_GET['action']) {
         }
         break;
     case 'simpan_kej':
-        $nama_kej = $_POST['nama_kej'];
+        $nama_kej       = $_POST['nama_kej'];
+        $opd_terkait    = $_POST['opd_terkait'];
         //input data
-        $insert_kej = mysqli_query($kominfo, "INSERT into kejadian set nama_kejadian='$nama_kej' ");
+        $insert_kej = mysqli_query($kominfo, "INSERT into kejadian set nama_kejadian='$nama_kej',opd_terkait='$opd_terkait' ");
         if ($insert_kej) {
             echo "Tambah Kejadian Berhasil";
         } else {
@@ -167,8 +168,9 @@ switch ($_GET['action']) {
     case 'edit_kej':
         $id_kej = $_POST['id'];
         $nama_kejadian  = $_POST['nama_kej'];
+        $opd_terkait    = $_POST['opd_terkait'];
         //edit data kec
-        $update_kej = mysqli_query($kominfo, " UPDATE `kejadian` SET nama_kejadian='$nama_kejadian' WHERE id='$id_kej' ");
+        $update_kej = mysqli_query($kominfo, " UPDATE `kejadian` SET nama_kejadian='$nama_kejadian',opd_terkait='$opd_terkait' WHERE id='$id_kej' ");
         if ($update_kej) {
             echo "Edit Kejadian Berhasil";
         } else {
