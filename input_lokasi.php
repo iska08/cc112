@@ -62,26 +62,26 @@ include 'dbconfig.php';
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Tanggal Terima</label>
-            <input type="text" class="form-control" id="tanggal_terima" name="tanggal_terima">
+            <input type="text" class="form-control" id="tanggal_terima" name="tanggal_terima" required>
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Tanggal Selesai</label>
-            <input type="text" class="form-control" id="tanggal_selesai" name="tanggal_selesai">
+            <input type="text" class="form-control" id="tanggal_selesai" name="tanggal_selesai" required>
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Alamat</label>
-            <input type="text" class="form-control" name="alamat">
+            <input type="text" class="form-control" name="alamat" required>
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Keterangan</label>
-            <textarea class="form-control" name="ket" cols="30" rows="5"></textarea>
+            <textarea class="form-control" name="ket" cols="30" rows="5" required></textarea>
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Foto Kejadian</label>
             <input type="file" class="form-control" name="foto" data-icon="false" multiple required>
           </div>
           <div class="form-group">
-            <button type="submit" name="tambah_lokasi" class="btn btn-info btn-sm" id="inputGroupFileAddon04">Tambah</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
+            <button type="submit" name="tambah_lokasi" class="btn btn-info btn-sm">Tambah</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
           </div>
         </form>
       </div>
