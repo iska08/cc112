@@ -81,7 +81,7 @@ include 'dbconfig.php';
             <input type="file" class="form-control" name="foto" data-icon="false" multiple required>
           </div>
           <div class="form-group">
-            <button type="submit" name="tambah_lokasi" class="btn btn-info btn-sm" id="inputGroupFileAddon04">Tambah</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
+            <button type="submit" name="tambah_lokasi" class="btn btn-info btn-sm">Tambah</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
           </div>
         </form>
       </div>
