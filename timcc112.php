@@ -93,7 +93,7 @@ if (empty($_SESSION['112_username'])){
                         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
-                        <a href="admin.php" class="nav-link">Home</a>
+                        <a href="timcc112.php" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
                         <a href="logout.php" class="nav-link">Log Out</a>
@@ -172,7 +172,7 @@ if (empty($_SESSION['112_username'])){
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="?hal=lokasi_tim" class="nav-link">
+                                        <a href="?hal=lokasi" class="nav-link">
                                             <i class="nav-icon far fa-circle"></i>
                                             <p>Data Lokasi</p>
                                         </a>
@@ -209,7 +209,7 @@ if (empty($_SESSION['112_username'])){
                             case 'gis': include "gis.php"; break;
                             case 'input_lokasi': include "input_lokasi.php"; break;
                             case 'edit_lokasi': include "edit_lokasi.php"; break;
-                            case 'lokasi_tim': include "lokasi_tim.php"; break;
+                            case 'lokasi': include "lokasi.php"; break;
                             case 'hapus': include "proses.php"; break;
                             case 'data_kej': include "data_kejadian.php"; break;
                             case 'data': include "data.php"; break;

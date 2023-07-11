@@ -21,7 +21,7 @@ include 'dbconfig.php';
   <div class="card-body ">
     <div class="row"> <!-- class row digunakan sebelum membuat column  -->
       <div class="col-md-3"> <!-- ukuruan layar dengan bootstrap adalah 12 kolom, bagian kiri dibuat sebesar 4 kolom-->
-        <form id="form_tambah_lokasi"  method="post">
+        <form id="form_tambah_lokasi" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="exampleFormControlInput1">Latitude, Longitude</label>
             <input type="text" class="form-control" id="latlong" name="latlong" required>
@@ -77,7 +77,11 @@ include 'dbconfig.php';
             <textarea class="form-control" name="ket" cols="30" rows="5"></textarea>
           </div>
           <div class="form-group">
-            <button type="submit" name="tambah_lokasi" class="btn btn-info btn-sm">Tambah</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
+            <label for="exampleFormControlInput1">Foto Kejadian</label>
+            <input type="file" class="form-control" name="foto" data-icon="false" multiple required>
+          </div>
+          <div class="form-group">
+            <button type="submit" name="tambah_lokasi" class="btn btn-info btn-sm" id="inputGroupFileAddon04">Tambah</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
           </div>
         </form>
       </div>
