@@ -98,7 +98,11 @@ if (empty($_SESSION['112_username'])){
                     <li class="nav-item d-none d-sm-inline-block">
                         <a href="logout.php" class="nav-link">Log Out</a>
                     </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href="notifikasi.php" class="nav-link"><i class="fa fa-bell"></i></a>
+                    </li>
                 </ul>
+                
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Messages Dropdown Menu -->
