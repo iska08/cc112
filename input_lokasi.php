@@ -79,6 +79,8 @@ include 'dbconfig.php';
           <div class="form-group">
             <label for="exampleFormControlInput1">Foto Kejadian</label>
             <input type="file" class="form-control" name="foto" data-icon="false" multiple required>
+            <input hidden type="text" name="id" value="<?php echo $hasil['id']; ?>">
+            <input hidden type="text" name="kej" value="<?php echo $hasil['kejadian']; ?>">
           </div>
           <div class="form-group">
             <button type="submit" name="tambah_lokasi" class="btn btn-info btn-sm">Tambah</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
