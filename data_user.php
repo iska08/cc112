@@ -26,9 +26,31 @@ $id_user = $_GET['id_user'];
                 $hasil_id_user = mysqli_fetch_array($tampil_id_user)
                 ?>
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Nama</label>
+                    <label for="exampleFormControlInput1">Username</label>
                     <input hidden name="id" value="<?php echo $id_user; ?>">
-                    <input type="text" class="form-control" name="nama_user" value="<?php echo $hasil_id_user['nama_user']; ?>" required>
+                    <input type="text" class="form-control" name="username" value="<?php echo $hasil_id_user['username']; ?>">
+                    <label for="exampleFormControlInput1">Password</label>
+                    <input type="text" class="form-control" name="password" value="<?php echo $hasil_id_user['password']; ?>">
+                    <label for="exampleFormControlInput1">Nama</label>
+                    <input type="text" class="form-control" name="nama" value="<?php echo $hasil_id_user['nama']; ?>">
+                    <label for="exampleFormControlInput1">Email</label>
+                    <input type="text" class="form-control" name="email" value="<?php echo $hasil_id_user['email']; ?>">
+                    <label for="exampleFormControlInput1">Hak Akses</label>
+                    <select class="form-control" id="hak_akses" name="hak_akses">
+                        <option value="<?php echo $hasil_id_user['hak_akses']; ?>">
+                            <?php echo $hasil_id_user['hak_akses']; ?>
+                        </option>
+                        <option value="Admin">Admin</option>
+                        <option value="Tim">Tim</option>
+                    </select>
+                    <label for="exampleFormControlInput1">Status Online</label>
+                    <select class="form-control" id="online" name="online">
+                        <option value="<?php echo $hasil_id_user['online']; ?>">
+                            <?php echo $hasil_id_user['online']; ?>
+                        </option>
+                        <option value="1">1</option>
+                        <option value="0">0</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <?php

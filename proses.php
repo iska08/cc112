@@ -292,7 +292,7 @@ switch ($_GET['action']) {
         break;
     case 'simpan_user':
         $username   = $_POST['username'];
-        $password   = $_POST['password'];
+        $password   = md5($_POST['password']);
         $nama       = $_POST['nama'];
         $email      = $_POST['email'];
         $hak_akses  = $_POST['hak_akses'];
@@ -308,6 +308,7 @@ switch ($_GET['action']) {
     case 'edit_user':
         $id_user    = $_POST['id'];
         $username   = $_POST['username'];
+        $password   = md5($_POST['password']);
         $nama       = $_POST['nama'];
         $email      = $_POST['email'];
         $hak_akses  = $_POST['hak_akses'];
