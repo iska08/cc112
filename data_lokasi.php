@@ -64,8 +64,8 @@ include 'dbconfig.php';
                     $desa2 = mysqli_fetch_array($desa1);
                     echo $desa2['nama_desa']; ?>
                   </td>
-                  <td></td>
-                  <td></td>
+                  <td><?php echo $hasil['nama_pelapor']; ?></td>
+                  <td><?php echo $hasil['noTelp_pelapor']; ?></td>
                   <td><?php echo $hasil['tanggal_terima']; ?></td>
                   <td><?php echo $hasil['tanggal_selesai']; ?></td>
                   <td><?php echo $hasil['alamat']; ?></td>

@@ -61,12 +61,20 @@ include 'dbconfig.php';
             </select>
           </div>
           <div class="form-group">
+            <label for="exampleFormControlInput1">Nama Pelapor</label>
+            <input type="text" class="form-control" id="nama_pelapor" name="nama_pelapor" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Nomor Telepon Pelapor</label>
+            <input type="text" class="form-control" id="noTelp_pelapor" name="noTelp_pelapor" required>
+          </div>
+          <div class="form-group">
             <label for="exampleFormControlInput1">Tanggal Terima</label>
             <input type="text" class="form-control" id="tanggal_terima" name="tanggal_terima" required>
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Tanggal Selesai</label>
-            <input type="text" class="form-control" id="tanggal_selesai" name="tanggal_selesai" required>
+            <input type="text" class="form-control" id="tanggal_selesai" name="tanggal_selesai">
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Alamat</label>

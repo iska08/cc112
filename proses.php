@@ -86,27 +86,26 @@ switch ($_GET['action']) {
     //     }
     //     break;
     case 'simpan_lokasi':
-        $tahun = date("Y");
-        $bulan = date("m");
-        $lat_long = $_POST['latlong'];
-        $alamat = $_POST['alamat'];
-        $desa = $_POST['desa'];
-        $kec = $_POST['kec'];
-        $kejadian = $_POST['kejadian'];
-        $ket = $_POST['ket'];
-        $tanggal_terima = $_POST['tanggal_terima'];
-        $tanggal_selesai = $_POST['tanggal_selesai'];
-
+        $tahun              = date("Y");
+        $bulan              = date("m");
+        $lat_long           = $_POST['latlong'];
+        $alamat             = $_POST['alamat'];
+        $desa               = $_POST['desa'];
+        $kec                = $_POST['kec'];
+        $kejadian           = $_POST['kejadian'];
+        $ket                = $_POST['ket'];
+        $tanggal_terima     = $_POST['tanggal_terima'];
+        $tanggal_selesai    = $_POST['tanggal_selesai'];
+        $nama_pelapor       = $_POST['nama_pelapor'];
+        $noTelp_pelapor     = $_POST['noTelp_pelapor'];
         // Input data
-        $insert_lokasi = mysqli_query($kominfo, "INSERT INTO `lokasi` SET lat_long='$lat_long', alamat='$alamat', desa='$desa', tanggal_terima='$tanggal_terima', tanggal_selesai='$tanggal_selesai', kec='$kec', kejadian='$kejadian', ket='$ket', bulan='$bulan', tahun='$tahun' ");
-
+        $insert_lokasi = mysqli_query($kominfo, "INSERT INTO `lokasi` SET lat_long='$lat_long', alamat='$alamat', desa='$desa', tanggal_terima='$tanggal_terima', tanggal_selesai='$tanggal_selesai', kec='$kec', kejadian='$kejadian', ket='$ket', bulan='$bulan', tahun='$tahun', nama_pelapor='$nama_pelapor', noTelp_pelapor='$noTelp_pelapor' ");
         if ($insert_lokasi) {
             echo "Simpan Lokasi Berhasil\n";
         } else {
             echo "Simpan Lokasi Masuk Gagal: " . mysqli_error($kominfo) . "\n";
             break;
         }
-
         // Simpan Foto
         $rand = rand(10000000, 20000000);
         $id = mysqli_insert_id($kominfo);
@@ -115,7 +114,6 @@ switch ($_GET['action']) {
         $foto = $_FILES['foto']['name'];
         $nama_foto = $_FILES['foto']['tmp_name'];
         $extension = pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION);
-
         if ($extension == 'jpg' || $extension == 'jpeg') {
             $input_foto = mysqli_query($kominfo, "INSERT INTO foto SET id_lokasi='$id', nama_foto='$foto_kej' ");
             img_resize($nama_foto, 400, "foto/", $foto_kej);
@@ -136,8 +134,10 @@ switch ($_GET['action']) {
         $ket                = $_POST['ket'];
         $tanggal_terima     = $_POST['tanggal_terima'];
         $tanggal_selesai    = $_POST['tanggal_selesai'];
+        $nama_pelapor       = $_POST['nama_pelapor'];
+        $noTelp_pelapor     = $_POST['noTelp_pelapor'];
         //input data
-        $update_lokasi = mysqli_query($kominfo, " UPDATE `lokasi` SET lat_long='$lat_long', alamat='$alamat',desa='$desa', tanggal_terima='$tanggal_terima',tanggal_selesai='$tanggal_selesai', kec='$kec',kejadian='$kejadian',  ket='$ket' WHERE id='$id_lokasi' ");
+        $update_lokasi = mysqli_query($kominfo, " UPDATE `lokasi` SET lat_long='$lat_long',alamat='$alamat',desa='$desa',tanggal_terima='$tanggal_terima',tanggal_selesai='$tanggal_selesai',kec='$kec',kejadian='$kejadian',ket='$ket',nama_pelapor='$nama_pelapor',noTelp_pelapor='$noTelp_pelapor' WHERE id='$id_lokasi' ");
         if ($update_lokasi) {
             echo "Edit Lokasi Berhasil";
         } else {

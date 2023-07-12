@@ -81,6 +81,14 @@ if(isset($_GET['id_lokasi'])){
               </select>
             </div>
             <div class="form-group">
+              <label for="exampleFormControlInput1">Nama Pelapor</label>
+              <input type="text" class="form-control" name="nama_pelapor" value="<?php echo $hasil_lokasi['nama_pelapor']; ?>">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Nomor Telepon Pelapor</label>
+              <input type="text" class="form-control" name="noTelp_pelapor" value="<?php echo $hasil_lokasi['noTelp_pelapor']; ?>">
+            </div>
+            <div class="form-group">
               <label for="exampleFormControlInput1">Tanggal Terima</label>
               <input type="text" class="form-control" id="tanggal_terima" name="tanggal_terima" value="<?php echo $hasil_lokasi['tanggal_terima']; ?>">
             </div>
