@@ -290,5 +290,45 @@ switch ($_GET['action']) {
             echo "Hapus Survey Gagal :" . mysqli_error($kominfo);
         }
         break;
+    case 'simpan_user':
+        $username   = $_POST['username'];
+        $password   = md5($_POST['password']);
+        $nama       = $_POST['nama'];
+        $email      = $_POST['email'];
+        $hak_akses  = $_POST['hak_akses'];
+        $online     = $_POST['online'];
+        //input data
+        $insert_user = mysqli_query($kominfo, "INSERT into user SET username='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',online='$online' ");
+        if ($insert_user) {
+            echo "Data User berhasil disimpan";
+        } else {
+            echo "Data User tidak berhasil disimpan";
+        }
+        break;
+    case 'edit_user':
+        $id_user    = $_POST['id'];
+        $username   = $_POST['username'];
+        $password   = md5($_POST['password']);
+        $nama       = $_POST['nama'];
+        $email      = $_POST['email'];
+        $hak_akses  = $_POST['hak_akses'];
+        $online     = $_POST['online'];
+        //input data
+        $update_user = mysqli_query($kominfo, " UPDATE `user` SET username='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',online='$online' WHERE id='$id_user' ");
+        if ($update_user) {
+            echo "Edit User Berhasil";
+        } else {
+            echo "Edit User Gagal :" . mysqli_error($kominfo);
+        }
+        break;
+    case 'hapus_user':
+        $id_user = $_POST['id_user'];
+        $hapus_user = mysqli_query($kominfo, "DELETE FROM lokasi WHERE id='$id_user'");
+        if ($hapus_user) {
+            echo "Hapus User Berhasil";
+        } else {
+            echo "Hapus User Gagal :" . mysqli_error($kominfo);
+        }
+        break;
 }
 ?>
