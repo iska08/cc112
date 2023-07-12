@@ -101,29 +101,14 @@ if (empty($_SESSION['112_username'])){
                     <li class="nav-item d-none d-sm-inline-block">
                         <a href="notifikasi.php" class="nav-link"><i class="fa fa-bell"></i></a>
                     </li>
-                </ul>
-                <!-- Right navbar links -->
-                <ul class="navbar-nav ml-auto">
-                    <!-- Messages Dropdown Menu -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                            <i class="fas fa-expand-arrows-alt"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                            <i class="fas fa-th-large"></i>
-                        </a>
-                    </li>
-                </ul>
-                <?php
+                    <?php
                 date_default_timezone_set("Asia/Jakarta");
                 $namaHari = array("Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu");
                 $indeksHari = date('w'); // Mendapatkan indeks hari dalam seminggu
                 $tanggal = date('d-m-Y');
                 $jam = date('H:i:s');
                 ?>
-                <span id="jam" style="font-size:24"></span>
+                <span class="nav-link" id="jam" style="font-size:24; margin-left: 1200px;"></span>
                 <script type="text/javascript">
                     window.onload = function () {
                         jam();
@@ -143,7 +128,23 @@ if (empty($_SESSION['112_username'])){
                         return e;
                     }
                 </script>
+                </ul>
+                <!-- Right navbar links -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Messages Dropdown Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                            <i class="fas fa-th-large"></i>
+                        </a>
+                    </li>
+                </ul>
             </nav>
+            
             <!-- /.navbar -->
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
