@@ -166,11 +166,12 @@ if (empty($_SESSION['112_username'])){
     </script>
     <script>
     $(document).ready(function() {
-        //load data mahasiswa saat aplikasi dijalankan 
+        //load data wilayah saat aplikasi dijalankan 
         data_kec();
         data_desa();
         data_opd();
         data_kej();
+        data_user();
         //Load form edit kec
         $("#data_kec").on("click", "#edit_kec", function() {
             var id_kec = $(this).attr("value");
@@ -480,6 +481,83 @@ if (empty($_SESSION['112_username'])){
                 }
             });
         });
+        //Load form edit user
+        $("#data_user").on("click", "#edit_user", function() {
+            var id_user = $(this).attr("value");
+            $.ajax({
+                url: 'data_user.php',
+                type: 'get',
+                data: {
+                    id_user: id_user
+                },
+                success: function(data) {
+                    $('#data_user').html(data);
+                }
+            });
+        });
+        //simpan user
+        $("#data_user").on("submit", "#form_tambah_user", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'proses.php?action=simpan_user',
+                type: 'post',
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    Swal.fire((data), '', 'success')
+                    data_user();
+                }
+            });
+        });
+        //edit data user
+        $("#data_user").on("submit", "#form_edit_user", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'proses.php?action=edit_user',
+                type: 'post',
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    Swal.fire((data), '', 'success')
+                    data_user();
+                }
+            });
+        });
+        //button batal user
+        $("#data_user").on("click", "#batal_user", function() {
+            data_user();
+        });
+        //hapus user
+        $("#data_user").on("click", "#hapus_user", function() {
+            Swal.fire({
+                title: 'Perhatian!',
+                text: "Anda mau menghapus User?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var id_user = $(this).attr("value");
+                    $.ajax({
+                        url: 'proses.php?action=hapus_user',
+                        type: 'post',
+                        data: {
+                            id_user: id_user
+                        },
+                        success: function(data) {
+                            Swal.fire((data), '', 'warning')
+                            data_user();
+                        }
+                    });
+                }
+            });
+        });
     })
     function data_kec() {
         $.ajax({
@@ -514,6 +592,15 @@ if (empty($_SESSION['112_username'])){
             type: 'get',
             success: function(data) {
                 $('#data_kej').html(data);
+            }
+        });
+    }
+    function data_user() {
+        $.ajax({
+            url: 'data_user.php',
+            type: 'get',
+            success: function(data) {
+                $('#data_user').html(data);
             }
         });
     }

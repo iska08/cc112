@@ -5,12 +5,15 @@ $browser = $_SERVER['HTTP_USER_AGENT'];
 $chrome = '/Chrome/';
 $firefox = '/Firefox/';
 $ie = '/IE/';
-if (preg_match($chrome, $browser))
+if (preg_match($chrome, $browser)) {
     $data = "Chrome/Opera";
-if (preg_match($firefox, $browser))
+}
+if (preg_match($firefox, $browser)) {
     $data = "Firefox";
-if (preg_match($ie, $browser))
+}
+if (preg_match($ie, $browser)) {
     $data = "IE";
+}
 // Hitung Jumlah Visitor
 $kemarin  = date("Y-m-d",mktime(0,0,0,date('m'),date('d')-1,date('Y')));
 $hari_ini  = mysqli_fetch_array(mysqli_query($kominfo,'SELECT sum(counter) AS hari_ini FROM counterdb WHERE tanggal="'.date("Y-m-d").'"'));
