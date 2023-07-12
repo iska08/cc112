@@ -314,7 +314,7 @@ switch ($_GET['action']) {
         $hak_akses  = $_POST['hak_akses'];
         $online     = $_POST['online'];
         //input data
-        $update_user = mysqli_query($kominfo, " UPDATE `user` SET username='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',online='$online' WHERE id='$id_user' ");
+        $update_user = mysqli_query($kominfo, " UPDATE `user` SET uWsername='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',online='$online' WHERE id='$id_user' ");
         if ($update_user) {
             echo "Edit User Berhasil";
         } else {
@@ -323,7 +323,7 @@ switch ($_GET['action']) {
         break;
     case 'hapus_user':
         $id_user = $_POST['id_user'];
-        $hapus_user = mysqli_query($kominfo, "DELETE FROM lokasi WHERE id='$id_user'");
+        $hapus_user = mysqli_query($kominfo, "DELETE FROM user WHERE id='$id_user'");
         if ($hapus_user) {
             echo "Hapus User Berhasil";
         } else {
