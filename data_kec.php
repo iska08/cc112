@@ -53,7 +53,7 @@ $id_kec = $_GET['id_kec'];
                 <thead class="">
                     <th width="1%">No</th>
                     <th>Kecamatan</th>
-                    <th></th>
+                    <th>Aksi</th>
                 </thead>
                 <tbody>
                     <?php

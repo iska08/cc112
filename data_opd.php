@@ -52,7 +52,7 @@ $id_opd = $_GET['id_opd'];
         <thead>
           <th width="1%">No</th>
           <th>OPD Terkait</th>
-          <th></th>
+          <th>Aksi</th>
         </thead>
         <tbody>
           <?php

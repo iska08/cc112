@@ -66,7 +66,7 @@ $id_kej = $_GET['id_kej'];
           <th width="1%">No</th>
           <th>Jenis Kejadian</th>
           <th>OPD Terkait</th>
-          <th></th>
+          <th>Aksi</th>
         </thead>
         <tbody>
           <?php

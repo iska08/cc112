@@ -69,7 +69,7 @@ $id_desa = $_GET['id_desa'];
           <thead class="">
             <th width="1%">No</th>
             <th>Desa</th>
-            <th></th>
+            <th>Aksi</th>
           </thead>
           <tbody>
             <?php

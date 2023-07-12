@@ -24,7 +24,7 @@ if (isset($_GET['id_survey'])) {
                 <th>Nilai 1</th>
                 <th>Nilai 2</th>
                 <th>Kritik/saran</th>
-                <th></th>
+                <th>Aksi</th>
             </thead>
             <tbody>
                 <?php
