@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2023 at 07:08 AM
+-- Generation Time: Jul 13, 2023 at 04:30 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.28
 
@@ -807,7 +807,9 @@ INSERT INTO `foto` (`id`, `id_lokasi`, `nama_foto`) VALUES
 (514, '529', '10564150.jpeg'),
 (515, '530', '10233837.jpeg'),
 (516, '531', '18366077.jpeg'),
-(530, '550', '14583912.jpeg');
+(530, '550', '14583912.jpeg'),
+(532, '551', '15262621.jpeg'),
+(534, '552', '10981044.jpeg');
 
 -- --------------------------------------------------------
 
@@ -1119,7 +1121,8 @@ INSERT INTO `lokasi` (`id`, `lat_long`, `alamat`, `desa`, `kec`, `kejadian`, `ta
 (529, 'LatLng(-6.886453, 113.663306)', 'Desa Panaongan', '274', '14', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '09 Juni 2023 11:30', '', NULL, 'CC112 Tim Satpol PP mengevakuasi ODGJ di Puskesmas Pasongsongan atas laporan dari kepala desa Soddere ', '', '', '06', '2023'),
 (530, 'LatLng(-7.026945, 113.854065)', 'Jl. Trunojoyo (Pertigaan linkar timur)', '216', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '13 Juni 2023 19:00', '', NULL, 'CC112 Tim Satpol PP mengevakuasi oarang terlantar di desa babbalan (pertigaan linkar timur) ke RPS Dinsos Sumenep\r\nPelapor : Ibu Shinta', '', '', '06', '2023'),
 (531, 'LatLng(-7.004925, 113.868409)', 'Jl. Agus Salim Perempatan Jati mas', '210', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '20 Juni 2023 15:30', '', NULL, 'CC112 Tim Satpol PP mengevakuasi orang terlantar dan terduga ODGJ di perempatan Jl. Agus Salim ke RPS Dinsos\r\nPelopor : Bapak Agus', '', '', '06', '2023'),
-(550, 'LatLng(-6.993369, 114.032099)', '-', '324', '7', 'KECELAKAAN LALU LINTAS', '12 Juli 2023 12:00', '', NULL, '-', 'Anonim', '29358609152398', '07', '2023');
+(550, 'LatLng(-6.993369, 114.032099)', '-', '324', '7', 'KECELAKAAN LALU LINTAS', '12 Juli 2023 12:00', '', NULL, '-', 'Anonim', '29358609152398', '07', '2023'),
+(552, 'LatLng(-7.078899, 113.954144)', 's', '2', '1', 'BENCANA ALAM', '11 Juli 2023 12:00', '13 Juli 2023 12:00', NULL, 's', 's', 's', '07', '2023');
 
 -- --------------------------------------------------------
 
@@ -1210,7 +1213,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `password`, `nama`, `email`, `hak_akses`, `online`) VALUES
 (1, 'cc112admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Arief Santoso, ST', '', 'Admin', '1'),
-(2, 'tim', 'e777a29bee9227c8a6a86e0bad61fc40', 'Tim Lapangan', 'coba@gmail.com', 'Tim', '0');
+(2, 'tim', '5f4dcc3b5aa765d61d8327deb882cf99', 'Tim Lapangan', 'coba@gmail.com', 'Tim', '0');
 
 --
 -- Indexes for dumped tables
@@ -1302,7 +1305,7 @@ ALTER TABLE `dusun`
 -- AUTO_INCREMENT for table `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=531;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=535;
 
 --
 -- AUTO_INCREMENT for table `kecamatan`
@@ -1320,7 +1323,7 @@ ALTER TABLE `kejadian`
 -- AUTO_INCREMENT for table `lokasi`
 --
 ALTER TABLE `lokasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=551;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=553;
 
 --
 -- AUTO_INCREMENT for table `opd_terkait`
