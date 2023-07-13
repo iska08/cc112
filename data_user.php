@@ -43,10 +43,10 @@ $id_user = $_GET['id_user'];
                         <option value="Admin">Admin</option>
                         <option value="Tim">Tim</option>
                     </select>
-                    <label for="exampleFormControlInput1">Hak Laporan</label>
-                    <select class="form-control" id="hak_laporan" name="hak_laporan">
-                        <option value="<?php echo $hasil_id_user['hak_laporan']; ?>">
-                            <?php echo $hasil_id_user['hak_laporan']; ?>
+                    <label for="exampleFormControlInput1">Kejadian</label>
+                    <select class="form-control" id="kejadian" name="kejadian">
+                        <option value="<?php echo $hasil_id_user['kejadian']; ?>">
+                            <?php echo $hasil_id_user['kejadian']; ?>
                         </option>
                         <option value="ALL">ALL</option>
                         <option value="SATPOL PP">SATPOL PP</option>

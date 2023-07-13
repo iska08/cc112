@@ -296,9 +296,9 @@ switch ($_GET['action']) {
         $nama       = $_POST['nama'];
         $email      = $_POST['email'];
         $hak_akses  = $_POST['hak_akses'];
-        $online     = $_POST['online'];
+        $kejadian   = $_POST['kejadian'];
         //input data
-        $insert_user = mysqli_query($kominfo, "INSERT into user SET username='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',online='$online' ");
+        $insert_user = mysqli_query($kominfo, "INSERT into user SET username='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',kejadian='$kejadian' ");
         if ($insert_user) {
             echo "Data User berhasil disimpan";
         } else {
@@ -312,9 +312,9 @@ switch ($_GET['action']) {
         $nama       = $_POST['nama'];
         $email      = $_POST['email'];
         $hak_akses  = $_POST['hak_akses'];
-        $online     = $_POST['online'];
+        $kejadian   = $_POST['kejadian'];
         //input data
-        $update_user = mysqli_query($kominfo, " UPDATE `user` SET uWsername='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',online='$online' WHERE id='$id_user' ");
+        $update_user = mysqli_query($kominfo, " UPDATE `user` SET uWsername='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',kejadian='$kejadian' WHERE id='$id_user' ");
         if ($update_user) {
             echo "Edit User Berhasil";
         } else {
