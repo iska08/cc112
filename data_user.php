@@ -58,14 +58,6 @@ $id_user = $_GET['id_user'];
                         <option value="PLN">PLN</option>
                         <option value="TELKOM">TELKOM</option>
                     </select>
-                    <label for="exampleFormControlInput1">Status Online</label>
-                    <select class="form-control" id="online" name="online">
-                        <option value="<?php echo $hasil_id_user['online']; ?>">
-                            <?php echo $hasil_id_user['online']; ?>
-                        </option>
-                        <option value="1">1</option>
-                        <option value="0">0</option>
-                    </select>
                 </div>
                 <div class="form-group">
                     <?php
@@ -94,8 +86,7 @@ $id_user = $_GET['id_user'];
                     <th>Nama</th>
                     <th>Email</th>
                     <th>Hak Akses</th>
-                    <th>Hak Laporan</th>
-                    <th>Online</th>
+                    <th>Kejadian</th>
                     <th>Aksi</th>
                 </thead>
                 <tbody>
@@ -110,8 +101,7 @@ $id_user = $_GET['id_user'];
                             <td><?php echo $hasil_user['nama']; ?></td>
                             <td><?php echo $hasil_user['email']; ?></td>
                             <td><?php echo $hasil_user['hak_akses']; ?></td>
-                            <td><?php echo $hasil_user['hak_laporan']; ?></td>
-                            <td><?php echo $hasil_user['online']; ?></td>
+                            <td><?php echo $hasil_user['kejadian']; ?></td>
                             <td width="5%">
                                 <div class="btn-group">
                                     <a id="edit_user" value="<?php echo $hasil_user['id']; ?>" class="btn btn-info btn-sm btn-sm">Edit</a>
