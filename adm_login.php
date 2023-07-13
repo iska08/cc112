@@ -73,7 +73,7 @@
                       $_SESSION['hak_akses']  = "Tim";
                       $login_on = mysqli_query($kominfo,"update user set online ='1' where username='$username'");
                       // alihkan ke halaman dashboard admin
-                      echo "<script>window.location='timcc112.php';</script>";
+                      echo "<script>window.location='timcc112.php?hal=lokasi';</script>";
                     } else {
                       echo '<div class="alert alert-warning" role="alert"><strong>Akun anda belum aktif atau belum terdaftar!</strong></div>';
                     }

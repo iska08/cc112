@@ -113,33 +113,35 @@ if (empty($_SESSION['112_username'])){
                         </a>
                     </li>
                 </ul>
-                <?php
-                date_default_timezone_set("Asia/Jakarta");
-                $namaHari = array("Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu");
-                $indeksHari = date('w'); // Mendapatkan indeks hari dalam seminggu
-                $tanggal = date('d-m-Y');
-                $jam = date('H:i:s');
-                ?>
-                <span id="jam" style="font-size:24"></span>
-                <script type="text/javascript">
-                    window.onload = function () {
-                        jam();
-                    }
-                    function jam() {
-                        var e = document.getElementById('jam'),
-                            d = new Date(),
-                            h, m, s;
-                        h = d.getHours();
-                        m = set(d.getMinutes());
-                        s = set(d.getSeconds());
-                        e.innerHTML = h + ':' + m + ':' + s;
-                        setTimeout('jam()', 1000);
-                    }
-                    function set(e) {
-                        e = e < 10 ? '0' + e : e;
-                        return e;
-                    }
-                </script>
+                <strong>
+                    <?php
+                    date_default_timezone_set("Asia/Jakarta");
+                    $namaHari = array("Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu");
+                    $indeksHari = date('w'); // Mendapatkan indeks hari dalam seminggu
+                    $tanggal = date('d-m-Y');
+                    $jam = date('H:i:s');
+                    ?>
+                    <span id="jam" style="font-size:24"></span>
+                    <script type="text/javascript">
+                        window.onload = function () {
+                            jam();
+                        }
+                        function jam() {
+                            var e = document.getElementById('jam'),
+                                d = new Date(),
+                                h, m, s;
+                            h = d.getHours();
+                            m = set(d.getMinutes());
+                            s = set(d.getSeconds());
+                            e.innerHTML = h + ':' + m + ':' + s;
+                            setTimeout('jam()', 1000);
+                        }
+                        function set(e) {
+                            e = e < 10 ? '0' + e : e;
+                            return e;
+                        }
+                    </script>
+                </strong>
             </nav>
             <!-- /.navbar -->
             <!-- Main Sidebar Container -->
@@ -171,29 +173,11 @@ if (empty($_SESSION['112_username'])){
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                            <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-                            <li class="nav-item ">
-                                <a href="../" class="nav-link">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>
-                                        Dashboard
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="?page=profile" class="nav-link">
-                                            <i class="nav-icon far fa-circle"></i>
-                                            <p>Profile</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-globe"></i>
                                     <p>
-                                        Lokasi
+                                        Laporan Kejadian
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>

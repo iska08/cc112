@@ -43,6 +43,21 @@ $id_user = $_GET['id_user'];
                         <option value="Admin">Admin</option>
                         <option value="Tim">Tim</option>
                     </select>
+                    <label for="exampleFormControlInput1">Hak Laporan</label>
+                    <select class="form-control" id="hak_laporan" name="hak_laporan">
+                        <option value="<?php echo $hasil_id_user['hak_laporan']; ?>">
+                            <?php echo $hasil_id_user['hak_laporan']; ?>
+                        </option>
+                        <option value="ALL">ALL</option>
+                        <option value="SATPOL PP">SATPOL PP</option>
+                        <option value="BPBD">BPBD</option>
+                        <option value="DAMKAR">DAMKAR</option>
+                        <option value="DLH">DLH</option>
+                        <option value="DINAS PERHUBUNGAN">DINAS PERHUBUNGAN</option>
+                        <option value="PUSKESMAS">PUSKESMAS</option>
+                        <option value="PLN">PLN</option>
+                        <option value="TELKOM">TELKOM</option>
+                    </select>
                     <label for="exampleFormControlInput1">Status Online</label>
                     <select class="form-control" id="online" name="online">
                         <option value="<?php echo $hasil_id_user['online']; ?>">
@@ -79,6 +94,7 @@ $id_user = $_GET['id_user'];
                     <th>Nama</th>
                     <th>Email</th>
                     <th>Hak Akses</th>
+                    <th>Hak Laporan</th>
                     <th>Online</th>
                     <th>Aksi</th>
                 </thead>
@@ -94,6 +110,7 @@ $id_user = $_GET['id_user'];
                             <td><?php echo $hasil_user['nama']; ?></td>
                             <td><?php echo $hasil_user['email']; ?></td>
                             <td><?php echo $hasil_user['hak_akses']; ?></td>
+                            <td><?php echo $hasil_user['hak_laporan']; ?></td>
                             <td><?php echo $hasil_user['online']; ?></td>
                             <td width="5%">
                                 <div class="btn-group">

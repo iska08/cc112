@@ -93,41 +93,11 @@ if (empty($_SESSION['112_username'])){
                         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
-                        <a href="admcc112.php" class="nav-link">Home</a>
+                        <a href="timcc112.php" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
                         <a href="logout.php" class="nav-link">Log Out</a>
                     </li>
-                    <li class="nav-item d-none d-sm-inline-block">
-                        <a href="notifikasi.php" class="nav-link"><i class="fa fa-bell"></i></a>
-                    </li>
-                    <?php
-                date_default_timezone_set("Asia/Jakarta");
-                $namaHari = array("Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu");
-                $indeksHari = date('w'); // Mendapatkan indeks hari dalam seminggu
-                $tanggal = date('d-m-Y');
-                $jam = date('H:i:s');
-                ?>
-                <span class="nav-link" id="jam" style="font-size:24; margin-left: 1200px;"></span>
-                <script type="text/javascript">
-                    window.onload = function () {
-                        jam();
-                    }
-                    function jam() {
-                        var e = document.getElementById('jam'),
-                            d = new Date(),
-                            h, m, s;
-                        h = d.getHours();
-                        m = set(d.getMinutes());
-                        s = set(d.getSeconds());
-                        e.innerHTML = h + ':' + m + ':' + s;
-                        setTimeout('jam()', 1000);
-                    }
-                    function set(e) {
-                        e = e < 10 ? '0' + e : e;
-                        return e;
-                    }
-                </script>
                 </ul>
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
@@ -143,6 +113,35 @@ if (empty($_SESSION['112_username'])){
                         </a>
                     </li>
                 </ul>
+                <strong>
+                    <?php
+                    date_default_timezone_set("Asia/Jakarta");
+                    $namaHari = array("Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu");
+                    $indeksHari = date('w'); // Mendapatkan indeks hari dalam seminggu
+                    $tanggal = date('d-m-Y');
+                    $jam = date('H:i:s');
+                    ?>
+                    <span id="jam" style="font-size:24"></span>
+                    <script type="text/javascript">
+                        window.onload = function () {
+                            jam();
+                        }
+                        function jam() {
+                            var e = document.getElementById('jam'),
+                                d = new Date(),
+                                h, m, s;
+                            h = d.getHours();
+                            m = set(d.getMinutes());
+                            s = set(d.getSeconds());
+                            e.innerHTML = h + ':' + m + ':' + s;
+                            setTimeout('jam()', 1000);
+                        }
+                        function set(e) {
+                            e = e < 10 ? '0' + e : e;
+                            return e;
+                        }
+                    </script>
+                </strong>
             </nav>
             
             <!-- /.navbar -->
