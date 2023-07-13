@@ -60,6 +60,7 @@
                   if($cek > 0){
                     $data = mysqli_fetch_assoc($login);
                     $username = $data['username'];
+                    $kejadian = $data['kejadian'];
                     // cek jika user login sebagai admin
                     if($data['hak_akses']=="Admin"){
                       $_SESSION['112_username']   = $username;
@@ -71,6 +72,7 @@
                     }elseif($data['hak_akses']=="Tim"){
                       $_SESSION['112_username']   = $username;
                       $_SESSION['hak_akses']  = "Tim";
+                      $_SESSION['kejadian'] = $kejadian;
                       $login_on = mysqli_query($kominfo,"update user set online ='1' where username='$username'");
                       // alihkan ke halaman dashboard admin
                       echo "<script>window.location='timcc112.php?hal=lokasi';</script>";
