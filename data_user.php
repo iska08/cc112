@@ -80,7 +80,7 @@ $id_user = $_GET['id_user'];
                     <th>Email</th>
                     <th>Hak Akses</th>
                     <th>Online</th>
-                    <th>Aksi</th>
+                    <th></th>
                 </thead>
                 <tbody>
                     <?php

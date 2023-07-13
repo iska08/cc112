@@ -38,7 +38,7 @@ include 'dbconfig.php';
               <th>Alamat</th>
               <th>Keterangan</th>
               <th>Foto</th>
-              <th>Aksi</th>
+              <th></th>
             </thead>
             <tbody>
               <?php
