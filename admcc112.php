@@ -101,33 +101,6 @@ if (empty($_SESSION['112_username'])){
                     <li class="nav-item d-none d-sm-inline-block">
                         <a href="notifikasi.php" class="nav-link"><i class="fa fa-bell"></i></a>
                     </li>
-                    <?php
-                date_default_timezone_set("Asia/Jakarta");
-                $namaHari = array("Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu");
-                $indeksHari = date('w'); // Mendapatkan indeks hari dalam seminggu
-                $tanggal = date('d-m-Y');
-                $jam = date('H:i:s');
-                ?>
-                <span class="nav-link" id="jam" style="font-size:24; margin-left: 1200px;"></span>
-                <script type="text/javascript">
-                    window.onload = function () {
-                        jam();
-                    }
-                    function jam() {
-                        var e = document.getElementById('jam'),
-                            d = new Date(),
-                            h, m, s;
-                        h = d.getHours();
-                        m = set(d.getMinutes());
-                        s = set(d.getSeconds());
-                        e.innerHTML = h + ':' + m + ':' + s;
-                        setTimeout('jam()', 1000);
-                    }
-                    function set(e) {
-                        e = e < 10 ? '0' + e : e;
-                        return e;
-                    }
-                </script>
                 </ul>
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
@@ -143,6 +116,35 @@ if (empty($_SESSION['112_username'])){
                         </a>
                     </li>
                 </ul>
+                <strong>
+                    <?php
+                    date_default_timezone_set("Asia/Jakarta");
+                    $namaHari = array("Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu");
+                    $indeksHari = date('w'); // Mendapatkan indeks hari dalam seminggu
+                    $tanggal = date('d-m-Y');
+                    $jam = date('H:i:s');
+                    ?>
+                    <span id="jam" style="font-size:24"></span>
+                    <script type="text/javascript">
+                        window.onload = function () {
+                            jam();
+                        }
+                        function jam() {
+                            var e = document.getElementById('jam'),
+                                d = new Date(),
+                                h, m, s;
+                            h = d.getHours();
+                            m = set(d.getMinutes());
+                            s = set(d.getSeconds());
+                            e.innerHTML = h + ':' + m + ':' + s;
+                            setTimeout('jam()', 1000);
+                        }
+                        function set(e) {
+                            e = e < 10 ? '0' + e : e;
+                            return e;
+                        }
+                    </script>
+                </strong>
             </nav>
             
             <!-- /.navbar -->
@@ -348,9 +350,9 @@ if (empty($_SESSION['112_username'])){
         <!-- 2. Link VCalendar Javascript (Plugin automatically installed) -->
         <script src='https://unpkg.com/v-calendar'></script>
         <!-- SweetAlert2 -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.16/dist/sweetalert2.all.min.js"></script>
         <!-- Toastr -->
-        <script src="../../plugins/toastr/toastr.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
         <script src="https://npmcdn.com/flatpickr@4.6.9/dist/l10n/id.js"></script>
