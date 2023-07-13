@@ -314,7 +314,7 @@ switch ($_GET['action']) {
         $hak_akses  = $_POST['hak_akses'];
         $kejadian   = $_POST['kejadian'];
         //input data
-        $update_user = mysqli_query($kominfo, " UPDATE `user` SET uWsername='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',kejadian='$kejadian' WHERE id='$id_user' ");
+        $update_user = mysqli_query($kominfo, " UPDATE `user` SET username='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',kejadian='$kejadian' WHERE id='$id_user' ");
         if ($update_user) {
             echo "Edit User Berhasil";
         } else {
