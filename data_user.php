@@ -44,20 +44,21 @@ $id_user = $_GET['id_user'];
                         <option value="Tim">Tim</option>
                     </select>
                     <label for="exampleFormControlInput1">Kejadian</label>
-                    <select class="form-control" id="kejadian" name="kejadian">
-                        <option value="<?php echo $hasil_id_user['kejadian']; ?>">
-                            <?php echo $hasil_id_user['kejadian']; ?>
-                        </option>
-                        <option value="ALL">ALL</option>
-                        <option value="SATPOL PP">SATPOL PP</option>
-                        <option value="BPBD">BPBD</option>
-                        <option value="DAMKAR">DAMKAR</option>
-                        <option value="DLH">DLH</option>
-                        <option value="DINAS PERHUBUNGAN">DINAS PERHUBUNGAN</option>
-                        <option value="PUSKESMAS">PUSKESMAS</option>
-                        <option value="PLN">PLN</option>
-                        <option value="TELKOM">TELKOM</option>
-                    </select>
+                    <?php
+                    $selected_kejadian = explode(",", $hasil_id_user['kejadian']);
+                    $tampil_kejadian = mysqli_query($kominfo, "SELECT * FROM kejadian");
+                    while($hasil_kejadian = mysqli_fetch_array($tampil_kejadian)){
+                        $checked = (in_array($hasil_kejadian['id'], $selected_kejadian)) ? "checked" : "";
+                    ?>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="kejadian[]" value="<?php echo $hasil_kejadian['id']; ?>" <?php echo $checked; ?>>
+                            <label class="form-check-label" for="exampleRadios1">
+                                <?php echo $hasil_kejadian['nama_kejadian']; ?>
+                            </label>
+                        </div>
+                    <?php
+                    }
+                    ?>
                 </div>
                 <div class="form-group">
                     <?php

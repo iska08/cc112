@@ -19,16 +19,44 @@ $id_kej = $_GET['id_kej'];
   <div class="row"> <!-- class row digunakan sebelum membuat column  -->
     <div class="col-md-4"> <!-- ukuruan layar dengan bootstrap adalah 12 kolom, bagian kiri dibuat sebesar 4 kolom-->
       <form  method="post" id="<?php if($id_kej){?>form_edit_kej<?php }else{?>form_tambah_kej<?php } ?>">
-        <?php
-        $tampil_id_kej = mysqli_query($kominfo, "select * from kejadian where id='$id_kej' "); //ambil data dari tabel lokasi
+        <!-- <?php
+        $tampil_id_kej = mysqli_query($kominfo, "select * from kejadian where id='$id_kej' ");
         $hasil_id_kej = mysqli_fetch_array($tampil_id_kej)
-        ?>
+        ?> -->
+        <div class="form-group">
+          <label for="exampleFormControlInput1">OPD Terkait</label>
+          <?php
+          $tampil_id_kej = mysqli_query($kominfo, "select * from kejadian where id='$id_kej' ");
+          $hasil_id_kej = mysqli_fetch_array($tampil_id_kej)
+          ?>
+          <?php
+          $id_opd = $hasil_id_kej['opd_terkait'];
+          $opd1   = mysqli_query($kominfo, "select * from opd_terkait where id='$id_opd' ");
+          $opd2   = mysqli_fetch_array($opd1)
+          ?>
+          <select class="form-control" name="opd_terkait">
+            <?php if($id_kej){ ?>
+              <option selected value="<?php echo $opd2['nama_opd']; ?>"><?php echo $opd2['nama_opd']; ?></option>
+              <option disabled >== Pilih OPD Terkait ==</option>
+            <?php }else{?>
+              <option disabled selected>== Pilih OPD Terkait ==</option>
+            <?php } ?>
+            <?php
+            $tampil_opd = mysqli_query($kominfo, "select * from opd_terkait");
+            while($hasil_opd = mysqli_fetch_array($tampil_opd)){
+            ?>
+              <option value="<?php echo $hasil_opd['nama_opd']; ?>"><?php echo $hasil_opd['nama_opd']; ?></option>
+            <?php
+            }
+            ?>
+          </select>
+        </div>
         <div class="form-group">
           <label for="exampleFormControlInput1">Kejadian</label>
           <input hidden name="id" value="<?php echo $id_kej; ?>">
           <input type="text" class="form-control" name="nama_kej" value="<?php echo $hasil_id_kej['nama_kejadian']; ?>" required>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="exampleFormControlInput1">OPD Terkait</label>
           <select class="form-control" id="opd_terkait" name="opd_terkait" required>
             <option disabled selected>== Pilih OPD Terkait ==</option>
@@ -41,7 +69,7 @@ $id_kej = $_GET['id_kej'];
             }
             ?>
           </select>
-        </div>
+        </div> -->
         <div class="form-group">
           <?php
           if($id_kej){
