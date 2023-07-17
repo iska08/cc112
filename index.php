@@ -1,11 +1,11 @@
 <?php
 include 'header.php';
 include 'dbconfig.php';
-include 'fungsi_bulan.php';
+include 'fungsi_bulan.php';   
 ?>
 
-<link href="https://getbootstrap.com/docs/4.0/examples/navbar-fixed/navbar-top-fixed.css"rel="stylesheet">
-<link rel="stylesheet"href="css/wizard.css">
+<link href="https://getbootstrap.com/docs/4.0/examples/navbar-fixed/navbar-top-fixed.css" rel="stylesheet">
+<link rel="stylesheet" href="css/wizard.css">
 <style type="text/css">
   @media screen and (max-width: 1000px) {
     .mobile-space {
@@ -71,52 +71,33 @@ include 'fungsi_bulan.php';
 <body>
   <div class="fixed-top container" style="background-color: #fff;">
     <center>
-      <!-- //logo -->
       <a href="https://ekominfo.sumenepkab.go.id/cc112/">
-        <img src="img/cc112_ok1.jpg" class="img-fluid" alt="">
-        <!-- <ul class="nav-item d-none d-sm-inline-block">
-          <a href="adm_login.php" class="nav-link">Login Admin</a>
-        </ul>
-        <ul class="nav-item d-none d-sm-inline-block">
-          <a href="inputLaporan.php" class="nav-link">Buat Laporan Kejadian</a>
-        </ul> -->
+        <img src="img/cc112_ok1.jpg" class="img-fluid">
       </a>
-      <ul class="nav-item d-none d-sm-inline-block">
-        <a href="adm_login.php" class="nav-link">Laporan Tim</a>
-      </ul>
-      <ul class="nav-item d-none d-sm-inline-block">
-        <a href="inputLaporan.php" class="nav-link">Laporan Masyarakat</a>
-      </ul>
-      <!-- <a href="adm_login.php" class="nav-link">Laporan Tim</a>
-      <a href="inputLaporan.php" class="nav-link">Buat Laporan Kejadian</a> -->
-    </center>
+    </center>   
     <form action="index.php" method="GET">
-      <div class="input-group input-group-sm">
-        <input hidden name="hal" value="data_kej">
-        <input type="text" class="form-control" name="cari" placeholder="Cari kejadian dan lokasi">
+      <div class="input-group input-group-sm">                        
+        <input hidden name="hal" value="data_kej"> 
+        <input type="text" class="form-control"  name="cari" placeholder="Cari kejadian dan lokasi">
         <span class="input-group-append">
-          <button type="submit" class="btn btn-info btn-flat">Cari</button>
-        </span>
+        <button type="submit" class="btn btn-info btn-flat">Cari</button>
+        </span>   
       </div>
     </form>
   </div>
   <main role="main" class="mobile-space">
     <div class="container-fluid">
       <div class="container">
-        <?php
-        if($_GET['cari']){
-          $cari = $_GET['cari'];
-        ?>
+        <?php if($_GET['cari']){
+          $cari = $_GET['cari'];?>
           <br/>
           <div class="card card-primary card-outline">
             <div class="card-header">
-              <h3 class="card-title">
-                Hasil pencarian : <?php echo $cari; ?>
-              </h3>
+              <h3 class="card-title">Hasil pencarian : <?php echo $cari; ?></h3>
             </div>
-            <div class="card-body">
-              <div class="row"> <!-- class row digunakan sebelum membuat column  -->
-                <div class="col-md-12"> <!-- ukuruan layar dengan bootstrap adalah 12 kolom, bagian kiri dibuat sebesar 4 kolom-->
+            <div class="card-body ">
+              <div class="row">
+                <div class="col-md-12">
                   <div class="table-responsive">
                     <table id="data_kej" class="table table-bordered">
                       <thead class="">
@@ -131,14 +112,11 @@ include 'fungsi_bulan.php';
                       <tbody>
                         <?php
                         $tampil = mysqli_query($kominfo, "select * from lokasi where ket like '%".$cari."%' or kejadian like '%".$cari."%' or alamat like '%".$cari."%' order by id desc ");
-                        $nomor=1;
-                        while($hasil = mysqli_fetch_assoc($tampil)){
+                        $nomor=1;  while($hasil = mysqli_fetch_assoc($tampil)){
                           $jumlah = mysqli_num_rows($tampil);
-                        ?>
+                          ?>
                           <tr>
-                            <td>
-                              <?php echo $hasil['kejadian']; ?>
-                            </td>
+                            <td><?php echo $hasil['kejadian']; ?></td>\
                             <td>
                               <?php
                               $id_kec=$hasil['kec'];
@@ -155,36 +133,30 @@ include 'fungsi_bulan.php';
                               echo $desa2['nama_desa'];
                               ?>
                             </td>
-                            <td>
-                              <?php echo $hasil['alamat']; ?>
-                            </td>
-                            <td>
-                              <?php echo $hasil['tanggal_terima']; ?>
-                            </td>
-                            <td>
-                              <?php echo $hasil['ket']; ?>
-                            </td>
+                            <td><?php echo $hasil['alamat']; ?></td>
+                            <td><?php echo $hasil['tanggal_terima']; ?></td>
+                            <td><?php echo $hasil['ket']; ?></td>
                             <td width="20%">
                               <div class="row">
                                 <?php
                                 $id_lokasi=$hasil['id'];
                                 $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_lokasi'");
                                 while($foto1 = mysqli_fetch_array($lokasi_foto)){
-                                ?>
+                                  ?>
                                   <div class="col text-center">
                                     <div>
                                       <a href="foto/<?php echo $foto1['nama_foto'] ?>" data-toggle="lightbox">
-                                        <img class="img-thumbnail" src="foto/<?php echo $foto1['nama_foto'] ?>" alt=""/>
+                                        <img class="img-thumbnail" src="foto/<?php echo $foto1['nama_foto'] ?>" />
                                       </a>
                                     </div>
                                   </div>
-                                <?php
+                                  <?php
                                 }
                                 ?>
                               </div>
                             </td>
                           </tr>
-                        <?php
+                          <?php
                         }
                         ?>
                       </tbody>
@@ -194,11 +166,9 @@ include 'fungsi_bulan.php';
               </div>
             </div>
           </div>
-        <?php
+          <?php
         } else {
-        ?>
-          <br/>
-          <br/>
+          ?>
           <br/>
           <div class="card card-primary card-outline mobile-space_1">
             <div class="card-header">
@@ -216,12 +186,12 @@ include 'fungsi_bulan.php';
               </div>
             </div>
             <div class="card-body ">
-              <div class="row"> <!-- class row digunakan sebelum membuat column  -->
+              <div class="row">
                 <div class="row mb-2">
                   <?php
                   $tampil_awal = mysqli_query($kominfo, "select * from lokasi order by id desc LIMIT 2  ");
                   while($hasil = mysqli_fetch_array($tampil_awal)){
-                  ?>
+                    ?>
                     <div class="col-md-6">
                       <div class="card flex-md-row mb-4 box-shadow h-md-250">
                         <div class="card-body d-flex flex-column align-items-start">
@@ -229,31 +199,27 @@ include 'fungsi_bulan.php';
                           <h3 class="mb-0">
                             <?php
                             $id_kec=$hasil['kec'];
-                            $tampil_id_kec = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec' "); //ambil data dari tabel lokasi
-                            $hasil_id_kec = mysqli_fetch_array($tampil_id_kec)
+                            $tampil_id_kec = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec' ");
+                            $hasil_id_kec = mysqli_fetch_array($tampil_id_kec);
                             ?>
                             <a class="text-dark" href="#"><?php echo $hasil_id_kec['nama_kecamatan']; ?></a>
                           </h3>
-                          <div class="mb-1 text-muted">
-                            <?php echo $hasil['tanggal_terima']; ?>
-                          </div>
-                          <p class="card-text mb-auto">
-                            <?php echo $hasil['ket']; ?>
-                          </p>
+                          <div class="mb-1 text-muted"><?php echo $hasil['tanggal_terima']; ?></div>
+                          <p class="card-text mb-auto"><?php echo $hasil['ket']; ?></p>
                           <a href="#"></a>
                         </div>
                         <?php
                         $id_foto=$hasil['id'];
                         $tampil_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_foto' ");
                         while($hasil_foto = mysqli_fetch_array($tampil_foto)){
-                        ?>
-                          <img  src="foto/<?php echo $hasil_foto['nama_foto'] ?>" class="gbr" alt="">
-                        <?php
+                          ?>
+                          <img src="foto/<?php echo $hasil_foto['nama_foto'] ?>" class="gbr">
+                          <?php
                         }
                         ?>
+                        </div>
                       </div>
-                    </div>
-                  <?php
+                    <?php
                   }
                   ?>
                 </div>
@@ -276,55 +242,37 @@ include 'fungsi_bulan.php';
               </div>
             </div>
             <div class="card-body ">
-              <div class="row"> <!-- class row digunakan sebelum membuat column  -->
+              <div class="row">
                 <div class="col-md-6">
                   <form method="GET">
                     <div class="input-group input-group-sm">
                       <input hidden name="hal" value="data_kej">
                       <select class="form-control" id="bulan" name="bulan">
-                        <?php
-                        if($_GET['bulan']){
-                        ?>
+                        <?php if($_GET['bulan']){ ?>
                           <option value="<?php echo $_GET['bulan']; ?>" selected><?php echo kebulan($_GET['bulan']);?></option>
                           <option disabled >== Pilih Bulan ==</option>
-                        <?php
-                        }else{
-                        ?>
+                        <?php }else{ ?>
                           <option disabled selected>== Pilih Bulan ==</option>
-                        <?php
-                        }
-                        ?>
-                        <?php
-                        $tampil_bulan = mysqli_query($kominfo, "select * from lokasi GROUP BY bulan "); //ambil data dari tabel kecamatan
+                        <?php } ?>
+                        <?php $tampil_bulan = mysqli_query($kominfo, "select * from lokasi GROUP BY bulan ");
                         while($hasil_bulan = mysqli_fetch_array($tampil_bulan)){
-                        ?>
+                          ?>
                           <option value="<?php echo $hasil_bulan['bulan']; ?>"><?php echo kebulan($hasil_bulan['bulan']); ?></option>
-                        <?php
-                        }
-                        ?>
+                        <?php } ?>
                         <option value="">== Semua Bulan ==</option>
                       </select>
                       <select class="form-control" id="bulan" name="th">
-                        <?php
-                        if($_GET['th']){
-                        ?>
+                        <?php if($_GET['th']){ ?>
                           <option selected><?php echo $_GET['th'];?></option>
                           <option disabled >== Pilih Tahun ==</option>
-                        <?php
-                        }else{
-                        ?>
+                        <?php }else{ ?>
                           <option disabled selected>== Pilih Tahun ==</option>
-                        <?php
-                        }
-                        ?>
-                        <?php
-                        $tampil_bulan = mysqli_query($kominfo, "select * from lokasi GROUP BY tahun "); //ambil data dari tabel kecamatan
+                        <?php } ?>
+                        <?php $tampil_bulan = mysqli_query($kominfo, "select * from lokasi GROUP BY tahun ");
                         while($hasil_bulan = mysqli_fetch_array($tampil_bulan)){
-                        ?>
+                          ?>
                           <option value="<?php echo $hasil_bulan['tahun']; ?>"><?php echo $hasil_bulan['tahun']; ?></option>
-                        <?php
-                        }
-                        ?>
+                        <?php } ?>
                         <option value="">== Semua Tahun ==</option>
                       </select>
                       <span class="input-group-append">
@@ -338,27 +286,17 @@ include 'fungsi_bulan.php';
                     <div class="input-group input-group-sm">
                       <input hidden name="hal" value="data_kej">
                       <select class="form-control" id="kej" name="kej">
-                        <?php
-                        if($_GET['kej']){
-                        ?>
+                        <?php if($_GET['kej']){ ?>
                           <option selected><?php echo $_GET['kej'];?></option>
                           <option disabled >== Pilih Kejadian ==</option>
-                        <?php
-                        }else{
-                        ?>
+                        <?php }else{ ?>
                           <option disabled selected>== Pilih Kejadian ==</option>
-                        <?php
-                        }
-                        ?>
-                        <?php
-                        $tampil_kej = mysqli_query($kominfo, "select * from kejadian"); //ambil data dari tabel kecamatan
+                        <?php } ?>
+                        <?php $tampil_kej = mysqli_query($kominfo, "select * from kejadian");
                         while($hasil_kej = mysqli_fetch_array($tampil_kej)){
-                        ?>
-                          <option value="<?php echo $hasil_kej['nama_kejadian']; ?>">
-                          <?php echo $hasil_kej['nama_kejadian']; ?></option>
-                        <?php
-                        }
-                        ?>
+                          ?>
+                          <option value="<?php echo $hasil_kej['nama_kejadian']; ?>"><?php echo $hasil_kej['nama_kejadian']; ?></option>
+                        <?php } ?>
                         <option value="">== Semua Kejadian ==</option>
                       </select>
                       <span class="input-group-append">
@@ -374,81 +312,79 @@ include 'fungsi_bulan.php';
           </div>
           <script>
             //setting maps menggunakan api mapbox bukan google maps, daftar dan dapatkan token
-            var mbAttr='&copy; 2022 Bidang TI Kominfo Sumenep';
-            var mbUrl='https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
-            var jalan=L.tileLayer(mbUrl, {
-              id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr
-            });
-            var googlemap=L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-              maxZoom: 20, subdomains:['mt0', 'mt1', 'mt2', 'mt3'], attribution: mbAttr
-            });
+            var mbAttr = '&copy; 2022 Bidang TI Kominfo Sumenep';
+            var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+            var jalan = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
+            var googlemap = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{ maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'],attribution: mbAttr });
             var mymap=L.map('mapid', {
-              center: [-6.974209829879984, 114.93917780339002],
-              zoom: 9,
-              layers: [googlemap],
-              fullscreenControl: {
-                pseudoFullscreen: false
+                center: [-6.974209829879984, 114.93917780339002],
+                zoom: 9,
+                layers: [googlemap],
+                fullscreenControl: {
+                  pseudoFullscreen: false
+                }
               }
-            });
+            );
             var basemaps= {
               'Google Map': googlemap,
-              'Jalan Map': jalan,
+                'Jalan Map': jalan,
             };
             var overlays= {};
-            var layerControl=L.control.layers(basemaps, overlays, {
-              collapsed: false
-            }).addTo(mymap);
-            var LeafIcon=L.Icon.extend( {
-              options: {
-                iconSize: [38, 60],
-                shadowSize: [0, 0],
-                iconAnchor: [22, 60],
-                shadowAnchor: [4, 62],
-                popupAnchor: [-3, -76]
+            var layerControl=L.control.layers(
+              basemaps, overlays, {
+                collapsed: false
               }
-            });
-            var call_center=new LeafIcon( {
-              iconUrl: '112.png'
-            });
+            ).addTo(mymap);
+            var LeafIcon=L.Icon.extend(
+              {
+                options: {
+                  iconSize: [38, 60],
+                  shadowSize: [0, 0],
+                  iconAnchor: [22, 60],
+                  shadowAnchor: [4, 62],
+                  popupAnchor: [-3, -76]
+                }
+              }
+            );
+            var call_center=new LeafIcon(
+              {
+                iconUrl: '112.png'
+              }
+            );
             <?php
-            if($_GET['kej']) {
-              $kej=$_GET['kej'];
-              $tampil=mysqli_query($kominfo, "select * from lokasi where kejadian='$kej' ");
-            }else {
-              $tampil=mysqli_query($kominfo, "select * from lokasi ");
+            if ($_GET['kej']) {
+              $kej = $_GET['kej'];
+              $tampil = mysqli_query($kominfo, "select * from lokasi where kejadian='$kej' ");
+            } else {
+              $tampil = mysqli_query($kominfo, "select * from lokasi ");
             }
-            if($_GET['bulan'] || $_GET['th']) {
-              $bulan=$_GET['bulan'];
-              $tahun=$_GET['th'];
-              $tampil=mysqli_query($kominfo, "select * from lokasi where bulan='$bulan' OR tahun='$tahun' ");
-            }
-            //ambil data dari tabel lokasi
-            if($_GET['bulan'] && $_GET['th']) {
-              $bulan=$_GET['bulan'];
-              $tahun=$_GET['th'];
-              $tampil=mysqli_query($kominfo, "select * from lokasi where bulan='$bulan' AND tahun='$tahun' ");
-            }
-            //ambil data dari tabel lokasi
-            while($hasil=mysqli_fetch_array($tampil)) {
-              $id_kec=$hasil['kec'];
-              $hasil_kec=mysqli_query($kominfo, "select * from kecamatan where id='$id_kec' "); //ambil data dari tabel lokasi
-              $kec=mysqli_fetch_array($hasil_kec);
-              $id_desa=$hasil['desa'];
-              $hasil_desa=mysqli_query($kominfo, "select * from desa where id='$id_desa' "); //ambil data dari tabel lokasi
-              $desa=mysqli_fetch_array($hasil_desa);
-            ?>
+            if ($_GET['bulan'] || $_GET['th']) {
+              $bulan = $_GET['bulan'];
+              $tahun = $_GET['th'];
+              $tampil = mysqli_query($kominfo, "select * from lokasi where bulan='$bulan' OR tahun='$tahun' ");
+            } //ambil data dari tabel lokasi
+            if ($_GET['bulan'] && $_GET['th']) {
+              $bulan = $_GET['bulan'];
+              $tahun = $_GET['th'];
+              $tampil = mysqli_query($kominfo, "select * from lokasi where bulan='$bulan' AND tahun='$tahun' ");
+            } //ambil data dari tabel lokasi        
+            while ($hasil = mysqli_fetch_array($tampil)) {
+              $id_kec = $hasil['kec'];
+              $hasil_kec = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec' "); //ambil data dari tabel lokasi
+              $kec = mysqli_fetch_array($hasil_kec);
+              $id_desa = $hasil['desa'];
+              $hasil_desa = mysqli_query($kominfo, "select * from desa where id='$id_desa' "); //ambil data dari tabel lokasi
+              $desa = mysqli_fetch_array($hasil_desa);
+              ?>
               //menggunakan fungsi L.marker(lat, long) untuk menampilkan latitude dan longitude
               //menggunakan fungsi str_replace() untuk menghilankan karakter yang tidak dibutuhkan
-              L.marker([<?php echo str_replace(['[', ']', 'LatLng', '(', ')'], '', $hasil['lat_long']); ?>], {
-                icon: call_center
-              }).addTo(mymap).bindPopup(`
-                <?php echo '<div><b>Kejadian</b> : '.$hasil['kejadian'].'</div><div><b>Tanggal</b> : '.$hasil['tanggal_terima'].'</div><div><b>Kecamatan</b> : '.$kec['nama_kecamatan'].'</div><div><b>Desa</b> : '.$desa['nama_desa'].'</div><div><b>Ket.</b> : '.$hasil['ket'].'</div>'; ?><?php $id_foto=$hasil['id'];
-                $tampil_foto=mysqli_query($kominfo, "select * from foto where id_lokasi='$id_foto' ");
-                while($hasil_foto=mysqli_fetch_array($tampil_foto)) {
-                  ?><img class="img-thumbnail"src="foto/<?php echo $hasil_foto['nama_foto'] ?>"><?php
-                }?>
-              `)
-            <?php
+              L.marker([
+                <?php echo str_replace(['[', ']', 'LatLng', '(', ')'], '', $hasil['lat_long']); ?>
+              ],{icon: call_center}).addTo(mymap).bindPopup(`<?php echo '<div><b>Kejadian</b> : '.$hasil['kejadian'].'</div><div><b>Tanggal</b> : '.$hasil['tanggal_terima'].'</div><div><b>Kecamatan</b> : '.$kec['nama_kecamatan'].'</div><div><b>Desa</b> : '.$desa['nama_desa'].'</div><div><b>Ket.</b> : '.$hasil['ket'].'</div>'; ?>
+              <?php $id_foto=$hasil['id'];
+              $tampil_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_foto' ");
+              while($hasil_foto = mysqli_fetch_array($tampil_foto)){?><img class="img-thumbnail" src="foto/<?php echo $hasil_foto['nama_foto'] ?>"><?php } ?> `)
+              <?php
             }
             ?>
           </script>
@@ -470,153 +406,137 @@ include 'fungsi_bulan.php';
                   </div>
                 </div>
                 <div class="card-body">
-                  <div id="chart_div1" class="chart"></div>
+                  <div id="chart_div1" class="chart"></div></div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card card-primary card-outline">
-                <div class="card-header">
-                  <h3 class="card-title">
-                    <i class="far fa-chart-bar"></i>
-                    Presentasi Kejadian
-                  </h3>
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                      <i class="fas fa-times"></i>
-                    </button>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      <i class="far fa-chart-bar"></i>
+                      Presentasi Kejadian
+                    </h3>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div id="piechart" class="mapid"></div>
                   </div>
                 </div>
-                <div class="card-body">
-                  <div id="piechart" class="mapid"></div>
-                </div>
               </div>
             </div>
-          </div>
-          <br/>
-          <div class="text-center">
-            <img src="logo/sumenep.png" class="logo" alt="">
-            <img src="logo/kominfo.png" class="logo" alt="">
-            <img src="logo/polri.png" class="logo" alt="">
-            <img src="logo/satpolpp.png" class="logo" alt="">
-            <img src="logo/damkar.png" class="logo" alt="">
-            <img src="logo/linmas.png" class="logo" alt="">
-            <img src="logo/puskesmas.png" class="logo" alt="">
-            <img src="logo/rsud.png" class="logo" alt="">
-            <img src="logo/bpbd.png" class="logo" alt="">
-            <img src="logo/basarnas.png" class="logo" alt="">
-            <img src="logo/dlh.png" class="logo" alt="">
-            <img src="logo/dishub.png" class="logo" alt="">
-            <img src="logo/rapi.png" class="logo" alt="">
-            <img src="logo/pln.png" class="logo" alt="">
-            <img src="logo/telkom.jpg" class="logo" alt="">
-            <img src="logo/putr.png" class="logo" alt="">
+            <br/>
+            <div class="text-center">
+              <img src="logo/sumenep.png" class="logo ">
+              <img src="logo/kominfo.png" class="logo ">
+              <img src="logo/polri.png" class="logo ">
+              <img src="logo/satpolpp.png" class="logo ">
+              <img src="logo/damkar.png" class="logo ">
+              <img src="logo/linmas.png" class="logo ">
+              <img src="logo/puskesmas.png" class="logo ">
+              <img src="logo/rsud.png" class="logo ">
+              <img src="logo/bpbd.png" class="logo ">
+              <img src="logo/basarnas.png" class="logo ">
+              <img src="logo/dlh.png" class="logo ">
+              <img src="logo/dishub.png" class="logo ">
+              <img src="logo/rapi.png" class="logo ">
+              <img src="logo/pln.png" class="logo ">
+              <img src="logo/telkom.jpg" class="logo ">
+              <img src="logo/putr.png" class="logo ">
+            </div>
           </div>
         </div>
-        <?php
-        }
-        ?>
-      </div>
-  </main>
-
-  <?php include 'footer.php';?>
-
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript">
-    $(window).resize(function(){
-      drawChart();
-    });
-    // Load google charts
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-    // Draw the chart and set the chart values
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ['Task', 'Hours per Day'],
-        <?php
-        $tampil = mysqli_query($kominfo, "select * from lokasi GROUP BY kejadian "); //ambil data dari tabel lokasi
-        while($hasil = mysqli_fetch_array($tampil)){
-          $nama_kej=$hasil['kejadian']; 
-          $tampil_1 = mysqli_query($kominfo, "select * from lokasi where kejadian='$nama_kej' "); //ambil data dari tabel lokasi
-          $hasil_1 = mysqli_num_rows($tampil_1);?>
-          <?php echo "['"; ?>
-          <?php echo $nama_kej;?>
-          <?php echo "',";?>
-          <?php echo $hasil_1; ?>
-          <?php echo "],";?>
-        <?php
-        }
-        ?>
-      ]);
-      // Optional; add a title and set the width and height of the chart
-      var options = {'width':null};
-      // Display the chart inside the <div> element with id="piechart"
-      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-      chart.draw(data, options);
+      </main>
+      <?php
     }
-    google.load("visualization", "1", {packages:["corechart"]});
-    google.setOnLoadCallback(drawChart1);
-    function drawChart1() {
-      var data = google.visualization.arrayToDataTable([
-        [
-          'tahun',<?php $tampil = mysqli_query($kominfo, "select * from lokasi GROUP BY kejadian "); //ambil data dari tabel lokasi
-          while($hasil = mysqli_fetch_array($tampil)){
-            $nama_kej=$hasil['kejadian'];
-            $tampil_1 = mysqli_query($kominfo, "select * from lokasi where kejadian='$nama_kej' "); //ambil data dari tabel lokasi
-            $hasil_1 = mysqli_num_rows($tampil_1);?>
-            <?php echo " ' ";?>
-            <?php echo $nama_kej;?>
-            <?php echo " ',";?>
-          <?php
+    ?>
+    <?php include 'footer.php';?>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      $(window).resize(function() {
+          drawChart();
+        }
+      );
+      // Load google charts
+      google.charts.load('current', {
+          'packages':['corechart']
+        }
+      );
+      google.charts.setOnLoadCallback(drawChart);
+      // Draw the chart and set the chart values
+      function drawChart() {
+        var data=google.visualization.arrayToDataTable([ ['Task', 'Hours per Day'],
+          <?php $tampil=mysqli_query($kominfo, "select * from lokasi GROUP BY kejadian "); //ambil data dari tabel lokasi
+          while($hasil=mysqli_fetch_array($tampil)) {
+            $nama_kej=$hasil['kejadian']; $tampil_1=mysqli_query($kominfo, "select * from lokasi where kejadian='$nama_kej' "); //ambil data dari tabel lokasi
+            $hasil_1=mysqli_num_rows($tampil_1); ?><?php echo "['"; ?><?php echo $nama_kej; ?> <?php echo "',"; ?> <?php echo $hasil_1; ?> <?php echo "],"; ?> <?php
           }
-          ?>
-        ],
-        <?php
-        $tampil_tahun = mysqli_query($kominfo, "select * from lokasi GROUP BY tahun ");//ambil data dari tabel lokasi
-        while($hasil_tahun = mysqli_fetch_array($tampil_tahun)){
-          $nama_kej=$hasil['kejadian']; ?>
-          [
-            '<?php $tahun=$hasil_tahun['tahun']; echo $tahun; ?>',
-            <?php $tampil = mysqli_query($kominfo, "select * from lokasi GROUP BY kejadian ");//ambil data dari tabel lokasi
-            while($hasil = mysqli_fetch_array($tampil)){ $nama_kej=$hasil['kejadian'];
-              $tampil_1 = mysqli_query($kominfo, "select * from lokasi where kejadian='$nama_kej' and tahun='$tahun'  "); //ambil data dari tabel lokasi
-              $hasil_1 = mysqli_num_rows($tampil_1);?>
-              <?php
-              if($hasil_1){
-                echo $hasil_1;
-              }else{
-                echo "0";
-              } ?>
-              <?php echo ",";?>
-            <?php
-            }
-            ?>
-          ],
-        <?php
+          ?>]);
+        // Optional; add a title and set the width and height of the chart
+        var options= {
+          'width': null
+        };
+        // Display the chart inside the <div> element with id="piechart"
+        var chart=new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+      google.load("visualization", "1", {
+          packages:["corechart"]
         }
-        ?>
-      ,]);
-      // Optional; add a title and set the width and height of the chart
-      var options = {'width':null,'height':600};
-      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
-      chart.draw(data, options);
-    }
+      );
+      google.setOnLoadCallback(drawChart1);
+      function drawChart1() {
+        var data=google.visualization.arrayToDataTable([ ['tahun', <?php $tampil=mysqli_query($kominfo, "select * from lokasi GROUP BY kejadian "); //ambil data dari tabel lokasi
+          while($hasil=mysqli_fetch_array($tampil)) {
+            $nama_kej=$hasil['kejadian']; $tampil_1=mysqli_query($kominfo, "select * from lokasi where kejadian='$nama_kej' "); //ambil data dari tabel lokasi
+            $hasil_1=mysqli_num_rows($tampil_1); ?><?php echo " ' "; ?><?php echo $nama_kej; ?> <?php echo " ',"; ?> <?php
+          }
+          ?>],
+          <?php $tampil_tahun=mysqli_query($kominfo, "select * from lokasi GROUP BY tahun "); //ambil data dari tabel lokasi
+          while($hasil_tahun=mysqli_fetch_array($tampil_tahun)) {
+            $nama_kej=$hasil['kejadian']; ?> ['<?php $tahun=$hasil_tahun['tahun']; echo $tahun; ?>',
+            <?php $tampil=mysqli_query($kominfo, "select * from lokasi GROUP BY kejadian "); //ambil data dari tabel lokasi
+            while($hasil=mysqli_fetch_array($tampil)) {
+              $nama_kej=$hasil['kejadian'];
+              $tampil_1=mysqli_query($kominfo, "select * from lokasi where kejadian='$nama_kej' and tahun='$tahun'  "); //ambil data dari tabel lokasi
+              $hasil_1=mysqli_num_rows($tampil_1); ?> <?php if($hasil_1) {
+                echo $hasil_1;
+              }
+              else {
+                echo "0";
+              }
+              ?> <?php echo ","; ?><?php
+            }
+            ?>], <?php
+          }
+          ?>]);
+        // Optional; add a title and set the width and height of the chart
+        var options= {
+          'width': null, 'height':600
+        };
+        var chart=new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+        chart.draw(data, options);
+      }
     </script>
     <script>
       $(document).ready(function() {
-        $('#data_kej').DataTable({
-          "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]]
-        });
-      });
+          $('#data_kej').DataTable( {
+              "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]]
+            }
+          );
+        }
+      );
       $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-        event.preventDefault();
-        $(this).ekkoLightbox();
-      });
+          event.preventDefault();
+          $(this).ekkoLightbox();
+        }
+      );
     </script>
-  </script>
-</body>
