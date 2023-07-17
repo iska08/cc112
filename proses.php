@@ -66,25 +66,6 @@ switch ($_GET['action']) {
             echo "Hapus Foto Berhasil";
         }
         break;
-    // case 'simpan_lokasi':
-    //     $tahun = date("Y");
-    //     $bulan = date("m");
-    //     $lat_long           = $_POST['latlong'];
-    //     $alamat             = $_POST['alamat'];
-    //     $desa               = $_POST['desa'];
-    //     $kec                = $_POST['kec'];
-    //     $kejadian           = $_POST['kejadian'];
-    //     $ket                = $_POST['ket'];
-    //     $tanggal_terima     = $_POST['tanggal_terima'];
-    //     $tanggal_selesai    = $_POST['tanggal_selesai'];
-    //     //input data
-    //     $insert_lokasi = mysqli_query($kominfo, "INSERT INTO `lokasi` SET lat_long='$lat_long', alamat='$alamat',desa='$desa', tanggal_terima='$tanggal_terima',tanggal_selesai='$tanggal_selesai',kec='$kec',kejadian='$kejadian',  ket='$ket', bulan='$bulan', tahun='$tahun' ");
-    //     if ($insert_lokasi) {
-    //         echo "Simpan Lokasi Berhasil";
-    //     } else {
-    //         echo "Simpan Lokasi Masuk Gagal :" . mysqli_error($kominfo);
-    //     }
-    //     break;
     case 'simpan_lokasi':
         $tahun              = date("Y");
         $bulan              = date("m");
@@ -296,9 +277,10 @@ switch ($_GET['action']) {
         $nama       = $_POST['nama'];
         $email      = $_POST['email'];
         $hak_akses  = $_POST['hak_akses'];
+        $online     = $_POST['online']=0;
         $kejadian   = implode(",", $_POST['kejadian']); // Mengubah array kejadian menjadi string dengan tanda koma sebagai pemisah
         //input data
-        $insert_user = mysqli_query($kominfo, "INSERT into user SET username='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',kejadian='$kejadian' ");
+        $insert_user = mysqli_query($kominfo, "INSERT into user SET username='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',online='$online',kejadian='$kejadian' ");
         if ($insert_user) {
             echo "Data User berhasil disimpan";
         } else {
@@ -312,9 +294,10 @@ switch ($_GET['action']) {
         $nama       = $_POST['nama'];
         $email      = $_POST['email'];
         $hak_akses  = $_POST['hak_akses'];
+        $online     = $_POST['online']=0;
         $kejadian   = implode(",", $_POST['kejadian']); // Mengubah array kejadian menjadi string dengan tanda koma sebagai pemisah
         //input data
-        $update_user = mysqli_query($kominfo, " UPDATE `user` SET username='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',kejadian='$kejadian' WHERE id='$id_user' ");
+        $update_user = mysqli_query($kominfo, " UPDATE `user` SET username='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',online='$online',kejadian='$kejadian' WHERE id='$id_user' ");
         if ($update_user) {
             echo "Edit User Berhasil";
         } else {
