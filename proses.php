@@ -296,7 +296,7 @@ switch ($_GET['action']) {
         $nama       = $_POST['nama'];
         $email      = $_POST['email'];
         $hak_akses  = $_POST['hak_akses'];
-        $kejadian   = $_POST['kejadian'];
+        $kejadian   = implode(",", $_POST['kejadian']); // Mengubah array kejadian menjadi string dengan tanda koma sebagai pemisah
         //input data
         $insert_user = mysqli_query($kominfo, "INSERT into user SET username='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',kejadian='$kejadian' ");
         if ($insert_user) {
@@ -312,7 +312,7 @@ switch ($_GET['action']) {
         $nama       = $_POST['nama'];
         $email      = $_POST['email'];
         $hak_akses  = $_POST['hak_akses'];
-        $kejadian   = $_POST['kejadian'];
+        $kejadian   = implode(",", $_POST['kejadian']); // Mengubah array kejadian menjadi string dengan tanda koma sebagai pemisah
         //input data
         $update_user = mysqli_query($kominfo, " UPDATE `user` SET username='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',kejadian='$kejadian' WHERE id='$id_user' ");
         if ($update_user) {
