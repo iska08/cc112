@@ -5,7 +5,7 @@ if (empty($_SESSION['112_username'])) {
 }
 ?>
 
-<div class="card card-info card-outline">
+<div class="card-outline">
   <div id="data_kec"></div>
   <div id="data_desa"></div>
   <div id="data_opd"></div>
