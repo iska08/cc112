@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jul 2023 pada 08.12
--- Versi server: 10.4.25-MariaDB
--- Versi PHP: 8.1.10
+-- Waktu pembuatan: 17 Jul 2023 pada 06.46
+-- Versi server: 10.4.22-MariaDB
+-- Versi PHP: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -1215,7 +1215,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `password`, `nama`, `email`, `hak_akses`, `kejadian`, `online`) VALUES
 (1, 'cc112admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Arief Santoso, ST', 'admin@gmail.com', 'Admin', '', '1'),
-(26, 'damkarcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'Pemadam Kebakaran', 'damkarcc112@gmail.com', 'Tim', '', '1');
+(26, 'damkarcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'DAMKAR', 'damkarcc112@gmail.com', 'Tim', 'POHON TUMBANG,EVAKUASI HEWAN LIAR/BUAS,KEBAKARAN', '0'),
+(28, 'satpolppcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'SATPOL PP', 'satpolppcc112@gmail.com', 'Tim', 'KEAMANAN DAN KETERTIBAN MASYARAKAT,ORANG DENGAN GANGGUAN JIWA (ODGJ)', '0');
 
 --
 -- Indexes for dumped tables
@@ -1343,7 +1344,7 @@ ALTER TABLE `survey`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
