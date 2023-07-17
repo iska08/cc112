@@ -43,12 +43,7 @@ include 'dbconfig.php';
             <tbody>
               <?php
               $nomor=1;
-              $username = $_SESSION['112_username'];
-              $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi 
-                                                INNER JOIN kejadian ON lokasi.kejadian = kejadian.nama_kejadian 
-                                                INNER JOIN user ON kejadian.opd_terkait = user.hak_laporan 
-                                                WHERE user.username = '$username' 
-                                                ORDER BY lokasi.id DESC");
+              $tampil = mysqli_query($kominfo, "select * from lokasi order by id desc");
               while($hasil = mysqli_fetch_array($tampil)){
               ?>
                 <tr>
