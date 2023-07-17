@@ -19,10 +19,6 @@ $id_kej = $_GET['id_kej'];
   <div class="row"> <!-- class row digunakan sebelum membuat column  -->
     <div class="col-md-4"> <!-- ukuruan layar dengan bootstrap adalah 12 kolom, bagian kiri dibuat sebesar 4 kolom-->
       <form  method="post" id="<?php if($id_kej){?>form_edit_kej<?php }else{?>form_tambah_kej<?php } ?>">
-        <!-- <?php
-        $tampil_id_kej = mysqli_query($kominfo, "select * from kejadian where id='$id_kej' ");
-        $hasil_id_kej = mysqli_fetch_array($tampil_id_kej)
-        ?> -->
         <div class="form-group">
           <label for="exampleFormControlInput1">OPD Terkait</label>
           <?php
@@ -56,20 +52,6 @@ $id_kej = $_GET['id_kej'];
           <input hidden name="id" value="<?php echo $id_kej; ?>">
           <input type="text" class="form-control" name="nama_kej" value="<?php echo $hasil_id_kej['nama_kejadian']; ?>" required>
         </div>
-        <!-- <div class="form-group">
-          <label for="exampleFormControlInput1">OPD Terkait</label>
-          <select class="form-control" id="opd_terkait" name="opd_terkait" required>
-            <option disabled selected>== Pilih OPD Terkait ==</option>
-            <?php
-            $tampil_opd = mysqli_query($kominfo, "select * from opd_terkait");
-            while($hasil_opd = mysqli_fetch_array($tampil_opd)) {
-            ?>
-              <option value="<?php echo $hasil_opd['nama_opd']; ?>"><?php echo $hasil_opd['nama_opd']; ?></option>
-            <?php
-            }
-            ?>
-          </select>
-        </div> -->
         <div class="form-group">
           <?php
           if($id_kej){
