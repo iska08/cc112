@@ -27,8 +27,8 @@ $id_kej = $_GET['id_kej'];
             $hasil_id_kej = mysqli_fetch_array($tampil_id_kej)
             ?>
             <?php
-            $id_opd = $hasil_id_kej['opd_terkait'];
-            $opd1   = mysqli_query($kominfo, "select * from opd_terkait where id='$id_opd' ");
+            $nama_opd = $hasil_id_kej['opd_terkait'];
+            $opd1   = mysqli_query($kominfo, "select * from opd_terkait where nama_opd='$nama_opd' ");
             $opd2   = mysqli_fetch_array($opd1)
             ?>
             <select class="form-control" name="opd_terkait">
