@@ -43,26 +43,22 @@ include 'dbconfig.php';
             </thead>
             <tbody>
               <?php
-              $query_pag_data = "SELECT * from user";
-              $result_pag_data1 = mysqli_query($kominfo, $query_pag_data);
+              $query_pag_data1 = "SELECT * from user ";
+              $result_pag_data1 = mysqli_query($kominfo, $query_pag_data1);
               
               while($row = mysqli_fetch_assoc($result_pag_data1)) {
-                $kejadian1=$row['kejadian'];
-                
-                $query_pag_kej = "SELECT * from kejadian";
-                $result_pag_kej = mysqli_query($kominfo, $query_pag_kej);
-                $row_kej = mysqli_fetch_assoc($result_pag_kej);
-                $nama_kej = $row_kej['nama_kejadian'];
+              $kej=$row['kejadian'];
+              $kej1=$kej;
 
-                if(preg_match($nama_kej,$kejadian)){$nama_kej1 = $nama_kej;}
-                echo $nama_kej1;
+              if(preg_match($kej1,$kejadian)){$nama_kej1 = "KEAMANAN DAN KETERTIBAN MASYARAKAT";}
+              // echo $kejadian;
+              
               }
-              echo $_SESSION['kejadian'];
-              if($kejadian == $kejadian1) {
+              echo $nama_kej1;
                 ?>
                 <?php
                 $nomor=1;
-                $panggil = "SELECT * from lokasi where kejadian='$nama_kej1' ";
+                $panggil = "SELECT * from lokasi where kejadian = '$nama_kej1' ";
                 $tampil = mysqli_query($kominfo, $panggil);
                 while($hasil = mysqli_fetch_assoc($tampil)){
                 ?>
@@ -152,11 +148,6 @@ include 'dbconfig.php';
                   <?php
                 }
                 ?>
-                <?php
-              } else{
-                echo '<div class="text-center text-muted mb-4"><h4>Anda Tidak Punya Hak Akses</h4></div>';
-              }
-              ?>
             </tbody>
           </table>
         </div>
