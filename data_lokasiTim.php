@@ -43,7 +43,7 @@ include 'dbconfig.php';
             <tbody>
               <?php
               $nomor=1;
-              $tampil = mysqli_query($kominfo, "select * from lokasi order by id desc");
+              $tampil = mysqli_query($kominfo, "select * from lokasi order by id desc"); //ambil data dari tabel lokasi
               while($hasil = mysqli_fetch_array($tampil)){
               ?>
                 <tr>
@@ -52,7 +52,7 @@ include 'dbconfig.php';
                   <td>
                     <?php
                     $id_kec=$hasil['kec'];
-                    $kec1 = mysqli_query($kominfo, "SELECT * FROM kecamatan WHERE id='$id_kec'");
+                    $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
                     $kec2 = mysqli_fetch_array($kec1);
                     echo $kec2['nama_kecamatan'];
                     ?>
@@ -60,7 +60,7 @@ include 'dbconfig.php';
                   <td>
                     <?php
                     $id_desa=$hasil['desa'];
-                    $desa1 = mysqli_query($kominfo, "SELECT * FROM desa WHERE id='$id_desa'");
+                    $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
                     $desa2 = mysqli_fetch_array($desa1);
                     echo $desa2['nama_desa']; ?>
                   </td>
@@ -74,7 +74,7 @@ include 'dbconfig.php';
                     <div class="row">
                       <?php
                       $id_lokasi=$hasil['id'];
-                      $lokasi_foto = mysqli_query($kominfo, "SELECT * FROM foto WHERE id_lokasi='$id_lokasi'");
+                      $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_lokasi'");
                       while($foto1 = mysqli_fetch_array($lokasi_foto)){
                       ?>
                         <div class="col text-center">
