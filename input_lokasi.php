@@ -31,7 +31,19 @@ include 'dbconfig.php';
             <select class="form-control select2-danger " name="kejadian" required>
               <option disabled selected>== Pilih Kejadian ==</option>
               <?php
-              $tampil_kej = mysqli_query($kominfo, "select * from kejadian"); //ambil data dari tabel kecamatan
+              $kejadian = $_SESSION['kejadian'];
+              $data = explode(",", $kejadian);
+              // print_r($data);
+              // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
+              $whereClause = "";
+              foreach ($data as $value) {
+                  $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
+                  if ($whereClause !== "") {
+                      $whereClause .= " OR ";
+                  }
+                  $whereClause .= "nama_kejadian = '$value'";
+              }
+              $tampil_kej = mysqli_query($kominfo, "select * from kejadian where $whereClause");
               while($hasil_kej = mysqli_fetch_array($tampil_kej)) {
               ?>
                 <option value="<?php echo $hasil_kej['nama_kejadian']; ?>"><?php echo $hasil_kej['nama_kejadian']; ?></option>
