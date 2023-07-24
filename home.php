@@ -188,7 +188,7 @@ include 'dbconfig.php';
               ?>
             ],
             [
-              '2022', <?php $tampil=mysqli_query($kominfo, "select * from lokasi GROUP BY kejadian "); //ambil data dari tabel lokasi
+              '', <?php $tampil=mysqli_query($kominfo, "select * from lokasi GROUP BY kejadian "); //ambil data dari tabel lokasi
               while($hasil=mysqli_fetch_array($tampil)) {
                 $nama_kej=$hasil['kejadian'];
                 $tampil_1=mysqli_query($kominfo, "select * from lokasi where kejadian='$nama_kej' "); //ambil data dari tabel lokasi
