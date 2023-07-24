@@ -43,7 +43,13 @@ include 'dbconfig.php';
                   }
                   $whereClause .= "nama_kejadian = '$value'";
               }
-              $tampil_kej = mysqli_query($kominfo, "select * from kejadian where $whereClause");
+              $hak_akses = $_SESSION['hak_akses'];
+              if($hak_akses=='Admin'){
+                  $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian");
+              }elseif($hak_akses=='Tim'){
+                  $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian WHERE $whereClause");
+              }
+              // $tampil_kej = mysqli_query($kominfo, "select * from kejadian where $whereClause");
               while($hasil_kej = mysqli_fetch_array($tampil_kej)) {
               ?>
                 <option value="<?php echo $hasil_kej['nama_kejadian']; ?>"><?php echo $hasil_kej['nama_kejadian']; ?></option>
