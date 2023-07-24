@@ -56,9 +56,9 @@ include 'dbconfig.php';
                   $whereClause .= "kejadian = '$value'";
               }
               $hak_akses = $_SESSION['hak_akses'];
-              if($hak_akses='Admin'){
+              if($hak_akses=='Admin'){
                 $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi ORDER BY id DESC");
-              }elseif($hak_akses='Tim'){
+              }elseif($hak_akses=='Tim'){
                 $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE $whereClause ORDER BY id DESC");
               }
               // $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE $whereClause ORDER BY id DESC");

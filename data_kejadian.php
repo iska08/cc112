@@ -170,9 +170,9 @@ include 'fungsi_bulan.php';
                                         $whereClause .= "nama_kejadian = '$value'";
                                     }
                                     $hak_akses = $_SESSION['hak_akses'];
-                                    if($hak_akses='Admin'){
+                                    if($hak_akses=='Admin'){
                                         $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian");
-                                    }elseif($hak_akses='Tim'){
+                                    }elseif($hak_akses=='Tim'){
                                         $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian WHERE $whereClause");
                                     }
                                     // $tampil_kej = mysqli_query($kominfo, "select * from kejadian where $whereClause");
