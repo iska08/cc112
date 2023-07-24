@@ -98,8 +98,13 @@ if (empty($_SESSION['112_username'])){
                     <li class="nav-item d-none d-sm-inline-block">
                         <a href="logout.php" class="nav-link">Log Out</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="notifikasi.php" class="nav-link"><i class="fa fa-bell"></i></a>
+                    <li class="dropdown">
+                        <!-- <a href="notifikasi.php" class="nav-link"><i class="fa fa-bell"></i></a> -->
+                        <button type="button" class="btn btn-primary" data-toggle="dropdown">
+                            <span class="fa fa-bell" id="notif"></span>
+                        </button>
+                        <div id="pesan" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        </div>
                     </li> 
                 </ul>
                 <!-- Right navbar links -->
@@ -376,5 +381,9 @@ if (empty($_SESSION['112_username'])){
                 "locale": "id"
             });
         </script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="tampil.js"></script>
     </body>
 </html>
