@@ -105,7 +105,7 @@ if (empty($_SESSION['112_username'])){
                         </button>
                         <div id="pesan" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         </div>
-                    </li> 
+                    </li>
                 </ul>
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
