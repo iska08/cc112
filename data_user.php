@@ -40,6 +40,10 @@ $id_user = $_GET['id_user'];
                         <input type="text" class="form-control" name="nama" value="<?php echo $hasil_id_user['nama']; ?>">
                     </div>
                     <div class="form-group">
+                        <label for="exampleFormControlInput1">No Telepon</label>
+                        <input type="text" class="form-control" name="noTelp" value="<?php echo $hasil_id_user['noTelp']; ?>">
+                    </div>
+                    <div class="form-group">
                         <label for="exampleFormControlInput1">Email</label>
                         <input type="text" class="form-control" name="email" value="<?php echo $hasil_id_user['email']; ?>">
                     </div>
@@ -96,6 +100,7 @@ $id_user = $_GET['id_user'];
                         <th>Username</th>
                         <th>Password</th>
                         <th>Nama</th>
+                        <th>No Telepon</th>
                         <th>Email</th>
                         <th>Hak Akses</th>
                         <th>Kejadian</th>
@@ -111,6 +116,7 @@ $id_user = $_GET['id_user'];
                                 <td><?php echo $hasil_user['username']; ?></td>
                                 <td><?php echo $hasil_user['password']; ?></td>
                                 <td><?php echo $hasil_user['nama']; ?></td>
+                                <td><?php echo $hasil_user['noTelp']; ?></td>
                                 <td><?php echo $hasil_user['email']; ?></td>
                                 <td><?php echo $hasil_user['hak_akses']; ?></td>
                                 <td><?php echo $hasil_user['kejadian']; ?></td>

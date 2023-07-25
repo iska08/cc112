@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Jul 2023 pada 06.46
+-- Waktu pembuatan: 25 Jul 2023 pada 07.41
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -757,8 +757,6 @@ INSERT INTO `foto` (`id`, `id_lokasi`, `nama_foto`) VALUES
 (441, '478', '16985257.jpeg'),
 (443, '480', '13225765.jpeg'),
 (444, '479', '11023515.jpeg'),
-(452, '5', '11974736.jpg'),
-(453, '5', '19175092.phpjpg'),
 (455, '477', '14753736.jpeg'),
 (456, '482', '19919561.jpeg'),
 (457, '483', '19701999.jpeg'),
@@ -810,7 +808,25 @@ INSERT INTO `foto` (`id`, `id_lokasi`, `nama_foto`) VALUES
 (530, '550', '14583912.jpeg'),
 (532, '551', '15262621.jpeg'),
 (534, '552', '10981044.jpeg'),
-(535, '553', '13885291.jpeg');
+(535, '553', '13885291.jpeg'),
+(536, '555', '14783307.jpeg'),
+(537, '556', '13615736.jpeg'),
+(538, '557', '10643782.jpeg'),
+(539, '558', '13995258.jpeg'),
+(540, '559', '17397049.jpeg'),
+(541, '560', '16925672.jpeg'),
+(542, '561', '16895031.jpeg'),
+(543, '562', '16992566.jpeg'),
+(544, '563', '14542593.jpg'),
+(545, '564', '12850658.jpeg'),
+(546, '565', '11559536.jpeg'),
+(547, '566', '17983766.jpeg'),
+(548, '567', '14961889.jpeg'),
+(549, '568', '14828262.jpg'),
+(550, '569', '16578486.jpeg'),
+(551, '570', '10823063.jpg'),
+(552, '571', '14496029.jpeg'),
+(553, '572', '10620756.jpg');
 
 -- --------------------------------------------------------
 
@@ -1122,8 +1138,8 @@ INSERT INTO `lokasi` (`id`, `lat_long`, `alamat`, `desa`, `kec`, `kejadian`, `ta
 (529, 'LatLng(-6.886453, 113.663306)', 'Desa Panaongan', '274', '14', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '09 Juni 2023 11:30', '', NULL, 'CC112 Tim Satpol PP mengevakuasi ODGJ di Puskesmas Pasongsongan atas laporan dari kepala desa Soddere ', '', '', '06', '2023'),
 (530, 'LatLng(-7.026945, 113.854065)', 'Jl. Trunojoyo (Pertigaan linkar timur)', '216', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '13 Juni 2023 19:00', '', NULL, 'CC112 Tim Satpol PP mengevakuasi oarang terlantar di desa babbalan (pertigaan linkar timur) ke RPS Dinsos Sumenep\r\nPelapor : Ibu Shinta', '', '', '06', '2023'),
 (531, 'LatLng(-7.004925, 113.868409)', 'Jl. Agus Salim Perempatan Jati mas', '210', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '20 Juni 2023 15:30', '', NULL, 'CC112 Tim Satpol PP mengevakuasi orang terlantar dan terduga ODGJ di perempatan Jl. Agus Salim ke RPS Dinsos\r\nPelopor : Bapak Agus', '', '', '06', '2023'),
-(550, 'LatLng(-6.993369, 114.032099)', '-', '324', '7', 'KECELAKAAN LALU LINTAS', '12 Juli 2023 12:00', '', NULL, '-', 'Anonim', '29358609152398', '07', '2023'),
-(552, 'LatLng(-7.078899, 113.954144)', 's', '2', '1', 'BENCANA ALAM', '13 Juli 2023 12:00', '13 Juli 2023 12:00', NULL, 's', 's', 's', '07', '2023');
+(571, 'LatLng(-7.04225, 113.88505)', 'coba', '211', '2', 'KECELAKAAN LALU LINTAS', '25 Juli 2023 12:00', '', NULL, '', 'coba', '1234567890', '07', '2023'),
+(572, 'LatLng(-7.027939, 113.856224)', 'coba', '247', '4', 'TIANG LISTRIK RUBUH', '25 Juli 2023 12:00', '', NULL, '', 'coba', '1234567890', '07', '2023');
 
 -- --------------------------------------------------------
 
@@ -1203,9 +1219,10 @@ CREATE TABLE `user` (
   `username` varchar(100) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   `nama` varchar(255) DEFAULT NULL,
+  `noTelp` varchar(50) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `hak_akses` enum('Admin','Tim') DEFAULT NULL,
-  `kejadian` varchar(100) NOT NULL,
+  `kejadian` varchar(300) NOT NULL,
   `online` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1213,10 +1230,10 @@ CREATE TABLE `user` (
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `nama`, `email`, `hak_akses`, `kejadian`, `online`) VALUES
-(1, 'cc112admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Arief Santoso, ST', 'admin@gmail.com', 'Admin', '', '1'),
-(26, 'damkarcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'DAMKAR', 'damkarcc112@gmail.com', 'Tim', 'POHON TUMBANG,EVAKUASI HEWAN LIAR/BUAS,KEBAKARAN', '0'),
-(28, 'satpolppcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'SATPOL PP', 'satpolppcc112@gmail.com', 'Tim', 'KEAMANAN DAN KETERTIBAN MASYARAKAT,ORANG DENGAN GANGGUAN JIWA (ODGJ)', '0');
+INSERT INTO `user` (`id`, `username`, `password`, `nama`, `noTelp`, `email`, `hak_akses`, `kejadian`, `online`) VALUES
+(1, 'cc112admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Arief Santoso, ST', NULL, 'admin@gmail.com', 'Admin', 'BENCANA ALAM,POHON TUMBANG,PERMINTAAN AMBULAN,KECELAKAAN LALU LINTAS,TIANG LISTRIK RUBUH,KEAMANAN DAN KETERTIBAN MASYARAKAT,EVAKUASI HEWAN LIAR/BUAS,KEBAKARAN,BANJIR,COVID 19,KRIMINALITAS,ORANG DENGAN GANGGUAN JIWA (ODGJ),GIAT EVAKUASI,KECELAKAAN KERJA,KECELAKAAN LAUT', '0'),
+(26, 'damkarcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'DAMKAR', '', 'damkarcc112@gmail.com', 'Tim', 'POHON TUMBANG,EVAKUASI HEWAN LIAR/BUAS,KEBAKARAN', '0'),
+(28, 'satpolppcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'SATPOL PP', NULL, 'satpolppcc112@gmail.com', 'Tim', 'KEAMANAN DAN KETERTIBAN MASYARAKAT,ORANG DENGAN GANGGUAN JIWA (ODGJ)', '0');
 
 --
 -- Indexes for dumped tables
@@ -1308,7 +1325,7 @@ ALTER TABLE `dusun`
 -- AUTO_INCREMENT untuk tabel `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=536;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=554;
 
 --
 -- AUTO_INCREMENT untuk tabel `kecamatan`
@@ -1326,7 +1343,7 @@ ALTER TABLE `kejadian`
 -- AUTO_INCREMENT untuk tabel `lokasi`
 --
 ALTER TABLE `lokasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=554;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=573;
 
 --
 -- AUTO_INCREMENT untuk tabel `opd_terkait`

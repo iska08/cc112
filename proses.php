@@ -104,6 +104,36 @@ switch ($_GET['action']) {
         } else {
             echo "Simpan Foto Gagal\n";
         }
+        // Pastikan Anda telah mengisi nomor telepon dan token yang sesuai
+        $target = "081216305051";
+        $token = "ju#zj+FKNiVrwU2yBo6H";
+        // Proses pengiriman pesan melalui API
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => $target,
+                'message' =>    '*Laporan Kejadian Terbaru*
+    Kejadian : _' . $kejadian . '_' . '
+    Lokasi : _' . $alamat . '_' . '
+    Tanggal Terima : _' . $tanggal_terima . '_' . '
+    Nama Pelapor : _' . $nama_pelapor . '_' . '
+    No. Telp Pelapor : _' . $noTelp_pelapor . '_',
+                'countryCode' => '62', //optional
+            ),
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: $token"
+            ),
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
         break;
     case 'edit_lokasi':
         $id_lokasi          = $_POST['id'];
@@ -275,12 +305,13 @@ switch ($_GET['action']) {
         $username   = $_POST['username'];
         $password   = md5($_POST['password']);
         $nama       = $_POST['nama'];
+        $noTelp     = $_POST['noTelp'];
         $email      = $_POST['email'];
         $hak_akses  = $_POST['hak_akses'];
         $online     = $_POST['online']=0;
         $kejadian   = implode(",", $_POST['kejadian']); // Mengubah array kejadian menjadi string dengan tanda koma sebagai pemisah
         //input data
-        $insert_user = mysqli_query($kominfo, "INSERT into user SET username='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',online='$online',kejadian='$kejadian' ");
+        $insert_user = mysqli_query($kominfo, "INSERT into user SET username='$username',password='$password',nama='$nama',noTelp='$noTelp',email='$email',hak_akses='$hak_akses',online='$online',kejadian='$kejadian' ");
         if ($insert_user) {
             echo "Data User berhasil disimpan";
         } else {
@@ -297,7 +328,7 @@ switch ($_GET['action']) {
         $online     = $_POST['online']=0;
         $kejadian   = implode(",", $_POST['kejadian']); // Mengubah array kejadian menjadi string dengan tanda koma sebagai pemisah
         //input data
-        $update_user = mysqli_query($kominfo, " UPDATE `user` SET username='$username',password='$password',nama='$nama', email='$email',hak_akses='$hak_akses',online='$online',kejadian='$kejadian' WHERE id='$id_user' ");
+        $update_user = mysqli_query($kominfo, " UPDATE `user` SET username='$username',password='$password',nama='$nama',noTelp='$noTelp',email='$email',hak_akses='$hak_akses',online='$online',kejadian='$kejadian' WHERE id='$id_user' ");
         if ($update_user) {
             echo "Edit User Berhasil";
         } else {

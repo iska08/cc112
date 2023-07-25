@@ -100,7 +100,7 @@ include 'dbconfig.php';
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Keterangan</label>
-            <textarea class="form-control" name="ket" cols="30" rows="5" required></textarea>
+            <textarea class="form-control" name="ket" cols="30" rows="5"></textarea>
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Foto Kejadian</label>
