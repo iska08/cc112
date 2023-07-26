@@ -80,6 +80,22 @@ if (empty($_SESSION['112_username'])){
                 }
             });
         });
+        //edit approve
+        $("#lokasi").on("submit", "#edit_approve", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'proses.php?action=edit_approve',
+                type: 'post',
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    Swal.fire((data), '', 'success')
+                    lokasi();
+                }
+            });
+        });
         //edit data 
         $("#lokasi").on("submit", "#form_edit_lokasi", function(e) {
             e.preventDefault();
