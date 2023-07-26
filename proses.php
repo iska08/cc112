@@ -105,7 +105,7 @@ switch ($_GET['action']) {
             echo "Simpan Foto Gagal\n";
         }
         // Pastikan Anda telah mengisi nomor telepon dan token yang sesuai
-        $target = "081216305051";
+        $target = "081235184908";
         $token = "ju#zj+FKNiVrwU2yBo6H";
         // Proses pengiriman pesan melalui API
         $curl = curl_init();

@@ -5,6 +5,7 @@ if (empty($_SESSION['112_username'])){
 }
 //koneksi
 include 'dbconfig.php';
+$akses = $_SESSION['hak_akses'];
 ?>
 
 <style>
@@ -12,7 +13,7 @@ include 'dbconfig.php';
   #mapid {
     height: 600px;width:100%;
   }
-</style>
+  </style>
 
 <script src="js/jquery.Jcrop.js"></script>
 <link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
@@ -25,133 +26,262 @@ include 'dbconfig.php';
       <div class="col-md-12">
         <div><button class="btn btn-info btn-sm" id="add_lokasi">Input Lokasi</button></div><br/>
         <div class="table-responsive">
-          <table id="tower" class="table table-bordered">
-            <thead>
-              <th>No.</th>
-              <th>Kejadian</th>
-              <th>Kecamatan</th>
-              <th>Desa</th>
-              <th>Nama Pelapor</th>
-              <th>Nomor Telepon Pelapor</th>
-              <th>Tanggal Terima</th>
-              <th>Tanggal Selesai</th>
-              <th>Alamat</th>
-              <th>Keterangan</th>
-              <th>Foto</th>
-              <th>Aksi</th>
-            </thead>
-            <tbody>
-              <?php
-              $nomor = 1;
-              $kejadian = $_SESSION['kejadian'];
-              $data = explode(",", $kejadian);
-              // print_r($data);
-              // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
-              $whereClause = "";
-              foreach ($data as $value) {
-                  $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
-                  if ($whereClause !== "") {
-                      $whereClause .= " OR ";
-                  }
-                  $whereClause .= "kejadian = '$value'";
-              }
-              $hak_akses = $_SESSION['hak_akses'];
-              if($hak_akses=='Admin'){
-                $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi ORDER BY id DESC");
-              }elseif($hak_akses=='Tim'){
-                $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE $whereClause ORDER BY id DESC");
-              }
-              // $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE $whereClause ORDER BY id DESC");
-              while($hasil = mysqli_fetch_array($tampil)){
-              ?>
-                <tr>
-                  <td><?php echo $nomor++; ?></td>
-                  <td><?php echo $hasil['kejadian']; ?></td>
-                  <td>
-                    <?php
-                    $id_kec=$hasil['kec'];
-                    $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
-                    $kec2 = mysqli_fetch_array($kec1);
-                    echo $kec2['nama_kecamatan'];
-                    ?>
-                  </td>
-                  <td>
-                    <?php
-                    $id_desa=$hasil['desa'];
-                    $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
-                    $desa2 = mysqli_fetch_array($desa1);
-                    echo $desa2['nama_desa']; ?>
-                  </td>
-                  <td><?php echo $hasil['nama_pelapor']; ?></td>
-                  <td><?php echo $hasil['noTelp_pelapor']; ?></td>
-                  <td><?php echo $hasil['tanggal_terima']; ?></td>
-                  <td><?php echo $hasil['tanggal_selesai']; ?></td>
-                  <td><?php echo $hasil['alamat']; ?></td>
-                  <td><?php echo $hasil['ket']; ?></td>
-                  <td width="20%">
-                    <div class="row">
+          <?php if($akses=='Admin'){ ?>
+            <table id="tower" class="table table-bordered">
+              <thead>
+                <th>No.</th>
+                <th>Kejadian</th>
+                <th>Kecamatan</th>
+                <th>Desa</th>
+                <th>Nama Pelapor</th>
+                <th>Nomor Telepon Pelapor</th>
+                <th>Tanggal Terima</th>
+                <th>Tanggal Selesai</th>
+                <th>Alamat</th>
+                <th>Keterangan</th>
+                <th>Approve</th>
+                <th>Foto</th>
+                <th>Aksi</th>
+              </thead>
+              <tbody>
+                <?php
+                $nomor = 1;
+                $kejadian = $_SESSION['kejadian'];
+                $data = explode(",", $kejadian);
+                // print_r($data);
+                // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
+                $whereClause = "";
+                foreach ($data as $value) {
+                    $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
+                    if ($whereClause !== "") {
+                        $whereClause .= " OR ";
+                    }
+                    $whereClause .= "kejadian = '$value'";
+                }
+                $hak_akses = $_SESSION['hak_akses'];
+                if($hak_akses=='Admin'){
+                  $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi ORDER BY id DESC");
+                }elseif($hak_akses=='Tim'){
+                  $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE $whereClause ORDER BY id DESC");
+                }
+                // $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE $whereClause ORDER BY id DESC");
+                while($hasil = mysqli_fetch_array($tampil)){
+                ?>
+                  <tr>
+                    <td><?php echo $nomor++; ?></td>
+                    <td><?php echo $hasil['kejadian']; ?></td>
+                    <td>
                       <?php
-                      $id_lokasi=$hasil['id'];
-                      $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_lokasi'");
-                      while($foto1 = mysqli_fetch_array($lokasi_foto)){
+                      $id_kec=$hasil['kec'];
+                      $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
+                      $kec2 = mysqli_fetch_array($kec1);
+                      echo $kec2['nama_kecamatan'];
                       ?>
-                        <div class="col text-center">
-                          <div>
-                            <a href="foto/<?php echo $foto1['nama_foto'] ?>" data-toggle="lightbox">
-                              <img class="img-thumbnail" src="foto/<?php echo $foto1['nama_foto'] ?>" />
-                            </a>
-                            <a style="position:absolute;top:10px;right:20px;" class="btn btn-danger btn-sm " id="hapus_foto" value="<?php echo $foto1['id']; ?>">Hapus</a><a style="position:absolute;top:10px;left:20px;" class="btn btn-danger btn-sm " data-target="#crop-modal_<?php echo $foto1['id']; ?>" data-toggle="modal">Edit</a>
-                          </div>
-                          <!-- Crop Modal -->
-                          <div id="crop-modal_<?php echo $foto1['id']; ?>" class="modal fade" tabindex="-1">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <span class="close" data-dismiss="modal">X</span>
-                                </div>
-                                <h4 class="modal-title">Edit Foto</h4>
-                                <div align="center"class="modal-body">
-                                  <img src="foto/<?php echo $foto1['nama_foto'] ?>" class="cropbox">
-                                  <form action="save.php?file=<?php echo $foto1['nama_foto'] ?>" method="post" onsubmit="return checkCoords();">
-                                    <input type="hidden" id="x" name="x" />
-                                    <input type="hidden" id="y" name="y" />
-                                    <input type="hidden" id="w" name="w" />
-                                    <input type="hidden" id="h" name="h" />
-                                    <br>
-                                    <input type="submit" value="Save Image" class="btn btn-info btn-sm">
-                                    <br><br>
-                                  </form>
+                    </td>
+                    <td>
+                      <?php
+                      $id_desa=$hasil['desa'];
+                      $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
+                      $desa2 = mysqli_fetch_array($desa1);
+                      echo $desa2['nama_desa']; ?>
+                    </td>
+                    <td><?php echo $hasil['nama_pelapor']; ?></td>
+                    <td><?php echo $hasil['noTelp_pelapor']; ?></td>
+                    <td><?php echo $hasil['tanggal_terima']; ?></td>
+                    <td><?php echo $hasil['tanggal_selesai']; ?></td>
+                    <td><?php echo $hasil['alamat']; ?></td>
+                    <td><?php echo $hasil['ket']; ?></td>
+                    <td><?php echo $hasil['approve']; ?></td>
+                    <td width="20%">
+                      <div class="row">
+                        <?php
+                        $id_lokasi=$hasil['id'];
+                        $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_lokasi'");
+                        while($foto1 = mysqli_fetch_array($lokasi_foto)){
+                        ?>
+                          <div class="col text-center">
+                            <div>
+                              <a href="foto/<?php echo $foto1['nama_foto'] ?>" data-toggle="lightbox">
+                                <img class="img-thumbnail" src="foto/<?php echo $foto1['nama_foto'] ?>" />
+                              </a>
+                              <a style="position:absolute;top:10px;right:20px;" class="btn btn-danger btn-sm " id="hapus_foto" value="<?php echo $foto1['id']; ?>">Hapus</a><a style="position:absolute;top:10px;left:20px;" class="btn btn-danger btn-sm " data-target="#crop-modal_<?php echo $foto1['id']; ?>" data-toggle="modal">Edit</a>
+                            </div>
+                            <!-- Crop Modal -->
+                            <div id="crop-modal_<?php echo $foto1['id']; ?>" class="modal fade" tabindex="-1">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <span class="close" data-dismiss="modal">X</span>
+                                  </div>
+                                  <h4 class="modal-title">Edit Foto</h4>
+                                  <div align="center"class="modal-body">
+                                    <img src="foto/<?php echo $foto1['nama_foto'] ?>" class="cropbox">
+                                    <form action="save.php?file=<?php echo $foto1['nama_foto'] ?>" method="post" onsubmit="return checkCoords();">
+                                      <input type="hidden" id="x" name="x" />
+                                      <input type="hidden" id="y" name="y" />
+                                      <input type="hidden" id="w" name="w" />
+                                      <input type="hidden" id="h" name="h" />
+                                      <br>
+                                      <input type="submit" value="Save Image" class="btn btn-info btn-sm">
+                                      <br><br>
+                                    </form>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </div><!-- end of #crop-modal -->
-                        </div>
+                            </div><!-- end of #crop-modal -->
+                          </div>
+                        <?php
+                        }
+                        ?>
+                      </div>
+                      <br/>
+                      <form method="post" id="upload_foto">
+                        <input type="file" name="foto" data-icon="false" required>
+                        <input hidden type="text" name="id" value="<?php echo $hasil['id']; ?>">
+                        <input hidden type="text" name="kej" value="<?php echo $hasil['kejadian']; ?>">
+                        <br/>
+                        <br/>
+                        <button type="submit" class="btn btn-info btn-sm" id="inputGroupFileAddon04">Upload</button>
+                      </form>
+                    </td>
+                    <td width="5%">
+                      <div class="btn-group">
+                        <a class="btn btn-info btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Edit</a>
+                        <a class="btn btn-danger btn-sm " id="hapus_lokasi" value="<?php echo $hasil['id']; ?>">Hapus</a>
+                      </div>
+                    </td>
+                  </tr>
+                <?php
+                }
+                ?>
+              </tbody>
+            </table>
+            <?php
+          }elseif($akses=='Tim'){
+            ?>
+            <table id="tower" class="table table-bordered">
+              <thead>
+                <th>No.</th>
+                <th>Kejadian</th>
+                <th>Kecamatan</th>
+                <th>Desa</th>
+                <th>Nama Pelapor</th>
+                <th>Nomor Telepon Pelapor</th>
+                <th>Tanggal Terima</th>
+                <th>Tanggal Selesai</th>
+                <th>Alamat</th>
+                <th>Keterangan</th>
+                <th>Foto</th>
+              </thead>
+              <tbody>
+                <?php
+                $nomor = 1;
+                $kejadian = $_SESSION['kejadian'];
+                $data = explode(",", $kejadian);
+                // print_r($data);
+                // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
+                $whereClause = "";
+                foreach ($data as $value) {
+                    $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
+                    if ($whereClause !== "") {
+                        $whereClause .= " OR ";
+                    }
+                    $whereClause .= "kejadian = '$value'";
+                }
+                $hak_akses = $_SESSION['hak_akses'];
+                if($hak_akses=='Admin'){
+                  $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi ORDER BY id DESC");
+                }elseif($hak_akses=='Tim'){
+                  $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE $whereClause ORDER BY id DESC");
+                }
+                // $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE $whereClause ORDER BY id DESC");
+                while($hasil = mysqli_fetch_array($tampil)){
+                ?>
+                  <tr>
+                    <td><?php echo $nomor++; ?></td>
+                    <td><?php echo $hasil['kejadian']; ?></td>
+                    <td>
                       <?php
-                      }
+                      $id_kec=$hasil['kec'];
+                      $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
+                      $kec2 = mysqli_fetch_array($kec1);
+                      echo $kec2['nama_kecamatan'];
                       ?>
-                    </div>
-                    <br/>
-                    <form method="post" id="upload_foto">
-                      <input type="file" name="foto" data-icon="false" required>
-                      <input hidden type="text" name="id" value="<?php echo $hasil['id']; ?>">
-                      <input hidden type="text" name="kej" value="<?php echo $hasil['kejadian']; ?>">
+                    </td>
+                    <td>
+                      <?php
+                      $id_desa=$hasil['desa'];
+                      $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
+                      $desa2 = mysqli_fetch_array($desa1);
+                      echo $desa2['nama_desa']; ?>
+                    </td>
+                    <td><?php echo $hasil['nama_pelapor']; ?></td>
+                    <td><?php echo $hasil['noTelp_pelapor']; ?></td>
+                    <td><?php echo $hasil['tanggal_terima']; ?></td>
+                    <td><?php echo $hasil['tanggal_selesai']; ?></td>
+                    <td><?php echo $hasil['alamat']; ?></td>
+                    <td><?php echo $hasil['ket']; ?></td>
+                    <td width="20%">
+                      <div class="row">
+                        <?php
+                        $id_lokasi=$hasil['id'];
+                        $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_lokasi'");
+                        while($foto1 = mysqli_fetch_array($lokasi_foto)){
+                        ?>
+                          <div class="col text-center">
+                            <div>
+                              <a href="foto/<?php echo $foto1['nama_foto'] ?>" data-toggle="lightbox">
+                                <img class="img-thumbnail" src="foto/<?php echo $foto1['nama_foto'] ?>" />
+                              </a>
+                              <a style="position:absolute;top:10px;right:20px;" class="btn btn-danger btn-sm " id="hapus_foto" value="<?php echo $foto1['id']; ?>">Hapus</a><a style="position:absolute;top:10px;left:20px;" class="btn btn-danger btn-sm " data-target="#crop-modal_<?php echo $foto1['id']; ?>" data-toggle="modal">Edit</a>
+                            </div>
+                            <!-- Crop Modal -->
+                            <div id="crop-modal_<?php echo $foto1['id']; ?>" class="modal fade" tabindex="-1">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <span class="close" data-dismiss="modal">X</span>
+                                  </div>
+                                  <h4 class="modal-title">Edit Foto</h4>
+                                  <div align="center"class="modal-body">
+                                    <img src="foto/<?php echo $foto1['nama_foto'] ?>" class="cropbox">
+                                    <form action="save.php?file=<?php echo $foto1['nama_foto'] ?>" method="post" onsubmit="return checkCoords();">
+                                      <input type="hidden" id="x" name="x" />
+                                      <input type="hidden" id="y" name="y" />
+                                      <input type="hidden" id="w" name="w" />
+                                      <input type="hidden" id="h" name="h" />
+                                      <br>
+                                      <input type="submit" value="Save Image" class="btn btn-info btn-sm">
+                                      <br><br>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div><!-- end of #crop-modal -->
+                          </div>
+                        <?php
+                        }
+                        ?>
+                      </div>
                       <br/>
-                      <br/>
-                      <button type="submit" class="btn btn-info btn-sm" id="inputGroupFileAddon04">Upload</button>
-                    </form>
-                  </td>
-                  <td width="5%">
-                    <div class="btn-group">
-                      <a class="btn btn-info btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Edit</a>
-                      <a class="btn btn-danger btn-sm " id="hapus_lokasi" value="<?php echo $hasil['id']; ?>">Hapus</a>
-                    </div>
-                  </td>
-                </tr>
-              <?php
-              }
-              ?>
-            </tbody>
-          </table>
+                      <form method="post" id="upload_foto">
+                        <input type="file" name="foto" data-icon="false" required>
+                        <input hidden type="text" name="id" value="<?php echo $hasil['id']; ?>">
+                        <input hidden type="text" name="kej" value="<?php echo $hasil['kejadian']; ?>">
+                        <br/>
+                        <br/>
+                        <button type="submit" class="btn btn-info btn-sm" id="inputGroupFileAddon04">Upload</button>
+                      </form>
+                    </td>
+                  </tr>
+                <?php
+                }
+                ?>
+              </tbody>
+            </table>
+            <?php
+          }
+          ?>
         </div>
       </div>
     </div>

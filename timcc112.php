@@ -98,13 +98,13 @@ if (empty($_SESSION['112_username'])){
                     <li class="nav-item d-none d-sm-inline-block">
                         <a href="logout.php" class="nav-link">Log Out</a>
                     </li>
-                    <li class="dropdown">
+                    <!-- <li class="dropdown">
                         <button type="button" class="btn btn-primary" data-toggle="dropdown">
                             <span class="fa fa-bell" id="notif"></span>
                         </button>
                         <div id="pesan" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">

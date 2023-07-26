@@ -77,9 +77,9 @@ include 'fungsi_bulan.php';
       <ul class="nav-tem d-none d-sm-inline-block">
         <a href="adm_login.php" class="nav-link">Laporan Tim</a>
       </ul>
-      <ul class="nav-tem d-none d-sm-inline-block">
+      <!-- <ul class="nav-tem d-none d-sm-inline-block">
         <a href="inputLaporan.php" class="nav-link">Laporan Masyarakat</a>
-      </ul>
+      </ul> -->
     </center>   
     <form action="index.php" method="GET">
       <div class="input-group input-group-sm">                        
