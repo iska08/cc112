@@ -91,7 +91,25 @@ $akses = $_SESSION['hak_akses'];
                     <td><?php echo $hasil['tanggal_selesai']; ?></td>
                     <td><?php echo $hasil['alamat']; ?></td>
                     <td><?php echo $hasil['ket']; ?></td>
-                    <td><?php echo $hasil['approve']; ?></td>
+                    <td>
+                      <?php
+                      if ($hasil['approve']=="0"){
+                        ?>
+                        <a class="btn btn-danger btn-sm">Belum Disetujui</a>
+                        <br>
+                        <br>
+                        <?php
+                      } elseif ($hasil['approve']==1){
+                        ?>
+                        <a class="btn btn-info btn-sm">Sudah Disetujui</a>
+                        <?php
+                      } elseif ($hasil['approve']==2){
+                        ?>
+                        <a class="btn btn-danger btn-sm">Tidak Disetujui</a>
+                        <?php
+                      }
+                      ?>
+                    </td>
                     <td width="20%">
                       <div class="row">
                         <?php
