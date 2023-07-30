@@ -334,6 +334,7 @@ switch ($_GET['action']) {
         $username   = $_POST['username'];
         $password   = md5($_POST['password']);
         $nama       = $_POST['nama'];
+        $noTelp     = $_POST['noTelp'];
         $email      = $_POST['email'];
         $hak_akses  = $_POST['hak_akses'];
         $online     = $_POST['online']=0;
