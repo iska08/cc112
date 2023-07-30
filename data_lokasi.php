@@ -93,20 +93,13 @@ $akses = $_SESSION['hak_akses'];
                     <td><?php echo $hasil['ket']; ?></td>
                     <td>
                       <?php
-                      if ($hasil['approve']=="0"){
-                        ?>
-                        <a class="btn btn-danger btn-sm">Belum Disetujui</a>
-                        <br>
-                        <br>
-                        <?php
-                      } elseif ($hasil['approve']==1){
-                        ?>
-                        <a class="btn btn-info btn-sm">Sudah Disetujui</a>
-                        <?php
-                      } elseif ($hasil['approve']==2){
-                        ?>
-                        <a class="btn btn-danger btn-sm">Tidak Disetujui</a>
-                        <?php
+                      if ($hasil['approve'] == "0") {
+                        echo '<a class="btn btn-info btn-sm" href="approve_process.php?id=' . $hasil['id'] . '&action=approve">Approve</a>';
+                        echo '<a class="btn btn-warning btn-sm" href="approve_process.php?id=' . $hasil['id'] . '&action=reject">Reject</a>';
+                      } elseif ($hasil['approve'] == "1") {
+                        echo '<a class="btn btn-success btn-sm">Approved</a>';
+                      } elseif ($hasil['approve'] == "2") {
+                        echo '<a class="btn btn-danger btn-sm">Rejected</a>';
                       }
                       ?>
                     </td>
