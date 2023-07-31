@@ -16,7 +16,6 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
   // Fetch data from the database based on the given $id
   $query = "SELECT kejadian, alamat, tanggal_terima, nama_pelapor, noTelp_pelapor FROM lokasi WHERE id = $id";
   $result = mysqli_query($kominfo, $query);
-
   if ($result) {
     $data = mysqli_fetch_assoc($result);
     $kejadian       = $data['kejadian'];
@@ -27,11 +26,18 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
   } else {
     die("Error: " . mysqli_error($kominfo));
   }
+  $noTim = mysqli_query($kominfo, "SELECT noTelp FROM user WHERE hak_akses = 'Tim' AND kejadian LIKE '%$kejadian%'");
+  if ($noTim) {
+    $dataNo   = mysqli_fetch_assoc($noTim);
+    $noTarget = $dataNo['noTelp'];
+  } else {
+    die("Error: " . mysqli_error($kominfo));
+  }
   // Periksa apakah 'action' adalah 'approve' atau 'reject'
   if ($action === 'approve') {
     $approveStatus = 1;
     // Pastikan Anda telah mengisi nomor telepon dan token yang sesuai
-    $target = "081235184908";
+    $target = $noTarget;
     $token = "ju#zj+FKNiVrwU2yBo6H";
     // Proses pengiriman pesan melalui API
     $curl = curl_init();
