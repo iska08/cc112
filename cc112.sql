@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2023 at 07:19 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.28
+-- Waktu pembuatan: 31 Jul 2023 pada 04.26
+-- Versi server: 10.4.25-MariaDB
+-- Versi PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `counterdb`
+-- Struktur dari tabel `counterdb`
 --
 
 CREATE TABLE `counterdb` (
@@ -36,7 +36,7 @@ CREATE TABLE `counterdb` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `counterdb`
+-- Dumping data untuk tabel `counterdb`
 --
 
 INSERT INTO `counterdb` (`id`, `tanggal`, `ip_address`, `counter`, `browser`) VALUES
@@ -56,7 +56,7 @@ INSERT INTO `counterdb` (`id`, `tanggal`, `ip_address`, `counter`, `browser`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `desa`
+-- Struktur dari tabel `desa`
 --
 
 CREATE TABLE `desa` (
@@ -66,7 +66,7 @@ CREATE TABLE `desa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `desa`
+-- Dumping data untuk tabel `desa`
 --
 
 INSERT INTO `desa` (`id`, `id_kecamatan`, `nama_desa`) VALUES
@@ -408,7 +408,7 @@ INSERT INTO `desa` (`id`, `id_kecamatan`, `nama_desa`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dusun`
+-- Struktur dari tabel `dusun`
 --
 
 CREATE TABLE `dusun` (
@@ -418,7 +418,7 @@ CREATE TABLE `dusun` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `dusun`
+-- Dumping data untuk tabel `dusun`
 --
 
 INSERT INTO `dusun` (`id`, `id_desa`, `nama_dusun`) VALUES
@@ -569,7 +569,7 @@ INSERT INTO `dusun` (`id`, `id_desa`, `nama_dusun`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `foto`
+-- Struktur dari tabel `foto`
 --
 
 CREATE TABLE `foto` (
@@ -579,7 +579,7 @@ CREATE TABLE `foto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `foto`
+-- Dumping data untuk tabel `foto`
 --
 
 INSERT INTO `foto` (`id`, `id_lokasi`, `nama_foto`) VALUES
@@ -833,7 +833,7 @@ INSERT INTO `foto` (`id`, `id_lokasi`, `nama_foto`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kecamatan`
+-- Struktur dari tabel `kecamatan`
 --
 
 CREATE TABLE `kecamatan` (
@@ -842,7 +842,7 @@ CREATE TABLE `kecamatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kecamatan`
+-- Dumping data untuk tabel `kecamatan`
 --
 
 INSERT INTO `kecamatan` (`id`, `nama_kecamatan`) VALUES
@@ -877,7 +877,7 @@ INSERT INTO `kecamatan` (`id`, `nama_kecamatan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kejadian`
+-- Struktur dari tabel `kejadian`
 --
 
 CREATE TABLE `kejadian` (
@@ -887,7 +887,7 @@ CREATE TABLE `kejadian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kejadian`
+-- Dumping data untuk tabel `kejadian`
 --
 
 INSERT INTO `kejadian` (`id`, `nama_kejadian`, `opd_terkait`) VALUES
@@ -910,7 +910,7 @@ INSERT INTO `kejadian` (`id`, `nama_kejadian`, `opd_terkait`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lokasi`
+-- Struktur dari tabel `lokasi`
 --
 
 CREATE TABLE `lokasi` (
@@ -922,7 +922,7 @@ CREATE TABLE `lokasi` (
   `kejadian` varchar(50) DEFAULT NULL,
   `tanggal_terima` varchar(255) DEFAULT NULL,
   `tanggal_selesai` varchar(255) DEFAULT NULL,
-  `approve` enum('0','1','2') DEFAULT NULL,
+  `approve` int(11) DEFAULT 0,
   `ket` text DEFAULT NULL,
   `nama_pelapor` varchar(50) NOT NULL,
   `noTelp_pelapor` varchar(50) NOT NULL,
@@ -931,221 +931,220 @@ CREATE TABLE `lokasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `lokasi`
+-- Dumping data untuk tabel `lokasi`
 --
 
 INSERT INTO `lokasi` (`id`, `lat_long`, `alamat`, `desa`, `kec`, `kejadian`, `tanggal_terima`, `tanggal_selesai`, `approve`, `ket`, `nama_pelapor`, `noTelp_pelapor`, `bulan`, `tahun`) VALUES
-(5, 'LatLng(-7.03753, 113.776377)', 'Jl. Raya Lenteng (Pasar lenteng)', '238', '5', 'KEBAKARAN', '20 Agustus 2021 07:15', '20 Agustus 2021 12:00', '1', 'CC112 TIM DAMKAR, Api telah berhasil dipadamkan 1 jam kemudian, dengan mengerahkan 1 unit fire truck single cabin, 1 unit fire truck double cabin dan 2 unit water suplay (total 4 unit).\r\nKec. lenteng', '', '', '08', '2021'),
-(6, 'LatLng(-6.992311, 113.841265)', 'Jl. Raya Asta Tinggi Kasengan', '250', '4', 'KEBAKARAN', '25 Agustus 2021 12:25', '25 Agustus 2021 13:00', '1', 'CC112 TIM DAMKAR, Api berhasil dipadamkan oleh petugas dengan 1 fire pump single cabin, 1 fire pump double cabin, 1 water suplay total 3 unit\r\nDesa Kasengan\r\nKec. Manding', '', '', '08', '2021'),
-(7, 'LatLng(-7.009134, 113.860057)', 'Jl. Trunojoyo (Kodim)', '215', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '11 September 2021 12:45', '11 September 2021 13:00', '1', 'CC112 TIM SATPOL PP POS PANTAU, ODGJ seorang wanita sdh kami amankan dan diserahkan ke RPS DINSOS Jl.Raung.\r\nDesa Pajagalan\r\nKec. Kota Sumenep', '', '', '09', '2021'),
-(8, 'LatLng(-7.083643, 113.765895)', 'Desa Karang Cempaka', '98', '8', 'KEBAKARAN', '17 September 2021 20:00', '17 September 2021 22:00', '1', 'CC112 TIM DAMKAR, Kebakaran lahan\r\nDesa Cangkreman Kec. Bluto', '', '', '09', '2021'),
-(9, 'LatLng(-7.019757, 113.847628)', 'Desa Babbalan', '67', '3', 'TIANG LISTRIK RUBUH', '17 September 2021 20:00', '18 September 2021 08:00', '1', 'CC112 TIM PLN, Telah terjadi kabel listrik putus yang di sebabkan ranting pohon yang berlokasi di sebelah barat Masjid Nurul Yaqin desa Babbalan Rt 03 Rw 03. Pelapor menyampaikan bahwa tadi sudah ada petugas yang datang ke lokasi kejadian untuk mengecek d', '', '', '09', '2021'),
-(10, 'LatLng(-7.119838, 113.779135)', 'Jl. Raya Aengdeke', '90', '8', 'KECELAKAAN LALU LINTAS', '21 September 2021 16:50', '21 September 2021 18:00', '1', 'CC112 TIM PUSKESMAS BLUTO, Kecelakaan Tunggal Korban Meninggal dunia korban ditangani puskesmas Bluto\r\nDesa Aengdeke \r\nKec. bluto', '', '', '09', '2021'),
-(100, 'LatLng(-7.112805, 113.792734)', 'Desa Aengdeke', '90', '8', 'EVAKUASI HEWAN LIAR/BUAS', '18 Januari 2022 16:00', '19 Maret 2022 12:00', '1', 'CC112 TIM DAMKAR, Monyet kabur milik tetangga yang membayahyakan di kawasan tsb. dan sekarang sedang berkeliaran di Desa Aengdeke Kec. Bluto', '', '', '01', '2022'),
-(303, 'LatLng(-7.0048, 113.851447)', 'Jl. Teuku Umar (Barat Puskesmas Pandian)', '212', '2', 'POHON TUMBANG', '09 Februari 2022 13:15', '09 Februari 2022 14:15', '1', 'CC112 TIM DLH dan TIM PLN mengevakuasi semua pohon dan kabel listrik terdampak patahnya pohon Desa Pandian', '', '', '02', '2022'),
-(304, 'LatLng(-7.018539, 113.858201)', 'Jl. Adirasa', '221', '2', 'POHON TUMBANG', '09 Februari 2022 14:10', '09 Februari 2022 15:00', '1', 'CC112 TIM DLH mengevakuasi Roboh di  Taman Tajamara Desa Kolor', '', '', '02', '2022'),
-(305, 'LatLng(-7.011948, 113.85883)', 'Jl. Trunojoyo', '214', '2', 'BANJIR', '09 Februari 2022 14:30', '09 Februari 2022 16:20', '1', 'CC112 TIM DAMKAR mengevakuasi mobil terhanyut banjir di depan BPRS Kelurahan Bangselok', '', '', '02', '2022'),
-(306, 'LatLng(-6.96928, 113.81145)', 'Jln Raya Rubaru', '312', '12', 'POHON TUMBANG', '09 Februari 2022 15:10', '09 Februari 2022 16:05', '1', 'CC112 TIM DLH dan BPBD mengevakuasi pohon tumang di depan pom mini jalan Tambaksari Rubaru', '', '', '02', '2022'),
-(307, 'LatLng(-6.975996, 113.802846)', 'Jl. Raya Asta Tinggi Pakondang', '310', '12', 'POHON TUMBANG', '09 Februari 2022 16:15', '09 Februari 2022 17:25', '1', 'CC112 TIM DLH dan BPBD Mengevakuasi pohon Tumbang di pertigaan Pagondang rubaru (pertigaan amal)', '', '', '02', '2022'),
-(308, 'LatLng(-7.015433, 113.950149)', 'Gapura tengah', '159', '15', 'BANJIR', '10 Februari 2022 17:25', '10 Februari 2022 21:15', '1', 'CC112 TIM BPBD menuju lokasi Banjir akibat  itensitas air hujan sangat tinggi dan air laut pasang di desa Gapura Tengah (Gersik Putih)', '', '', '02', '2022'),
-(309, 'LatLng(-7.021401, 113.86795)', 'Jl. Adirasa', '221', '2', 'POHON TUMBANG', '11 Februari 2022 13:00', '11 Februari 2022 14:00', '1', 'CC112 TIM DAMAKAR dan PLN mengefakuasi pohon Tumbang di depan D&R mengakibatkan kable PLN tersangkut Desa Kolor', '', '', '02', '2022'),
-(310, 'LatLng(-7.037554, 113.896519)', 'Jl. Adi Sucipto Marengan Laok ', '4', '1', 'KEBAKARAN', '14 Februari 2022 17:00', '14 Februari 2022 18:00', '1', 'CC112 TIM DAMKAR ke lokasi Kebakaran daerah Marengan Laok SMP 5/Jembatan Ke Selatan, \r\nNama Penelpon : Ibu Dian \r\nAlamat : Marengan Laok Kec. Kalianget', '', '', '02', '2022'),
-(311, 'LatLng(-6.997926, 113.956972)', 'Dusun Talesek RT.002 RW. 004 Desa Gapura Barat Kec', '158', '15', 'EVAKUASI HEWAN LIAR/BUAS', '15 Februari 2022 14:00', '15 Februari 2022 14:30', '1', 'CC112 TIM DAMKAR meluncur ke lokasi desa Gapura Barat\r\nNama Pemilik rumah : Ahmad Maimun\r\nJenis Ular : Ular Sawa ( Ular Jali / Ptyas Korros)\r\n', '', '', '02', '2022'),
-(312, 'LatLng(-7.039942, 113.901245)', 'Dusun Penatu RT 08 RW 04 Desa Kertasada Kec. Kalia', '10', '1', 'KEBAKARAN', '16 Februari 2022 01:30', '16 Februari 2022 02:00', '1', 'CC112 TIM DANGKAR dengan Mobil pemadam Fire truk dan 1 unit water suply tiba di TKK Desa Kertasada, objek yang terbakar 2 unit mobil merupakan mobil angkutan trayek Sumenep - Kalianget  dengan  plat nomor M 1057 UN dan M 1024 UV plat kuning', '', '', '02', '2022'),
-(316, 'LatLng(-7.007292, 113.865283)', 'Jl. Hos Cokro Aminoto (Toko Santoso 3)', '215', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '16 Februari 2022 12:00', '16 Februari 2022 12:30', '1', 'CC112 TIM SATPOL PP POS PANTAU dapat menjangkau ODGJ di Kelurahan Pajagalan dengan humanis utk selanjutnya kami serahkan kepada keluarga karena keluarga sepakat akan membawa yang bersangkutan ke RSJ LAWANG', '', '', '02', '2022'),
-(317, 'LatLng(-7.009811, 113.859172)', 'Jl. Trunojoyo depan kantor DPMD', '214', '2', 'KEBAKARAN', '17 Februari 2022 10:00', '17 Februari 2022 10:30', '1', 'CC112 TIM DAMKAR lansung melakukan pemadaman kebakaran Mobil pribadi milik holilurrahman di depan kantor DPMD dengan cepat Kelurahan Bangselok', '', '', '02', '2022'),
-(318, 'LatLng(-7.001258, 113.869736)', 'Jl. Agus Salim (Pintu masuk kantor Kecamatan Kota ', '210', '2', 'GIAT EVAKUASI', '18 Februari 2022 10:35', '18 Februari 2022 11:00', '1', 'CC112 TIM Dangkar membantu mengevakuasi mobil Isuzu Panther menabrak pintu gerbang kantor Kec. kota Desa Pangarangan karena kondisi hujan jeras penglihatan kurang jelas.', '', '', '02', '2022'),
-(319, 'LatLng(-7.007667, 113.860534)', 'Area Taman Adipura', '215', '2', 'POHON TUMBANG', '18 Februari 2022 11:00', '18 Februari 2022 12:00', '1', 'CC112  Tim DLH mengevakuasi tumbang di area taman adipura karena hujan lebat disertai angin kencang Kelurahan Pajagalan', '', '', '02', '2022'),
-(320, 'LatLng(-7.004848, 113.866478)', 'Jl. Meranggi sebelah pompes putri', '210', '2', 'GIAT EVAKUASI', '18 Februari 2022 11:00', '18 Februari 2022 12:00', '1', 'CC112 TIM DAMKAR Mobil mengevakuasi  mobil terperosok ke selokan jalan meranggi.\r\nNama pemilik Mobil  : Deni Kurniawan\r\nAlamat : Perum Batuan Blok 1-12', '', '', '02', '2022'),
-(321, 'LatLng(-7.033098, 113.851005)', 'Jl. Rata Patean (utara pengadilan agama)', '69', '3', 'POHON TUMBANG', '19 Februari 2022 12:00', '19 Februari 2022 13:00', '1', 'CC112 TIM BPBD mengevakuasi akar yg patah  ke jalan raya Patean Desa Kedungan', '', '', '02', '2022'),
-(322, 'LatLng(-7.020657, 113.86047)', 'Perum Permata Resmi Desa Kolor', '221', '2', 'EVAKUASI HEWAN LIAR/BUAS', '21 Februari 2022 18:00', '21 Februari 2022 20:00', '1', 'CC112 TIM DAMKAR langsung menuju lokasi dan selama 2 jam proses evakuasi Ular  masih belum ditemukan', '', '', '02', '2022'),
-(323, 'LatLng(-7.004681, 113.866474)', 'Jl. Meranggi sebelah pompes putri', '213', '2', 'GIAT EVAKUASI', '21 Februari 2022 20:00', '21 Februari 2022 22:00', '1', 'CC112 TIM DAMKAR evakuasi mobil yg terpelosok  dengan waktu 2 jam mobil dapat dievakuasi \r\nNama Pemilik Mobil : Rezmardhan Fadi Sukmawan\r\nAlamat : Karangduak , Kec. Kota Sumenep', '', '', '02', '2022'),
-(324, 'LatLng(-7.008101, 113.859405)', 'Jl Trunojoyo depan masjid Jamik', '214', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '22 Februari 2022 21:00', '22 Februari 2022 00:00', '1', 'CC112 TIM SATPOL PP berhasil menangkap ODGJ di depan Masjid Jamik setelah melaluie pencarian dari desa Pandian Kota Sumenep ', '', '', '02', '2022'),
-(325, 'LatLng(-7.028836, 113.865175)', 'Jalan Arya Wiraraja lingkar timur ( RS SUMEKAR )', '221', '2', 'POHON TUMBANG', '23 Februari 2022 15:55', '23 Februari 2022 16:15', '1', 'CC112 TIM DLH berhasil mengevakuasi pohon tumbang di jalan Arya Wiraraja lingkar timur Desa Kolor ', '', '', '02', '2022'),
-(326, 'LatLng(-6.972709, 113.620219)', 'Polindes -Desa Montorna', '272', '14', 'PERMINTAAN AMBULAN', '24 Februari 2022 14:45', '24 Februari 2022 15:15', '1', 'CC112 TIM PUSKEMAS PASONGSONGAN sudah melakukan tindakan penjemputan pasien tidak dikenal di Desa Montorna Kecamatan Pasongsongan dan menunggu tindak lanjut selanjutnya dari TIM DINKES P2KB Kabupaten Sumenep.', '', '', '02', '2022'),
-(327, 'LatLng(-7.04698, 113.929848)', 'Jalan Raya Kalianget No.10 Kalianget Barat (RSI)', '3', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '02 Maret 2022 22:00', '02 Maret 2022 23:00', '1', 'CC112 TIM SAPPOL PP mengamankan ODGJ di Desa Kalianget Barat Kec. Kalianget dan diamankan di RSI PT Garam', '', '', '03', '2022'),
-(335, 'LatLng(-7.007883, 113.859603)', 'Jl. Trunojoyo', '214', '2', 'KECELAKAAN LALU LINTAS', '09 Maret 2022 02:00', '09 Maret 2022 03:00', '1', 'CC112 TIM POS PANTAU, RSUD, PUSKESMAS PANDIAN mengevakuasi Kecelakaan 2 sepeda motor dengan jumlah korban 4 orang 3 luka berat 1 luka ringanKeluarahan Bangselok Kec. Kota Sumenep', '', '', '03', '2022'),
-(336, 'LatLng(-7.018805, 113.847893)', 'Jl. Jokotole Lingkar Barat ', '67', '3', 'KECELAKAAN LALU LINTAS', '12 Maret 2022 12:00', '12 Maret 2022 13:00', '1', 'CC112 TIM POLRES SUMENEP, Mengevakuasi kejadian kecelakaan yang melibatkan mobil pickup dan 2 sepeda motor, korban di bawa ke RSUD Sumenep.\r\nDesa : Babbalan\r\nKec. Batuan\r\nKorban : 2 Orang Luka Berat\r\n', '', '', '03', '2022'),
-(337, 'LatLng(-6.999917, 113.868401)', 'Jl. Imam Bonjol Pamolokan', '209', '2', 'KEBAKARAN', '12 Maret 2022 22:00', '12 Maret 2022 23:00', '1', 'CC112 TIM DAMKAR, POLSEK KOTA, SATPOL PP,  Tim Damkar mengerahkan 2 unit armada Fire truck untuk melakukan pemadaman dilokasi kejadian.\r\nPemilik : Ruhaniyah\r\nAlamat : Jl. Imam Bonjol RT.002 RW.001 Pamolokan Kec. Kota Sumenep\r\nObjek : Kompor Gas\r\n\r\n', '', '', '03', '2022'),
-(339, 'LatLng(-6.910963654031244, 113.86941073517123)', 'Jl. Barisan Sergang', '80', '28', 'KEBAKARAN', '15 Maret 2022 07:30', '15 Maret 2022 08:30', '1', 'CC112 TIM DAMKAR, langsung meluncur ke lokasi dengan 2 unit armada Fire truck untuk melakukan pemadaman.\r\nPemilik : Zaini\r\nAlamat : Dusun jang-jang RT.001 RW.002 desa Bullaan, Batuputih\r\nObjek : Kompor Gas \r\nWaktu :  07.34 WIB\r\nKorban : Ibu Yanti dan Tiara  (luka bakar)\r\nKerugian : 150 juta', '', '', '03', '2022'),
-(340, 'LatLng(-6.97912, 113.958328)', 'Dusun Paramaan Gunung ', '158', '15', 'EVAKUASI HEWAN LIAR/BUAS', '16 Maret 2022 11:15', '', '1', 'CC112 TIM DAMKAR langsung menuju lokasi untuk evakuasi kera yang menyerang warga \r\nNama Pelapor : Askiyah\r\nAlamat : Dusun Paramaan Gunung RT 003 RT 004 Gapura barat\r\nKejadian : Gangguan Kera Kepada Masyarakat\r\nKorban : 2 Anak-anak', '', '', '03', '2022'),
-(341, 'LatLng(-6.967915, 113.732381)', 'Dusun Batuguluk Basoka', '303', '12', 'BENCANA ALAM', '16 Maret 2022 16:00', '16 Maret 2022 20:00', '1', 'CC112 TIM BPBD menuju lokasi tanah longsor dan banjir karena kondisi medan dan lampu padam evakuasi dilanjutkan keesokan harinya.\r\nPelapor : Bapak Mansur \r\nDesa Basoka\r\nKec. Rubaru', '', '', '03', '2022'),
-(342, 'LatLng(-7.01027, 113.834131)', 'Jl. Raya Lenteng - Batuan', '68', '3', 'POHON TUMBANG', '19 Maret 2022 12:00', '19 Maret 2022 18:00', '1', 'CC112 TIM DLH mengevakuasi pohon tumbang di desa Batuan Kec. Batuan', '', '', '03', '2022'),
-(343, 'LatLng(-7.114731, 113.747914)', 'Jl. Raya Pakandangan', '103', '8', 'POHON TUMBANG', '19 Maret 2022 17:00', '19 Maret 2022 18:00', '1', 'CC112 TIM DLH evakuasi pohon tumbang di Desa Pekandangan Kec. Bluto', '', '', '03', '2022'),
-(344, 'LatLng(-7.09823, 113.858721)', 'Kebun Dadap Barat', '325', '7', 'BANJIR', '19 Maret 2022 17:00', '19 Maret 2022 22:00', '1', 'CC112 TIM BPBD, DAMKAR, DLH, Polsek Saronggi dan BASARNAS Kalianget mengewakuasi seorang anak perempuan umur 7 tahun terhanyut banjir dan masih belum ditemukan\r\nNama : Talita\r\nUmur : 7 Tahun\r\nDesa : Kebun Dadap Barat\r\nKec. Saronggi\r\n', '', '', '03', '2022'),
-(345, 'LatLng(-7.113795, 113.723303)', 'Jl. Raya Kapedi', '97', '8', 'KEBAKARAN', '27 Maret 2022 02:00', '27 Maret 2022 03:30', '1', 'CC112 TIM DAMKAR mengevakuasi \r\nKebakaran 1 unit mobil Inova Reborn yg merembet ke bangunan gudang yg dijadikan tempat parkir mobil sekaligus penyimpanan hasil tanaman jagung\r\nNama : Ali Muksin\r\nKorban jiwa : Nihil\r\nKerugian : sekitar 1 Miliyar\r\nDesa Kapedi Kec. Bluto\r\n', '', '', '03', '2022'),
-(346, 'LatLng(-7.026333, 113.903515)', 'Pondok Pesantren Hidayatul Aliyah Brembeng ', '11', '1', 'KEBAKARAN', '27 Maret 2022 08:50', '27 Maret 2022 09:30', '1', 'CC112 TIM DAMKAR Mengevakuasi kebakaran akibat ledakan gas tabung LPG 3kg di dusun Brembeng  belakang Pondok Pesantren K. Ali\r\nKorban : 1 orang luka Bakar\r\ndirawat Puskesmas Kalianget\r\nNama :  Bunawi\r\nkerugian : Kurang lebih 10 jt\r\nLokasi : Desa Kalimook \r\nKec. Kalianget', '', '', '03', '2022'),
-(347, 'LatLng(-7.0229, 113.856586)', 'Jl. Trunojoyo (Dpn Hotel Safari)', '221', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '29 Maret 2022 12:00', '29 Maret 2022 13:00', '1', 'CC112 TIM SATPOl PP mengevakuasi ODGJ di depan hotel Safari Desa Kolor dan di serahkan RPS Dinas Sosial ', '', '', '03', '2022'),
-(348, 'LatLng(-7.017291, 113.858067)', 'Jl. Tronojoyo (Depan Ruko Adipoday) Kolor', '221', '2', 'EVAKUASI HEWAN LIAR/BUAS', '30 Maret 2022 18:30', '31 Maret 2022 19:00', '1', 'CC112 TIM DAMKAR mengevakuasi ular yang masuk ke dalam rumah milik Ibu Sri Rahayu Desa kolor Kec. Kota Sumenep. Ular berhasil dievakuasi 30 menit kemudian', '', '', '03', '2022'),
-(349, 'LatLng(-7.097592, 113.863029)', 'Jl. Raya Tanjung Saronggi', '331', '7', 'KEBAKARAN', '01 April 2022 00:30', '01 April 2022 02:00', '1', 'CC112 TIM DAMKAR berhasil memadamkan kebakaran di lokasi pabrik kerupuk di Desa Saroka Kec. Saronggi\r\nNama Pemilik : Maskawi\r\nAlamat : Desa Saroka Kec. Saronggi', '', '', '04', '2022'),
-(350, 'LatLng(-7.037647, 113.777761)', 'Jl. Raya Lenteng (Pasar lenteng)', '238', '5', 'KEBAKARAN', '01 April 2022 03:30', '01 April 2022 04:30', '1', 'CC112 TIM DAMKAR berhadil memadamkan kebakaran di Pasar Lenteng \r\nObjek : 4 Kios/toko\r\nLokasi : Pasar lenteng Kec. lenteng', '', '', '04', '2022'),
-(351, 'LatLng(-7.033849, 113.892614)', 'Jl. Yos Sudarso ', '222', '2', 'KEBAKARAN', '05 April 2022 12:30', '05 April 2022 13:00', '1', 'CC112 TIM DAMKAR Berhasil memadamkan kebakran di Pasar Marengan \r\nDesa : Marengan Daya\r\nKec. Kota Sumenep\r\nPemilik : Siti Latifah\r\nObjek : Kios\r\n', '', '', '04', '2022'),
-(352, 'LatLng(-7.095333, 113.81969)', 'Jl. Raya Saronggi - Bluto ', '334', '7', 'KECELAKAAN LALU LINTAS', '06 April 2022 08:45', '06 April 2022 09:00', '1', 'CC112 TIM PUSKESMAS SARONGGI evakuasi LAKA \r\nLokasi  : Turunan Desa Tanah Merah(Pengisian LPJ) Kec. Saronggi\r\nKorban luka  : 3 Orang 1anak 2 Dewasa(perempuan)', '', '', '04', '2022'),
-(353, 'LatLng(-6.886435, 113.663218)', 'Jl. Abubakar Siddiq', '275', '14', 'KRIMINALITAS', '06 April 2022 11:45', '06 April 2022 12:00', '1', 'CC112 TIM PUSKESMAS Evakuasi korban Carok  \r\nKorban : 1 orang dan di rujuk ke RSUD\r\n', '', '', '04', '2022'),
-(354, 'LatLng(-7.082386, 113.829238)', 'Desa Saronggi ', '332', '7', 'KEBAKARAN', '06 April 2022 17:00', '06 April 2022 17:15', '1', 'CC112 TIM DAMKAR Berhasil memadamkan tabung gas LPJ 3kg akibat regurator bocor.\r\nNama : Pujiatmi\r\nAlamat : Dusun Nangnangan RT 05 RW 02 Desa Saronggi Kecamatan Saronggi \r\nObjek : Tabung LPG 3kg\r\nKerugian : -\r\nKorban : Nihil', '', '', '04', '2022'),
-(356, 'LatLng(-7.032191, 113.731284)', 'Dusun Ansanah 1', '237', '5', 'EVAKUASI HEWAN LIAR/BUAS', '07 April 2022 14:30', '07 April 2022 16:00', '1', 'CC112 TIM Damkar mengevakuasi binatang kera menyerang warga di Desa lenteng Barat.\r\nPelapor : Ismail\r\nAlamat : Dusun Ansanah 1 Desa Lenteng Barat\r\nKecamatan : Lenteng\r\n', '', '', '04', '2022'),
-(358, 'LatLng(-7.104588, 113.710458)', 'Jl. Raya Karduluk ', '282', '10', 'GIAT EVAKUASI', '10 April 2022 02:30', '10 April 2022 04:30', '1', 'CC112 TIM DAMKAR berhasil mengevakuasi mobil terpelosok ke jurang dengan kedalaman 5 meter\r\nPemilik : Ahmad Abu Bakar \r\nAlamat : Dungkek\r\nMobil : Pickup L300 bermuatan kelapa\r\nKorban : 1 Orang Luka\r\nKerugian : 50 Jt\r\nLokasi Kejadian : Desa Karduluk Kec. Pragaan\r\n\r\n', '', '', '04', '2022'),
-(359, 'LatLng(-7.099858, 113.816616)', 'Jl. Tanah Merah Saronggi ', '334', '7', 'KECELAKAAN LALU LINTAS', '11 April 2022 14:45', '11 April 2022 15:00', '1', 'CC112 TIM Polres Sumenep dan Puskesmas Saronggi mengevakuasi kecelakaan lalu lintas. \r\nLokasi : Jl. Tanah Merah Tanjakan Saronggi - Bluto\r\nKejadian : Truck Box terguling\r\nKorban : 2 orang luka ringan/lecet', '', '', '04', '2022'),
-(360, 'LatLng(-7.025237, 113.85929)', 'Jl. Adipoday Kolor', '221', '2', 'KEBAKARAN', '12 April 2022 14:30', '12 April 2022 15:00', '1', 'CC112 Tim Damkar mengevakuasi Dahan yang terbakar di jalan Adipoday (barat asrama polri)', '', '', '04', '2022'),
-(362, 'LatLng(-7.129075, 113.858528)', 'Desa Pagarbatu  ', '330', '7', 'KEBAKARAN', '13 April 2022 16:30', '19 April 2022 17:00', '1', 'CC112 TIM Damkar menuju lokasi kejadian kebakaran di Desa Pagarbatu Kec. Saronggi', '', '', '04', '2022'),
-(363, 'LatLng(-7.010159, 113.870539)', 'Jl. KH. Mansyur Perum Rampak Asri', '210', '2', 'EVAKUASI HEWAN LIAR/BUAS', '17 April 2022 18:00', '17 April 2022 20:00', '1', 'CC112 TIM Damkar mengevakuasi Anjing yang belum di ketahui pemiliknya masuk ke rumah warga di Perum Rampak Asri.\r\n', '', '', '04', '2022'),
-(364, 'LatLng(-7.020962, 113.856345)', 'Jl. Trunojoyo (Utara Pom Bensin Kolor)', '221', '2', 'EVAKUASI HEWAN LIAR/BUAS', '18 April 2022 05:00', '19 April 2022 06:00', '1', 'CC112 TIM Damkar ke lokasi untuk mengevakuasi ular cobra.\r\nPelapor : Rendi\r\nLokasi : Utara Pom bensin Kolor Kec. Kota Sumenep', '', '', '04', '2022'),
-(365, 'LatLng(-7.006107, 113.860041)', 'Jl. Halim Perdana Kusuma (Depan Toko Bali)', '213', '2', 'KEBAKARAN', '18 April 2022 13:00', '18 April 2022 14:00', '1', 'CC112 TIM Damkar dan PLN Sumenep menuju lokasi kejadian dan memadamkan api yg keluar dari Kabel PLN dan memadamkan listrik untuk proses perbaikan', '', '', '04', '2022'),
-(366, 'LatLng(-7.029409, 113.885264)', 'Jl. Yos Sudarso Sumenep', '224', '2', 'KECELAKAAN LALU LINTAS', '19 April 2022 16:20', '19 April 2022 17:00', '1', 'CC112 TIM Polres Sumenep mengevakuasi Kecelakaan Lalu lintas Mobil dan Sepeda Motor\r\nLokasi : Desa Pabian Kec. Kota Sumenep\r\nKejadian : Laka Roda 4 dan Roda 2\r\nKorban : 1 orang luka ', '', '', '04', '2022'),
-(367, 'LatLng(-7.00472, 113.847512)', 'Jl. Raya Lenteng(Pertigaan Asta Tinggi)', '211', '2', 'KEBAKARAN', '20 April 2022 18:00', '20 April 2022 19:00', '1', 'CC112 TIM Damkar dan PLN Sumenep mengevakuasi Tiang listrik terbakar di Pertigaan Kebonagung arah Asta tinggi\r\nLokasi : Desa Kebonagung\r\nKec. : Kota Sumenep', '', '', '04', '2022'),
-(368, 'LatLng(-7.011782, 113.844559)', 'Jl. Jokotole Lingkar Barat', '216', '2', 'KECELAKAAN LALU LINTAS', '25 April 2022 21:00', '25 April 2022 21:30', '1', 'CC112 Tim Puskesmas Pandian dan Polres Sumenep mengevakuasi kecelakaan lalulintas antara sepada motor dan Truck BOX\r\nKronologi : Sepeda Motor tabrak truck pargir di bahu jalan\r\nKorban : 1 orang Luka berat', '', '', '04', '2022'),
-(369, 'LatLng(-7.013873, 113.866572)', 'Jl. Asoka ', '215', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '26 April 2022 11:45', '26 April 2022 12:45', '1', 'CC112 TIM Satpol PP eksekusi terkait dugaan perbuatan asusila di salah satu kost jl.asoka\r\nKelurahan Pajagalan Kec. Kota Sumenep', '', '', '04', '2022'),
-(371, 'LatLng(-7.063924, 113.732164)', 'Jl. Raya Bilapora raba', '228', '5', 'KEBAKARAN', '26 April 2022 20:00', '26 April 2022 20:00', '1', 'CC112 TIM Damkar dan PLN Sumenep mengevakuasi kebakaran kabel PLN \r\nLokasi : Desa Bilapora Raba\r\nkejadian : Kabel PLN terbakar', '', '', '04', '2022'),
-(372, 'LatLng(-7.000388, 113.867809)', 'Jl. Imam Bonjol Pamolokan', '209', '2', 'GIAT EVAKUASI', '28 April 2022 02:30', '28 April 2022 03:30', '1', 'CC112 TIM DAMKAR berhasil mengevakuasi Mobil Terpelosok di Jl. Imam Bonjol Pamolokan\r\nAn : Ach. Hadi Maulana\r\nAlamat : Pamolokan\r\nKec. Kota Sumenep', '', '', '04', '2022'),
-(373, 'LatLng(-7.017874, 113.859542)', 'Jl. Adirasa Kolor', '221', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '01 Mei 2022 10:30', '01 Mei 2022 14:30', '1', 'CC112 TIM Satpol PP Berhasil megamankan tersangka ODGJ dan di serahkan ke RPS Dinsos', '', '', '05', '2022'),
-(374, 'LatLng(-6.99783, 113.871283)', 'Jl. Masalembu 83 Perum Bankal', '217', '2', 'EVAKUASI HEWAN LIAR/BUAS', '01 Mei 2022 16:00', '01 Mei 2022 16:30', '1', 'CC112 TIM DAMKAR berhasil mengevakuasi ular Cobra yang masuk ke rumah warga.\r\nNama Pelapor : Bapak Abu Bakar\r\nAlamat : Jl. Masalembu 83 RT 003 RW 011 Pamolokan\r\nKec. Kota Sumenep\r\nJenis Ular : Cobra\r\n', '', '', '05', '2022'),
-(375, 'LatLng(-7.000016, 113.902573)', 'Jl. Raya Gapura - Braji', '157', '15', 'KECELAKAAN LALU LINTAS', '02 Mei 2022 05:30', '02 Mei 2022 06:30', '1', 'CC112 TIM Polres Sumenep mengevakuasi laka tunggal mobil avansa  jatuh ke sungai jl. Raya Gapura sebelah timur jembatan braji.', '', '', '05', '2022'),
-(376, 'LatLng(-7.069399, 114.43222)', 'Perairan Sepudi dan Raas', '294', '32', 'KECELAKAAN LAUT', '03 Mei 2022 12:00', '', '1', 'CC112 TIM Basarnas mendapatkan telegram dari  Basarnas Surabaya tentang hilangnya ABK kapal Cargo Quorn Autralia kewarganegaraan Liberia di Pulau Madura diperairan  Raas dan CC112 Kab Sumenep menintruksikan ke semua TIM di kepulauan untuk melakukan pencairan.', '', '', '05', '2022'),
-(377, 'LatLng(-7.008708, 115.705948)', 'Sapekan', '320', '24', 'KRIMINALITAS', '03 Mei 2022 11:00', '03 Mei 2022 14:00', '1', 'CC112 TIM Puskesmas Sapeken berhasil memberikan pertolongan sementara korban penusukan dari pulau Sepanjang dan korban akan di rujuk ke rumah sakit terdekat yaitu ke pulau bali rumah sakit Buleleng Singaraja', '', '', '05', '2022'),
-(378, 'LatLng(-6.934853, 115.681572)', 'Pulau Sitabbok', '318', '24', 'KECELAKAAN LAUT', '05 Mei 2022 12:30', '05 Mei 2022 15:00', '1', 'CC112 Responder melaporkan terjadi laka laut kapal sabuk nusaantara 91 tujuan Sapeken - Kalianget menabrak karang di perairan pulau sitabbok desa Sapekan, TIM Dishub Sapeken beserta Pemdes Sapeken lansung melakukan evakuasi penumpang melalui perahu ke pulau Sapeken ', '', '', '05', '2022'),
-(379, 'LatLng(-6.999951, 113.854752)', 'Jl. Pahlawan (Barat Pasar Burung)', '209', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '09 Mei 2022 11:00', '12 Mei 2022 12:00', '1', 'CC112 TIM Satpol PP mengevakuasi ODGJ di Jl. Pahlawan (Pasar Burung) Pamolokan\r\nPenelpon : Bpk Feri\r\nAlamat : Pamolokan\r\nLaporan : ODGJ (anggota keluarga yg mengalami depresi(mengamuk) guna mendapatkan perawatan lebih lanjut ke RSJ Menur)', '', '', '05', '2022'),
-(380, 'LatLng(-7.006298, 113.855159)', 'Jl. Mutiara 1 No. 6 Bangselok', '214', '2', 'PERMINTAAN AMBULAN', '09 Mei 2022 11:45', '09 Mei 2022 12:00', '1', 'CC112 TIM Puskesmas Pandian mengevakuasi pasien darurat ke RSUD Moh. Anwar Sumenep\r\nPelapor : Bpk Bilal\r\nAlamat : Jl. Mutiara 1 No. 6 \r\nDesa : Keluarahan Bangselok\r\nKec. Kota Sumenep', '', '', '05', '2022'),
-(381, 'LatLng(-7.039602, 113.895221)', 'Marengan laok kalianget', '4', '1', 'GIAT EVAKUASI', '12 Mei 2022 12:00', '09 Mei 2022 13:00', '1', 'CC112 TIM Damkar menerima untuk bantuan utk melepaskan cicin dijari manis yg tidak bisa dilepas karena jari manisnya bengkak.\r\nNama : Sulastri\r\nAlamat : Marengan Laok\r\nKec. Kalianget', '', '', '05', '2022'),
-(382, 'LatLng(-7.00952, 113.855009)', 'Jl. KH. Sajad Bangselok', '214', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '10 Mei 2022 11:00', '10 Mei 2022 13:00', '1', 'CC112 TIM Satpol PP mengamankan seorang laki-laki yg diduga mengalami depresi(membuang sampah/batu kejalan umum/bakar sampah disebuah rumah kosong) guna mendapatkan perawatan dan penanganan lebih lanjut ke RPS DINSOS', '', '', '05', '2022'),
-(383, 'LatLng(-7.002596, 113.856857)', 'Jl. Nangka Karangduak', '219', '2', 'PERMINTAAN AMBULAN', '11 Mei 2022 11:30', '11 Mei 2022 12:00', '1', 'CC112 TIM Puskesmas Pandian mengevakuasi pasien darurat ke RSUD Moh. Anwar Sumenep Alamat : Jl. Nangka Kelurahan : Karangduak Kec. Kota Sumenep', '', '', '05', '2022'),
-(384, 'LatLng(-7.002305, 113.980998)', 'Jl. pakamban - Andulang', '152', '15', 'KEBAKARAN', '13 Mei 2022 13:15', '17 Mei 2022 12:00', '1', 'CC112 TIM Damkar dan PLN Sumenep mengevakuasi laporan meter listrik tebakar dan berhasil di amankan\r\nnama pelapor : Abdurraman\r\nAlamat : Andulang - Gapura\r\nNama pemilik rumah : Riskiyah\r\nAlamat : Desa Andulang - Gapura', '', '', '05', '2022'),
-(385, 'LatLng(-7.00353, 113.869879)', 'Jl. Mahoni - Pangarangn', '210', '2', 'GIAT EVAKUASI', '14 Mei 2022 16:30', '14 Mei 2022 17:00', '1', 'CC112 TIM Damkar mengevakuasi laporan cincin jatuh ke selokan ', '', '', '05', '2022'),
-(386, 'LatLng(-7.118258, 113.889856)', 'Desa Tanjung - Saronggi', '335', '7', 'PERMINTAAN AMBULAN', '16 Mei 2022 07:00', '16 Mei 2022 09:00', '1', 'CC112 TIM Puskesmas Saronggi dan RSUD mengevakuasi menemuan mayat di desa Tanjung kec. Saronggi\r\nMayat : Laki-laki\r\nIndetitas ; Masih belum diketahui', '', '', '05', '2022'),
-(387, 'LatLng(-7.025731, 113.859751)', 'Jl. Adipoday', '221', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '16 Mei 2022 08:40', '16 Mei 2022 11:20', '1', 'CC112 TIM Satpol PP menindaklanjuti laporan masyarakat terkait  dugaan asusila di sebuah rumah kost jl.adi poday ds.kolor kec.kota sumenep.\r\nPelapor : Ibu herlin\r\nAlamat : Kolor', '', '', '05', '2022'),
-(388, 'LatLng(-7.06122, 113.944166)', 'Jl. Raya Talango', '343', '18', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '16 Mei 2022 11:50', '16 Mei 2022 13:15', '1', 'CC112 TIM Polres Sumenep dan Dishub menilanjuti laporan antrian penyeberangan Talango - Kalianget yang mengakibatkan kericuhan akibat saling serobot\r\nPelapor : Pak Tohir\r\nAlamat : Talango ', '', '', '05', '2022'),
-(389, 'LatLng(-6.982509, 113.849572)', 'Jl. Raya Rubaru Lalangon ', '251', '4', 'PERMINTAAN AMBULAN', '16 Mei 2022 20:00', '16 Mei 2022 20:10', '1', 'CC112 TIM Puskesmas Manding mengevakuasi pasien darurat di Desa Lalangon Kec. Manding\r\nPelapor : Adi\r\nAlamat : Lalangon \r\nKec. Manding\r\nKejadian : Permintaan ambulan untuk masyarakat kondisi tidak sadar', '', '', '05', '2022'),
-(390, 'LatLng(-7.002574, 113.855602)', 'Jl. Pahlawan Pamolokan', '209', '2', 'TIANG LISTRIK RUBUH', '13 Mei 2022 12:00', '30 Mei 2022 19:00', '1', 'CC112 TIM Telkom Sumenep mengevakuasi kabel mengganggu pemilik rumah di jl. Pahlawan dan info dari PT. Telkom ternyata kable milik EFORTE.\r\nPelapor : Ibu Sri Pamolokan', '', '', '05', '2022'),
-(391, 'LatLng(-7.035282, 113.675559)', 'Desa Penanggungan Guluk-guluk', '192', '9', 'PERMINTAAN AMBULAN', '23 Mei 2022 17:30', '23 Mei 2022 19:00', '1', 'CC112 TIM BPBD dan Puskesmas Guluk-guluk mengevakuasi korban tenggelam di DAM Penaggungan \r\nPelapor : Camat Guluk-guluk\r\nKorban : 2 Orang Meninggal', '', '', '05', '2022'),
-(392, 'LatLng(-6.998566, 113.870008)', 'Desa Bangkal', '217', '2', 'EVAKUASI HEWAN LIAR/BUAS', '27 Mei 2022 11:30', '27 Mei 2022 13:00', '1', 'CC112 TIM Damkar berhasil mengvakuasi sarang lebah di desa Bangkal\r\npenelpon : Angga Gusti Pratama\r\nAlamat : Desa Bangkal \r\nKecamatan Kota Sumenep', '', '', '05', '2022'),
-(393, 'LatLng(-6.97686, 113.809175)', 'Jl. Raya Rubaru (Barat asta tinggi)', '307', '12', 'TIANG LISTRIK RUBUH', '27 Mei 2022 17:00', '27 Mei 2022 19:00', '1', 'CC112 TIM Dishub menegevakuasi Tiang PJU di jl. Rubaru(Barat Asta Tinggi \r\nPelapor : Sekcam Rubaru', '', '', '05', '2022'),
-(394, 'LatLng(-7.024496, 113.879482)', 'Jl Slamet Riyadi Ds.Pabian Kec.Kota', '224', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '29 Mei 2022 20:00', '29 Mei 2022 21:00', '1', 'CC112 TIM Satpol PP mengevakuasi ODGJ di desa Pabian\r\nPelapor : Moh.Rasidi\r\nAlamat : Jl Slamet Riyadi Ds.Pabian Kec.Kota\r\nObyek Laporan : Orang depresi', '', '', '05', '2022'),
-(395, 'LatLng(-7.008641, 113.855406)', 'Jl. Kemala Bangselok ', '214', '2', 'EVAKUASI HEWAN LIAR/BUAS', '30 Mei 2022 09:00', '30 Mei 2022 10:00', '1', 'CC112 TIM Satpol PP dan Damkar berhasil mengevakuasi kuda lepas dari kandang\r\nPelapor : Bintoro\r\nAlamat : Jl Kemala Kel.Bangselok Kec.Kota\r\n', '', '', '05', '2022'),
-(396, 'LatLng(-7.019913, 113.864343)', 'Jl. Adirasa (Mini Market Ary)', '221', '2', 'KEBAKARAN', '31 Mei 2022 13:30', '31 Mei 2022 14:00', '1', 'CC112 Tim Damkar dan Puskesmas Pandian berhasil mengevakuasi  kebakaran mini market Ary  di lantai 3(Gudang)\r\nObjek terbakar : Makanan ringan/snak,\r\nKorban : Nihil,\r\nKerugian : - \r\n\r\n', '', '', '05', '2022'),
-(397, 'LatLng(-7.033769, 113.891924)', 'Marengan Laok(Selatan Alfamart)', '4', '1', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '01 Juni 2022 19:30', '01 Juni 2022 20:00', '1', 'CC112 Tim Satpol PP mengevakuasi orang tak dikenal perempuan dari desa saasa mengganggu  ketenangan masyarakat \r\nKejadian : Orang tidak dikenal mengganggu ketentraman \r\nLokasi : Marengan Laok, Kalianget\r\nPelapor : Busrawi\r\nAlamat : Marengan Laok kec. kalianget', '', '', '06', '2022'),
-(398, 'LatLng(-7.007317, 113.857184)', 'Jl. Berlian', '214', '2', 'GIAT EVAKUASI', '03 Juni 2022 09:00', '03 Juni 2022 10:00', '1', 'CC112 TIM Damkar berhasil mengevakuasi selokan yg tersumbat dan meluap\r\nPelapor : Lurah Bangselok', '', '', '06', '2022'),
-(399, 'LatLng(-6.989654, 113.863807)', 'Desa Kebunan ', '220', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '07 Juni 2022 14:20', '07 Juni 2022 14:35', '1', 'CC112 TIM Satpol PP Menindaklanjuti laporan masyarakat terkait  orang depresi mengamuk di Ds.Kebunan  Kec.Kota sumenep yang mengakibatkan resah warga setempat\r\nPelapor : Mariam\r\nDesa : Kebunan\r\nKec. Kota Sumenep', '', '', '06', '2022'),
-(400, 'LatLng(-7.164637, 114.327464)', 'Pasar Gayam', '169', '30', 'KEBAKARAN', '06 Juni 2022 16:30', '06 Juni 2022 17:30', '1', 'CC112 Tim Damkar Kec. Gayam, semua TIM CC112 Kec. Gayam dan di bantu masyarakat menhasil memamdamkan kebakaran di pasar Gayam Kec. Gayam\r\nKorban Jiwa : Nihil, Kerugian : Ratusan Juta', '', '', '06', '2022'),
-(407, 'LatLng(-7.090975, 113.849425)', 'Desa Saroka ', '331', '7', 'KEBAKARAN', '19 Juni 2022 09:45', '19 Juni 2022 11:00', '1', 'CC112 Tim Damkar berhasil memadamkan kebakaran di desa Saroka Kecamatan Saronggi\r\nPelapor : Moh. Ariyanto\r\nAlamat : Desa Saroka\r\nKejadian : Kebakaran\r\nKronologi : Akibat sambungan listrik/stop kontak yg kelebihan beban \r\nKorban : Nihil \r\nKerugian : +- 10Jt\r\n', '', '', '06', '2022'),
-(408, 'LatLng(-7.055535, 113.945249)', 'Pelabuhan Kalianget', '2', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '22 Juni 2022 11:00', '22 Juni 2022 13:00', '1', 'CC112 Tim Polairut Polres Sumenep dan Satpol PP menyelamatkan terduga ODGJ tenggelam di pelabuhan Kalianget dan sudah di serahkan ke keluarganya\r\nPenelpon : Herman\r\nAlamat : Kalianget Timur\r\nKondisi Korban : luka Lecet', '', '', '06', '2022'),
-(409, 'LatLng(-7.07059, 113.834195)', '', '329', '7', 'KECELAKAAN LALU LINTAS', '28 Juni 2022 01:40', '28 Juni 2022 09:00', '1', 'TIM CC112 Mengamankan dan mengavakuasi kecelakaan tangki Oxigen Samator  terguling  di desa Nambakor kec. Saronggi', '', '', '06', '2022'),
-(410, 'LatLng(-7.037764, 113.912215)', 'Jl. Rasa Lojikantang', '11', '1', 'KEBAKARAN', '28 Juni 2022 12:30', '28 Juni 2022 13:00', '1', 'TIM Damkar dan Polsek Kota berhasil memadamkan kebakaran di desa Kalimo ok (Timur SMP 1)Kec. kalianget', '', '', '06', '2022'),
-(411, 'LatLng(-7.032765, 113.904367)', 'Perumahan Pondok Mytiara Harum 09', '11', '1', 'KEBAKARAN', '06 Juli 2022 16:30', '06 Juli 2022 18:00', '1', 'CC112 TIM Damkar berhasil memadamkan kebakaran di perumahan pondok mutiara harum desa Kalimo ok kecamtan Kalianget\r\nPenelpon : Candra Cahyadi\r\nAlamat : Pondok Mutiara Harum 09 Kaliamo ok Kalianget\r\nKronologi : Kebocoran Gas LPG', '', '', '07', '2022'),
-(412, 'LatLng(-7.005718, 113.863565)', 'Jl. Pendekar Kepanjen', '213', '2', 'PERMINTAAN AMBULAN', '06 Juli 2022 23:25', '06 Juli 2022 23:45', '1', 'CC112 TIM Puskesmas Pandian mengevakuasi Pasien di Jl. Pendekar  Kelurahan Kepanjen Kec. kota Sumenep ke RSUD Sumenep.', '', '', '07', '2022'),
-(413, 'LatLng(-7.056244, 113.941993)', 'Jl. Raya Pelabuhan kalianget', '2', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '08 Juli 2022 16:00', '08 Juli 2022 17:00', '1', 'CC112 Tim Satpol PP menegvakuasi terduga ODGJ memukul orang tua  diamankan di Polsek Kalianget dan serahkan ke Dinas Sosial Kab. Sumenep\r\nPelapor : Asmoro\r\nAlamat kalianget Timur Kec. Kalianget', '', '', '07', '2022'),
-(414, 'LatLng(-7.003935, 113.864032)', 'Jl. Pujangga  Kelurahan Kepanjen', '213', '2', 'PERMINTAAN AMBULAN', '10 Juli 2022 10:45', '10 Juli 2022 11:00', '1', 'CC112 Tim Puskesmas Pandian mengevakuasi pasien orang tua tidak sadarkan diri.\r\nPelapor : Vety\r\nAlamat : Jl. Pujangga Keluarahan Kepanjin Ke. Kota Sumenep', '', '', '07', '2022'),
-(415, 'LatLng(-7.015909, 113.857986)', 'Jl. Trunojoyo (Depan SDN Kolor)', '221', '2', 'KEBAKARAN', '10 Juli 2022 22:00', '10 Juli 2022 22:15', '1', 'CC112 Tim Damkar berhasil memadamkan bak sampah di jl. trunojoyo Desa Kolor Kec. Kota Sumenep\r\nPelapor : Afif\r\nAlamat : Kolor', '', '', '07', '2022'),
-(419, 'LatLng(-6.997577, 113.958843)', 'Jl. Raya Gapura (Depan Kecamatan Gapura)', '159', '15', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '13 Juli 2022 08:00', '13 Juli 2022 09:00', '1', 'CC112 Tim Satpol PP mengevakuasi ODGJ di jalan raya Gapura depan kantor Kecamatan Gapura.', '', '', '07', '2022'),
-(420, 'LatLng(-7.016148, 113.859236)', 'Jl. Tronojoyo (Pasar Anom)', '221', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '16 Juli 2022 20:30', '16 Juli 2022 21:00', '1', 'CC112 Tim Satpol PP mengevakuasi orang dengan gangguan jiwa  ke RPS Dinsos Kab.Sumenep\r\nPelapor : Pak Ihwan\r\nAlamat : Kolor Sumenep', '', '', '07', '2022'),
-(421, 'LatLng(-7.004936, 113.851664)', 'Jl. Teuku Umar (Depan puskesmas Pandian)', '212', '2', 'KEBAKARAN', '18 Juli 2022 08:00', '18 Juli 2022 08:10', '1', 'CC112 Tim Damkar, Polsek Kota dan Babinsa Kota Sumenep berhasil memadamkan kebakaran di Jl. Teuku Umar depan puskesmas pandian\r\nPelapor : Puskesmas Pandian\r\nKronologi : Akibat Konsteling Listrik.', '', '', '07', '2022'),
-(422, 'LatLng(-7.021568, 113.85709)', 'Jl. Tronojoyo (Pom bensin Kolor)', '221', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '12 Juli 2022 12:30', '19 Juli 2022 13:00', '1', 'CC112 Tim Satpol PP mengevakuasi ODGJ di jalan Trunojoyo depan POM Bensin Kolor dan di diserahkan RPS Dinas Sosial.\r\nPelapor : Sufiyanti\r\nAlamat : Kolor', '', '', '07', '2022'),
-(423, 'LatLng(-7.015259, 113.861591)', 'Jl. Dr. Cipto (Perum BTN)', '221', '2', 'GIAT EVAKUASI', '19 Juli 2022 16:00', '19 Juli 2022 17:00', '1', 'CC112 Tim Damkar melakukan Giat Evakuasi penanganan selokan?irigasi buntu\r\nPelapor : Bapak Kasyfi\r\nAlamat : Perum BTN Kolor', '', '', '07', '2022'),
-(424, 'LatLng(-7.013667, 113.858437)', 'Jl. Trunojoyo(Depan BRI)', '221', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '20 Juli 2022 18:00', '20 Juli 2022 18:15', '1', 'CC112 Tim Satpol PP mengevakuasi seorang perempuan mengandung membawa anaknya berumur 7 tahun dan 4 tahun mengemis dinjalanan\r\nPelapor  : Masyarakat \r\n', '', '', '07', '2022'),
-(425, 'LatLng(-7.017592, 113.854929)', 'Jl. Lumba-lumba Kolor', '221', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '20 Juli 2022 20:00', '22 Juli 2022 20:30', '1', 'CC112 Tim Satpol PP mengevakuasi  orang terlantar dan salah satu meninggal dunia.\r\nPelapor :Achmad Bardi\r\nAlamat : Desa Kolor', '', '', '07', '2022'),
-(426, 'LatLng(-7.01367, 113.868857)', 'Jl. Dr. Cipto (Perempatan PLN)', '215', '2', 'KEBAKARAN', '24 Juli 2022 02:50', '24 Juli 2022 03:00', '1', 'CC112 Tim Damkar berhasil memadamkan kebakaran pos rumah potong hewan Kelurahan Pajagalan \r\nKorban : Nihil ', '', '', '07', '2022'),
-(427, 'LatLng(-7.009294, 113.854293)', 'Jl. KH. Sajad Bangselok', '214', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '25 Juli 2022 19:30', '25 Juli 2022 20:00', '1', 'CC112 Tim Satpol PP menegvakuasi ODGJ di kelurahan Bangselok\r\nPelapor : Warga Bangselok \r\nKec. : Kota Sumenep', '', '', '07', '2022'),
-(428, 'LatLng(-6.884808, 113.976288)', 'Desa Badur Kec. Batuputih', '75', '28', 'BENCANA ALAM', '26 Juli 2022 11:30', '26 Juli 2022 13:00', '1', 'CC112 Tim BPBD langsung melakukan Asessment & Penggalian Data Informasi laporan kekeringan\r\nPelapor : Warga Badur\r\nDesa : Badur\r\nKec. : Batuputih', '', '', '07', '2022'),
-(429, 'LatLng(-6.985458, 113.83957)', 'Desa Kasengan RT 01 RW 05 Kecamatan Manding', '250', '4', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '29 Juli 2022 13:25', '29 Juli 2022 15:15', '1', 'CC112 Tim Satpol PP mengevakuasi ODGJ merusak rumah di Desa Kasengan RT 01 RW 05 Kecamatan Manding\r\nPelapor : Dr. Utomo', '', '', '07', '2022'),
-(430, 'LatLng(-7.057148, 113.942299)', 'Pelabuhan Kalianget', '2', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '31 Juli 2022 10:25', '31 Juli 2022 11:00', '1', 'CC112 Tim Satpol PP mengevakuasi ODGJ di Pelabuhan Kalianget\r\nPelapor : Bapak Samin', '', '', '08', '2022'),
-(431, 'LatLng(-7.014852, 113.858652)', 'Jl. Tronojoyo (Bank BCA)', '221', '2', 'KEBAKARAN', '01 Agustus 2022 14:20', '01 Agustus 2022 14:30', '1', 'CC112 Tim Damkar berhasil memadamkan tumkan kayu digudang yang kosong.\r\nPelapor : Warga Desa Kolor.', '', '', '08', '2022'),
-(432, 'LatLng(-7.164709, 114.329897)', 'Desa Gendang Timur', '171', '30', 'KECELAKAAN KERJA', '03 Agustus 2022 21:00', '04 Agustus 2022 01:40', '1', 'CC112 Tim Puskesmas Gayam memberi pertolongan korban kecelakaan kerja\r\nkena poli mesin bata  pelipis kiri  \r\nKorban : Meninggal Dunia\r\nNama : Nawi', '', '', '08', '2022'),
-(433, 'LatLng(-7.008971, 113.859231)', 'Jl. Trunojoyo', '214', '2', 'GIAT EVAKUASI', '06 Agustus 2022 13:20', '09 Agustus 2022 13:25', '1', 'CC112 Tim Damkar berhasil mengeluarkan cincin emas yg tidak bisa dilepas dari jarinya dikarenakan cincin yg sudah kekecilan.\r\n', '', '', '08', '2022'),
-(434, 'LatLng(-6.999239, 113.87032)', 'Jl. Sapeken Desa Bangkal', '217', '2', 'PERMINTAAN AMBULAN', '09 Agustus 2022 11:45', '09 Agustus 2022 11:50', '1', 'CC112 Tim Puskesmas mengevakuasi korban jatuh sakit tidak sadarkan diri pada saat bertamu dan dinyatakan meninggal dunia sehingga jenazah langsung diantar ke rumahnya di Desa Marengan Daya Kecamatan Kota Sumenep\r\n', '', '', '08', '2022'),
-(435, 'LatLng(-7.038678, 113.903643)', 'Jl. Raya Kalianget - Kertasada', '10', '1', 'KEBAKARAN', '09 Agustus 2022 17:00', '09 Agustus 2022 18:00', '1', 'CC112 Tim Damkar berhasil memadamkan Kebakaran tumpukan daun dan batang bambu yang sengaja di bakar selang  10 menit menjalar ke pohon bambu yang berdekatan dengan rumah warga', '', '', '08', '2022'),
-(436, 'LatLng(-7.033964, 114.454193)', 'Perairan  Raas', '294', '32', 'KECELAKAAN LAUT', '11 Agustus 2022 00:30', '', '1', 'CC112 menerima laporan hilangnya KLM Putra Kembar bertolak dari pelabuhan kalianget menuju pelabuhan batu guluk kec.arjasa hari minggu tgl 7/8/2022 dengan muatan bahan bangunan dengan 3 ABK dan hilang kontak 8/8/2022 yang seharusnya sudah bersandar di pelabuhan Batu Guluk Kangean\r\nPelapor : Agus Junaedi', '', '', '08', '2022'),
-(437, 'LatLng(-7.020471, 113.808135)', 'Jl. Raya Lenteng Desa Daramista', '230', '5', 'KEBAKARAN', '11 Agustus 2022 19:00', '11 Agustus 2022 20:05', '1', 'CC112 Tim Damkar berhasil memadamkan Kebakaran Mobil Sedan Toyota Corona Excellent th 1991, No Pol L 1817 MW kebakaran terjadi di Cap Mobil yg terjadi percikan api selang 5 menit api membesar di mesin mobil pemilik mobil panik segera keluar dari dalam mobil & segera minta bantuan untuk menelp Call Center 112 yg di teruskan ke Mako Damkar \r\nPemilik : Syamsul Arifin\r\nAlamat : Desa Sangra Bluto\r\n', '', '', '08', '2022'),
-(438, 'LatLng(-7.039849, 113.901266)', 'Desa Kertasada', '10', '1', 'KEBAKARAN', '12 Agustus 2022 00:00', '12 Agustus 2022 01:00', '1', 'CC112 Tim Damkar berhasil memadamkan kebakaran mobil anggkutan Kalianget - Sumenep dengan nopol M 1357 UV yang sedang parkir di Desa Kertasada Kecamatan Kalianget', '', '', '08', '2022'),
-(439, 'LatLng(-7.103383, 113.809605)', 'Jl. Raya Bluto ', '91', '8', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '14 Agustus 2022 15:00', '14 Agustus 2022 17:30', '1', 'CC112 Tim Satpol PP dan Puskesmas Bluto menangani terduga ODGJ meresahkan masyarakat sehingga dilakukan mediasi dengan keluarga dan masyarakat setempat untuk dilakukan tindakan.\r\nPelapor : Fajar', '', '', '08', '2022'),
-(440, 'LatLng(-6.99402, 113.864182)', 'Jl. Raya Saluaran Air Pamolokan', '209', '2', 'PERMINTAAN AMBULAN', '15 Agustus 2022 03:30', '15 Agustus 2022 04:45', '1', 'CC112 Tim Puskesmas Pandian mengevakuasi pasien sesak nafas akibat penyakit kangker paru-paru ke RSUD H. Moh. Anwar Sumenep\r\nPelapor : Moh. Iqbal', '', '', '08', '2022'),
-(441, 'LatLng(-7.038462, 113.777665)', 'Lteng Timur (Timur Polsek)', '236', '5', 'KEBAKARAN', '23 Agustus 2022 23:25', '24 Agustus 2022 01:30', '1', 'CC112 Tim Damkar berhasil memadamkan kebakaran di rumah Imam di Desa Lenteng Timur \r\nPelapor : Abdi \r\nAlamat : Desa Lenteng Timur', '', '', '08', '2022'),
-(442, 'LatLng(-7.082152, 113.763149)', 'Dusun Sumber Langon Desa Sera Tengah', '106', '8', 'KEBAKARAN', '24 Agustus 2022 09:45', '24 Agustus 2022 10:30', '1', 'CC112 Tim Damkar berhasil memadamkan kandang sapi di Dusun Sumber Langon  Desa Serah Tengah Kecamatan Bluto', '', '', '08', '2022'),
-(443, 'LatLng(-7.107832, 113.820527)', 'Desa Soronggi', '332', '7', 'KEBAKARAN', '30 Agustus 2022 04:00', '30 Agustus 2022 05:00', '1', 'CC112 Tim Damkar berhasil pemadamkan kebakaran kandang sapi di desa Saronggi Dusun Nang Nangan\r\nPenelpon : Polsek saronggi', '', '', '09', '2022'),
-(444, 'LatLng(-7.025208, 113.852863)', 'Desa Gedungan', '216', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '01 September 2022 09:50', '01 September 2022 11:50', '1', 'CC112 Tim Satpol PP mengevakuasi terduga ODGJ ke RPS Dinsos\r\nPelapor : Dita', '', '', '09', '2022'),
-(445, 'LatLng(-7.01424, 113.857643)', 'Jl. Trunojoyo (Belakang Kantor Pajak) Kolor', '221', '2', 'EVAKUASI HEWAN LIAR/BUAS', '05 September 2022 05:00', '05 September 2022 06:00', '1', 'CC112 Tim Damkar merhasil mengevakuasi ular yang keluar dari closet kamar mandi warga Kolor\r\nPelapor : Joko', '', '', '09', '2022'),
-(446, 'LatLng(-7.02674, 113.632965)', 'Desa Payudan Nangger', '196', '9', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '07 September 2022 08:00', '12 September 2022 10:00', '1', 'CC112 Tim Satpol PP mengamankan dan mengevakuasi  ODGJ ke RSUD Moh. Anwar Sumenep\r\nPelapor : Bapak Didik', '', '', '09', '2022'),
-(447, 'LatLng(-7.000469, 113.869965)', 'Jl.  Raya Gapura ( Pertigaan Rumdis Sekda)', '217', '2', 'TIANG LISTRIK RUBUH', '13 September 2022 20:00', '13 September 2022 21:00', '1', 'CC112 Tim Damkar, Satlantas Polres Sumenep, PLN, Telkom mengevakauasi  kabel yg lepas akibat tersangkut Truk yang mengakibatkan tiang Telkom miring dan Lampu Lalin miring\r\nPelapor : Bapak Adi Jaya', '', '', '09', '2022'),
-(448, 'LatLng(-7.04749, 113.946156)', 'Jl. Raya Gersik Putih ( Depan SMP 2 Kalianget)', '2', '1', 'KEBAKARAN', '17 September 2022 18:00', '17 September 2022 20:00', '1', 'CC112 Tim Damkar berhasil memadamkan kebakaran di toko dan servis kendaraan roda 2 di Desa Kalianget Timur \r\nPenelpon : Bapak Airlangga\r\n\r\n\r\n', '', '', '09', '2022'),
-(449, 'LatLng(-7.105204, 113.811589)', 'Jl. Raya Bluto ', '91', '8', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '21 September 2022 09:00', '26 September 2022 10:00', '1', 'CC112 Tim Satpol PP dan puskesmas Bluto mengevakuasi ODGJ ke RSP dinsos \r\nPelapor : Puskesmas Bluto', '', '', '09', '2022'),
-(450, 'LatLng(-6.994872, 113.842832)', 'Jl Raya Asta Tinggi', '211', '2', 'KEBAKARAN', '22 September 2022 13:00', '22 September 2022 15:00', '1', 'CC112 semua Tim memadamkan kebakaran lahan di sebalah barat Asta Tinggi', '', '', '09', '2022'),
-(451, 'LatLng(-7.000377, 113.84752)', 'Jl. Asta Tinggi ', '211', '2', 'KEBAKARAN', '25 September 2022 12:00', '25 September 2022 14:00', '1', 'CC112 semua Tim memadamkan kebakaran lahan di Desa Kebonagung', '', '', '09', '2022'),
-(452, 'LatLng(-7.005143, 113.857659)', 'Jl. Karangduak', '219', '2', 'PERMINTAAN AMBULAN', '26 September 2022 15:00', '26 September 2022 16:00', '1', 'CC112 Tim Puskesmas Pandian mengevakuasi  permintaan ambulan kepada warga yang tidak punya sanak keluarga di Desa Karangduak  ke RSUD H. Moh. Anwar Sumenep\r\nPelapor  : Novan Kepanjen', '', '', '09', '2022'),
-(453, 'LatLng(-7.019087, 113.857884)', 'Jl. Trunojoyo', '221', '2', 'EVAKUASI HEWAN LIAR/BUAS', '02 Oktober 2022 15:00', '02 Oktober 2022 15:30', '1', 'CC112 Tim Damkar mengevakuasi ular masuk kerumah warga di Desa Kolor \r\nPelapor : Moh. hasan Paradisi\r\n', '', '', '10', '2022'),
-(454, 'LatLng(-7.120021, 113.786556)', 'Desa Aengdake', '90', '8', 'KEBAKARAN', '04 Oktober 2022 12:00', '05 Oktober 2022 13:00', '1', 'CC112 Tim Damkar dan BPBD memadamkan kebakaran di Desa Aengdake Kec. Bluto', '', '', '10', '2022'),
-(455, 'LatLng(-6.978397, 113.882325)', 'Desa Tenonan', '256', '4', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '05 Oktober 2022 20:35', '05 Oktober 2022 21:00', '1', 'CC112 Tim Satpol PP mengavakuasi ODGJ di Desa Tenonan Kecamatan Manding ke RPS Dinsos\r\nPelapor : Bapak Hayyi\r\nAlamat : Desa Tenonan \r\nKec. Manding', '', '', '10', '2022'),
-(456, 'LatLng(-7.000972, 113.856661)', 'Jl. Pahlawan Pamolokan', '209', '2', 'PERMINTAAN AMBULAN', '08 Oktober 2022 23:00', '08 Oktober 2022 23:30', '1', 'CC112 Tim Puskesmas Pandian merujuk pasien lumpuh dan sesak ke RSUD Moh. Anwar Sumenep\r\nPenelpon :  Agus \r\nAlamat : Jl. Pahlawan Pamolokan ', '', '', '10', '2022'),
-(457, 'LatLng(-7.052851, 113.87917)', 'Desa Karanganyar', '6', '1', 'BENCANA ALAM', '10 Oktober 2022 15:20', '10 Oktober 2022 16:00', '1', 'CC112 Semua Tim mengevakuasi kejadian Angin Puting Beliung di Desa Karangnganyar Kec. Kalianget\r\nKorban Jiwa : Nihil ', '', '', '10', '2022'),
-(458, 'LatLng(-7.002396, 113.861071)', 'Simpang Empat jalan Kartini', '209', '2', 'TIANG LISTRIK RUBUH', '10 Oktober 2022 16:30', '10 Oktober 2022 17:00', '1', 'CC112 Tim BPBD dan PLN Sumenep mengevakuasi pohon yang mengenai tegangan tinggi karena angin kencang sehingga dilakukan pemotongan', '', '', '10', '2022'),
-(459, 'LatLng(-7.006996, 113.994631)', 'Pelabuhan Bintaro', '164', '15', 'KEBAKARAN', '12 Oktober 2022 13:00', '12 Oktober 2022 15:00', '1', 'CC112 Tim Damkar dan BPBD berhasil memadamkan kebakaran kulit pohon kelapa di seputar pelabuhan Bintaro Desa Longos Kec. Gapura', '', '', '10', '2022'),
-(460, 'LatLng(-6.989647, 113.86319)', 'Jl. Raya Manding ', '220', '2', 'PERMINTAAN AMBULAN', '30 Oktober 2022 11:00', '30 Oktober 2022 11:10', '1', 'CC112 Tim Puskesmas Pamolokan mengevakuasi permintaan ambulan pasien menuju RSUD\r\nPelapor : Hernayadi\r\nAlamat : Jl. Raya Manding\r\nDesa : Kebunan\r\nKec. Kota Sumenep', '', '', '10', '2022'),
-(461, 'LatLng(-6.968313, 113.802942)', 'Desa Benasare ', '302', '12', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '09 November 2022 21:00', '09 November 2022 22:00', '1', 'CC112 TIM Saptol PP mengevakuasi ODGJ di desa Benasare Kec. Rubaru\r\nPelapor : Kepla Desa Benasare', '', '', '11', '2022'),
-(462, 'LatLng(-7.032194, 113.706264)', 'Jl.  Gadu Barat', '143', '6', 'BENCANA ALAM', '10 November 2022 13:00', '10 November 2022 17:00', '1', 'CC112 TIM BPBD melakukan assement jalan ambles yang menyebabkan lubang lebar 5 meter kedalman 15 meter\r\nPelapor : Masyarakat Ganding', '', '', '11', '2022'),
-(463, 'LatLng(-7.11289, 113.804487)', 'Jl. Raya Bluto', '91', '8', 'KEBAKARAN', '14 November 2022 18:00', '14 November 2022 19:00', '1', 'CC112 Tim Damkar berhasil memadamkan api di kabel milik telkom di Desa Bluto Kec. Bluto\r\nPelapor : Camat Bluto', '', '', '11', '2022'),
-(464, 'LatLng(-7.003695, 113.860787)', 'Jl. Halim Perdana Kusuma ', '213', '2', 'PERMINTAAN AMBULAN', '18 November 2022 15:00', '18 November 2022 15:30', '1', 'CC112 Tim Damkar dan Puskesmas Pamolokan berhasil pengevakuasi pekerja bangunan tersetrom\r\nke RSUD H. Moh. Anwar', '', '', '11', '2022'),
-(465, 'LatLng(-6.887042, 113.782654)', 'Desa Slopeng', '122', '11', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '04 Desember 2022 14:30', '04 Desember 2022 17:00', '1', 'CC112 Tim Satpol PP dan Puskesmas Dasuk mengevakuasi ODGJ ke RPS Dinas Sosial\r\nPelapor : Sekdes Slopeng', '', '', '12', '2022'),
-(466, 'LatLng(-7.005707, 113.858914)', 'Karangduak', '219', '2', 'PERMINTAAN AMBULAN', '07 Desember 2022 12:00', '09 Desember 2022 15:00', '1', 'CC112 TimPuskesmas Pandian mengevakuasi permintaan ambulan ke RSI\r\nPelapor : Deni\r\nAlamat : Jl. Belimbing \r\nDesa Karangduak\r\nKec. Kota Sumenep', '', '', '12', '2022'),
-(467, 'LatLng(-7.014752, 113.818016)', 'Desa Torbang', '73', '3', 'EVAKUASI HEWAN LIAR/BUAS', '12 Desember 2022 08:00', '12 Desember 2022 09:00', '1', 'CC112 Tim Damkar mengvakuasi Ular Sanca di Desa Tobang Kec. Batuan\r\nPelapor : Hj. Erni Fathor\r\nAlamat : Desa Torbang\r\nKec. : Batuan', '', '', '12', '2022'),
-(468, 'LatLng(-7.009907, 113.859078)', 'Jl. Tengku Umar', '212', '2', 'KEBAKARAN', '14 Desember 2022 06:00', '14 Desember 2022 07:30', '1', 'CC112 Tim Damkar berhasil memadamkan kebakaran di warung makan Amlalia di desa Pandian Kec. Kota Sumenep\r\nPelapor : Warga Pandian', '', '', '12', '2022');
+(5, 'LatLng(-7.03753, 113.776377)', 'Jl. Raya Lenteng (Pasar lenteng)', '238', '5', 'KEBAKARAN', '20 Agustus 2021 07:15', '20 Agustus 2021 12:00', 1, 'CC112 TIM DAMKAR, Api telah berhasil dipadamkan 1 jam kemudian, dengan mengerahkan 1 unit fire truck single cabin, 1 unit fire truck double cabin dan 2 unit water suplay (total 4 unit).\r\nKec. lenteng', '', '', '08', '2021'),
+(6, 'LatLng(-6.992311, 113.841265)', 'Jl. Raya Asta Tinggi Kasengan', '250', '4', 'KEBAKARAN', '25 Agustus 2021 12:25', '25 Agustus 2021 13:00', 1, 'CC112 TIM DAMKAR, Api berhasil dipadamkan oleh petugas dengan 1 fire pump single cabin, 1 fire pump double cabin, 1 water suplay total 3 unit\r\nDesa Kasengan\r\nKec. Manding', '', '', '08', '2021'),
+(7, 'LatLng(-7.009134, 113.860057)', 'Jl. Trunojoyo (Kodim)', '215', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '11 September 2021 12:45', '11 September 2021 13:00', 1, 'CC112 TIM SATPOL PP POS PANTAU, ODGJ seorang wanita sdh kami amankan dan diserahkan ke RPS DINSOS Jl.Raung.\r\nDesa Pajagalan\r\nKec. Kota Sumenep', '', '', '09', '2021'),
+(8, 'LatLng(-7.083643, 113.765895)', 'Desa Karang Cempaka', '98', '8', 'KEBAKARAN', '17 September 2021 20:00', '17 September 2021 22:00', 1, 'CC112 TIM DAMKAR, Kebakaran lahan\r\nDesa Cangkreman Kec. Bluto', '', '', '09', '2021'),
+(9, 'LatLng(-7.019757, 113.847628)', 'Desa Babbalan', '67', '3', 'TIANG LISTRIK RUBUH', '17 September 2021 20:00', '18 September 2021 08:00', 1, 'CC112 TIM PLN, Telah terjadi kabel listrik putus yang di sebabkan ranting pohon yang berlokasi di sebelah barat Masjid Nurul Yaqin desa Babbalan Rt 03 Rw 03. Pelapor menyampaikan bahwa tadi sudah ada petugas yang datang ke lokasi kejadian untuk mengecek d', '', '', '09', '2021'),
+(10, 'LatLng(-7.119838, 113.779135)', 'Jl. Raya Aengdeke', '90', '8', 'KECELAKAAN LALU LINTAS', '21 September 2021 16:50', '21 September 2021 18:00', 1, 'CC112 TIM PUSKESMAS BLUTO, Kecelakaan Tunggal Korban Meninggal dunia korban ditangani puskesmas Bluto\r\nDesa Aengdeke \r\nKec. bluto', '', '', '09', '2021'),
+(100, 'LatLng(-7.112805, 113.792734)', 'Desa Aengdeke', '90', '8', 'EVAKUASI HEWAN LIAR/BUAS', '18 Januari 2022 16:00', '19 Maret 2022 12:00', 1, 'CC112 TIM DAMKAR, Monyet kabur milik tetangga yang membayahyakan di kawasan tsb. dan sekarang sedang berkeliaran di Desa Aengdeke Kec. Bluto', '', '', '01', '2022'),
+(303, 'LatLng(-7.0048, 113.851447)', 'Jl. Teuku Umar (Barat Puskesmas Pandian)', '212', '2', 'POHON TUMBANG', '09 Februari 2022 13:15', '09 Februari 2022 14:15', 1, 'CC112 TIM DLH dan TIM PLN mengevakuasi semua pohon dan kabel listrik terdampak patahnya pohon Desa Pandian', '', '', '02', '2022'),
+(304, 'LatLng(-7.018539, 113.858201)', 'Jl. Adirasa', '221', '2', 'POHON TUMBANG', '09 Februari 2022 14:10', '09 Februari 2022 15:00', 1, 'CC112 TIM DLH mengevakuasi Roboh di  Taman Tajamara Desa Kolor', '', '', '02', '2022'),
+(305, 'LatLng(-7.011948, 113.85883)', 'Jl. Trunojoyo', '214', '2', 'BANJIR', '09 Februari 2022 14:30', '09 Februari 2022 16:20', 1, 'CC112 TIM DAMKAR mengevakuasi mobil terhanyut banjir di depan BPRS Kelurahan Bangselok', '', '', '02', '2022'),
+(306, 'LatLng(-6.96928, 113.81145)', 'Jln Raya Rubaru', '312', '12', 'POHON TUMBANG', '09 Februari 2022 15:10', '09 Februari 2022 16:05', 1, 'CC112 TIM DLH dan BPBD mengevakuasi pohon tumang di depan pom mini jalan Tambaksari Rubaru', '', '', '02', '2022'),
+(307, 'LatLng(-6.975996, 113.802846)', 'Jl. Raya Asta Tinggi Pakondang', '310', '12', 'POHON TUMBANG', '09 Februari 2022 16:15', '09 Februari 2022 17:25', 1, 'CC112 TIM DLH dan BPBD Mengevakuasi pohon Tumbang di pertigaan Pagondang rubaru (pertigaan amal)', '', '', '02', '2022'),
+(308, 'LatLng(-7.015433, 113.950149)', 'Gapura tengah', '159', '15', 'BANJIR', '10 Februari 2022 17:25', '10 Februari 2022 21:15', 1, 'CC112 TIM BPBD menuju lokasi Banjir akibat  itensitas air hujan sangat tinggi dan air laut pasang di desa Gapura Tengah (Gersik Putih)', '', '', '02', '2022'),
+(309, 'LatLng(-7.021401, 113.86795)', 'Jl. Adirasa', '221', '2', 'POHON TUMBANG', '11 Februari 2022 13:00', '11 Februari 2022 14:00', 1, 'CC112 TIM DAMAKAR dan PLN mengefakuasi pohon Tumbang di depan D&R mengakibatkan kable PLN tersangkut Desa Kolor', '', '', '02', '2022'),
+(310, 'LatLng(-7.037554, 113.896519)', 'Jl. Adi Sucipto Marengan Laok ', '4', '1', 'KEBAKARAN', '14 Februari 2022 17:00', '14 Februari 2022 18:00', 1, 'CC112 TIM DAMKAR ke lokasi Kebakaran daerah Marengan Laok SMP 5/Jembatan Ke Selatan, \r\nNama Penelpon : Ibu Dian \r\nAlamat : Marengan Laok Kec. Kalianget', '', '', '02', '2022'),
+(311, 'LatLng(-6.997926, 113.956972)', 'Dusun Talesek RT.002 RW. 004 Desa Gapura Barat Kec', '158', '15', 'EVAKUASI HEWAN LIAR/BUAS', '15 Februari 2022 14:00', '15 Februari 2022 14:30', 1, 'CC112 TIM DAMKAR meluncur ke lokasi desa Gapura Barat\r\nNama Pemilik rumah : Ahmad Maimun\r\nJenis Ular : Ular Sawa ( Ular Jali / Ptyas Korros)\r\n', '', '', '02', '2022'),
+(312, 'LatLng(-7.039942, 113.901245)', 'Dusun Penatu RT 08 RW 04 Desa Kertasada Kec. Kalia', '10', '1', 'KEBAKARAN', '16 Februari 2022 01:30', '16 Februari 2022 02:00', 1, 'CC112 TIM DANGKAR dengan Mobil pemadam Fire truk dan 1 unit water suply tiba di TKK Desa Kertasada, objek yang terbakar 2 unit mobil merupakan mobil angkutan trayek Sumenep - Kalianget  dengan  plat nomor M 1057 UN dan M 1024 UV plat kuning', '', '', '02', '2022'),
+(316, 'LatLng(-7.007292, 113.865283)', 'Jl. Hos Cokro Aminoto (Toko Santoso 3)', '215', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '16 Februari 2022 12:00', '16 Februari 2022 12:30', 1, 'CC112 TIM SATPOL PP POS PANTAU dapat menjangkau ODGJ di Kelurahan Pajagalan dengan humanis utk selanjutnya kami serahkan kepada keluarga karena keluarga sepakat akan membawa yang bersangkutan ke RSJ LAWANG', '', '', '02', '2022'),
+(317, 'LatLng(-7.009811, 113.859172)', 'Jl. Trunojoyo depan kantor DPMD', '214', '2', 'KEBAKARAN', '17 Februari 2022 10:00', '17 Februari 2022 10:30', 1, 'CC112 TIM DAMKAR lansung melakukan pemadaman kebakaran Mobil pribadi milik holilurrahman di depan kantor DPMD dengan cepat Kelurahan Bangselok', '', '', '02', '2022'),
+(318, 'LatLng(-7.001258, 113.869736)', 'Jl. Agus Salim (Pintu masuk kantor Kecamatan Kota ', '210', '2', 'GIAT EVAKUASI', '18 Februari 2022 10:35', '18 Februari 2022 11:00', 1, 'CC112 TIM Dangkar membantu mengevakuasi mobil Isuzu Panther menabrak pintu gerbang kantor Kec. kota Desa Pangarangan karena kondisi hujan jeras penglihatan kurang jelas.', '', '', '02', '2022'),
+(319, 'LatLng(-7.007667, 113.860534)', 'Area Taman Adipura', '215', '2', 'POHON TUMBANG', '18 Februari 2022 11:00', '18 Februari 2022 12:00', 1, 'CC112  Tim DLH mengevakuasi tumbang di area taman adipura karena hujan lebat disertai angin kencang Kelurahan Pajagalan', '', '', '02', '2022'),
+(320, 'LatLng(-7.004848, 113.866478)', 'Jl. Meranggi sebelah pompes putri', '210', '2', 'GIAT EVAKUASI', '18 Februari 2022 11:00', '18 Februari 2022 12:00', 1, 'CC112 TIM DAMKAR Mobil mengevakuasi  mobil terperosok ke selokan jalan meranggi.\r\nNama pemilik Mobil  : Deni Kurniawan\r\nAlamat : Perum Batuan Blok 1-12', '', '', '02', '2022'),
+(321, 'LatLng(-7.033098, 113.851005)', 'Jl. Rata Patean (utara pengadilan agama)', '69', '3', 'POHON TUMBANG', '19 Februari 2022 12:00', '19 Februari 2022 13:00', 1, 'CC112 TIM BPBD mengevakuasi akar yg patah  ke jalan raya Patean Desa Kedungan', '', '', '02', '2022'),
+(322, 'LatLng(-7.020657, 113.86047)', 'Perum Permata Resmi Desa Kolor', '221', '2', 'EVAKUASI HEWAN LIAR/BUAS', '21 Februari 2022 18:00', '21 Februari 2022 20:00', 1, 'CC112 TIM DAMKAR langsung menuju lokasi dan selama 2 jam proses evakuasi Ular  masih belum ditemukan', '', '', '02', '2022'),
+(323, 'LatLng(-7.004681, 113.866474)', 'Jl. Meranggi sebelah pompes putri', '213', '2', 'GIAT EVAKUASI', '21 Februari 2022 20:00', '21 Februari 2022 22:00', 1, 'CC112 TIM DAMKAR evakuasi mobil yg terpelosok  dengan waktu 2 jam mobil dapat dievakuasi \r\nNama Pemilik Mobil : Rezmardhan Fadi Sukmawan\r\nAlamat : Karangduak , Kec. Kota Sumenep', '', '', '02', '2022'),
+(324, 'LatLng(-7.008101, 113.859405)', 'Jl Trunojoyo depan masjid Jamik', '214', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '22 Februari 2022 21:00', '22 Februari 2022 00:00', 1, 'CC112 TIM SATPOL PP berhasil menangkap ODGJ di depan Masjid Jamik setelah melaluie pencarian dari desa Pandian Kota Sumenep ', '', '', '02', '2022'),
+(325, 'LatLng(-7.028836, 113.865175)', 'Jalan Arya Wiraraja lingkar timur ( RS SUMEKAR )', '221', '2', 'POHON TUMBANG', '23 Februari 2022 15:55', '23 Februari 2022 16:15', 1, 'CC112 TIM DLH berhasil mengevakuasi pohon tumbang di jalan Arya Wiraraja lingkar timur Desa Kolor ', '', '', '02', '2022'),
+(326, 'LatLng(-6.972709, 113.620219)', 'Polindes -Desa Montorna', '272', '14', 'PERMINTAAN AMBULAN', '24 Februari 2022 14:45', '24 Februari 2022 15:15', 1, 'CC112 TIM PUSKEMAS PASONGSONGAN sudah melakukan tindakan penjemputan pasien tidak dikenal di Desa Montorna Kecamatan Pasongsongan dan menunggu tindak lanjut selanjutnya dari TIM DINKES P2KB Kabupaten Sumenep.', '', '', '02', '2022'),
+(327, 'LatLng(-7.04698, 113.929848)', 'Jalan Raya Kalianget No.10 Kalianget Barat (RSI)', '3', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '02 Maret 2022 22:00', '02 Maret 2022 23:00', 1, 'CC112 TIM SAPPOL PP mengamankan ODGJ di Desa Kalianget Barat Kec. Kalianget dan diamankan di RSI PT Garam', '', '', '03', '2022'),
+(335, 'LatLng(-7.007883, 113.859603)', 'Jl. Trunojoyo', '214', '2', 'KECELAKAAN LALU LINTAS', '09 Maret 2022 02:00', '09 Maret 2022 03:00', 1, 'CC112 TIM POS PANTAU, RSUD, PUSKESMAS PANDIAN mengevakuasi Kecelakaan 2 sepeda motor dengan jumlah korban 4 orang 3 luka berat 1 luka ringanKeluarahan Bangselok Kec. Kota Sumenep', '', '', '03', '2022'),
+(336, 'LatLng(-7.018805, 113.847893)', 'Jl. Jokotole Lingkar Barat ', '67', '3', 'KECELAKAAN LALU LINTAS', '12 Maret 2022 12:00', '12 Maret 2022 13:00', 1, 'CC112 TIM POLRES SUMENEP, Mengevakuasi kejadian kecelakaan yang melibatkan mobil pickup dan 2 sepeda motor, korban di bawa ke RSUD Sumenep.\r\nDesa : Babbalan\r\nKec. Batuan\r\nKorban : 2 Orang Luka Berat\r\n', '', '', '03', '2022'),
+(337, 'LatLng(-6.999917, 113.868401)', 'Jl. Imam Bonjol Pamolokan', '209', '2', 'KEBAKARAN', '12 Maret 2022 22:00', '12 Maret 2022 23:00', 1, 'CC112 TIM DAMKAR, POLSEK KOTA, SATPOL PP,  Tim Damkar mengerahkan 2 unit armada Fire truck untuk melakukan pemadaman dilokasi kejadian.\r\nPemilik : Ruhaniyah\r\nAlamat : Jl. Imam Bonjol RT.002 RW.001 Pamolokan Kec. Kota Sumenep\r\nObjek : Kompor Gas\r\n\r\n', '', '', '03', '2022'),
+(339, 'LatLng(-6.910963654031244, 113.86941073517123)', 'Jl. Barisan Sergang', '80', '28', 'KEBAKARAN', '15 Maret 2022 07:30', '15 Maret 2022 08:30', 1, 'CC112 TIM DAMKAR, langsung meluncur ke lokasi dengan 2 unit armada Fire truck untuk melakukan pemadaman.\r\nPemilik : Zaini\r\nAlamat : Dusun jang-jang RT.001 RW.002 desa Bullaan, Batuputih\r\nObjek : Kompor Gas \r\nWaktu :  07.34 WIB\r\nKorban : Ibu Yanti dan Tiara  (luka bakar)\r\nKerugian : 150 juta', '', '', '03', '2022'),
+(340, 'LatLng(-6.97912, 113.958328)', 'Dusun Paramaan Gunung ', '158', '15', 'EVAKUASI HEWAN LIAR/BUAS', '16 Maret 2022 11:15', '', 1, 'CC112 TIM DAMKAR langsung menuju lokasi untuk evakuasi kera yang menyerang warga \r\nNama Pelapor : Askiyah\r\nAlamat : Dusun Paramaan Gunung RT 003 RT 004 Gapura barat\r\nKejadian : Gangguan Kera Kepada Masyarakat\r\nKorban : 2 Anak-anak', '', '', '03', '2022'),
+(341, 'LatLng(-6.967915, 113.732381)', 'Dusun Batuguluk Basoka', '303', '12', 'BENCANA ALAM', '16 Maret 2022 16:00', '16 Maret 2022 20:00', 1, 'CC112 TIM BPBD menuju lokasi tanah longsor dan banjir karena kondisi medan dan lampu padam evakuasi dilanjutkan keesokan harinya.\r\nPelapor : Bapak Mansur \r\nDesa Basoka\r\nKec. Rubaru', '', '', '03', '2022'),
+(342, 'LatLng(-7.01027, 113.834131)', 'Jl. Raya Lenteng - Batuan', '68', '3', 'POHON TUMBANG', '19 Maret 2022 12:00', '19 Maret 2022 18:00', 1, 'CC112 TIM DLH mengevakuasi pohon tumbang di desa Batuan Kec. Batuan', '', '', '03', '2022'),
+(343, 'LatLng(-7.114731, 113.747914)', 'Jl. Raya Pakandangan', '103', '8', 'POHON TUMBANG', '19 Maret 2022 17:00', '19 Maret 2022 18:00', 1, 'CC112 TIM DLH evakuasi pohon tumbang di Desa Pekandangan Kec. Bluto', '', '', '03', '2022'),
+(344, 'LatLng(-7.09823, 113.858721)', 'Kebun Dadap Barat', '325', '7', 'BANJIR', '19 Maret 2022 17:00', '19 Maret 2022 22:00', 1, 'CC112 TIM BPBD, DAMKAR, DLH, Polsek Saronggi dan BASARNAS Kalianget mengewakuasi seorang anak perempuan umur 7 tahun terhanyut banjir dan masih belum ditemukan\r\nNama : Talita\r\nUmur : 7 Tahun\r\nDesa : Kebun Dadap Barat\r\nKec. Saronggi\r\n', '', '', '03', '2022'),
+(345, 'LatLng(-7.113795, 113.723303)', 'Jl. Raya Kapedi', '97', '8', 'KEBAKARAN', '27 Maret 2022 02:00', '27 Maret 2022 03:30', 1, 'CC112 TIM DAMKAR mengevakuasi \r\nKebakaran 1 unit mobil Inova Reborn yg merembet ke bangunan gudang yg dijadikan tempat parkir mobil sekaligus penyimpanan hasil tanaman jagung\r\nNama : Ali Muksin\r\nKorban jiwa : Nihil\r\nKerugian : sekitar 1 Miliyar\r\nDesa Kapedi Kec. Bluto\r\n', '', '', '03', '2022'),
+(346, 'LatLng(-7.026333, 113.903515)', 'Pondok Pesantren Hidayatul Aliyah Brembeng ', '11', '1', 'KEBAKARAN', '27 Maret 2022 08:50', '27 Maret 2022 09:30', 1, 'CC112 TIM DAMKAR Mengevakuasi kebakaran akibat ledakan gas tabung LPG 3kg di dusun Brembeng  belakang Pondok Pesantren K. Ali\r\nKorban : 1 orang luka Bakar\r\ndirawat Puskesmas Kalianget\r\nNama :  Bunawi\r\nkerugian : Kurang lebih 10 jt\r\nLokasi : Desa Kalimook \r\nKec. Kalianget', '', '', '03', '2022'),
+(347, 'LatLng(-7.0229, 113.856586)', 'Jl. Trunojoyo (Dpn Hotel Safari)', '221', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '29 Maret 2022 12:00', '29 Maret 2022 13:00', 1, 'CC112 TIM SATPOl PP mengevakuasi ODGJ di depan hotel Safari Desa Kolor dan di serahkan RPS Dinas Sosial ', '', '', '03', '2022'),
+(348, 'LatLng(-7.017291, 113.858067)', 'Jl. Tronojoyo (Depan Ruko Adipoday) Kolor', '221', '2', 'EVAKUASI HEWAN LIAR/BUAS', '30 Maret 2022 18:30', '31 Maret 2022 19:00', 1, 'CC112 TIM DAMKAR mengevakuasi ular yang masuk ke dalam rumah milik Ibu Sri Rahayu Desa kolor Kec. Kota Sumenep. Ular berhasil dievakuasi 30 menit kemudian', '', '', '03', '2022'),
+(349, 'LatLng(-7.097592, 113.863029)', 'Jl. Raya Tanjung Saronggi', '331', '7', 'KEBAKARAN', '01 April 2022 00:30', '01 April 2022 02:00', 1, 'CC112 TIM DAMKAR berhasil memadamkan kebakaran di lokasi pabrik kerupuk di Desa Saroka Kec. Saronggi\r\nNama Pemilik : Maskawi\r\nAlamat : Desa Saroka Kec. Saronggi', '', '', '04', '2022'),
+(350, 'LatLng(-7.037647, 113.777761)', 'Jl. Raya Lenteng (Pasar lenteng)', '238', '5', 'KEBAKARAN', '01 April 2022 03:30', '01 April 2022 04:30', 1, 'CC112 TIM DAMKAR berhadil memadamkan kebakaran di Pasar Lenteng \r\nObjek : 4 Kios/toko\r\nLokasi : Pasar lenteng Kec. lenteng', '', '', '04', '2022'),
+(351, 'LatLng(-7.033849, 113.892614)', 'Jl. Yos Sudarso ', '222', '2', 'KEBAKARAN', '05 April 2022 12:30', '05 April 2022 13:00', 1, 'CC112 TIM DAMKAR Berhasil memadamkan kebakran di Pasar Marengan \r\nDesa : Marengan Daya\r\nKec. Kota Sumenep\r\nPemilik : Siti Latifah\r\nObjek : Kios\r\n', '', '', '04', '2022'),
+(352, 'LatLng(-7.095333, 113.81969)', 'Jl. Raya Saronggi - Bluto ', '334', '7', 'KECELAKAAN LALU LINTAS', '06 April 2022 08:45', '06 April 2022 09:00', 1, 'CC112 TIM PUSKESMAS SARONGGI evakuasi LAKA \r\nLokasi  : Turunan Desa Tanah Merah(Pengisian LPJ) Kec. Saronggi\r\nKorban luka  : 3 Orang 1anak 2 Dewasa(perempuan)', '', '', '04', '2022'),
+(353, 'LatLng(-6.886435, 113.663218)', 'Jl. Abubakar Siddiq', '275', '14', 'KRIMINALITAS', '06 April 2022 11:45', '06 April 2022 12:00', 1, 'CC112 TIM PUSKESMAS Evakuasi korban Carok  \r\nKorban : 1 orang dan di rujuk ke RSUD\r\n', '', '', '04', '2022'),
+(354, 'LatLng(-7.082386, 113.829238)', 'Desa Saronggi ', '332', '7', 'KEBAKARAN', '06 April 2022 17:00', '06 April 2022 17:15', 1, 'CC112 TIM DAMKAR Berhasil memadamkan tabung gas LPJ 3kg akibat regurator bocor.\r\nNama : Pujiatmi\r\nAlamat : Dusun Nangnangan RT 05 RW 02 Desa Saronggi Kecamatan Saronggi \r\nObjek : Tabung LPG 3kg\r\nKerugian : -\r\nKorban : Nihil', '', '', '04', '2022'),
+(356, 'LatLng(-7.032191, 113.731284)', 'Dusun Ansanah 1', '237', '5', 'EVAKUASI HEWAN LIAR/BUAS', '07 April 2022 14:30', '07 April 2022 16:00', 1, 'CC112 TIM Damkar mengevakuasi binatang kera menyerang warga di Desa lenteng Barat.\r\nPelapor : Ismail\r\nAlamat : Dusun Ansanah 1 Desa Lenteng Barat\r\nKecamatan : Lenteng\r\n', '', '', '04', '2022'),
+(358, 'LatLng(-7.104588, 113.710458)', 'Jl. Raya Karduluk ', '282', '10', 'GIAT EVAKUASI', '10 April 2022 02:30', '10 April 2022 04:30', 1, 'CC112 TIM DAMKAR berhasil mengevakuasi mobil terpelosok ke jurang dengan kedalaman 5 meter\r\nPemilik : Ahmad Abu Bakar \r\nAlamat : Dungkek\r\nMobil : Pickup L300 bermuatan kelapa\r\nKorban : 1 Orang Luka\r\nKerugian : 50 Jt\r\nLokasi Kejadian : Desa Karduluk Kec. Pragaan\r\n\r\n', '', '', '04', '2022'),
+(359, 'LatLng(-7.099858, 113.816616)', 'Jl. Tanah Merah Saronggi ', '334', '7', 'KECELAKAAN LALU LINTAS', '11 April 2022 14:45', '11 April 2022 15:00', 1, 'CC112 TIM Polres Sumenep dan Puskesmas Saronggi mengevakuasi kecelakaan lalu lintas. \r\nLokasi : Jl. Tanah Merah Tanjakan Saronggi - Bluto\r\nKejadian : Truck Box terguling\r\nKorban : 2 orang luka ringan/lecet', '', '', '04', '2022'),
+(360, 'LatLng(-7.025237, 113.85929)', 'Jl. Adipoday Kolor', '221', '2', 'KEBAKARAN', '12 April 2022 14:30', '12 April 2022 15:00', 1, 'CC112 Tim Damkar mengevakuasi Dahan yang terbakar di jalan Adipoday (barat asrama polri)', '', '', '04', '2022'),
+(362, 'LatLng(-7.129075, 113.858528)', 'Desa Pagarbatu  ', '330', '7', 'KEBAKARAN', '13 April 2022 16:30', '19 April 2022 17:00', 1, 'CC112 TIM Damkar menuju lokasi kejadian kebakaran di Desa Pagarbatu Kec. Saronggi', '', '', '04', '2022'),
+(363, 'LatLng(-7.010159, 113.870539)', 'Jl. KH. Mansyur Perum Rampak Asri', '210', '2', 'EVAKUASI HEWAN LIAR/BUAS', '17 April 2022 18:00', '17 April 2022 20:00', 1, 'CC112 TIM Damkar mengevakuasi Anjing yang belum di ketahui pemiliknya masuk ke rumah warga di Perum Rampak Asri.\r\n', '', '', '04', '2022'),
+(364, 'LatLng(-7.020962, 113.856345)', 'Jl. Trunojoyo (Utara Pom Bensin Kolor)', '221', '2', 'EVAKUASI HEWAN LIAR/BUAS', '18 April 2022 05:00', '19 April 2022 06:00', 1, 'CC112 TIM Damkar ke lokasi untuk mengevakuasi ular cobra.\r\nPelapor : Rendi\r\nLokasi : Utara Pom bensin Kolor Kec. Kota Sumenep', '', '', '04', '2022'),
+(365, 'LatLng(-7.006107, 113.860041)', 'Jl. Halim Perdana Kusuma (Depan Toko Bali)', '213', '2', 'KEBAKARAN', '18 April 2022 13:00', '18 April 2022 14:00', 1, 'CC112 TIM Damkar dan PLN Sumenep menuju lokasi kejadian dan memadamkan api yg keluar dari Kabel PLN dan memadamkan listrik untuk proses perbaikan', '', '', '04', '2022'),
+(366, 'LatLng(-7.029409, 113.885264)', 'Jl. Yos Sudarso Sumenep', '224', '2', 'KECELAKAAN LALU LINTAS', '19 April 2022 16:20', '19 April 2022 17:00', 1, 'CC112 TIM Polres Sumenep mengevakuasi Kecelakaan Lalu lintas Mobil dan Sepeda Motor\r\nLokasi : Desa Pabian Kec. Kota Sumenep\r\nKejadian : Laka Roda 4 dan Roda 2\r\nKorban : 1 orang luka ', '', '', '04', '2022'),
+(367, 'LatLng(-7.00472, 113.847512)', 'Jl. Raya Lenteng(Pertigaan Asta Tinggi)', '211', '2', 'KEBAKARAN', '20 April 2022 18:00', '20 April 2022 19:00', 1, 'CC112 TIM Damkar dan PLN Sumenep mengevakuasi Tiang listrik terbakar di Pertigaan Kebonagung arah Asta tinggi\r\nLokasi : Desa Kebonagung\r\nKec. : Kota Sumenep', '', '', '04', '2022'),
+(368, 'LatLng(-7.011782, 113.844559)', 'Jl. Jokotole Lingkar Barat', '216', '2', 'KECELAKAAN LALU LINTAS', '25 April 2022 21:00', '25 April 2022 21:30', 1, 'CC112 Tim Puskesmas Pandian dan Polres Sumenep mengevakuasi kecelakaan lalulintas antara sepada motor dan Truck BOX\r\nKronologi : Sepeda Motor tabrak truck pargir di bahu jalan\r\nKorban : 1 orang Luka berat', '', '', '04', '2022'),
+(369, 'LatLng(-7.013873, 113.866572)', 'Jl. Asoka ', '215', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '26 April 2022 11:45', '26 April 2022 12:45', 1, 'CC112 TIM Satpol PP eksekusi terkait dugaan perbuatan asusila di salah satu kost jl.asoka\r\nKelurahan Pajagalan Kec. Kota Sumenep', '', '', '04', '2022'),
+(371, 'LatLng(-7.063924, 113.732164)', 'Jl. Raya Bilapora raba', '228', '5', 'KEBAKARAN', '26 April 2022 20:00', '26 April 2022 20:00', 1, 'CC112 TIM Damkar dan PLN Sumenep mengevakuasi kebakaran kabel PLN \r\nLokasi : Desa Bilapora Raba\r\nkejadian : Kabel PLN terbakar', '', '', '04', '2022'),
+(372, 'LatLng(-7.000388, 113.867809)', 'Jl. Imam Bonjol Pamolokan', '209', '2', 'GIAT EVAKUASI', '28 April 2022 02:30', '28 April 2022 03:30', 1, 'CC112 TIM DAMKAR berhasil mengevakuasi Mobil Terpelosok di Jl. Imam Bonjol Pamolokan\r\nAn : Ach. Hadi Maulana\r\nAlamat : Pamolokan\r\nKec. Kota Sumenep', '', '', '04', '2022'),
+(373, 'LatLng(-7.017874, 113.859542)', 'Jl. Adirasa Kolor', '221', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '01 Mei 2022 10:30', '01 Mei 2022 14:30', 1, 'CC112 TIM Satpol PP Berhasil megamankan tersangka ODGJ dan di serahkan ke RPS Dinsos', '', '', '05', '2022'),
+(374, 'LatLng(-6.99783, 113.871283)', 'Jl. Masalembu 83 Perum Bankal', '217', '2', 'EVAKUASI HEWAN LIAR/BUAS', '01 Mei 2022 16:00', '01 Mei 2022 16:30', 1, 'CC112 TIM DAMKAR berhasil mengevakuasi ular Cobra yang masuk ke rumah warga.\r\nNama Pelapor : Bapak Abu Bakar\r\nAlamat : Jl. Masalembu 83 RT 003 RW 011 Pamolokan\r\nKec. Kota Sumenep\r\nJenis Ular : Cobra\r\n', '', '', '05', '2022'),
+(375, 'LatLng(-7.000016, 113.902573)', 'Jl. Raya Gapura - Braji', '157', '15', 'KECELAKAAN LALU LINTAS', '02 Mei 2022 05:30', '02 Mei 2022 06:30', 1, 'CC112 TIM Polres Sumenep mengevakuasi laka tunggal mobil avansa  jatuh ke sungai jl. Raya Gapura sebelah timur jembatan braji.', '', '', '05', '2022'),
+(376, 'LatLng(-7.069399, 114.43222)', 'Perairan Sepudi dan Raas', '294', '32', 'KECELAKAAN LAUT', '03 Mei 2022 12:00', '', 1, 'CC112 TIM Basarnas mendapatkan telegram dari  Basarnas Surabaya tentang hilangnya ABK kapal Cargo Quorn Autralia kewarganegaraan Liberia di Pulau Madura diperairan  Raas dan CC112 Kab Sumenep menintruksikan ke semua TIM di kepulauan untuk melakukan pencairan.', '', '', '05', '2022'),
+(377, 'LatLng(-7.008708, 115.705948)', 'Sapekan', '320', '24', 'KRIMINALITAS', '03 Mei 2022 11:00', '03 Mei 2022 14:00', 1, 'CC112 TIM Puskesmas Sapeken berhasil memberikan pertolongan sementara korban penusukan dari pulau Sepanjang dan korban akan di rujuk ke rumah sakit terdekat yaitu ke pulau bali rumah sakit Buleleng Singaraja', '', '', '05', '2022'),
+(378, 'LatLng(-6.934853, 115.681572)', 'Pulau Sitabbok', '318', '24', 'KECELAKAAN LAUT', '05 Mei 2022 12:30', '05 Mei 2022 15:00', 1, 'CC112 Responder melaporkan terjadi laka laut kapal sabuk nusaantara 91 tujuan Sapeken - Kalianget menabrak karang di perairan pulau sitabbok desa Sapekan, TIM Dishub Sapeken beserta Pemdes Sapeken lansung melakukan evakuasi penumpang melalui perahu ke pulau Sapeken ', '', '', '05', '2022'),
+(379, 'LatLng(-6.999951, 113.854752)', 'Jl. Pahlawan (Barat Pasar Burung)', '209', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '09 Mei 2022 11:00', '12 Mei 2022 12:00', 1, 'CC112 TIM Satpol PP mengevakuasi ODGJ di Jl. Pahlawan (Pasar Burung) Pamolokan\r\nPenelpon : Bpk Feri\r\nAlamat : Pamolokan\r\nLaporan : ODGJ (anggota keluarga yg mengalami depresi(mengamuk) guna mendapatkan perawatan lebih lanjut ke RSJ Menur)', '', '', '05', '2022'),
+(380, 'LatLng(-7.006298, 113.855159)', 'Jl. Mutiara 1 No. 6 Bangselok', '214', '2', 'PERMINTAAN AMBULAN', '09 Mei 2022 11:45', '09 Mei 2022 12:00', 1, 'CC112 TIM Puskesmas Pandian mengevakuasi pasien darurat ke RSUD Moh. Anwar Sumenep\r\nPelapor : Bpk Bilal\r\nAlamat : Jl. Mutiara 1 No. 6 \r\nDesa : Keluarahan Bangselok\r\nKec. Kota Sumenep', '', '', '05', '2022'),
+(381, 'LatLng(-7.039602, 113.895221)', 'Marengan laok kalianget', '4', '1', 'GIAT EVAKUASI', '12 Mei 2022 12:00', '09 Mei 2022 13:00', 1, 'CC112 TIM Damkar menerima untuk bantuan utk melepaskan cicin dijari manis yg tidak bisa dilepas karena jari manisnya bengkak.\r\nNama : Sulastri\r\nAlamat : Marengan Laok\r\nKec. Kalianget', '', '', '05', '2022'),
+(382, 'LatLng(-7.00952, 113.855009)', 'Jl. KH. Sajad Bangselok', '214', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '10 Mei 2022 11:00', '10 Mei 2022 13:00', 1, 'CC112 TIM Satpol PP mengamankan seorang laki-laki yg diduga mengalami depresi(membuang sampah/batu kejalan umum/bakar sampah disebuah rumah kosong) guna mendapatkan perawatan dan penanganan lebih lanjut ke RPS DINSOS', '', '', '05', '2022'),
+(383, 'LatLng(-7.002596, 113.856857)', 'Jl. Nangka Karangduak', '219', '2', 'PERMINTAAN AMBULAN', '11 Mei 2022 11:30', '11 Mei 2022 12:00', 1, 'CC112 TIM Puskesmas Pandian mengevakuasi pasien darurat ke RSUD Moh. Anwar Sumenep Alamat : Jl. Nangka Kelurahan : Karangduak Kec. Kota Sumenep', '', '', '05', '2022'),
+(384, 'LatLng(-7.002305, 113.980998)', 'Jl. pakamban - Andulang', '152', '15', 'KEBAKARAN', '13 Mei 2022 13:15', '17 Mei 2022 12:00', 1, 'CC112 TIM Damkar dan PLN Sumenep mengevakuasi laporan meter listrik tebakar dan berhasil di amankan\r\nnama pelapor : Abdurraman\r\nAlamat : Andulang - Gapura\r\nNama pemilik rumah : Riskiyah\r\nAlamat : Desa Andulang - Gapura', '', '', '05', '2022'),
+(385, 'LatLng(-7.00353, 113.869879)', 'Jl. Mahoni - Pangarangn', '210', '2', 'GIAT EVAKUASI', '14 Mei 2022 16:30', '14 Mei 2022 17:00', 1, 'CC112 TIM Damkar mengevakuasi laporan cincin jatuh ke selokan ', '', '', '05', '2022'),
+(386, 'LatLng(-7.118258, 113.889856)', 'Desa Tanjung - Saronggi', '335', '7', 'PERMINTAAN AMBULAN', '16 Mei 2022 07:00', '16 Mei 2022 09:00', 1, 'CC112 TIM Puskesmas Saronggi dan RSUD mengevakuasi menemuan mayat di desa Tanjung kec. Saronggi\r\nMayat : Laki-laki\r\nIndetitas ; Masih belum diketahui', '', '', '05', '2022'),
+(387, 'LatLng(-7.025731, 113.859751)', 'Jl. Adipoday', '221', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '16 Mei 2022 08:40', '16 Mei 2022 11:20', 1, 'CC112 TIM Satpol PP menindaklanjuti laporan masyarakat terkait  dugaan asusila di sebuah rumah kost jl.adi poday ds.kolor kec.kota sumenep.\r\nPelapor : Ibu herlin\r\nAlamat : Kolor', '', '', '05', '2022'),
+(388, 'LatLng(-7.06122, 113.944166)', 'Jl. Raya Talango', '343', '18', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '16 Mei 2022 11:50', '16 Mei 2022 13:15', 1, 'CC112 TIM Polres Sumenep dan Dishub menilanjuti laporan antrian penyeberangan Talango - Kalianget yang mengakibatkan kericuhan akibat saling serobot\r\nPelapor : Pak Tohir\r\nAlamat : Talango ', '', '', '05', '2022'),
+(389, 'LatLng(-6.982509, 113.849572)', 'Jl. Raya Rubaru Lalangon ', '251', '4', 'PERMINTAAN AMBULAN', '16 Mei 2022 20:00', '16 Mei 2022 20:10', 1, 'CC112 TIM Puskesmas Manding mengevakuasi pasien darurat di Desa Lalangon Kec. Manding\r\nPelapor : Adi\r\nAlamat : Lalangon \r\nKec. Manding\r\nKejadian : Permintaan ambulan untuk masyarakat kondisi tidak sadar', '', '', '05', '2022'),
+(390, 'LatLng(-7.002574, 113.855602)', 'Jl. Pahlawan Pamolokan', '209', '2', 'TIANG LISTRIK RUBUH', '13 Mei 2022 12:00', '30 Mei 2022 19:00', 1, 'CC112 TIM Telkom Sumenep mengevakuasi kabel mengganggu pemilik rumah di jl. Pahlawan dan info dari PT. Telkom ternyata kable milik EFORTE.\r\nPelapor : Ibu Sri Pamolokan', '', '', '05', '2022'),
+(391, 'LatLng(-7.035282, 113.675559)', 'Desa Penanggungan Guluk-guluk', '192', '9', 'PERMINTAAN AMBULAN', '23 Mei 2022 17:30', '23 Mei 2022 19:00', 1, 'CC112 TIM BPBD dan Puskesmas Guluk-guluk mengevakuasi korban tenggelam di DAM Penaggungan \r\nPelapor : Camat Guluk-guluk\r\nKorban : 2 Orang Meninggal', '', '', '05', '2022'),
+(392, 'LatLng(-6.998566, 113.870008)', 'Desa Bangkal', '217', '2', 'EVAKUASI HEWAN LIAR/BUAS', '27 Mei 2022 11:30', '27 Mei 2022 13:00', 1, 'CC112 TIM Damkar berhasil mengvakuasi sarang lebah di desa Bangkal\r\npenelpon : Angga Gusti Pratama\r\nAlamat : Desa Bangkal \r\nKecamatan Kota Sumenep', '', '', '05', '2022'),
+(393, 'LatLng(-6.97686, 113.809175)', 'Jl. Raya Rubaru (Barat asta tinggi)', '307', '12', 'TIANG LISTRIK RUBUH', '27 Mei 2022 17:00', '27 Mei 2022 19:00', 1, 'CC112 TIM Dishub menegevakuasi Tiang PJU di jl. Rubaru(Barat Asta Tinggi \r\nPelapor : Sekcam Rubaru', '', '', '05', '2022'),
+(394, 'LatLng(-7.024496, 113.879482)', 'Jl Slamet Riyadi Ds.Pabian Kec.Kota', '224', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '29 Mei 2022 20:00', '29 Mei 2022 21:00', 1, 'CC112 TIM Satpol PP mengevakuasi ODGJ di desa Pabian\r\nPelapor : Moh.Rasidi\r\nAlamat : Jl Slamet Riyadi Ds.Pabian Kec.Kota\r\nObyek Laporan : Orang depresi', '', '', '05', '2022'),
+(395, 'LatLng(-7.008641, 113.855406)', 'Jl. Kemala Bangselok ', '214', '2', 'EVAKUASI HEWAN LIAR/BUAS', '30 Mei 2022 09:00', '30 Mei 2022 10:00', 1, 'CC112 TIM Satpol PP dan Damkar berhasil mengevakuasi kuda lepas dari kandang\r\nPelapor : Bintoro\r\nAlamat : Jl Kemala Kel.Bangselok Kec.Kota\r\n', '', '', '05', '2022'),
+(396, 'LatLng(-7.019913, 113.864343)', 'Jl. Adirasa (Mini Market Ary)', '221', '2', 'KEBAKARAN', '31 Mei 2022 13:30', '31 Mei 2022 14:00', 1, 'CC112 Tim Damkar dan Puskesmas Pandian berhasil mengevakuasi  kebakaran mini market Ary  di lantai 3(Gudang)\r\nObjek terbakar : Makanan ringan/snak,\r\nKorban : Nihil,\r\nKerugian : - \r\n\r\n', '', '', '05', '2022'),
+(397, 'LatLng(-7.033769, 113.891924)', 'Marengan Laok(Selatan Alfamart)', '4', '1', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '01 Juni 2022 19:30', '01 Juni 2022 20:00', 1, 'CC112 Tim Satpol PP mengevakuasi orang tak dikenal perempuan dari desa saasa mengganggu  ketenangan masyarakat \r\nKejadian : Orang tidak dikenal mengganggu ketentraman \r\nLokasi : Marengan Laok, Kalianget\r\nPelapor : Busrawi\r\nAlamat : Marengan Laok kec. kalianget', '', '', '06', '2022'),
+(398, 'LatLng(-7.007317, 113.857184)', 'Jl. Berlian', '214', '2', 'GIAT EVAKUASI', '03 Juni 2022 09:00', '03 Juni 2022 10:00', 1, 'CC112 TIM Damkar berhasil mengevakuasi selokan yg tersumbat dan meluap\r\nPelapor : Lurah Bangselok', '', '', '06', '2022'),
+(399, 'LatLng(-6.989654, 113.863807)', 'Desa Kebunan ', '220', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '07 Juni 2022 14:20', '07 Juni 2022 14:35', 1, 'CC112 TIM Satpol PP Menindaklanjuti laporan masyarakat terkait  orang depresi mengamuk di Ds.Kebunan  Kec.Kota sumenep yang mengakibatkan resah warga setempat\r\nPelapor : Mariam\r\nDesa : Kebunan\r\nKec. Kota Sumenep', '', '', '06', '2022'),
+(400, 'LatLng(-7.164637, 114.327464)', 'Pasar Gayam', '169', '30', 'KEBAKARAN', '06 Juni 2022 16:30', '06 Juni 2022 17:30', 1, 'CC112 Tim Damkar Kec. Gayam, semua TIM CC112 Kec. Gayam dan di bantu masyarakat menhasil memamdamkan kebakaran di pasar Gayam Kec. Gayam\r\nKorban Jiwa : Nihil, Kerugian : Ratusan Juta', '', '', '06', '2022'),
+(407, 'LatLng(-7.090975, 113.849425)', 'Desa Saroka ', '331', '7', 'KEBAKARAN', '19 Juni 2022 09:45', '19 Juni 2022 11:00', 1, 'CC112 Tim Damkar berhasil memadamkan kebakaran di desa Saroka Kecamatan Saronggi\r\nPelapor : Moh. Ariyanto\r\nAlamat : Desa Saroka\r\nKejadian : Kebakaran\r\nKronologi : Akibat sambungan listrik/stop kontak yg kelebihan beban \r\nKorban : Nihil \r\nKerugian : +- 10Jt\r\n', '', '', '06', '2022'),
+(408, 'LatLng(-7.055535, 113.945249)', 'Pelabuhan Kalianget', '2', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '22 Juni 2022 11:00', '22 Juni 2022 13:00', 1, 'CC112 Tim Polairut Polres Sumenep dan Satpol PP menyelamatkan terduga ODGJ tenggelam di pelabuhan Kalianget dan sudah di serahkan ke keluarganya\r\nPenelpon : Herman\r\nAlamat : Kalianget Timur\r\nKondisi Korban : luka Lecet', '', '', '06', '2022'),
+(409, 'LatLng(-7.07059, 113.834195)', '', '329', '7', 'KECELAKAAN LALU LINTAS', '28 Juni 2022 01:40', '28 Juni 2022 09:00', 1, 'TIM CC112 Mengamankan dan mengavakuasi kecelakaan tangki Oxigen Samator  terguling  di desa Nambakor kec. Saronggi', '', '', '06', '2022'),
+(410, 'LatLng(-7.037764, 113.912215)', 'Jl. Rasa Lojikantang', '11', '1', 'KEBAKARAN', '28 Juni 2022 12:30', '28 Juni 2022 13:00', 1, 'TIM Damkar dan Polsek Kota berhasil memadamkan kebakaran di desa Kalimo ok (Timur SMP 1)Kec. kalianget', '', '', '06', '2022'),
+(411, 'LatLng(-7.032765, 113.904367)', 'Perumahan Pondok Mytiara Harum 09', '11', '1', 'KEBAKARAN', '06 Juli 2022 16:30', '06 Juli 2022 18:00', 1, 'CC112 TIM Damkar berhasil memadamkan kebakaran di perumahan pondok mutiara harum desa Kalimo ok kecamtan Kalianget\r\nPenelpon : Candra Cahyadi\r\nAlamat : Pondok Mutiara Harum 09 Kaliamo ok Kalianget\r\nKronologi : Kebocoran Gas LPG', '', '', '07', '2022'),
+(412, 'LatLng(-7.005718, 113.863565)', 'Jl. Pendekar Kepanjen', '213', '2', 'PERMINTAAN AMBULAN', '06 Juli 2022 23:25', '06 Juli 2022 23:45', 1, 'CC112 TIM Puskesmas Pandian mengevakuasi Pasien di Jl. Pendekar  Kelurahan Kepanjen Kec. kota Sumenep ke RSUD Sumenep.', '', '', '07', '2022'),
+(413, 'LatLng(-7.056244, 113.941993)', 'Jl. Raya Pelabuhan kalianget', '2', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '08 Juli 2022 16:00', '08 Juli 2022 17:00', 1, 'CC112 Tim Satpol PP menegvakuasi terduga ODGJ memukul orang tua  diamankan di Polsek Kalianget dan serahkan ke Dinas Sosial Kab. Sumenep\r\nPelapor : Asmoro\r\nAlamat kalianget Timur Kec. Kalianget', '', '', '07', '2022'),
+(414, 'LatLng(-7.003935, 113.864032)', 'Jl. Pujangga  Kelurahan Kepanjen', '213', '2', 'PERMINTAAN AMBULAN', '10 Juli 2022 10:45', '10 Juli 2022 11:00', 1, 'CC112 Tim Puskesmas Pandian mengevakuasi pasien orang tua tidak sadarkan diri.\r\nPelapor : Vety\r\nAlamat : Jl. Pujangga Keluarahan Kepanjin Ke. Kota Sumenep', '', '', '07', '2022'),
+(415, 'LatLng(-7.015909, 113.857986)', 'Jl. Trunojoyo (Depan SDN Kolor)', '221', '2', 'KEBAKARAN', '10 Juli 2022 22:00', '10 Juli 2022 22:15', 1, 'CC112 Tim Damkar berhasil memadamkan bak sampah di jl. trunojoyo Desa Kolor Kec. Kota Sumenep\r\nPelapor : Afif\r\nAlamat : Kolor', '', '', '07', '2022'),
+(419, 'LatLng(-6.997577, 113.958843)', 'Jl. Raya Gapura (Depan Kecamatan Gapura)', '159', '15', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '13 Juli 2022 08:00', '13 Juli 2022 09:00', 1, 'CC112 Tim Satpol PP mengevakuasi ODGJ di jalan raya Gapura depan kantor Kecamatan Gapura.', '', '', '07', '2022'),
+(420, 'LatLng(-7.016148, 113.859236)', 'Jl. Tronojoyo (Pasar Anom)', '221', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '16 Juli 2022 20:30', '16 Juli 2022 21:00', 1, 'CC112 Tim Satpol PP mengevakuasi orang dengan gangguan jiwa  ke RPS Dinsos Kab.Sumenep\r\nPelapor : Pak Ihwan\r\nAlamat : Kolor Sumenep', '', '', '07', '2022'),
+(421, 'LatLng(-7.004936, 113.851664)', 'Jl. Teuku Umar (Depan puskesmas Pandian)', '212', '2', 'KEBAKARAN', '18 Juli 2022 08:00', '18 Juli 2022 08:10', 1, 'CC112 Tim Damkar, Polsek Kota dan Babinsa Kota Sumenep berhasil memadamkan kebakaran di Jl. Teuku Umar depan puskesmas pandian\r\nPelapor : Puskesmas Pandian\r\nKronologi : Akibat Konsteling Listrik.', '', '', '07', '2022'),
+(422, 'LatLng(-7.021568, 113.85709)', 'Jl. Tronojoyo (Pom bensin Kolor)', '221', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '12 Juli 2022 12:30', '19 Juli 2022 13:00', 1, 'CC112 Tim Satpol PP mengevakuasi ODGJ di jalan Trunojoyo depan POM Bensin Kolor dan di diserahkan RPS Dinas Sosial.\r\nPelapor : Sufiyanti\r\nAlamat : Kolor', '', '', '07', '2022'),
+(423, 'LatLng(-7.015259, 113.861591)', 'Jl. Dr. Cipto (Perum BTN)', '221', '2', 'GIAT EVAKUASI', '19 Juli 2022 16:00', '19 Juli 2022 17:00', 1, 'CC112 Tim Damkar melakukan Giat Evakuasi penanganan selokan?irigasi buntu\r\nPelapor : Bapak Kasyfi\r\nAlamat : Perum BTN Kolor', '', '', '07', '2022'),
+(424, 'LatLng(-7.013667, 113.858437)', 'Jl. Trunojoyo(Depan BRI)', '221', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '20 Juli 2022 18:00', '20 Juli 2022 18:15', 1, 'CC112 Tim Satpol PP mengevakuasi seorang perempuan mengandung membawa anaknya berumur 7 tahun dan 4 tahun mengemis dinjalanan\r\nPelapor  : Masyarakat \r\n', '', '', '07', '2022'),
+(425, 'LatLng(-7.017592, 113.854929)', 'Jl. Lumba-lumba Kolor', '221', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '20 Juli 2022 20:00', '22 Juli 2022 20:30', 1, 'CC112 Tim Satpol PP mengevakuasi  orang terlantar dan salah satu meninggal dunia.\r\nPelapor :Achmad Bardi\r\nAlamat : Desa Kolor', '', '', '07', '2022'),
+(426, 'LatLng(-7.01367, 113.868857)', 'Jl. Dr. Cipto (Perempatan PLN)', '215', '2', 'KEBAKARAN', '24 Juli 2022 02:50', '24 Juli 2022 03:00', 1, 'CC112 Tim Damkar berhasil memadamkan kebakaran pos rumah potong hewan Kelurahan Pajagalan \r\nKorban : Nihil ', '', '', '07', '2022'),
+(427, 'LatLng(-7.009294, 113.854293)', 'Jl. KH. Sajad Bangselok', '214', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '25 Juli 2022 19:30', '25 Juli 2022 20:00', 1, 'CC112 Tim Satpol PP menegvakuasi ODGJ di kelurahan Bangselok\r\nPelapor : Warga Bangselok \r\nKec. : Kota Sumenep', '', '', '07', '2022'),
+(428, 'LatLng(-6.884808, 113.976288)', 'Desa Badur Kec. Batuputih', '75', '28', 'BENCANA ALAM', '26 Juli 2022 11:30', '26 Juli 2022 13:00', 1, 'CC112 Tim BPBD langsung melakukan Asessment & Penggalian Data Informasi laporan kekeringan\r\nPelapor : Warga Badur\r\nDesa : Badur\r\nKec. : Batuputih', '', '', '07', '2022'),
+(429, 'LatLng(-6.985458, 113.83957)', 'Desa Kasengan RT 01 RW 05 Kecamatan Manding', '250', '4', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '29 Juli 2022 13:25', '29 Juli 2022 15:15', 1, 'CC112 Tim Satpol PP mengevakuasi ODGJ merusak rumah di Desa Kasengan RT 01 RW 05 Kecamatan Manding\r\nPelapor : Dr. Utomo', '', '', '07', '2022'),
+(430, 'LatLng(-7.057148, 113.942299)', 'Pelabuhan Kalianget', '2', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '31 Juli 2022 10:25', '31 Juli 2022 11:00', 1, 'CC112 Tim Satpol PP mengevakuasi ODGJ di Pelabuhan Kalianget\r\nPelapor : Bapak Samin', '', '', '08', '2022'),
+(431, 'LatLng(-7.014852, 113.858652)', 'Jl. Tronojoyo (Bank BCA)', '221', '2', 'KEBAKARAN', '01 Agustus 2022 14:20', '01 Agustus 2022 14:30', 1, 'CC112 Tim Damkar berhasil memadamkan tumkan kayu digudang yang kosong.\r\nPelapor : Warga Desa Kolor.', '', '', '08', '2022'),
+(432, 'LatLng(-7.164709, 114.329897)', 'Desa Gendang Timur', '171', '30', 'KECELAKAAN KERJA', '03 Agustus 2022 21:00', '04 Agustus 2022 01:40', 1, 'CC112 Tim Puskesmas Gayam memberi pertolongan korban kecelakaan kerja\r\nkena poli mesin bata  pelipis kiri  \r\nKorban : Meninggal Dunia\r\nNama : Nawi', '', '', '08', '2022'),
+(433, 'LatLng(-7.008971, 113.859231)', 'Jl. Trunojoyo', '214', '2', 'GIAT EVAKUASI', '06 Agustus 2022 13:20', '09 Agustus 2022 13:25', 1, 'CC112 Tim Damkar berhasil mengeluarkan cincin emas yg tidak bisa dilepas dari jarinya dikarenakan cincin yg sudah kekecilan.\r\n', '', '', '08', '2022'),
+(434, 'LatLng(-6.999239, 113.87032)', 'Jl. Sapeken Desa Bangkal', '217', '2', 'PERMINTAAN AMBULAN', '09 Agustus 2022 11:45', '09 Agustus 2022 11:50', 1, 'CC112 Tim Puskesmas mengevakuasi korban jatuh sakit tidak sadarkan diri pada saat bertamu dan dinyatakan meninggal dunia sehingga jenazah langsung diantar ke rumahnya di Desa Marengan Daya Kecamatan Kota Sumenep\r\n', '', '', '08', '2022'),
+(435, 'LatLng(-7.038678, 113.903643)', 'Jl. Raya Kalianget - Kertasada', '10', '1', 'KEBAKARAN', '09 Agustus 2022 17:00', '09 Agustus 2022 18:00', 1, 'CC112 Tim Damkar berhasil memadamkan Kebakaran tumpukan daun dan batang bambu yang sengaja di bakar selang  10 menit menjalar ke pohon bambu yang berdekatan dengan rumah warga', '', '', '08', '2022'),
+(436, 'LatLng(-7.033964, 114.454193)', 'Perairan  Raas', '294', '32', 'KECELAKAAN LAUT', '11 Agustus 2022 00:30', '', 1, 'CC112 menerima laporan hilangnya KLM Putra Kembar bertolak dari pelabuhan kalianget menuju pelabuhan batu guluk kec.arjasa hari minggu tgl 7/8/2022 dengan muatan bahan bangunan dengan 3 ABK dan hilang kontak 8/8/2022 yang seharusnya sudah bersandar di pelabuhan Batu Guluk Kangean\r\nPelapor : Agus Junaedi', '', '', '08', '2022'),
+(437, 'LatLng(-7.020471, 113.808135)', 'Jl. Raya Lenteng Desa Daramista', '230', '5', 'KEBAKARAN', '11 Agustus 2022 19:00', '11 Agustus 2022 20:05', 1, 'CC112 Tim Damkar berhasil memadamkan Kebakaran Mobil Sedan Toyota Corona Excellent th 1991, No Pol L 1817 MW kebakaran terjadi di Cap Mobil yg terjadi percikan api selang 5 menit api membesar di mesin mobil pemilik mobil panik segera keluar dari dalam mobil & segera minta bantuan untuk menelp Call Center 112 yg di teruskan ke Mako Damkar \r\nPemilik : Syamsul Arifin\r\nAlamat : Desa Sangra Bluto\r\n', '', '', '08', '2022'),
+(438, 'LatLng(-7.039849, 113.901266)', 'Desa Kertasada', '10', '1', 'KEBAKARAN', '12 Agustus 2022 00:00', '12 Agustus 2022 01:00', 1, 'CC112 Tim Damkar berhasil memadamkan kebakaran mobil anggkutan Kalianget - Sumenep dengan nopol M 1357 UV yang sedang parkir di Desa Kertasada Kecamatan Kalianget', '', '', '08', '2022'),
+(439, 'LatLng(-7.103383, 113.809605)', 'Jl. Raya Bluto ', '91', '8', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '14 Agustus 2022 15:00', '14 Agustus 2022 17:30', 1, 'CC112 Tim Satpol PP dan Puskesmas Bluto menangani terduga ODGJ meresahkan masyarakat sehingga dilakukan mediasi dengan keluarga dan masyarakat setempat untuk dilakukan tindakan.\r\nPelapor : Fajar', '', '', '08', '2022'),
+(440, 'LatLng(-6.99402, 113.864182)', 'Jl. Raya Saluaran Air Pamolokan', '209', '2', 'PERMINTAAN AMBULAN', '15 Agustus 2022 03:30', '15 Agustus 2022 04:45', 1, 'CC112 Tim Puskesmas Pandian mengevakuasi pasien sesak nafas akibat penyakit kangker paru-paru ke RSUD H. Moh. Anwar Sumenep\r\nPelapor : Moh. Iqbal', '', '', '08', '2022'),
+(441, 'LatLng(-7.038462, 113.777665)', 'Lteng Timur (Timur Polsek)', '236', '5', 'KEBAKARAN', '23 Agustus 2022 23:25', '24 Agustus 2022 01:30', 1, 'CC112 Tim Damkar berhasil memadamkan kebakaran di rumah Imam di Desa Lenteng Timur \r\nPelapor : Abdi \r\nAlamat : Desa Lenteng Timur', '', '', '08', '2022'),
+(442, 'LatLng(-7.082152, 113.763149)', 'Dusun Sumber Langon Desa Sera Tengah', '106', '8', 'KEBAKARAN', '24 Agustus 2022 09:45', '24 Agustus 2022 10:30', 1, 'CC112 Tim Damkar berhasil memadamkan kandang sapi di Dusun Sumber Langon  Desa Serah Tengah Kecamatan Bluto', '', '', '08', '2022'),
+(443, 'LatLng(-7.107832, 113.820527)', 'Desa Soronggi', '332', '7', 'KEBAKARAN', '30 Agustus 2022 04:00', '30 Agustus 2022 05:00', 1, 'CC112 Tim Damkar berhasil pemadamkan kebakaran kandang sapi di desa Saronggi Dusun Nang Nangan\r\nPenelpon : Polsek saronggi', '', '', '09', '2022'),
+(444, 'LatLng(-7.025208, 113.852863)', 'Desa Gedungan', '216', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '01 September 2022 09:50', '01 September 2022 11:50', 1, 'CC112 Tim Satpol PP mengevakuasi terduga ODGJ ke RPS Dinsos\r\nPelapor : Dita', '', '', '09', '2022'),
+(445, 'LatLng(-7.01424, 113.857643)', 'Jl. Trunojoyo (Belakang Kantor Pajak) Kolor', '221', '2', 'EVAKUASI HEWAN LIAR/BUAS', '05 September 2022 05:00', '05 September 2022 06:00', 1, 'CC112 Tim Damkar merhasil mengevakuasi ular yang keluar dari closet kamar mandi warga Kolor\r\nPelapor : Joko', '', '', '09', '2022'),
+(446, 'LatLng(-7.02674, 113.632965)', 'Desa Payudan Nangger', '196', '9', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '07 September 2022 08:00', '12 September 2022 10:00', 1, 'CC112 Tim Satpol PP mengamankan dan mengevakuasi  ODGJ ke RSUD Moh. Anwar Sumenep\r\nPelapor : Bapak Didik', '', '', '09', '2022'),
+(447, 'LatLng(-7.000469, 113.869965)', 'Jl.  Raya Gapura ( Pertigaan Rumdis Sekda)', '217', '2', 'TIANG LISTRIK RUBUH', '13 September 2022 20:00', '13 September 2022 21:00', 1, 'CC112 Tim Damkar, Satlantas Polres Sumenep, PLN, Telkom mengevakauasi  kabel yg lepas akibat tersangkut Truk yang mengakibatkan tiang Telkom miring dan Lampu Lalin miring\r\nPelapor : Bapak Adi Jaya', '', '', '09', '2022'),
+(448, 'LatLng(-7.04749, 113.946156)', 'Jl. Raya Gersik Putih ( Depan SMP 2 Kalianget)', '2', '1', 'KEBAKARAN', '17 September 2022 18:00', '17 September 2022 20:00', 1, 'CC112 Tim Damkar berhasil memadamkan kebakaran di toko dan servis kendaraan roda 2 di Desa Kalianget Timur \r\nPenelpon : Bapak Airlangga\r\n\r\n\r\n', '', '', '09', '2022'),
+(449, 'LatLng(-7.105204, 113.811589)', 'Jl. Raya Bluto ', '91', '8', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '21 September 2022 09:00', '26 September 2022 10:00', 1, 'CC112 Tim Satpol PP dan puskesmas Bluto mengevakuasi ODGJ ke RSP dinsos \r\nPelapor : Puskesmas Bluto', '', '', '09', '2022'),
+(450, 'LatLng(-6.994872, 113.842832)', 'Jl Raya Asta Tinggi', '211', '2', 'KEBAKARAN', '22 September 2022 13:00', '22 September 2022 15:00', 1, 'CC112 semua Tim memadamkan kebakaran lahan di sebalah barat Asta Tinggi', '', '', '09', '2022'),
+(451, 'LatLng(-7.000377, 113.84752)', 'Jl. Asta Tinggi ', '211', '2', 'KEBAKARAN', '25 September 2022 12:00', '25 September 2022 14:00', 1, 'CC112 semua Tim memadamkan kebakaran lahan di Desa Kebonagung', '', '', '09', '2022'),
+(452, 'LatLng(-7.005143, 113.857659)', 'Jl. Karangduak', '219', '2', 'PERMINTAAN AMBULAN', '26 September 2022 15:00', '26 September 2022 16:00', 1, 'CC112 Tim Puskesmas Pandian mengevakuasi  permintaan ambulan kepada warga yang tidak punya sanak keluarga di Desa Karangduak  ke RSUD H. Moh. Anwar Sumenep\r\nPelapor  : Novan Kepanjen', '', '', '09', '2022'),
+(453, 'LatLng(-7.019087, 113.857884)', 'Jl. Trunojoyo', '221', '2', 'EVAKUASI HEWAN LIAR/BUAS', '02 Oktober 2022 15:00', '02 Oktober 2022 15:30', 1, 'CC112 Tim Damkar mengevakuasi ular masuk kerumah warga di Desa Kolor \r\nPelapor : Moh. hasan Paradisi\r\n', '', '', '10', '2022'),
+(454, 'LatLng(-7.120021, 113.786556)', 'Desa Aengdake', '90', '8', 'KEBAKARAN', '04 Oktober 2022 12:00', '05 Oktober 2022 13:00', 1, 'CC112 Tim Damkar dan BPBD memadamkan kebakaran di Desa Aengdake Kec. Bluto', '', '', '10', '2022'),
+(455, 'LatLng(-6.978397, 113.882325)', 'Desa Tenonan', '256', '4', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '05 Oktober 2022 20:35', '05 Oktober 2022 21:00', 1, 'CC112 Tim Satpol PP mengavakuasi ODGJ di Desa Tenonan Kecamatan Manding ke RPS Dinsos\r\nPelapor : Bapak Hayyi\r\nAlamat : Desa Tenonan \r\nKec. Manding', '', '', '10', '2022'),
+(456, 'LatLng(-7.000972, 113.856661)', 'Jl. Pahlawan Pamolokan', '209', '2', 'PERMINTAAN AMBULAN', '08 Oktober 2022 23:00', '08 Oktober 2022 23:30', 1, 'CC112 Tim Puskesmas Pandian merujuk pasien lumpuh dan sesak ke RSUD Moh. Anwar Sumenep\r\nPenelpon :  Agus \r\nAlamat : Jl. Pahlawan Pamolokan ', '', '', '10', '2022'),
+(457, 'LatLng(-7.052851, 113.87917)', 'Desa Karanganyar', '6', '1', 'BENCANA ALAM', '10 Oktober 2022 15:20', '10 Oktober 2022 16:00', 1, 'CC112 Semua Tim mengevakuasi kejadian Angin Puting Beliung di Desa Karangnganyar Kec. Kalianget\r\nKorban Jiwa : Nihil ', '', '', '10', '2022'),
+(458, 'LatLng(-7.002396, 113.861071)', 'Simpang Empat jalan Kartini', '209', '2', 'TIANG LISTRIK RUBUH', '10 Oktober 2022 16:30', '10 Oktober 2022 17:00', 1, 'CC112 Tim BPBD dan PLN Sumenep mengevakuasi pohon yang mengenai tegangan tinggi karena angin kencang sehingga dilakukan pemotongan', '', '', '10', '2022'),
+(459, 'LatLng(-7.006996, 113.994631)', 'Pelabuhan Bintaro', '164', '15', 'KEBAKARAN', '12 Oktober 2022 13:00', '12 Oktober 2022 15:00', 1, 'CC112 Tim Damkar dan BPBD berhasil memadamkan kebakaran kulit pohon kelapa di seputar pelabuhan Bintaro Desa Longos Kec. Gapura', '', '', '10', '2022'),
+(460, 'LatLng(-6.989647, 113.86319)', 'Jl. Raya Manding ', '220', '2', 'PERMINTAAN AMBULAN', '30 Oktober 2022 11:00', '30 Oktober 2022 11:10', 1, 'CC112 Tim Puskesmas Pamolokan mengevakuasi permintaan ambulan pasien menuju RSUD\r\nPelapor : Hernayadi\r\nAlamat : Jl. Raya Manding\r\nDesa : Kebunan\r\nKec. Kota Sumenep', '', '', '10', '2022'),
+(461, 'LatLng(-6.968313, 113.802942)', 'Desa Benasare ', '302', '12', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '09 November 2022 21:00', '09 November 2022 22:00', 1, 'CC112 TIM Saptol PP mengevakuasi ODGJ di desa Benasare Kec. Rubaru\r\nPelapor : Kepla Desa Benasare', '', '', '11', '2022'),
+(462, 'LatLng(-7.032194, 113.706264)', 'Jl.  Gadu Barat', '143', '6', 'BENCANA ALAM', '10 November 2022 13:00', '10 November 2022 17:00', 1, 'CC112 TIM BPBD melakukan assement jalan ambles yang menyebabkan lubang lebar 5 meter kedalman 15 meter\r\nPelapor : Masyarakat Ganding', '', '', '11', '2022'),
+(463, 'LatLng(-7.11289, 113.804487)', 'Jl. Raya Bluto', '91', '8', 'KEBAKARAN', '14 November 2022 18:00', '14 November 2022 19:00', 1, 'CC112 Tim Damkar berhasil memadamkan api di kabel milik telkom di Desa Bluto Kec. Bluto\r\nPelapor : Camat Bluto', '', '', '11', '2022'),
+(464, 'LatLng(-7.003695, 113.860787)', 'Jl. Halim Perdana Kusuma ', '213', '2', 'PERMINTAAN AMBULAN', '18 November 2022 15:00', '18 November 2022 15:30', 1, 'CC112 Tim Damkar dan Puskesmas Pamolokan berhasil pengevakuasi pekerja bangunan tersetrom\r\nke RSUD H. Moh. Anwar', '', '', '11', '2022'),
+(465, 'LatLng(-6.887042, 113.782654)', 'Desa Slopeng', '122', '11', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '04 Desember 2022 14:30', '04 Desember 2022 17:00', 1, 'CC112 Tim Satpol PP dan Puskesmas Dasuk mengevakuasi ODGJ ke RPS Dinas Sosial\r\nPelapor : Sekdes Slopeng', '', '', '12', '2022'),
+(466, 'LatLng(-7.005707, 113.858914)', 'Karangduak', '219', '2', 'PERMINTAAN AMBULAN', '07 Desember 2022 12:00', '09 Desember 2022 15:00', 1, 'CC112 TimPuskesmas Pandian mengevakuasi permintaan ambulan ke RSI\r\nPelapor : Deni\r\nAlamat : Jl. Belimbing \r\nDesa Karangduak\r\nKec. Kota Sumenep', '', '', '12', '2022'),
+(467, 'LatLng(-7.014752, 113.818016)', 'Desa Torbang', '73', '3', 'EVAKUASI HEWAN LIAR/BUAS', '12 Desember 2022 08:00', '12 Desember 2022 09:00', 1, 'CC112 Tim Damkar mengvakuasi Ular Sanca di Desa Tobang Kec. Batuan\r\nPelapor : Hj. Erni Fathor\r\nAlamat : Desa Torbang\r\nKec. : Batuan', '', '', '12', '2022'),
+(468, 'LatLng(-7.009907, 113.859078)', 'Jl. Tengku Umar', '212', '2', 'KEBAKARAN', '14 Desember 2022 06:00', '14 Desember 2022 07:30', 1, 'CC112 Tim Damkar berhasil memadamkan kebakaran di warung makan Amlalia di desa Pandian Kec. Kota Sumenep\r\nPelapor : Warga Pandian', '', '', '12', '2022'),
+(469, 'LatLng(-7.009424, 113.859124)', 'Jl. KH. Sajad Bangselok', '214', '2', 'POHON TUMBANG', '14 Desember 2022 13:00', '14 Desember 2022 13:30', 1, 'CC112 All Tim mengevakuasi pohon tumbang di depan Dinas PMD Kelurahan Bangselok Kec. Kota Sumenep\r\nPelapor : Yogik', '', '', '12', '2022');
 INSERT INTO `lokasi` (`id`, `lat_long`, `alamat`, `desa`, `kec`, `kejadian`, `tanggal_terima`, `tanggal_selesai`, `approve`, `ket`, `nama_pelapor`, `noTelp_pelapor`, `bulan`, `tahun`) VALUES
-(469, 'LatLng(-7.009424, 113.859124)', 'Jl. KH. Sajad Bangselok', '214', '2', 'POHON TUMBANG', '14 Desember 2022 13:00', '14 Desember 2022 13:30', '1', 'CC112 All Tim mengevakuasi pohon tumbang di depan Dinas PMD Kelurahan Bangselok Kec. Kota Sumenep\r\nPelapor : Yogik', '', '', '12', '2022'),
-(470, 'LatLng(-7.113743, 113.804138)', 'Jl. Raya Bluto', '91', '8', 'POHON TUMBANG', '23 Desember 2022 16:00', '23 Desember 2022 17:00', '1', 'CC112 Tim BPBD mengevakuasi pohon tumbang di jalan raya Bluto akibat angin kencang', '', '', '12', '2022'),
-(471, 'LatLng(-6.887614, 113.662169)', 'Jl. Raya Pasongsongan', '274', '14', 'POHON TUMBANG', '23 Desember 2022 16:00', '23 Desember 2022 17:00', '1', 'CC112 Tim DLH mengavakuasi pohon roboh di jl. raya Pasongsongan(Depan Asta Panaongan)', '', '', '12', '2022'),
-(472, 'LatLng(-7.041635, 113.893831)', 'Jl. Adi Sucipto - Desa Marengan Laok - Kalianget', '4', '1', 'TIANG LISTRIK RUBUH', '23 Desember 2022 16:00', '23 Desember 2022 17:00', '1', 'CC112 Tim PLNN dan Telkom melakukan pemeriksaan tiang yg roboh. Setelah dilakukan pemeriksaan bukan milik PLN dan Telkom sehingga taiang yang di amakan  sementara menunggu informasi lebih lanjut', '', '', '12', '2022'),
-(473, 'LatLng(-6.957822, 113.759211)', 'Jl. Raya Rubaru', '311', '12', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '25 Desember 2022 19:00', '25 Desember 2022 20:00', '1', 'CC112 Tim Polsek Rubaru, Satpol PP dan Puskesmas Rubaru mengevakuasi ODGJ ke RSP Dinal Soasial', '', '', '12', '2022'),
-(474, 'LatLng(-6.890254, 113.743987)', 'Jl. Raya Ambunten', '15', '13', 'POHON TUMBANG', '25 Desember 2022 11:00', '25 Desember 2022 13:00', '1', 'CC112 Tim DLH menvakuasi pohon tumbang di jl. raya Ambunten (Sebelum Patung Kerapan Sapi)', '', '', '12', '2022'),
-(475, 'LatLng(-6.913005, 113.815334)', 'Desa Jelbuden - Dasuk', '115', '11', 'EVAKUASI HEWAN LIAR/BUAS', '26 Desember 2022 12:30', '26 Desember 2022 15:00', '1', 'CC112 Tim Damkar menuju lokasi serangan Kera dan telah melakukan pencarian dan belum berhasil menemukan kera tersebut  ', '', '', '12', '2022'),
-(476, 'LatLng(-6.997724, 113.912108)', 'Jl. Raya Gapura -Desa Braji', '157', '15', 'KEBAKARAN', '26 Desember 2022 20:00', '26 Desember 2022 21:00', '1', 'CC112 Tim Damkar berhasil memadamkan kebakaran rumah di desa Braji Kec. Gapura', '', '', '12', '2022'),
-(477, 'LatLng(-7.005756, 113.861589)', 'Jl. Letnan Ramli', '213', '2', 'PERMINTAAN AMBULAN', '30 Desember 2022 11:00', '30 Desember 2022 12:00', '1', 'CC112 TIM Puskesmas Pandian mengevakuasi pasien jatuh\r\nPelapor : Ibu Nunung', '', '', '01', '2022'),
-(482, 'LatLng(-7.033856, 113.893676)', 'Desa Marengan Daya', '222', '2', 'BANJIR', '31 Desember 2022 21:00', '01 Januari 2023 17:00', '1', 'CC112 TIM Damkar melakukan upaya mengurangi terjadinya luapan sungai di desa Marengan Daya yang berdampak masuknya air ke pemukiman warga di 3 Dusun Desa Marengan Daya Kec. kota Sumenep', '', '', '01', '2022'),
-(483, 'LatLng(-6.973027, 113.86209)', 'Jl. Raya Manding', '254', '4', 'POHON TUMBANG', '01 Januari 2023 07:00', '01 Januari 2023 08:00', '1', 'CC112 TIM DLH, BPBD dan Damkar berhasil mengevakuasi pohon nangka roboh ke jalan', '', '', '01', '2023'),
-(484, 'LatLng(-7.004209, 113.848068)', 'Jl. Raya Lenteng Kebonagung', '211', '2', 'POHON TUMBANG', '01 Januari 2023 11:00', '', '1', 'CC112 TIM DLH dan BPBD mengevakuasi pohon roboh di Desa kebonagung (Selatan Jembatan) Desa Kebonagung Kec. Kota Sumenep', '', '', '01', '2023'),
-(485, 'LatLng(-7.032973, 113.892898)', 'Perumahan Pondok Marengan Indah', '222', '2', 'BANJIR', '01 Januari 2023 11:00', '01 Januari 2023 17:00', '1', 'CC112 TIM Dankar berusaha menyedot air akibat luapan sungai dari bandara dan belum berhasil karena ketinggian air semakin bertambah di kawasan bandara', '', '', '01', '2023'),
-(489, 'LatLng(-7.003525, 113.84881)', 'Desa Kebonagung', '211', '2', 'GIAT EVAKUASI', '03 Januari 2023 07:30', '03 Januari 2023 09:00', '1', 'CC112 TIM Satpol PP menuju lokasi kejadian gedung/bangunan mau roboh di desa kebonagung untuk dilakukan meninjauan lokasi dan telah dilakukan koordinasi dengan pemilik gedung untuk segera dirobohkan karena membahayakan pengguna jalan ', '', '', '01', '2023'),
-(490, 'LatLng(-7.041192, 113.696276)', 'Jl. Raya Ganding', '144', '6', 'POHON TUMBANG', '05 Januari 2023 07:30', '05 Januari 2023 11:00', '1', 'CC112 TIM DLH mengevakuasi pohon tumbang di Kec. Ganding', '', '', '01', '2023'),
-(491, 'LatLng(-7.012954, 113.858743)', 'Jl. Tronojoyo', '221', '2', 'KEBAKARAN', '06 Januari 2023 10:00', '06 Januari 2023 11:00', '1', 'CC112 TIM Damkar berhadil memadamkan kebakran gardu PLN di jalan Tronojoyo', '', '', '01', '2023'),
-(492, 'LatLng(-7.005883, 113.861468)', 'Jl. Letnan Ramli', '213', '2', 'EVAKUASI HEWAN LIAR/BUAS', '09 Januari 2023 15:00', '09 Januari 2023 16:00', '1', 'CC112 TIM Damkar berhasil mengevakuasi Ular yang masuk kerumahnya.\r\nPelapor : Helmi \r\nAlamat : Kelurahan kepanjen', '', '', '01', '2023'),
-(493, 'LatLng(-7.061903, 113.675129)', 'Desa Guluk-guluk', '190', '9', 'GIAT EVAKUASI', '11 Januari 2023 09:00', '11 Januari 2023 13:00', '1', 'CC112 TIM dan DLH melakukan penebangan pohon yang nempel dengan kabel PLN sehingga mengakibatkan keluarnya api saat hujan.\r\nPelapor : Ahmad Irfan', '', '', '01', '2023'),
-(494, 'LatLng(-7.111757, 113.650096)', 'Jl. Raya Pakamban', '285', '10', 'GIAT EVAKUASI', '17 Januari 2023 13:00', '17 Januari 2023 15:00', '1', 'CC112 TIM PUPR melakukan giat evakuasi lubang di jembatan Pakamban buntu yang mengakibatkan air tergenang di jembatan.\r\nPelapor : Zubairi', '', '', '01', '2023'),
-(495, 'LatLng(-7.023247, 113.805528)', 'Jl. Raya lenteng Daramista', '230', '5', 'PERMINTAAN AMBULAN', '18 Januari 2023 09:00', '18 Januari 2023 10:00', '1', 'CC112 TIM Puskemas Batuan Dan Ambulan RSUD mengevakuasi korban laka ', '', '', '01', '2023'),
-(496, 'LatLng(-6.997885, 113.866489)', 'Jl. Raya Manding Pamolokan', '209', '2', 'PERMINTAAN AMBULAN', '18 Januari 2023 13:15', '18 Januari 2023 13:30', '1', 'CC112 TIM Puskemas Pamolokan mengevakuasi pasien permintaan ambula di Desa Pamolokan\r\nPelapor : Dio ', '', '', '01', '2023'),
-(497, 'LatLng(-7.015227, 113.814706)', 'Jl. Raya Lenteng Desa Torbang', '73', '3', 'EVAKUASI HEWAN LIAR/BUAS', '22 Januari 2023 07:00', '22 Januari 2023 08:00', '1', 'CC112 TIM Damkar mengevakuasi Ular Piton di Desa Torbang Kecmatan Batuan', '', '', '01', '2023'),
-(498, 'LatLng(-7.007741, 113.878806)', 'Desa Kacongan', '218', '2', 'EVAKUASI HEWAN LIAR/BUAS', '22 Januari 2023 08:00', '22 Januari 2023 09:00', '1', 'CC112 TIM Damkar mengevakuasi Ular Piton yang masuk ke rumah warga Desa Kacongan\r\nPelapor : Bpk Sunaryo', '', '', '01', '2023'),
-(499, 'LatLng(-7.0428, 113.848851)', 'Jl. Raya Patean  Desa Kedungan', '69', '3', 'EVAKUASI HEWAN LIAR/BUAS', '23 Januari 2023 14:00', '23 Januari 2023 15:00', '1', 'CC112 TIM Damkar belum bisa mengevakuasi Ular Cobra karena setelah di lakukan pencarian belum ditemukan\r\nPelapor : Bpk Muris', '', '', '01', '2023'),
-(500, 'LatLng(-7.054814, 113.940344)', 'Jl. Raya Pelabuhan kalianget', '2', '1', 'BENCANA ALAM', '24 Januari 2023 15:00', '24 Januari 2023 16:00', '1', 'CC112 TIM BPBD melakukan Assesmen kejadian angin puting beliaung di Desa kalianget Timur Dusun Tambangan\r\nPelapor : Bpk Rusdi', '', '', '01', '2023'),
-(501, 'LatLng(-7.105851, 113.806547)', 'Jl. Raya Bluto - Lenteng', '91', '8', 'KEBAKARAN', '25 Januari 2023 10:30', '25 Januari 2023 14:00', '1', 'CC112 TIM Damkar berhasil memadamkan kebakaran truck bermuatan tabung gas LPG 3kg', '', '', '01', '2023'),
-(502, 'LatLng(-7.001155, 113.878806)', 'Desa Parsanga', '225', '2', 'EVAKUASI HEWAN LIAR/BUAS', '29 Januari 2023 03:30', '29 Januari 2023 07:00', '1', 'CC112 TIM Damkar mengevakuasi Kerbau liar mengamuk di pemukiman warga Desa Parsanga\r\nPelpor : Bpk Basid', '', '', '01', '2023'),
-(503, 'LatLng(-6.915211, 114.037099)', 'Puskesmas Legung', '61', '16', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '29 Januari 2023 10:50', '29 Januari 2023 13:00', '1', 'CC112 TIM Satpol PP mengamankan ODGJ mengamuk di puskesmas Legung\r\nPelapor : Puskesmas Legung', '', '', '01', '2023'),
-(504, 'LatLng(-6.997991, 113.865824)', 'Jl. Raya Manding Pamolokan', '209', '2', 'EVAKUASI HEWAN LIAR/BUAS', '01 Februari 2023 05:00', '01 Februari 2023 06:00', '1', 'CC112 TIM Damkar berhasil mengevakuasi ular Piton di Desa Pamolokan\r\nPelapor : Ibu Titik Sutinah', '', '', '02', '2023'),
-(505, 'LatLng(-7.047907, 113.941977)', 'Desa Kalianget Timur', '2', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '02 Februari 2023 09:00', '02 Februari 2023 12:00', '1', 'CC112 TIM Satpol PP dan Puskesmas Kalianget mengevakuasi ODGJ ke RSP Dinsos\r\nPelapor : Camat Kalianget', '', '', '02', '2023'),
-(506, 'LatLng(-7.011526, 113.743054)', 'Desa Ellak Laok', '232', '5', 'GIAT EVAKUASI', '03 Februari 2023 13:00', '03 Februari 2023 14:00', '1', 'CC112 All TIM CC112 megevakuasi korban tanah longsor di lokasi tambang batu di Desa Ellak Laok Kec. lenteng', '', '', '02', '2023'),
-(508, 'LatLng(-7.014, 113.818443)', 'Jl. Raya Lenteng Desa Torbang', '73', '3', 'EVAKUASI HEWAN LIAR/BUAS', '05 Februari 2023 09:00', '05 Februari 2023 10:00', '1', 'CC112 TIM Damkar berhasil mengevakuasi ular piton di depan Balai Desa Torbang\r\nPelapor : Bpk. Tri', '', '', '02', '2023'),
-(509, 'LatLng(-7.008418, 113.842982)', 'Jl. Raya Lenteng Lingkar Barat', '67', '3', 'GIAT EVAKUASI', '06 Februari 2023 18:00', '06 Februari 2023 20:00', '1', 'CC112 ALL TIM mengevakuasi tumpahan bahan cor dari Truck mengangkut semin cor dan mengevakuasi korban jatuh akibat kejadian tersebut\r\nPelapor : Aswar', '', '', '02', '2023'),
-(510, 'LatLng(-7.003343, 113.86347)', 'Jl. Kartini', '213', '2', 'PERMINTAAN AMBULAN', '09 Februari 2023 07:00', '09 Februari 2023 08:00', '1', 'CC112 TIM RSUD H. Moh Anwar mengevakuasi tukang becak meninggal dunia di pinggir jalan\r\nPelapor : Andi', '', '', '02', '2023'),
-(511, 'LatLng(-7.009285, 113.878452)', 'Desa Kacongan', '218', '2', 'POHON TUMBANG', '07 April 2023 13:00', '07 April 2023 15:00', '1', 'CC112 TIM Damkar mengevakuai pohon tumbang di Desa Kacongan. \r\nPenelpon : Sunarto\r\nAlamat : Kacongan', '', '', '05', '2023'),
-(512, 'LatLng(-7.113731, 113.804069)', 'Jl. Raya Bluto', '91', '8', 'POHON TUMBANG', '16 April 2023 17:30', '16 April 2023 19:00', '1', 'CC112 TIM BPBD mengevakuasi pohon tumbang di jl. Raya Bluto depan masjid/Indomaret Bluto', '', '', '05', '2023'),
-(513, 'LatLng(-6.999787, 113.890709)', 'Desa Paberasan', '223', '2', 'PERMINTAAN AMBULAN', '14 April 2023 22:00', '14 April 2023 23:45', '1', 'CC112 TIM Puskesmas Pamolokan mengevakuasi pasien permintaan ambulan di Desa Paberasan Kecamatan Kota Sumenep\r\nPelapor : Fitotus\r\nAlamat : Desa Paberasan', '', '', '05', '2023'),
-(514, 'LatLng(-6.999997, 113.899995)', 'Jl. Raya Gapura Pasar Jengara Paberasan', '223', '2', 'PERMINTAAN AMBULAN', '22 April 2023 09:00', '22 April 2023 08:30', '1', 'CC112 TIM Puskesmas Pamolokan mengevakuasi korban laka ke RSUD\r\n', '', '', '05', '2023'),
-(515, 'LatLng(-7.024987, 113.854414)', 'Jl. Raya Trunojoyo Babbalan(belakang kafe Geslim)', '216', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '25 April 2023 13:00', '25 April 2023 14:00', '1', 'CC112 TIM Saptpol PP mengevakuasi ODGJ di desa Babbalan Kec. Kota Sumenep. \r\nPelapor : Rio\r\nAlamat : Gedungan', '', '', '05', '2023'),
-(516, 'LatLng(-7.006202, 113.863345)', 'Kelurahan Kepanjen ', '213', '2', 'KEBAKARAN', '30 April 2023 08:00', '30 April 2023 09:00', '1', 'CC112 TIM Damkar berhasil memadamkan kebakran di kelurahan Kepanjen Kec. Kota Sumenep', '', '', '05', '2023'),
-(517, 'LatLng(-7.044758, 113.928716)', ' Jl. Raya Kalianget Dusun Asam Nunggal RT. 01/ RW.', '11', '1', 'EVAKUASI HEWAN LIAR/BUAS', '01 Mei 2023 18:00', '01 Mei 2023 19:00', '1', 'CC112 TIM Damkar mengevakuasi di Desa Kalianget Barat Kec. Kota Sumenep', '', '', '05', '2023'),
-(518, 'LatLng(-7.036581, 113.905606)', 'Pertigaan Desa kalimo ok Kec. Kota Sumenep', '11', '1', 'KEBAKARAN', '05 Mei 2023 19:00', '05 Mei 2023 20:00', '1', 'CC112 TIM Damkar berhasil memadamkan kebakaran di Desa Kalimo ok Kec. Kalianget', '', '', '05', '2023'),
-(519, 'LatLng(-7.017953, 113.856736)', 'Jl. Trunojoyo belakang RM Padang', '221', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '05 Mei 2023 22:00', '05 Mei 2023 23:00', '1', 'CC112 TIM Satpol PP melakukan mediasi dengan pemilik Kafe terkait laporan suara musik di jam istirahat.', '', '', '05', '2023'),
-(520, 'LatLng(-7.039617, 113.901154)', 'Jl. Raya Kalianget - Kertasada', '10', '1', 'POHON TUMBANG', '16 Mei 2023 14:00', '10 Mei 2023 15:00', '1', 'CC112 TIM BPBD mengevakuasi pohon tumbang di jalan kertasada/tikungan ', '', '', '05', '2023'),
-(521, 'LatLng(-7.046952, 113.929682)', 'Jl. Raya Pelabuhan kalianget(RSI Kalianget)', '3', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '11 Mei 2023 10:00', '16 Mei 2023 13:00', '1', 'CC112 TIM Satpol PP mengevakuasi ODGJ di RSi Kalianget', '', '', '05', '2023'),
-(522, 'LatLng(-7.015818, 113.879063)', 'Desa kacongan (Perumahan PGRI) ', '218', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '12 Mei 2023 07:00', '12 Mei 2023 11:00', '1', 'CC112 TIM Satpol PP mengawal ODGJ ke RSUD ', '', '', '05', '2023'),
-(523, 'LatLng(-7.115505, 113.725662)', 'Desa Kapedi Kec. Bluto', '97', '8', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '15 Mei 2023 19:00', '15 Mei 2023 20:00', '1', 'CC112 TIM Satpol PP melakukan mediasi terkait laporan orang kesasar di desa Kapedi Kec. Bluto', '', '', '05', '2023'),
-(524, 'LatLng(-7.019418, 113.875863)', 'Jl. Raung ', '224', '2', 'PERMINTAAN AMBULAN', '16 Mei 2023 06:30', '16 Mei 2023 07:00', '1', 'CC112 TIM Puskesmas Pamolokan mengevakuasi korban laka di Jl. Raung Pabian ke RSUD', '', '', '05', '2023'),
-(525, 'LatLng(-7.067225, 113.737657)', 'Desa Moncek Tengah ', '241', '5', 'KEBAKARAN', '16 Mei 2023 17:30', '16 Mei 2023 19:00', '1', 'CC112 TIM Damkar mendingikan kebakaran kandang sapi di Desa Moncek Tengah Kec. lenteng.\r\nPelapor : Polsek Lenteng', '', '', '06', '2023'),
-(526, 'LatLng(-6.991145, 113.836598)', 'jl. Raya Kasengan', '250', '4', 'KEBAKARAN', '06 Juni 2023 12:45', '06 Juni 2023 14:00', '1', 'CC112 TIM Damkar memadamkar kebakaran lahan di Desa Kasengan Kec. Manding\r\nPenelpon : Faisal', '', '', '06', '2023'),
-(527, 'LatLng(-7.029749, 113.86375)', 'Jl. Arya Wiraraja Linkar Timur Sumenep', '221', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '07 Juni 2023 12:30', '', '1', 'CC112 Tim Satpol PP menegevakuasi ODGJ di desa Kolor\r\nPelapor : Ruli Kurniadi', '', '', '06', '2023'),
-(528, 'LatLng(-7.045697, 113.930197)', 'Desa Kalianget Barat', '3', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '07 Juni 2023 14:00', '', '1', 'CC112 Tim Satpol PP mengevakuasi ODGI ke RSUD H. Moh. Anwar Sumenep\r\nPelapor : Juhari', '', '', '06', '2023'),
-(529, 'LatLng(-6.886453, 113.663306)', 'Desa Panaongan', '274', '14', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '09 Juni 2023 11:30', '', '1', 'CC112 Tim Satpol PP mengevakuasi ODGJ di Puskesmas Pasongsongan atas laporan dari kepala desa Soddere ', '', '', '06', '2023'),
-(530, 'LatLng(-7.026945, 113.854065)', 'Jl. Trunojoyo (Pertigaan linkar timur)', '216', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '13 Juni 2023 19:00', '', '1', 'CC112 Tim Satpol PP mengevakuasi oarang terlantar di desa babbalan (pertigaan linkar timur) ke RPS Dinsos Sumenep\r\nPelapor : Ibu Shinta', '', '', '06', '2023'),
-(531, 'LatLng(-7.004925, 113.868409)', 'Jl. Agus Salim Perempatan Jati mas', '210', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '20 Juni 2023 15:30', '', '1', 'CC112 Tim Satpol PP mengevakuasi orang terlantar dan terduga ODGJ di perempatan Jl. Agus Salim ke RPS Dinsos\r\nPelopor : Bapak Agus', '', '', '06', '2023'),
-(574, 'LatLng(-7.04426, 113.889771)', 'coba', '91', '8', 'KECELAKAAN LALU LINTAS', '26 Juli 2023 12:00', '', '0', '', 'coba', '1234567890', '07', '2023');
+(470, 'LatLng(-7.113743, 113.804138)', 'Jl. Raya Bluto', '91', '8', 'POHON TUMBANG', '23 Desember 2022 16:00', '23 Desember 2022 17:00', 1, 'CC112 Tim BPBD mengevakuasi pohon tumbang di jalan raya Bluto akibat angin kencang', '', '', '12', '2022'),
+(471, 'LatLng(-6.887614, 113.662169)', 'Jl. Raya Pasongsongan', '274', '14', 'POHON TUMBANG', '23 Desember 2022 16:00', '23 Desember 2022 17:00', 1, 'CC112 Tim DLH mengavakuasi pohon roboh di jl. raya Pasongsongan(Depan Asta Panaongan)', '', '', '12', '2022'),
+(472, 'LatLng(-7.041635, 113.893831)', 'Jl. Adi Sucipto - Desa Marengan Laok - Kalianget', '4', '1', 'TIANG LISTRIK RUBUH', '23 Desember 2022 16:00', '23 Desember 2022 17:00', 1, 'CC112 Tim PLNN dan Telkom melakukan pemeriksaan tiang yg roboh. Setelah dilakukan pemeriksaan bukan milik PLN dan Telkom sehingga taiang yang di amakan  sementara menunggu informasi lebih lanjut', '', '', '12', '2022'),
+(473, 'LatLng(-6.957822, 113.759211)', 'Jl. Raya Rubaru', '311', '12', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '25 Desember 2022 19:00', '25 Desember 2022 20:00', 1, 'CC112 Tim Polsek Rubaru, Satpol PP dan Puskesmas Rubaru mengevakuasi ODGJ ke RSP Dinal Soasial', '', '', '12', '2022'),
+(474, 'LatLng(-6.890254, 113.743987)', 'Jl. Raya Ambunten', '15', '13', 'POHON TUMBANG', '25 Desember 2022 11:00', '25 Desember 2022 13:00', 1, 'CC112 Tim DLH menvakuasi pohon tumbang di jl. raya Ambunten (Sebelum Patung Kerapan Sapi)', '', '', '12', '2022'),
+(475, 'LatLng(-6.913005, 113.815334)', 'Desa Jelbuden - Dasuk', '115', '11', 'EVAKUASI HEWAN LIAR/BUAS', '26 Desember 2022 12:30', '26 Desember 2022 15:00', 1, 'CC112 Tim Damkar menuju lokasi serangan Kera dan telah melakukan pencarian dan belum berhasil menemukan kera tersebut  ', '', '', '12', '2022'),
+(476, 'LatLng(-6.997724, 113.912108)', 'Jl. Raya Gapura -Desa Braji', '157', '15', 'KEBAKARAN', '26 Desember 2022 20:00', '26 Desember 2022 21:00', 1, 'CC112 Tim Damkar berhasil memadamkan kebakaran rumah di desa Braji Kec. Gapura', '', '', '12', '2022'),
+(477, 'LatLng(-7.005756, 113.861589)', 'Jl. Letnan Ramli', '213', '2', 'PERMINTAAN AMBULAN', '30 Desember 2022 11:00', '30 Desember 2022 12:00', 1, 'CC112 TIM Puskesmas Pandian mengevakuasi pasien jatuh\r\nPelapor : Ibu Nunung', '', '', '01', '2022'),
+(482, 'LatLng(-7.033856, 113.893676)', 'Desa Marengan Daya', '222', '2', 'BANJIR', '31 Desember 2022 21:00', '01 Januari 2023 17:00', 1, 'CC112 TIM Damkar melakukan upaya mengurangi terjadinya luapan sungai di desa Marengan Daya yang berdampak masuknya air ke pemukiman warga di 3 Dusun Desa Marengan Daya Kec. kota Sumenep', '', '', '01', '2022'),
+(483, 'LatLng(-6.973027, 113.86209)', 'Jl. Raya Manding', '254', '4', 'POHON TUMBANG', '01 Januari 2023 07:00', '01 Januari 2023 08:00', 1, 'CC112 TIM DLH, BPBD dan Damkar berhasil mengevakuasi pohon nangka roboh ke jalan', '', '', '01', '2023'),
+(484, 'LatLng(-7.004209, 113.848068)', 'Jl. Raya Lenteng Kebonagung', '211', '2', 'POHON TUMBANG', '01 Januari 2023 11:00', '', 1, 'CC112 TIM DLH dan BPBD mengevakuasi pohon roboh di Desa kebonagung (Selatan Jembatan) Desa Kebonagung Kec. Kota Sumenep', '', '', '01', '2023'),
+(485, 'LatLng(-7.032973, 113.892898)', 'Perumahan Pondok Marengan Indah', '222', '2', 'BANJIR', '01 Januari 2023 11:00', '01 Januari 2023 17:00', 1, 'CC112 TIM Dankar berusaha menyedot air akibat luapan sungai dari bandara dan belum berhasil karena ketinggian air semakin bertambah di kawasan bandara', '', '', '01', '2023'),
+(489, 'LatLng(-7.003525, 113.84881)', 'Desa Kebonagung', '211', '2', 'GIAT EVAKUASI', '03 Januari 2023 07:30', '03 Januari 2023 09:00', 1, 'CC112 TIM Satpol PP menuju lokasi kejadian gedung/bangunan mau roboh di desa kebonagung untuk dilakukan meninjauan lokasi dan telah dilakukan koordinasi dengan pemilik gedung untuk segera dirobohkan karena membahayakan pengguna jalan ', '', '', '01', '2023'),
+(490, 'LatLng(-7.041192, 113.696276)', 'Jl. Raya Ganding', '144', '6', 'POHON TUMBANG', '05 Januari 2023 07:30', '05 Januari 2023 11:00', 1, 'CC112 TIM DLH mengevakuasi pohon tumbang di Kec. Ganding', '', '', '01', '2023'),
+(491, 'LatLng(-7.012954, 113.858743)', 'Jl. Tronojoyo', '221', '2', 'KEBAKARAN', '06 Januari 2023 10:00', '06 Januari 2023 11:00', 1, 'CC112 TIM Damkar berhadil memadamkan kebakran gardu PLN di jalan Tronojoyo', '', '', '01', '2023'),
+(492, 'LatLng(-7.005883, 113.861468)', 'Jl. Letnan Ramli', '213', '2', 'EVAKUASI HEWAN LIAR/BUAS', '09 Januari 2023 15:00', '09 Januari 2023 16:00', 1, 'CC112 TIM Damkar berhasil mengevakuasi Ular yang masuk kerumahnya.\r\nPelapor : Helmi \r\nAlamat : Kelurahan kepanjen', '', '', '01', '2023'),
+(493, 'LatLng(-7.061903, 113.675129)', 'Desa Guluk-guluk', '190', '9', 'GIAT EVAKUASI', '11 Januari 2023 09:00', '11 Januari 2023 13:00', 1, 'CC112 TIM dan DLH melakukan penebangan pohon yang nempel dengan kabel PLN sehingga mengakibatkan keluarnya api saat hujan.\r\nPelapor : Ahmad Irfan', '', '', '01', '2023'),
+(494, 'LatLng(-7.111757, 113.650096)', 'Jl. Raya Pakamban', '285', '10', 'GIAT EVAKUASI', '17 Januari 2023 13:00', '17 Januari 2023 15:00', 1, 'CC112 TIM PUPR melakukan giat evakuasi lubang di jembatan Pakamban buntu yang mengakibatkan air tergenang di jembatan.\r\nPelapor : Zubairi', '', '', '01', '2023'),
+(495, 'LatLng(-7.023247, 113.805528)', 'Jl. Raya lenteng Daramista', '230', '5', 'PERMINTAAN AMBULAN', '18 Januari 2023 09:00', '18 Januari 2023 10:00', 1, 'CC112 TIM Puskemas Batuan Dan Ambulan RSUD mengevakuasi korban laka ', '', '', '01', '2023'),
+(496, 'LatLng(-6.997885, 113.866489)', 'Jl. Raya Manding Pamolokan', '209', '2', 'PERMINTAAN AMBULAN', '18 Januari 2023 13:15', '18 Januari 2023 13:30', 1, 'CC112 TIM Puskemas Pamolokan mengevakuasi pasien permintaan ambula di Desa Pamolokan\r\nPelapor : Dio ', '', '', '01', '2023'),
+(497, 'LatLng(-7.015227, 113.814706)', 'Jl. Raya Lenteng Desa Torbang', '73', '3', 'EVAKUASI HEWAN LIAR/BUAS', '22 Januari 2023 07:00', '22 Januari 2023 08:00', 1, 'CC112 TIM Damkar mengevakuasi Ular Piton di Desa Torbang Kecmatan Batuan', '', '', '01', '2023'),
+(498, 'LatLng(-7.007741, 113.878806)', 'Desa Kacongan', '218', '2', 'EVAKUASI HEWAN LIAR/BUAS', '22 Januari 2023 08:00', '22 Januari 2023 09:00', 1, 'CC112 TIM Damkar mengevakuasi Ular Piton yang masuk ke rumah warga Desa Kacongan\r\nPelapor : Bpk Sunaryo', '', '', '01', '2023'),
+(499, 'LatLng(-7.0428, 113.848851)', 'Jl. Raya Patean  Desa Kedungan', '69', '3', 'EVAKUASI HEWAN LIAR/BUAS', '23 Januari 2023 14:00', '23 Januari 2023 15:00', 1, 'CC112 TIM Damkar belum bisa mengevakuasi Ular Cobra karena setelah di lakukan pencarian belum ditemukan\r\nPelapor : Bpk Muris', '', '', '01', '2023'),
+(500, 'LatLng(-7.054814, 113.940344)', 'Jl. Raya Pelabuhan kalianget', '2', '1', 'BENCANA ALAM', '24 Januari 2023 15:00', '24 Januari 2023 16:00', 1, 'CC112 TIM BPBD melakukan Assesmen kejadian angin puting beliaung di Desa kalianget Timur Dusun Tambangan\r\nPelapor : Bpk Rusdi', '', '', '01', '2023'),
+(501, 'LatLng(-7.105851, 113.806547)', 'Jl. Raya Bluto - Lenteng', '91', '8', 'KEBAKARAN', '25 Januari 2023 10:30', '25 Januari 2023 14:00', 1, 'CC112 TIM Damkar berhasil memadamkan kebakaran truck bermuatan tabung gas LPG 3kg', '', '', '01', '2023'),
+(502, 'LatLng(-7.001155, 113.878806)', 'Desa Parsanga', '225', '2', 'EVAKUASI HEWAN LIAR/BUAS', '29 Januari 2023 03:30', '29 Januari 2023 07:00', 1, 'CC112 TIM Damkar mengevakuasi Kerbau liar mengamuk di pemukiman warga Desa Parsanga\r\nPelpor : Bpk Basid', '', '', '01', '2023'),
+(503, 'LatLng(-6.915211, 114.037099)', 'Puskesmas Legung', '61', '16', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '29 Januari 2023 10:50', '29 Januari 2023 13:00', 1, 'CC112 TIM Satpol PP mengamankan ODGJ mengamuk di puskesmas Legung\r\nPelapor : Puskesmas Legung', '', '', '01', '2023'),
+(504, 'LatLng(-6.997991, 113.865824)', 'Jl. Raya Manding Pamolokan', '209', '2', 'EVAKUASI HEWAN LIAR/BUAS', '01 Februari 2023 05:00', '01 Februari 2023 06:00', 1, 'CC112 TIM Damkar berhasil mengevakuasi ular Piton di Desa Pamolokan\r\nPelapor : Ibu Titik Sutinah', '', '', '02', '2023'),
+(505, 'LatLng(-7.047907, 113.941977)', 'Desa Kalianget Timur', '2', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '02 Februari 2023 09:00', '02 Februari 2023 12:00', 1, 'CC112 TIM Satpol PP dan Puskesmas Kalianget mengevakuasi ODGJ ke RSP Dinsos\r\nPelapor : Camat Kalianget', '', '', '02', '2023'),
+(506, 'LatLng(-7.011526, 113.743054)', 'Desa Ellak Laok', '232', '5', 'GIAT EVAKUASI', '03 Februari 2023 13:00', '03 Februari 2023 14:00', 1, 'CC112 All TIM CC112 megevakuasi korban tanah longsor di lokasi tambang batu di Desa Ellak Laok Kec. lenteng', '', '', '02', '2023'),
+(508, 'LatLng(-7.014, 113.818443)', 'Jl. Raya Lenteng Desa Torbang', '73', '3', 'EVAKUASI HEWAN LIAR/BUAS', '05 Februari 2023 09:00', '05 Februari 2023 10:00', 1, 'CC112 TIM Damkar berhasil mengevakuasi ular piton di depan Balai Desa Torbang\r\nPelapor : Bpk. Tri', '', '', '02', '2023'),
+(509, 'LatLng(-7.008418, 113.842982)', 'Jl. Raya Lenteng Lingkar Barat', '67', '3', 'GIAT EVAKUASI', '06 Februari 2023 18:00', '06 Februari 2023 20:00', 1, 'CC112 ALL TIM mengevakuasi tumpahan bahan cor dari Truck mengangkut semin cor dan mengevakuasi korban jatuh akibat kejadian tersebut\r\nPelapor : Aswar', '', '', '02', '2023'),
+(510, 'LatLng(-7.003343, 113.86347)', 'Jl. Kartini', '213', '2', 'PERMINTAAN AMBULAN', '09 Februari 2023 07:00', '09 Februari 2023 08:00', 1, 'CC112 TIM RSUD H. Moh Anwar mengevakuasi tukang becak meninggal dunia di pinggir jalan\r\nPelapor : Andi', '', '', '02', '2023'),
+(511, 'LatLng(-7.009285, 113.878452)', 'Desa Kacongan', '218', '2', 'POHON TUMBANG', '07 April 2023 13:00', '07 April 2023 15:00', 1, 'CC112 TIM Damkar mengevakuai pohon tumbang di Desa Kacongan. \r\nPenelpon : Sunarto\r\nAlamat : Kacongan', '', '', '05', '2023'),
+(512, 'LatLng(-7.113731, 113.804069)', 'Jl. Raya Bluto', '91', '8', 'POHON TUMBANG', '16 April 2023 17:30', '16 April 2023 19:00', 1, 'CC112 TIM BPBD mengevakuasi pohon tumbang di jl. Raya Bluto depan masjid/Indomaret Bluto', '', '', '05', '2023'),
+(513, 'LatLng(-6.999787, 113.890709)', 'Desa Paberasan', '223', '2', 'PERMINTAAN AMBULAN', '14 April 2023 22:00', '14 April 2023 23:45', 1, 'CC112 TIM Puskesmas Pamolokan mengevakuasi pasien permintaan ambulan di Desa Paberasan Kecamatan Kota Sumenep\r\nPelapor : Fitotus\r\nAlamat : Desa Paberasan', '', '', '05', '2023'),
+(514, 'LatLng(-6.999997, 113.899995)', 'Jl. Raya Gapura Pasar Jengara Paberasan', '223', '2', 'PERMINTAAN AMBULAN', '22 April 2023 09:00', '22 April 2023 08:30', 1, 'CC112 TIM Puskesmas Pamolokan mengevakuasi korban laka ke RSUD\r\n', '', '', '05', '2023'),
+(515, 'LatLng(-7.024987, 113.854414)', 'Jl. Raya Trunojoyo Babbalan(belakang kafe Geslim)', '216', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '25 April 2023 13:00', '25 April 2023 14:00', 1, 'CC112 TIM Saptpol PP mengevakuasi ODGJ di desa Babbalan Kec. Kota Sumenep. \r\nPelapor : Rio\r\nAlamat : Gedungan', '', '', '05', '2023'),
+(516, 'LatLng(-7.006202, 113.863345)', 'Kelurahan Kepanjen ', '213', '2', 'KEBAKARAN', '30 April 2023 08:00', '30 April 2023 09:00', 1, 'CC112 TIM Damkar berhasil memadamkan kebakran di kelurahan Kepanjen Kec. Kota Sumenep', '', '', '05', '2023'),
+(517, 'LatLng(-7.044758, 113.928716)', ' Jl. Raya Kalianget Dusun Asam Nunggal RT. 01/ RW.', '11', '1', 'EVAKUASI HEWAN LIAR/BUAS', '01 Mei 2023 18:00', '01 Mei 2023 19:00', 1, 'CC112 TIM Damkar mengevakuasi di Desa Kalianget Barat Kec. Kota Sumenep', '', '', '05', '2023'),
+(518, 'LatLng(-7.036581, 113.905606)', 'Pertigaan Desa kalimo ok Kec. Kota Sumenep', '11', '1', 'KEBAKARAN', '05 Mei 2023 19:00', '05 Mei 2023 20:00', 1, 'CC112 TIM Damkar berhasil memadamkan kebakaran di Desa Kalimo ok Kec. Kalianget', '', '', '05', '2023'),
+(519, 'LatLng(-7.017953, 113.856736)', 'Jl. Trunojoyo belakang RM Padang', '221', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '05 Mei 2023 22:00', '05 Mei 2023 23:00', 1, 'CC112 TIM Satpol PP melakukan mediasi dengan pemilik Kafe terkait laporan suara musik di jam istirahat.', '', '', '05', '2023'),
+(520, 'LatLng(-7.039617, 113.901154)', 'Jl. Raya Kalianget - Kertasada', '10', '1', 'POHON TUMBANG', '16 Mei 2023 14:00', '10 Mei 2023 15:00', 1, 'CC112 TIM BPBD mengevakuasi pohon tumbang di jalan kertasada/tikungan ', '', '', '05', '2023'),
+(521, 'LatLng(-7.046952, 113.929682)', 'Jl. Raya Pelabuhan kalianget(RSI Kalianget)', '3', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '11 Mei 2023 10:00', '16 Mei 2023 13:00', 1, 'CC112 TIM Satpol PP mengevakuasi ODGJ di RSi Kalianget', '', '', '05', '2023'),
+(522, 'LatLng(-7.015818, 113.879063)', 'Desa kacongan (Perumahan PGRI) ', '218', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '12 Mei 2023 07:00', '12 Mei 2023 11:00', 1, 'CC112 TIM Satpol PP mengawal ODGJ ke RSUD ', '', '', '05', '2023'),
+(523, 'LatLng(-7.115505, 113.725662)', 'Desa Kapedi Kec. Bluto', '97', '8', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '15 Mei 2023 19:00', '15 Mei 2023 20:00', 1, 'CC112 TIM Satpol PP melakukan mediasi terkait laporan orang kesasar di desa Kapedi Kec. Bluto', '', '', '05', '2023'),
+(524, 'LatLng(-7.019418, 113.875863)', 'Jl. Raung ', '224', '2', 'PERMINTAAN AMBULAN', '16 Mei 2023 06:30', '16 Mei 2023 07:00', 1, 'CC112 TIM Puskesmas Pamolokan mengevakuasi korban laka di Jl. Raung Pabian ke RSUD', '', '', '05', '2023'),
+(525, 'LatLng(-7.067225, 113.737657)', 'Desa Moncek Tengah ', '241', '5', 'KEBAKARAN', '16 Mei 2023 17:30', '16 Mei 2023 19:00', 1, 'CC112 TIM Damkar mendingikan kebakaran kandang sapi di Desa Moncek Tengah Kec. lenteng.\r\nPelapor : Polsek Lenteng', '', '', '06', '2023'),
+(526, 'LatLng(-6.991145, 113.836598)', 'jl. Raya Kasengan', '250', '4', 'KEBAKARAN', '06 Juni 2023 12:45', '06 Juni 2023 14:00', 1, 'CC112 TIM Damkar memadamkar kebakaran lahan di Desa Kasengan Kec. Manding\r\nPenelpon : Faisal', '', '', '06', '2023'),
+(527, 'LatLng(-7.029749, 113.86375)', 'Jl. Arya Wiraraja Linkar Timur Sumenep', '221', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '07 Juni 2023 12:30', '', 1, 'CC112 Tim Satpol PP menegevakuasi ODGJ di desa Kolor\r\nPelapor : Ruli Kurniadi', '', '', '06', '2023'),
+(528, 'LatLng(-7.045697, 113.930197)', 'Desa Kalianget Barat', '3', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '07 Juni 2023 14:00', '', 1, 'CC112 Tim Satpol PP mengevakuasi ODGI ke RSUD H. Moh. Anwar Sumenep\r\nPelapor : Juhari', '', '', '06', '2023'),
+(529, 'LatLng(-6.886453, 113.663306)', 'Desa Panaongan', '274', '14', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '09 Juni 2023 11:30', '', 1, 'CC112 Tim Satpol PP mengevakuasi ODGJ di Puskesmas Pasongsongan atas laporan dari kepala desa Soddere ', '', '', '06', '2023'),
+(530, 'LatLng(-7.026945, 113.854065)', 'Jl. Trunojoyo (Pertigaan linkar timur)', '216', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '13 Juni 2023 19:00', '', 1, 'CC112 Tim Satpol PP mengevakuasi oarang terlantar di desa babbalan (pertigaan linkar timur) ke RPS Dinsos Sumenep\r\nPelapor : Ibu Shinta', '', '', '06', '2023'),
+(531, 'LatLng(-7.004925, 113.868409)', 'Jl. Agus Salim Perempatan Jati mas', '210', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '20 Juni 2023 15:30', '', 1, 'CC112 Tim Satpol PP mengevakuasi orang terlantar dan terduga ODGJ di perempatan Jl. Agus Salim ke RPS Dinsos\r\nPelopor : Bapak Agus', '', '', '06', '2023');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `opd_terkait`
+-- Struktur dari tabel `opd_terkait`
 --
 
 CREATE TABLE `opd_terkait` (
@@ -1154,7 +1153,7 @@ CREATE TABLE `opd_terkait` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `opd_terkait`
+-- Dumping data untuk tabel `opd_terkait`
 --
 
 INSERT INTO `opd_terkait` (`id`, `nama_opd`) VALUES
@@ -1170,7 +1169,7 @@ INSERT INTO `opd_terkait` (`id`, `nama_opd`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `survey`
+-- Struktur dari tabel `survey`
 --
 
 CREATE TABLE `survey` (
@@ -1184,7 +1183,7 @@ CREATE TABLE `survey` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `survey`
+-- Dumping data untuk tabel `survey`
 --
 
 INSERT INTO `survey` (`id`, `nama`, `alamat`, `hp`, `res1`, `res2`, `res3`) VALUES
@@ -1212,7 +1211,7 @@ INSERT INTO `survey` (`id`, `nama`, `alamat`, `hp`, `res1`, `res2`, `res3`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -1228,141 +1227,142 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `nama`, `noTelp`, `email`, `hak_akses`, `kejadian`, `online`) VALUES
-(1, 'cc112admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Arief Santoso, ST', NULL, 'admin@gmail.com', 'Admin', 'BENCANA ALAM,POHON TUMBANG,PERMINTAAN AMBULAN,KECELAKAAN LALU LINTAS,TIANG LISTRIK RUBUH,KEAMANAN DAN KETERTIBAN MASYARAKAT,EVAKUASI HEWAN LIAR/BUAS,KEBAKARAN,BANJIR,COVID 19,KRIMINALITAS,ORANG DENGAN GANGGUAN JIWA (ODGJ),GIAT EVAKUASI,KECELAKAAN KERJA,KECELAKAAN LAUT', '1'),
-(26, 'damkarcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'DAMKAR', '', 'damkarcc112@gmail.com', 'Tim', 'POHON TUMBANG,EVAKUASI HEWAN LIAR/BUAS,KEBAKARAN', '0'),
-(28, 'satpolppcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'SATPOL PP', NULL, 'satpolppcc112@gmail.com', 'Tim', 'KEAMANAN DAN KETERTIBAN MASYARAKAT,ORANG DENGAN GANGGUAN JIWA (ODGJ)', '0');
+(1, 'cc112admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Arief Santoso, ST', '', 'admin@gmail.com', 'Admin', 'KECELAKAAN LAUT,KECELAKAAN KERJA,GIAT EVAKUASI,ORANG DENGAN GANGGUAN JIWA (ODGJ),KRIMINALITAS,COVID 19,BANJIR,KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,KEAMANAN DAN KETERTIBAN MASYARAKAT,TIANG LISTRIK RUBUH,KECELAKAAN LALU LINTAS,PERMINTAAN AMBULAN,POHON TUMBANG,BENCANA ALAM', '0'),
+(26, 'damkarcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'DAMKAR', '', 'damkarcc112@gmail.com', 'Tim', 'KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,POHON TUMBANG', '0'),
+(28, 'satpolppcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'SATPOL PP', '', 'satpolppcc112@gmail.com', 'Tim', 'ORANG DENGAN GANGGUAN JIWA (ODGJ),KEAMANAN DAN KETERTIBAN MASYARAKAT', '0'),
+(29, 'bpbdcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'BPBD', '', 'bpbdcc112@gmail.com', 'Tim', 'GIAT EVAKUASI,COVID 19,BANJIR,BENCANA ALAM', '0');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `counterdb`
+-- Indeks untuk tabel `counterdb`
 --
 ALTER TABLE `counterdb`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `desa`
+-- Indeks untuk tabel `desa`
 --
 ALTER TABLE `desa`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `dusun`
+-- Indeks untuk tabel `dusun`
 --
 ALTER TABLE `dusun`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `foto`
+-- Indeks untuk tabel `foto`
 --
 ALTER TABLE `foto`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `kecamatan`
+-- Indeks untuk tabel `kecamatan`
 --
 ALTER TABLE `kecamatan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `kejadian`
+-- Indeks untuk tabel `kejadian`
 --
 ALTER TABLE `kejadian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `lokasi`
+-- Indeks untuk tabel `lokasi`
 --
 ALTER TABLE `lokasi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `opd_terkait`
+-- Indeks untuk tabel `opd_terkait`
 --
 ALTER TABLE `opd_terkait`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `survey`
+-- Indeks untuk tabel `survey`
 --
 ALTER TABLE `survey`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `counterdb`
+-- AUTO_INCREMENT untuk tabel `counterdb`
 --
 ALTER TABLE `counterdb`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43296;
 
 --
--- AUTO_INCREMENT for table `desa`
+-- AUTO_INCREMENT untuk tabel `desa`
 --
 ALTER TABLE `desa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=346;
 
 --
--- AUTO_INCREMENT for table `dusun`
+-- AUTO_INCREMENT untuk tabel `dusun`
 --
 ALTER TABLE `dusun`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
--- AUTO_INCREMENT for table `foto`
+-- AUTO_INCREMENT untuk tabel `foto`
 --
 ALTER TABLE `foto`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=556;
 
 --
--- AUTO_INCREMENT for table `kecamatan`
+-- AUTO_INCREMENT untuk tabel `kecamatan`
 --
 ALTER TABLE `kecamatan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
--- AUTO_INCREMENT for table `kejadian`
+-- AUTO_INCREMENT untuk tabel `kejadian`
 --
 ALTER TABLE `kejadian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT for table `lokasi`
+-- AUTO_INCREMENT untuk tabel `lokasi`
 --
 ALTER TABLE `lokasi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=575;
 
 --
--- AUTO_INCREMENT for table `opd_terkait`
+-- AUTO_INCREMENT untuk tabel `opd_terkait`
 --
 ALTER TABLE `opd_terkait`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `survey`
+-- AUTO_INCREMENT untuk tabel `survey`
 --
 ALTER TABLE `survey`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
