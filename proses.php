@@ -314,7 +314,7 @@ switch ($_GET['action']) {
         break;
     case 'simpan_user':
         $username   = $_POST['username'];
-        $password   = md5($_POST['password']);
+        $password   = md5($_POST['password']='password');
         $nama       = $_POST['nama'];
         $noTelp     = $_POST['noTelp'];
         $email      = $_POST['email'];
@@ -332,7 +332,6 @@ switch ($_GET['action']) {
     case 'edit_user':
         $id_user    = $_POST['id'];
         $username   = $_POST['username'];
-        $password   = md5($_POST['password']);
         $nama       = $_POST['nama'];
         $noTelp     = $_POST['noTelp'];
         $email      = $_POST['email'];
@@ -340,7 +339,7 @@ switch ($_GET['action']) {
         $online     = $_POST['online']=0;
         $kejadian   = implode(",", $_POST['kejadian']); // Mengubah array kejadian menjadi string dengan tanda koma sebagai pemisah
         //input data
-        $update_user = mysqli_query($kominfo, " UPDATE `user` SET username='$username',password='$password',nama='$nama',noTelp='$noTelp',email='$email',hak_akses='$hak_akses',online='$online',kejadian='$kejadian' WHERE id='$id_user' ");
+        $update_user = mysqli_query($kominfo, " UPDATE `user` SET username='$username',nama='$nama',noTelp='$noTelp',email='$email',hak_akses='$hak_akses',online='$online',kejadian='$kejadian' WHERE id='$id_user' ");
         if ($update_user) {
             echo "Edit User Berhasil";
         } else {

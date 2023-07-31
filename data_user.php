@@ -32,10 +32,6 @@ $id_user = $_GET['id_user'];
                         <input type="text" class="form-control" name="username" value="<?php echo $hasil_id_user['username']; ?>">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Password</label>
-                        <input type="text" class="form-control" name="password" value="<?php echo $hasil_id_user['password']; ?>">
-                    </div>
-                    <div class="form-group">
                         <label for="exampleFormControlInput1">Nama</label>
                         <input type="text" class="form-control" name="nama" value="<?php echo $hasil_id_user['nama']; ?>">
                     </div>
@@ -61,7 +57,7 @@ $id_user = $_GET['id_user'];
                         <label for="exampleFormControlInput1">Kejadian</label>
                         <?php
                         $selected_kejadian = explode(",", $hasil_id_user['kejadian']);
-                        $tampil_kejadian = mysqli_query($kominfo, "SELECT * FROM kejadian");
+                        $tampil_kejadian = mysqli_query($kominfo, "SELECT * FROM kejadian ORDER BY id DESC");
                         while($hasil_kejadian = mysqli_fetch_array($tampil_kejadian)){
                             $checked = (in_array($hasil_kejadian['nama_kejadian'], $selected_kejadian)) ? "checked" : "";
                             ?>
@@ -98,7 +94,6 @@ $id_user = $_GET['id_user'];
                     <thead class="">
                         <th width="1%">No</th>
                         <th>Username</th>
-                        <th>Password</th>
                         <th>Nama</th>
                         <th>No Telepon</th>
                         <th>Email</th>
@@ -114,7 +109,6 @@ $id_user = $_GET['id_user'];
                             <tr>
                                 <td><?php echo $no++; ?></td>
                                 <td><?php echo $hasil_user['username']; ?></td>
-                                <td><?php echo $hasil_user['password']; ?></td>
                                 <td><?php echo $hasil_user['nama']; ?></td>
                                 <td><?php echo $hasil_user['noTelp']; ?></td>
                                 <td><?php echo $hasil_user['email']; ?></td>
