@@ -12,7 +12,7 @@ if (is_array($_FILES)) {
                $targetPath = "foto/" . $new_name;
                
                $insert_foto = mysqli_query($kominfo, "INSERT INTO foto SET id_lokasi='$id', nama_foto='$new_name'");
-            
+               
                if ($insert_foto) {
                     move_uploaded_file($sourcePath, $targetPath);
                     $output .= "File " . $_FILES['images']['name'][$name] . " berhasil diupload.<br>";
