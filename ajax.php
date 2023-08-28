@@ -50,25 +50,28 @@ if (empty($_SESSION['112_username'])){
         });
         //simpan 
         $("#lokasi").on("submit", "#upload_foto", function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: 'proses.php?action=simpan_foto',
-                type: 'post',
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    console.log(data); // Tambahkan ini untuk melihat respons dari server di konsol browser.
-                    Swal.fire(data, '', 'success');
-                    lokasi();
-                },
-                error: function(xhr, status, error) {
-                    console.error(error); // Tambahkan ini untuk melihat pesan error jika permintaan gagal.
-                    Swal.fire('Error uploading photo.', '', 'error');
-                }
-            });
-        });
+    e.preventDefault();
+    $.ajax({
+        url: 'proses.php?action=simpan_foto',
+        type: 'post',
+        data: new FormData(this),
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(data) {
+            // Di sini, Anda dapat menambahkan kode untuk menampilkan foto.
+            // Saya asumsikan bahwa "data" yang dikembalikan berisi URL gambar dari database.
+            var imageUrl = data; // Ubah sesuai dengan struktur data yang Anda kembalikan.
+            
+            // Ubah sumber atribut "src" pada elemen <img> untuk menampilkan gambar.
+            $("#gambar").attr("src", imageUrl); // "gambar" adalah ID elemen <img> yang akan menampilkan foto.
+
+            Swal.fire((data), '', 'success');
+            lokasi();
+        }
+    });
+});
+
         //simpan 
         $("#lokasi").on("submit", "#edit_foto", function(e) {
             e.preventDefault();

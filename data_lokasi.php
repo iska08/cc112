@@ -126,7 +126,7 @@ $akses = $_SESSION['hak_akses'];
                                   </div>
                                   <h4 class="modal-title">Edit Foto</h4>
                                   <div align="center"class="modal-body">
-                                    <img src="foto/<?php echo $foto1['nama_foto'] ?>" class="cropbox">
+                                    <img id="gambar" src="foto/<?php echo $foto1['nama_foto'] ?>" class="cropbox" alt="Foto">
                                     <form action="save.php?file=<?php echo $foto1['nama_foto'] ?>" method="post" onsubmit="return checkCoords();">
                                       <input type="hidden" id="x" name="x" />
                                       <input type="hidden" id="y" name="y" />
