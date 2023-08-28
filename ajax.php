@@ -59,8 +59,13 @@ if (empty($_SESSION['112_username'])){
                 cache: false,
                 processData: false,
                 success: function(data) {
-                    Swal.fire((data), '', 'success')
+                    console.log(data); // Tambahkan ini untuk melihat respons dari server di konsol browser.
+                    Swal.fire(data, '', 'success');
                     lokasi();
+                },
+                error: function(xhr, status, error) {
+                    console.error(error); // Tambahkan ini untuk melihat pesan error jika permintaan gagal.
+                    Swal.fire('Error uploading photo.', '', 'error');
                 }
             });
         });
