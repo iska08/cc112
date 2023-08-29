@@ -147,7 +147,7 @@ $akses = $_SESSION['hak_akses'];
                       </div>
                       <br/>
                       <!-- <form method="post" id="upload_foto"> -->
-                      <form method="post" id="upload_foto" enctype="multipart/form-data">
+                      <form method="post" enctype="multipart/form-data" id="upload_foto" action="upload.php">
                         <input type="file" name="foto" data-icon="false" required>
                         <input hidden type="text" name="id" value="<?php echo $hasil['id']; ?>">
                         <input hidden type="text" name="kej" value="<?php echo $hasil['kejadian']; ?>">
@@ -277,7 +277,7 @@ $akses = $_SESSION['hak_akses'];
                       </div>
                       <br/>
                       <!-- <form method="post" id="upload_foto"> -->
-                      <form method="post" id="upload_foto" enctype="multipart/form-data">
+                      <form method="post" enctype="multipart/form-data" id="upload_foto" action="upload.php">
                         <input type="file" name="foto" data-icon="false" required>
                         <input hidden type="text" name="id" value="<?php echo $hasil['id']; ?>">
                         <input hidden type="text" name="kej" value="<?php echo $hasil['kejadian']; ?>">
