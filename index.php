@@ -75,7 +75,7 @@ include 'fungsi_bulan.php';
         <img src="img/cc112_ok1.jpg" class="img-fluid">
       </a>
       <ul class="nav-tem d-none d-sm-inline-block">
-        <a href="adm_login.php" class="nav-link">Laporan Tim</a>
+        <a href="adm_login.php" class="nav-link">Login</a>
       </ul>
       <!-- <ul class="nav-tem d-none d-sm-inline-block">
         <a href="inputLaporan.php" class="nav-link">Laporan Masyarakat</a>
