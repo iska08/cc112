@@ -142,49 +142,56 @@ include 'fungsi_bulan.php';
                                     }
                                     ?>
                                 </select>
-                                <select class="form-control" id="kej" name="kej">
-                                    <?php
-                                    if($_GET['kej']){
-                                        ?>
-                                        <option selected><?php echo $_GET['kej'];?></option>
-                                        <option disabled>== Pilih Kejadian ==</option>
-                                        <?php
-                                    } else {
-                                        ?>
-                                        <option disabled selected>== Pilih Kejadian ==</option>
-                                        <?php
-                                    }
+                                <?php
+                                $hak_akses = $_SESSION['hak_akses'];
+                                if($hak_akses=='Admin'){
                                     ?>
-                                    <?php
-                                    $kejadian = $_SESSION['kejadian'];
-                                    $data = explode(",", $kejadian);
-                                    // print_r($data);
-                                    // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
-                                    $whereClause = "";
-                                    foreach ($data as $value) {
-                                        $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
-                                        if ($whereClause !== "") {
-                                            $whereClause .= " OR ";
+                                    <select class="form-control" id="kej" name="kej">
+                                        <?php
+                                        if($_GET['kej']){
+                                            ?>
+                                            <option selected><?php echo $_GET['kej'];?></option>
+                                            <option disabled>== Pilih Kejadian ==</option>
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <option disabled selected>== Pilih Kejadian ==</option>
+                                            <?php
                                         }
-                                        $whereClause .= "nama_kejadian = '$value'";
-                                    }
-                                    $hak_akses = $_SESSION['hak_akses'];
-                                    if($hak_akses=='Admin'){
-                                        $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian");
-                                    }elseif($hak_akses=='Tim'){
-                                        $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian WHERE $whereClause");
-                                    }
-                                    // $tampil_kej = mysqli_query($kominfo, "select * from kejadian where $whereClause");
-                                    while($hasil_kej = mysqli_fetch_array($tampil_kej)){
                                         ?>
-                                        <option value="<?php echo $hasil_kej['nama_kejadian']; ?>">
-                                            <?php echo $hasil_kej['nama_kejadian']; ?>
-                                        </option>
                                         <?php
-                                    }
-                                    ?>
-                                    <option value="">== Semua Kejadian ==</option>
-                                </select>
+                                        $kejadian = $_SESSION['kejadian'];
+                                        $data = explode(",", $kejadian);
+                                        // print_r($data);
+                                        // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
+                                        $whereClause = "";
+                                        foreach ($data as $value) {
+                                            $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
+                                            if ($whereClause !== "") {
+                                                $whereClause .= " OR ";
+                                            }
+                                            $whereClause .= "nama_kejadian = '$value'";
+                                        }
+                                        $hak_akses = $_SESSION['hak_akses'];
+                                        if($hak_akses=='Admin'){
+                                            $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian");
+                                        }elseif($hak_akses=='Tim'){
+                                            $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian WHERE $whereClause");
+                                        }
+                                        // $tampil_kej = mysqli_query($kominfo, "select * from kejadian where $whereClause");
+                                        while($hasil_kej = mysqli_fetch_array($tampil_kej)){
+                                            ?>
+                                            <option value="<?php echo $hasil_kej['nama_kejadian']; ?>">
+                                                <?php echo $hasil_kej['nama_kejadian']; ?>
+                                            </option>
+                                            <?php
+                                        }
+                                        ?>
+                                        <option value="">== Semua Kejadian ==</option>
+                                    </select>
+                                    <?php
+                                }
+                                ?>
                                 <span class="input-group-append">
                                     <button type="submit" class="btn btn-info btn-flat">Submit</button>
                                 </span>
@@ -403,12 +410,10 @@ include 'fungsi_bulan.php';
                                 </tbody>
                                 <hr />
                                 <tr>
-                                    <td colspan="7" align="center"><b>Jumlah Kejadian</b></td>
+                                    <td colspan="8" align="center"><b>Jumlah Kejadian</b></td>
                                     <td><b><?php echo $jumlah; ?></b></td>
-                                    <td
-                                        colspan="2" align="center"><a target="blank"
-                                        href="data_kejadian_pdf.php?<?php  echo "dari_bulan=" .$_GET['dari_bulan']; echo "&sampai_bulan=" .$_GET['sampai_bulan']; echo "&th=" .$_GET['th']; echo "&kej=" .$_GET['kej'];?>"
-                                        aria-label="pdf" style="color:red;"><i class="far fa-file-pdf"></i></i></a>
+                                    <td colspan="2" align="center">
+                                        <!-- <a target="blank" href="data_kejadian_pdf.php?<?php  echo "dari_bulan=" .$_GET['dari_bulan']; echo "&sampai_bulan=" .$_GET['sampai_bulan']; echo "&th=" .$_GET['th']; echo "&kej=" .$_GET['kej'];?>" aria-label="pdf" style="color:red;"><i class="far fa-file-pdf"></i></i></a> -->
                                     </td>
                                 </tr>
                             </table>
