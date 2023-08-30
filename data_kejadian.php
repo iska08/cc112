@@ -212,77 +212,155 @@ include 'fungsi_bulan.php';
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $kejadian = $_SESSION['kejadian'];
-                                    $data = explode(",", $kejadian);
-                                    // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
-                                    $whereClause = "";
-                                    foreach ($data as $value) {
-                                        $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
-                                        if ($whereClause !== "") {
-                                            $whereClause .= " OR ";
+                                    $hak_akses = $_SESSION['hak_akses'];
+                                    if($hak_akses=='Admin'){
+                                        $kejadian = $_SESSION['kejadian'];
+                                        $data = explode(",", $kejadian);
+                                        // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
+                                        $whereClause = "";
+                                        foreach ($data as $value) {
+                                            $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
+                                            if ($whereClause !== "") {
+                                                $whereClause .= " OR ";
+                                            }
+                                            $whereClause .= "kejadian = '$value'";
                                         }
-                                        $whereClause .= "kejadian = '$value'";
-                                    }
-                                    $dari_bulan = $_GET['dari_bulan'];
-                                    $sampai_bulan = $_GET['sampai_bulan'];
-                                    $th = $_GET['th'];
-                                    $kej = $_GET['kej'];
-                                    if($_GET['dari_bulan'] && $_GET['th']) {
-                                        $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th'  order by id desc ");
-                                    }
-                                    if($_GET['dari_bulan'] && $_GET['th'] && $whereClause) {
-                                        $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th' and $whereClause order by id desc ");
-                                    }
-                                    if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th']) {
-                                        $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th'  order by id desc ");
-                                    }
-                                    if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th'] && $whereClause) {
-                                        $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th' and $whereClause order by id desc ");
-                                    }
-                                    $nomor=1;
-                                    while($hasil = mysqli_fetch_assoc($tampil)){
-                                        $jumlah = mysqli_num_rows($tampil);
-                                    ?>
-                                        <tr>
-                                            <td><?php echo $nomor++; ?></td>
-                                            <td><?php echo $hasil['kejadian']; ?></td>
-                                            <td>
-                                                <?php $id_kec=$hasil['kec'];
-                                                $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
-                                                $kec2 = mysqli_fetch_array($kec1);
-                                                echo $kec2['nama_kecamatan']; ?>
-                                            </td>
-                                            <td>
-                                                <?php $id_desa=$hasil['desa'];
-                                                $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
-                                                $desa2 = mysqli_fetch_array($desa1);
-                                                echo $desa2['nama_desa']; ?>
-                                            </td>
-                                            <td><?php echo $hasil['alamat']; ?></td>
-                                            <td><?php echo $hasil['tanggal_terima']; ?></td>
-                                            <td><?php echo $hasil['tanggal_selesai']; ?></td>
-                                            <td><?php echo $hasil['ket']; ?></td>
-                                            <td width="20%">
-                                                <div class="row">
-                                                    <?php
-                                                    $id_lokasi=$hasil['id'];
-                                                    $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_lokasi'");
-                                                    while($foto1 = mysqli_fetch_array($lokasi_foto)){
-                                                    ?>
-                                                        <div class="col text-center">
-                                                            <div>
-                                                                <a href="foto/<?php echo $foto1['nama_foto'] ?>" data-toggle="lightbox">
-                                                                    <img class="img-thumbnail" src="foto/<?php echo $foto1['nama_foto'] ?>" alt="image" />
-                                                                </a>
+                                        $dari_bulan = $_GET['dari_bulan'];
+                                        $sampai_bulan = $_GET['sampai_bulan'];
+                                        $th = $_GET['th'];
+                                        $kej = $_GET['kej'];
+                                        if($_GET['dari_bulan'] && $_GET['th']) {
+                                            $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th'  order by id desc ");
+                                        }
+                                        if($_GET['dari_bulan'] && $_GET['th'] && $whereClause) {
+                                            $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th' and $whereClause order by id desc ");
+                                        }
+                                        if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th']) {
+                                            $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th'  order by id desc ");
+                                        }
+                                        if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th'] && $_GET['kej']) {
+                                            $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th' and kejadian='$kej' order by id desc ");
+                                        }
+                                        $nomor=1;
+                                        while($hasil = mysqli_fetch_assoc($tampil)){
+                                            $jumlah = mysqli_num_rows($tampil);
+                                        ?>
+                                            <tr>
+                                                <td><?php echo $nomor++; ?></td>
+                                                <td><?php echo $hasil['kejadian']; ?></td>
+                                                <td>
+                                                    <?php $id_kec=$hasil['kec'];
+                                                    $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
+                                                    $kec2 = mysqli_fetch_array($kec1);
+                                                    echo $kec2['nama_kecamatan']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php $id_desa=$hasil['desa'];
+                                                    $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
+                                                    $desa2 = mysqli_fetch_array($desa1);
+                                                    echo $desa2['nama_desa']; ?>
+                                                </td>
+                                                <td><?php echo $hasil['alamat']; ?></td>
+                                                <td><?php echo $hasil['tanggal_terima']; ?></td>
+                                                <td><?php echo $hasil['tanggal_selesai']; ?></td>
+                                                <td><?php echo $hasil['ket']; ?></td>
+                                                <td width="20%">
+                                                    <div class="row">
+                                                        <?php
+                                                        $id_lokasi=$hasil['id'];
+                                                        $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_lokasi'");
+                                                        while($foto1 = mysqli_fetch_array($lokasi_foto)){
+                                                        ?>
+                                                            <div class="col text-center">
+                                                                <div>
+                                                                    <a href="foto/<?php echo $foto1['nama_foto'] ?>" data-toggle="lightbox">
+                                                                        <img class="img-thumbnail" src="foto/<?php echo $foto1['nama_foto'] ?>" alt="image" />
+                                                                    </a>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                        <?php
+                                    }elseif($hak_akses=='Tim'){
+                                        $kejadian = $_SESSION['kejadian'];
+                                        $data = explode(",", $kejadian);
+                                        // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
+                                        $whereClause = "";
+                                        foreach ($data as $value) {
+                                            $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
+                                            if ($whereClause !== "") {
+                                                $whereClause .= " OR ";
+                                            }
+                                            $whereClause .= "kejadian = '$value'";
+                                        }
+                                        $dari_bulan = $_GET['dari_bulan'];
+                                        $sampai_bulan = $_GET['sampai_bulan'];
+                                        $th = $_GET['th'];
+                                        $kej = $_GET['kej'];
+                                        if($_GET['dari_bulan'] && $_GET['th']) {
+                                            $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th'  order by id desc ");
+                                        }
+                                        if($_GET['dari_bulan'] && $_GET['th'] && $whereClause) {
+                                            $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th' and $whereClause order by id desc ");
+                                        }
+                                        if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th']) {
+                                            $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th'  order by id desc ");
+                                        }
+                                        if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th'] && $whereClause) {
+                                            $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th' and $whereClause order by id desc ");
+                                        }
+                                        $nomor=1;
+                                        while($hasil = mysqli_fetch_assoc($tampil)){
+                                            $jumlah = mysqli_num_rows($tampil);
+                                        ?>
+                                            <tr>
+                                                <td><?php echo $nomor++; ?></td>
+                                                <td><?php echo $hasil['kejadian']; ?></td>
+                                                <td>
+                                                    <?php $id_kec=$hasil['kec'];
+                                                    $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
+                                                    $kec2 = mysqli_fetch_array($kec1);
+                                                    echo $kec2['nama_kecamatan']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php $id_desa=$hasil['desa'];
+                                                    $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
+                                                    $desa2 = mysqli_fetch_array($desa1);
+                                                    echo $desa2['nama_desa']; ?>
+                                                </td>
+                                                <td><?php echo $hasil['alamat']; ?></td>
+                                                <td><?php echo $hasil['tanggal_terima']; ?></td>
+                                                <td><?php echo $hasil['tanggal_selesai']; ?></td>
+                                                <td><?php echo $hasil['ket']; ?></td>
+                                                <td width="20%">
+                                                    <div class="row">
+                                                        <?php
+                                                        $id_lokasi=$hasil['id'];
+                                                        $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_lokasi'");
+                                                        while($foto1 = mysqli_fetch_array($lokasi_foto)){
+                                                        ?>
+                                                            <div class="col text-center">
+                                                                <div>
+                                                                    <a href="foto/<?php echo $foto1['nama_foto'] ?>" data-toggle="lightbox">
+                                                                        <img class="img-thumbnail" src="foto/<?php echo $foto1['nama_foto'] ?>" alt="image" />
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
                                     }
                                     ?>
                                 </tbody>
