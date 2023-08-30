@@ -231,12 +231,12 @@ if (empty($_SESSION['112_username'])){
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
-                                    <li class="nav-item">
+                                    <!-- <li class="nav-item">
                                         <a href="?hal=survey" class="nav-link">
                                             <i class="nav-icon far fa-circle"></i>
                                             <p>Survey</p>
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <li class="nav-item">
                                         <a href="?hal=data" class="nav-link">
                                             <i class="nav-icon far fa-circle"></i>
