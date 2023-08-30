@@ -28,13 +28,13 @@ include 'fungsi_bulan.php';
                         <?php
                         if($_GET['dari_bulan'] || $_GET['sampai_bulan']) {
                             if(empty($_GET['th'] && $_GET['kej'])){
-                            ?>
+                                ?>
                                 <div>Semua Kejadian Kedaruratan</div>
-                            <?php
+                                <?php
                             } else {
-                            ?>
+                                ?>
                                 <div> KEJADIAN : <?php echo $_GET['kej']; ?></div>
-                            <?php
+                                <?php
                             }
                             ?>
                             <div> BULAN : 
@@ -50,7 +50,7 @@ include 'fungsi_bulan.php';
                                 }
                                 ?>
                             </div>
-                        <?php
+                            <?php
                         }
                         ?>
                     </h5>
@@ -66,26 +66,26 @@ include 'fungsi_bulan.php';
                                 <select class="form-control" id="bulan" name="dari_bulan">
                                     <?php
                                     if($_GET['dari_bulan']){
-                                    ?>
+                                        ?>
                                         <option value="<?php echo $_GET['dari_bulan']; ?>" selected>
                                             <?php echo kebulan($_GET['dari_bulan']);?>
                                         </option>
                                         <option disabled>== Pilih Dari Bulan ==</option>
-                                    <?php
+                                        <?php
                                     } else {
-                                    ?>
+                                        ?>
                                         <option disabled selected>== Pilih Dari Bulan ==</option>
-                                    <?php
+                                        <?php
                                     }
                                     ?>
                                     <?php
                                     $tampil_bulan = mysqli_query($kominfo, "select * from lokasi GROUP BY bulan "); //ambil data dari tabel kecamatan
                                     while($hasil_bulan = mysqli_fetch_array($tampil_bulan)) {
-                                    ?>
+                                        ?>
                                         <option value="<?php echo $hasil_bulan['bulan']; ?>">
                                             <?php echo kebulan($hasil_bulan['bulan']); ?>
                                         </option>
-                                    <?php
+                                        <?php
                                     }
                                     ?>
                                     <option value="">==</option>
@@ -93,16 +93,16 @@ include 'fungsi_bulan.php';
                                 <select class="form-control" id="bulan" name="sampai_bulan">
                                     <?php
                                     if($_GET['sampai_bulan']){
-                                    ?>
+                                        ?>
                                         <option value="<?php echo $_GET['sampai_bulan']; ?>" selected>
                                             <?php echo kebulan($_GET['sampai_bulan']);?>
                                         </option>
                                         <option disabled>== Pilih Sampai Bulan ==</option>
-                                    <?php
+                                        <?php
                                     } else {
-                                    ?>
+                                        ?>
                                         <option disabled selected>== Pilih Sampai Bulan ==</option>
-                                    <?php
+                                        <?php
                                     }
                                     ?>
                                     <?php
@@ -112,7 +112,7 @@ include 'fungsi_bulan.php';
                                         <option value="<?php echo $hasil_bulan['bulan']; ?>">
                                             <?php echo kebulan($hasil_bulan['bulan']); ?>
                                         </option>
-                                    <?php
+                                        <?php
                                     }
                                     ?>
                                     <option value="">==</option>
@@ -120,40 +120,39 @@ include 'fungsi_bulan.php';
                                 <select class="form-control" id="th" name="th">
                                     <?php
                                     if($_GET['th']){
-                                    ?>
+                                        ?>
                                         <option value="<?php echo $_GET['th']; ?>" selected>
                                             <?php echo $_GET['th'];?>
                                         </option>
                                         <option disabled>== Pilih Dari Tahun ==</option>
-                                    <?php
-                                    } else {
-                                    ?>
+                                        <?php
+                                        ?>
                                         <option disabled selected>== Pilih Tahun ==</option>
-                                    <?php
+                                        <?php
                                     }
                                     ?>
                                     <?php
                                     $tampil_tahun = mysqli_query($kominfo, "select * from lokasi GROUP BY  tahun "); //ambil data dari tabel kecamatan
                                     while($hasil_tahun = mysqli_fetch_array($tampil_tahun)){
-                                    ?>
+                                        ?>
                                         <option value="<?php echo $hasil_tahun['tahun']; ?>">
                                             <?php echo $hasil_tahun['tahun']; ?>
                                         </option>
-                                    <?php
+                                        <?php
                                     }
                                     ?>
                                 </select>
                                 <select class="form-control" id="kej" name="kej">
                                     <?php
                                     if($_GET['kej']){
-                                    ?>
+                                        ?>
                                         <option selected><?php echo $_GET['kej'];?></option>
                                         <option disabled>== Pilih Kejadian ==</option>
-                                    <?php
+                                        <?php
                                     } else {
-                                    ?>
+                                        ?>
                                         <option disabled selected>== Pilih Kejadian ==</option>
-                                    <?php
+                                        <?php
                                     }
                                     ?>
                                     <?php
@@ -177,11 +176,11 @@ include 'fungsi_bulan.php';
                                     }
                                     // $tampil_kej = mysqli_query($kominfo, "select * from kejadian where $whereClause");
                                     while($hasil_kej = mysqli_fetch_array($tampil_kej)){
-                                    ?>
+                                        ?>
                                         <option value="<?php echo $hasil_kej['nama_kejadian']; ?>">
                                             <?php echo $hasil_kej['nama_kejadian']; ?>
                                         </option>
-                                    <?php
+                                        <?php
                                     }
                                     ?>
                                     <option value="">== Semua Kejadian ==</option>
@@ -214,51 +213,79 @@ include 'fungsi_bulan.php';
                                     <?php
                                     $hak_akses = $_SESSION['hak_akses'];
                                     if($hak_akses=='Admin'){
+                                        ?>
+                                        <?php
                                         $kejadian = $_SESSION['kejadian'];
                                         $data = explode(",", $kejadian);
                                         // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
                                         $whereClause = "";
                                         foreach ($data as $value) {
+                                            ?>
+                                            <?php
                                             $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
                                             if ($whereClause !== "") {
                                                 $whereClause .= " OR ";
                                             }
                                             $whereClause .= "kejadian = '$value'";
+                                            ?>
+                                            <?php
                                         }
+                                        ?>
+                                        <?php
                                         $dari_bulan = $_GET['dari_bulan'];
                                         $sampai_bulan = $_GET['sampai_bulan'];
                                         $th = $_GET['th'];
                                         $kej = $_GET['kej'];
                                         if($_GET['dari_bulan'] && $_GET['th']) {
-                                            $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th'  order by id desc ");
+                                            ?>
+                                            <?php $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th'  order by id desc "); ?>
+                                            <?php
                                         }
+                                        ?>
+                                        <?php
                                         if($_GET['dari_bulan'] && $_GET['th'] && $whereClause) {
-                                            $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th' and $whereClause order by id desc ");
+                                            ?>
+                                            <?php $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th' and $whereClause order by id desc "); ?>
+                                            <?php
                                         }
+                                        ?>
+                                        <?php
                                         if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th']) {
-                                            $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th'  order by id desc ");
+                                            ?>
+                                            <?php $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th'  order by id desc "); ?>
+                                            <?php
                                         }
+                                        ?>
+                                        <?php
                                         if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th'] && $_GET['kej']) {
-                                            $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th' and kejadian='$kej' order by id desc ");
+                                            ?>
+                                            <?php $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th' and kejadian='$kej' order by id desc "); ?>
+                                            <?php
                                         }
+                                        ?>
+                                        <?php
                                         $nomor=1;
                                         while($hasil = mysqli_fetch_assoc($tampil)){
-                                            $jumlah = mysqli_num_rows($tampil);
-                                        ?>
+                                            ?>
+                                            <?php $jumlah = mysqli_num_rows($tampil); ?>
                                             <tr>
                                                 <td><?php echo $nomor++; ?></td>
                                                 <td><?php echo $hasil['kejadian']; ?></td>
                                                 <td>
-                                                    <?php $id_kec=$hasil['kec'];
+                                                    <?php
+                                                    $id_kec=$hasil['kec'];
                                                     $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
                                                     $kec2 = mysqli_fetch_array($kec1);
-                                                    echo $kec2['nama_kecamatan']; ?>
+                                                    echo $kec2['nama_kecamatan'];
+                                                    ?>
                                                 </td>
                                                 <td>
-                                                    <?php $id_desa=$hasil['desa'];
+                                                    <?php
+                                                    $id_desa=$hasil['desa'];
                                                     $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
                                                     $desa2 = mysqli_fetch_array($desa1);
-                                                    echo $desa2['nama_desa']; ?>
+                                                    echo $desa2['nama_desa'];
+                                                    ?>
                                                 </td>
                                                 <td><?php echo $hasil['alamat']; ?></td>
                                                 <td><?php echo $hasil['tanggal_terima']; ?></td>
@@ -270,7 +297,7 @@ include 'fungsi_bulan.php';
                                                         $id_lokasi=$hasil['id'];
                                                         $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_lokasi'");
                                                         while($foto1 = mysqli_fetch_array($lokasi_foto)){
-                                                        ?>
+                                                            ?>
                                                             <div class="col text-center">
                                                                 <div>
                                                                     <a href="foto/<?php echo $foto1['nama_foto'] ?>" data-toggle="lightbox">
@@ -278,48 +305,72 @@ include 'fungsi_bulan.php';
                                                                     </a>
                                                                 </div>
                                                             </div>
-                                                        <?php
+                                                            <?php
                                                         }
                                                         ?>
                                                     </div>
                                                 </td>
                                             </tr>
-                                        <?php
+                                            <?php
                                         }
                                         ?>
                                         <?php
                                     }elseif($hak_akses=='Tim'){
+                                        ?>
+                                        <?php
                                         $kejadian = $_SESSION['kejadian'];
                                         $data = explode(",", $kejadian);
                                         // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
                                         $whereClause = "";
                                         foreach ($data as $value) {
+                                            ?>
+                                            <?php
                                             $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
                                             if ($whereClause !== "") {
                                                 $whereClause .= " OR ";
                                             }
                                             $whereClause .= "kejadian = '$value'";
+                                            ?>
+                                        <?php
                                         }
+                                        ?>
+                                        <?php
                                         $dari_bulan = $_GET['dari_bulan'];
                                         $sampai_bulan = $_GET['sampai_bulan'];
                                         $th = $_GET['th'];
                                         $kej = $_GET['kej'];
                                         if($_GET['dari_bulan'] && $_GET['th']) {
-                                            $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th'  order by id desc ");
+                                            ?>
+                                            <?php $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th'  order by id desc "); ?>
+                                        <?php
                                         }
+                                        ?>
+                                        <?php
                                         if($_GET['dari_bulan'] && $_GET['th'] && $whereClause) {
-                                            $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th' and $whereClause order by id desc ");
+                                            ?>
+                                            <?php $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th' and $whereClause order by id desc "); ?>
+                                        <?php
                                         }
+                                        ?>
+                                        <?php
                                         if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th']) {
-                                            $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th'  order by id desc ");
+                                            ?>
+                                            <?php $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th'  order by id desc "); ?>
+                                        <?php
                                         }
+                                        ?>
+                                        <?php
                                         if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th'] && $whereClause) {
-                                            $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th' and $whereClause order by id desc ");
+                                            ?>
+                                            <?php $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th' and $whereClause order by id desc "); ?>
+                                        <?php
                                         }
+                                        ?>
+                                        <?php
                                         $nomor=1;
                                         while($hasil = mysqli_fetch_assoc($tampil)){
-                                            $jumlah = mysqli_num_rows($tampil);
-                                        ?>
+                                            ?>
+                                            <?php $jumlah = mysqli_num_rows($tampil); ?>
                                             <tr>
                                                 <td><?php echo $nomor++; ?></td>
                                                 <td><?php echo $hasil['kejadian']; ?></td>
@@ -345,7 +396,7 @@ include 'fungsi_bulan.php';
                                                         $id_lokasi=$hasil['id'];
                                                         $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_lokasi'");
                                                         while($foto1 = mysqli_fetch_array($lokasi_foto)){
-                                                        ?>
+                                                            ?>
                                                             <div class="col text-center">
                                                                 <div>
                                                                     <a href="foto/<?php echo $foto1['nama_foto'] ?>" data-toggle="lightbox">
@@ -361,6 +412,8 @@ include 'fungsi_bulan.php';
                                             </tr>
                                         <?php
                                         }
+                                        ?>
+                                        <?php
                                     }
                                     ?>
                                 </tbody>
