@@ -39,20 +39,32 @@ switch ($_GET['action']) {
         break;
     case 'simpan_foto':
         $rand = rand(10000000, 20000000);
-        $id=$_POST['id'];
-        $kej = str_replace(" ", "_",$_POST['kej']);
-        $foto_kej = $rand.".".pathinfo($_FILES['foto']['name'] ,PATHINFO_EXTENSION);
+        $id = $_POST['id'];
+        $kej = str_replace(" ", "_", $_POST['kej']);
+        $foto_kej = $rand . "." . pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
         $foto = $_FILES['foto']['name'];
         $nama_foto = $_FILES['foto']['tmp_name'];
-        $extension = pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION);
-        if ($extension=='jpg' || $extension=='jpeg') {
-            $input_foto = mysqli_query($kominfo, "INSERT INTO foto SET id_lokasi='$id', nama_foto='$foto_kej' ");
-            img_resize($nama_foto,400,"foto/",$foto_kej);
-            if ($input_foto) {
-                echo "Simpan Foto Berhasil";
+        $extension = strtolower(pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION)); // Ubah ekstensi menjadi huruf kecil
+
+        $allowed_extensions = array("jpg", "jpeg");
+        if (in_array($extension, $allowed_extensions)) { // Periksa apakah ekstensi diizinkan
+            $upload_folder = "foto/"; // Folder untuk menyimpan foto
+            $upload_path = $upload_folder . $foto_kej;
+
+            if (move_uploaded_file($nama_foto, $upload_path)) { // Pindahkan foto ke folder
+                // Simpan informasi foto ke database
+                $input_foto = mysqli_query($kominfo, "INSERT INTO foto (id_lokasi, nama_foto) VALUES ('$id', '$foto_kej')");
+
+                if ($input_foto) {
+                    echo "Simpan Foto Berhasil";
+                } else {
+                    echo "Gagal menyimpan informasi foto ke database";
+                }
+            } else {
+                echo "Gagal mengunggah foto ke folder";
             }
         } else {
-            echo "Simpan Foto Gagal";
+            echo "Ekstensi file tidak diizinkan. Hanya file JPG/JPEG yang diperbolehkan.";
         }
         break;
     case 'hapus_foto':
