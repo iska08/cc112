@@ -323,52 +323,36 @@ include 'fungsi_bulan.php';
                                         // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
                                         $whereClause = "";
                                         foreach ($data as $value) {
-                                            ?>
-                                            <?php
                                             $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
                                             if ($whereClause !== "") {
                                                 $whereClause .= " OR ";
                                             }
                                             $whereClause .= "kejadian = '$value'";
-                                            ?>
-                                        <?php
                                         }
-                                        ?>
-                                        <?php
-                                        $dari_bulan = $_GET['dari_bulan'];
-                                        $sampai_bulan = $_GET['sampai_bulan'];
-                                        $th = $_GET['th'];
-                                        $kej = $_GET['kej'];
-                                        if($_GET['dari_bulan'] && $_GET['th']) {
-                                            ?>
-                                            <?php $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th'  order by id desc "); ?>
-                                        <?php
+
+                                        $dari_bulan = isset($_GET['dari_bulan']) ? $_GET['dari_bulan'] : '';
+                                        $sampai_bulan = isset($_GET['sampai_bulan']) ? $_GET['sampai_bulan'] : '';
+                                        $th = isset($_GET['th']) ? $_GET['th'] : '';
+
+                                        $query = "SELECT * FROM lokasi WHERE tahun = '$th'";
+
+                                        if (!empty($dari_bulan) && !empty($sampai_bulan)) {
+                                            $query .= " AND bulan BETWEEN '$dari_bulan' AND '$sampai_bulan'";
+                                        } elseif (!empty($dari_bulan)) {
+                                            $query .= " AND bulan = '$dari_bulan'";
                                         }
-                                        ?>
-                                        <?php
-                                        if($_GET['dari_bulan'] && $_GET['th'] && $whereClause) {
-                                            ?>
-                                            <?php $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th' and $whereClause order by id desc "); ?>
-                                        <?php
+
+                                        if (!empty($whereClause)) {
+                                            $query .= " AND ($whereClause)";
                                         }
-                                        ?>
-                                        <?php
-                                        if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th']) {
-                                            ?>
-                                            <?php $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th'  order by id desc "); ?>
-                                        <?php
-                                        }
-                                        ?>
-                                        <?php
-                                        if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th'] && $whereClause) {
-                                            ?>
-                                            <?php $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th' and $whereClause order by id desc "); ?>
-                                        <?php
-                                        }
-                                        ?>
-                                        <?php
-                                        $nomor=1;
-                                        while($hasil = mysqli_fetch_assoc($tampil)){
+
+                                        $query .= " ORDER BY id DESC";
+
+                                        $tampil = mysqli_query($kominfo, $query);
+                                        $jumlah = mysqli_num_rows($tampil);
+                                        $nomor = 1;
+
+                                        while ($hasil = mysqli_fetch_assoc($tampil)) {
                                             ?>
                                             <?php $jumlah = mysqli_num_rows($tampil); ?>
                                             <tr>
