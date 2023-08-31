@@ -410,10 +410,10 @@ include 'fungsi_bulan.php';
                                 </tbody>
                                 <hr />
                                 <tr>
-                                    <td colspan="8" align="center"><b>Jumlah Kejadian</b></td>
+                                    <td colspan="7" align="center"><b>Jumlah Kejadian</b></td>
                                     <td><b><?php echo $jumlah; ?></b></td>
                                     <td colspan="2" align="center">
-                                        <!-- <a target="blank" href="data_kejadian_pdf.php?<?php  echo "dari_bulan=" .$_GET['dari_bulan']; echo "&sampai_bulan=" .$_GET['sampai_bulan']; echo "&th=" .$_GET['th']; echo "&kej=" .$_GET['kej'];?>" aria-label="pdf" style="color:red;"><i class="far fa-file-pdf"></i></i></a> -->
+                                        <a target="blank" href="data_kejadian_pdf.php?<?php  echo "dari_bulan=" .$_GET['dari_bulan']; echo "&sampai_bulan=" .$_GET['sampai_bulan']; echo "&th=" .$_GET['th']; echo "&kej=" .$_GET['kej'];?>" aria-label="pdf" style="color:red;"><i class="far fa-file-pdf"></i></i></a>
                                     </td>
                                 </tr>
                             </table>
