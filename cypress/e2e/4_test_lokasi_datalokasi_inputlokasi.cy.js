@@ -23,7 +23,7 @@ describe('test_lokasi_datalokasi_inputlokasi', () => {
     // cy.get(':nth-child(9) > .form-control').type('jalan raya kalianget sumenep')
     // cy.get(':nth-child(10) > .form-control').type('terjadi bencana banjir dipemukiman warga ')
     
-    // cy.get(':nth-child(11) > .form-control').selectFile('cypress/fixtures/10039948.jpeg')
+    cy.get(':nth-child(11) > .form-control').selectFile('cypress/fixtures/10039948.jpeg')
     // cy.get('.btn-info').click()
     // cy.get('#tanggal_terima').click()
     // cy.get('.open > .flatpickr-innerContainer > .flatpickr-rContainer > .flatpickr-days > .dayContainer > .today').click()
