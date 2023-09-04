@@ -13,10 +13,14 @@ describe('test_lokasi_datalokasi_inputlokasi', () => {
         cy.get('.menu-is-opening > .nav > :nth-child(1) > .nav-link').click()
         cy.get('.custom-select').select('20')
         cy.get('#tower_filter > label > .form-control').type('BENCANA ALAM')
-        // cy.get(':nth-child(1) > [width="20%"] > .row > .col > :nth-child(1) > #hapus_foto').click()
+        // cy.get(':nth-child(1) > :nth-child(11) > .btn-info').click() //fitur approve
+        
+        // cy.get(':nth-child(1) > [width="20%"] > .row > .col > :nth-child(1) > #hapus_foto').click()  //hapus foto
         // cy.get('.swal2-confirm').click()
-        // cy.get(':nth-child(1) > [width="5%"] > .btn-group > #hapus_lokasi')
         // cy.get('.swal2-confirm').click()
+        cy.get(':nth-child(1) > [width="5%"] > .btn-group > #hapus_lokasi').click() //hapus data lokasi
+        cy.get('.swal2-confirm').click()
+        cy.get('.swal2-confirm').click()
         // cy.get(':nth-child(1) > :nth-child(11) > .btn-info').click()
         // cy.get('#tower_next > .page-link').click() 
 
