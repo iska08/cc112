@@ -146,7 +146,7 @@ switch ($_GET['action']) {
         }
         // Pastikan Anda telah mengisi nomor telepon dan token yang sesuai
         $target = "081235184908";
-        $token = "ju#zj+FKNiVrwU2yBo6H";
+        $token = "8Y2hL2qgYz45oiPAAapW";
         // Proses pengiriman pesan melalui API
         $curl = curl_init();
         curl_setopt_array($curl, array(
