@@ -122,7 +122,7 @@ include 'fungsi_bulan.php';
                           $jumlah = mysqli_num_rows($tampil);
                           ?>
                           <tr>
-                            <td><?php echo $hasil['kejadian']; ?></td>\
+                            <td><?php echo $hasil['kejadian']; ?></td>
                             <td>
                               <?php
                               $id_kec=$hasil['kec'];

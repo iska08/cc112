@@ -324,7 +324,7 @@ switch ($_GET['action']) {
     case 'hapus_opd':
         $id_opd = $_POST['id_opd'];
         //input data
-        $hapus_opd = mysqli_query($kominfo, " DELETE FROM `opd_tekait` WHERE id='$id_opd' ");
+        $hapus_opd = mysqli_query($kominfo, " DELETE FROM `opd_terkait` WHERE id='$id_opd' ");
         if ($hapus_opd) {
             echo "Hapus OPD Berhasil";
         } else {
