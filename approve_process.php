@@ -38,7 +38,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
     $approveStatus = 1;
     // Pastikan Anda telah mengisi nomor telepon dan token yang sesuai
     $target = $noTarget;
-    $token = "ju#zj+FKNiVrwU2yBo6H";
+    $token = "8Y2hL2qgYz45oiPAAapW";
     // Proses pengiriman pesan melalui API
     $curl = curl_init();
     curl_setopt_array($curl, array(
