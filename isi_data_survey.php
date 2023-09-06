@@ -34,7 +34,7 @@ if (isset($_GET['id_survey'])) {
                     $jumlah = mysqli_num_rows($tampil_survey);
                 ?>
                     <tr>
-                        <td><?php  echo $noo++; ?></td>
+                        <td><?php echo $noo++; ?></td>
                         <td><?php echo $hasil_survey['nama']; ?></td>
                         <td><?php echo $hasil_survey['alamat']; ?></td>
                         <td><?php echo $hasil_survey['hp']; ?></td>
