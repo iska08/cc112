@@ -182,8 +182,8 @@ if (empty($_SESSION['112_username'])){
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-                            <li class="nav-item ">
-                                <a href="../" class="nav-link">
+                            <!-- <li class="nav-item ">
+                                <a href="../admcc112.php" class="nav-link">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
                                         Dashboard
@@ -198,6 +198,12 @@ if (empty($_SESSION['112_username'])){
                                         </a>
                                     </li>
                                 </ul>
+                            </li> -->
+                            <li class="nav-item">
+                                <a href="admcc112.php" class="nav-link">
+                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <p class="text">Dashboard</p>
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
