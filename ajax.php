@@ -186,8 +186,100 @@ if (empty($_SESSION['112_username'])){
             }
         });
     }
-    </script>
-    <script>
+</script>
+<script>
+    $(document).ready(function() {
+        //load survey
+        data_survey();
+        //load form edit survey
+        $("#data_survey").on("click", "edit_survey", function() {
+            var id_survey = $(this).attr("value");
+            $.ajax({
+                url: 'isi_data_survey.php',
+                type: 'get',
+                data: {
+                    id_survey: id_survey
+                },
+                success: function(data) {
+                    $('#data_survey').html(data);
+                }
+            });
+        });
+        //simpan survey
+        $("#data_survey").on("submit", "#form_tambah_survey", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'proses.php?action=simpan_survey',
+                type: 'post',
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    Swal.fire((data), '', 'success')
+                    data_survey();
+                }
+            });
+        });
+        //edit data survey
+        $("#data_survey").on("submit", "#form_edit_survey", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'proses.php?action=edit_survey',
+                type: 'post',
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    Swal.fire((data), '', 'success')
+                    data_survey();
+                }
+            });
+        });
+        //button batal survey
+        $("#data_survey").on("click", "#batal_survey", function() {
+            data_survey();
+        });
+        //hapus survey
+        $("#data_survey").on("click", "#hapus", function() {
+            Swal.fire({
+                title: 'Perhatian!',
+                text: "Anda mau menghapus survey?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var id_survey = $(this).attr("value");
+                    $.ajax({
+                        url: 'proses.php?action=hapus_survey',
+                        type: 'post',
+                        data: {
+                            id_survey: id_survey
+                        },
+                        success: function(data) {
+                            Swal.fire((data), '', 'warning')
+                            data_survey();
+                        }
+                    });
+                }
+            });
+        });
+    })
+    function data_survey() {
+        $.ajax({
+            url: 'isi_data_survey.php',
+            type: 'get',
+            success: function(data) {
+                $('#data_survey').html(data);
+            }
+        });
+    }
+</script>
+<script>
     $(document).ready(function() {
         //load data wilayah saat aplikasi dijalankan 
         data_kec();
