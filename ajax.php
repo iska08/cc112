@@ -190,9 +190,9 @@ if (empty($_SESSION['112_username'])){
 <script>
     $(document).ready(function() {
         //load survey
-        data_survey();
+        survey();
         //load form edit survey
-        $("#data_survey").on("click", "edit_survey", function() {
+        $("#survey").on("click", "#edit_survey", function() {
             var id_survey = $(this).attr("value");
             $.ajax({
                 url: 'isi_data_survey.php',
@@ -201,12 +201,12 @@ if (empty($_SESSION['112_username'])){
                     id_survey: id_survey
                 },
                 success: function(data) {
-                    $('#data_survey').html(data);
+                    $('#survey').html(data);
                 }
             });
         });
         //simpan survey
-        $("#data_survey").on("submit", "#form_tambah_survey", function(e) {
+        $("#survey").on("submit", "#form_tambah_survey", function(e) {
             e.preventDefault();
             $.ajax({
                 url: 'proses.php?action=simpan_survey',
@@ -217,12 +217,12 @@ if (empty($_SESSION['112_username'])){
                 processData: false,
                 success: function(data) {
                     Swal.fire((data), '', 'success')
-                    data_survey();
+                    survey();
                 }
             });
         });
         //edit data survey
-        $("#data_survey").on("submit", "#form_edit_survey", function(e) {
+        $("#survey").on("submit", "#form_edit_survey", function(e) {
             e.preventDefault();
             $.ajax({
                 url: 'proses.php?action=edit_survey',
@@ -233,16 +233,16 @@ if (empty($_SESSION['112_username'])){
                 processData: false,
                 success: function(data) {
                     Swal.fire((data), '', 'success')
-                    data_survey();
+                    survey();
                 }
             });
         });
         //button batal survey
-        $("#data_survey").on("click", "#batal_survey", function() {
-            data_survey();
+        $("#survey").on("click", "#batal_survey", function() {
+            survey();
         });
         //hapus survey
-        $("#data_survey").on("click", "#hapus", function() {
+        $("#survey").on("click", "#hapus_survey", function() {
             Swal.fire({
                 title: 'Perhatian!',
                 text: "Anda mau menghapus survey?",
@@ -262,19 +262,19 @@ if (empty($_SESSION['112_username'])){
                         },
                         success: function(data) {
                             Swal.fire((data), '', 'warning')
-                            data_survey();
+                            survey();
                         }
                     });
                 }
             });
         });
     })
-    function data_survey() {
+    function survey() {
         $.ajax({
             url: 'isi_data_survey.php',
             type: 'get',
             success: function(data) {
-                $('#data_survey').html(data);
+                $('#survey').html(data);
             }
         });
     }
