@@ -12,7 +12,7 @@ error_reporting(0);
 $id_survey = $_GET['id_survey'];
 ?>
 
-<div class="card card-outline">
+<div class="card card-info card-outline">
     <div class="card-header">
         <h5 class="card-title">Input Data Survey</h5>
     </div>
@@ -41,11 +41,13 @@ $id_survey = $_GET['id_survey'];
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Nilai 1</label>
-                        <input type="text" class="form-control" name="res1" value="<?php echo $hasil_id_survey['res1']; ?>" required>
+                        <input type="range" class="form-control" name="res1" value="<?php echo $hasil_id_survey['res1']; ?>" step="10" min="0" max="100" required>
+                        <output for="res1"><?php echo $hasil_id_survey['res1']; ?></output>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Nilai 2</label>
-                        <input type="text" class="form-control" name="res2" value="<?php echo $hasil_id_survey['res2']; ?>" required>
+                        <input type="range" class="form-control" name="res2" value="<?php echo $hasil_id_survey['res2']; ?>" step="10" min="0" max="100" required>
+                        <output for="res2"><?php echo $hasil_id_survey['res2']; ?></output>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Kritik/Saran</label>
@@ -112,6 +114,11 @@ $id_survey = $_GET['id_survey'];
     <hr />
     <script>
         $(document).ready(function() {
+            // Fungsi untuk memperbarui nilai output saat slider digeser
+            $('input[type="range"]').on('input', function() {
+                $(this).next('output').val(this.value);
+            });
+
             $('#survey').DataTable({
                 "lengthMenu": [
                     [5, 10, 15, -1],

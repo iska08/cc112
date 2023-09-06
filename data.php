@@ -10,7 +10,7 @@ if (empty($_SESSION['112_username'])) {
   <div id="data_desa"></div>
   <div id="data_opd"></div>
   <div id="data_kej"></div>
-  <div id="isi_data_survey"></div>
+  <div id="data_survey"></div>
   <div id="data_user"></div>
 </div>
 
