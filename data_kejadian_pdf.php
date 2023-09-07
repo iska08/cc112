@@ -157,7 +157,7 @@ $html .= '
 <tr style="background-color: #eee!important;">
 <td colspan="10" align="center" style="padding: 5px;"><b>Jumlah Kejadian : '.$jumlah.'</b></td>
 </tr>';
-$html .= '</table><br/><center style="font-size:12px;"><div>Copyright © 2022 Diskominfo Sumenep</div><div>https://112.sumenepkab.go.id</div></center>';
+$html .= '</table><br/><center style="font-size:12px;"><div>Copyright © ' . date("Y") . ' Diskominfo Sumenep</div><div>https://112.sumenepkab.go.id</div></center>';
 $html .= "</html>";
 $dompdf->loadHtml($html);
 $dompdf->set_option('isFontSubsettingEnabled', true);
