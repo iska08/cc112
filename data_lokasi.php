@@ -13,7 +13,7 @@ $akses = $_SESSION['hak_akses'];
   #mapid {
     height: 600px;width:100%;
   }
-  </style>
+</style>
 
 <script src="js/jquery.Jcrop.js"></script>
 <link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
@@ -24,7 +24,10 @@ $akses = $_SESSION['hak_akses'];
   <div class="card-body">
     <div class="row">
       <div class="col-md-12">
-        <div><button class="btn btn-info btn-sm" id="add_lokasi">Input Lokasi</button></div><br/>
+        <div>
+          <button class="btn btn-info btn-sm" id="add_lokasi">Input Lokasi</button>
+        </div>
+        <br/>
         <div class="table-responsive">
           <?php if($akses=='Admin'){ ?>
             <table id="tower" class="table table-bordered">
