@@ -3,7 +3,7 @@ describe('test_data_survey', () => {
       console.log(err);
       return false;
     })
-    it('Data', () => {
+    it('Data input kecamatan', () => {
       // Login Admin
       cy.visit('http://localhost/cc112/')
       cy.get('.nav-link').click()
@@ -12,10 +12,10 @@ describe('test_data_survey', () => {
       cy.get('.btn').click()
       cy.get(':nth-child(3) > [href="#"]').click()
       cy.get('.menu-is-opening > .nav > :nth-child(2) > .nav-link').click()
-      cy.get('#form_tambah_kec > :nth-child(1) > .form-control').type('Raas')
-      cy.get('#form_tambah_kec > :nth-child(2) > .btn').click()
-      cy.get('.swal2-confirm').click()
-      cy.get('#kec_filter > label > .form-control').type('Raas')
+      cy.get('#form_tambah_kec > :nth-child(1) > .form-control').type('Waru')
+      // cy.get('#form_tambah_kec > :nth-child(2) > .btn').click()
+      // cy.get('.swal2-confirm').click()
+      // cy.get('#kec_filter > label > .form-control').type('Raas')
       // cy.get(':nth-child(1) > [width="5%"] > .btn-group > #edit_kec').click()
       // cy.get('#form_edit_kec > :nth-child(1) > .form-control').type('')
     })
