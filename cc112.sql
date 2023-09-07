@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Agu 2023 pada 07.59
+-- Waktu pembuatan: 04 Sep 2023 pada 03.18
 -- Versi server: 10.4.25-MariaDB
 -- Versi PHP: 8.1.10
 
@@ -829,7 +829,7 @@ INSERT INTO `foto` (`id`, `id_lokasi`, `nama_foto`) VALUES
 (553, '572', '10620756.jpg'),
 (554, '573', '19546710.jpeg'),
 (555, '574', '11352927.jpeg'),
-(579, '575', '19402485.jpeg');
+(580, '576', '19079804.jpeg');
 
 -- --------------------------------------------------------
 
@@ -1140,8 +1140,7 @@ INSERT INTO `lokasi` (`id`, `lat_long`, `alamat`, `desa`, `kec`, `kejadian`, `ta
 (528, 'LatLng(-7.045697, 113.930197)', 'Desa Kalianget Barat', '3', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '07 Juni 2023 14:00', '', 1, 'CC112 Tim Satpol PP mengevakuasi ODGI ke RSUD H. Moh. Anwar Sumenep\r\nPelapor : Juhari', '', '', '06', '2023'),
 (529, 'LatLng(-6.886453, 113.663306)', 'Desa Panaongan', '274', '14', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '09 Juni 2023 11:30', '', 1, 'CC112 Tim Satpol PP mengevakuasi ODGJ di Puskesmas Pasongsongan atas laporan dari kepala desa Soddere ', '', '', '06', '2023'),
 (530, 'LatLng(-7.026945, 113.854065)', 'Jl. Trunojoyo (Pertigaan linkar timur)', '216', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '13 Juni 2023 19:00', '', 1, 'CC112 Tim Satpol PP mengevakuasi oarang terlantar di desa babbalan (pertigaan linkar timur) ke RPS Dinsos Sumenep\r\nPelapor : Ibu Shinta', '', '', '06', '2023'),
-(531, 'LatLng(-7.004925, 113.868409)', 'Jl. Agus Salim Perempatan Jati mas', '210', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '20 Juni 2023 15:30', '', 1, 'CC112 Tim Satpol PP mengevakuasi orang terlantar dan terduga ODGJ di perempatan Jl. Agus Salim ke RPS Dinsos\r\nPelopor : Bapak Agus', '', '', '06', '2023'),
-(575, 'LatLng(-6.97793, 113.959866)', 'coba', '4', '1', 'KECELAKAAN LALU LINTAS', '28 Agustus 2023 12:00', '', 1, '', 'coba', '1234567890', '08', '2023');
+(531, 'LatLng(-7.004925, 113.868409)', 'Jl. Agus Salim Perempatan Jati mas', '210', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '20 Juni 2023 15:30', '', 1, 'CC112 Tim Satpol PP mengevakuasi orang terlantar dan terduga ODGJ di perempatan Jl. Agus Salim ke RPS Dinsos\r\nPelopor : Bapak Agus', '', '', '06', '2023');
 
 -- --------------------------------------------------------
 
@@ -1233,10 +1232,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `nama`, `noTelp`, `email`, `hak_akses`, `kejadian`, `online`) VALUES
-(1, 'cc112admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Arief Santoso, ST', '', 'admin@gmail.com', 'Admin', 'KECELAKAAN LAUT,KECELAKAAN KERJA,GIAT EVAKUASI,ORANG DENGAN GANGGUAN JIWA (ODGJ),KRIMINALITAS,COVID 19,BANJIR,KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,KEAMANAN DAN KETERTIBAN MASYARAKAT,TIANG LISTRIK RUBUH,KECELAKAAN LALU LINTAS,PERMINTAAN AMBULAN,POHON TUMBANG,BENCANA ALAM', '0'),
-(26, 'damkarcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'DAMKAR', '', 'damkarcc112@gmail.com', 'Tim', 'KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,POHON TUMBANG', '0'),
+(1, 'cc112admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Arief Santoso, ST', '', 'admin@gmail.com', 'Admin', 'KECELAKAAN LAUT,KECELAKAAN KERJA,GIAT EVAKUASI,ORANG DENGAN GANGGUAN JIWA (ODGJ),KRIMINALITAS,COVID 19,BANJIR,KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,KEAMANAN DAN KETERTIBAN MASYARAKAT,TIANG LISTRIK RUBUH,KECELAKAAN LALU LINTAS,PERMINTAAN AMBULAN,POHON TUMBANG,BENCANA ALAM', '1'),
+(26, 'damkarcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'DAMKAR', '081235184908', 'damkarcc112@gmail.com', 'Tim', 'KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,POHON TUMBANG', '0'),
 (28, 'satpolppcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'SATPOL PP', '', 'satpolppcc112@gmail.com', 'Tim', 'ORANG DENGAN GANGGUAN JIWA (ODGJ),KEAMANAN DAN KETERTIBAN MASYARAKAT', '0'),
-(29, 'bpbdcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'BPBD', '', 'bpbdcc112@gmail.com', 'Tim', 'GIAT EVAKUASI,COVID 19,BANJIR,BENCANA ALAM', '0');
+(29, 'bpbdcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'BPBD', '', 'bpbdcc112@gmail.com', 'Tim', 'GIAT EVAKUASI,COVID 19,BANJIR,BENCANA ALAM', '1');
 
 --
 -- Indexes for dumped tables
@@ -1328,7 +1327,7 @@ ALTER TABLE `dusun`
 -- AUTO_INCREMENT untuk tabel `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=580;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=582;
 
 --
 -- AUTO_INCREMENT untuk tabel `kecamatan`
@@ -1346,7 +1345,7 @@ ALTER TABLE `kejadian`
 -- AUTO_INCREMENT untuk tabel `lokasi`
 --
 ALTER TABLE `lokasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=576;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=577;
 
 --
 -- AUTO_INCREMENT untuk tabel `opd_terkait`
