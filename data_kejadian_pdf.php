@@ -60,7 +60,7 @@ if(empty($_GET)) {
 }
 $html .= '</div></h4></center><table>';
 $html .= '<tr>
-          <th>No.</th><th>Kejadian</th><th>Kecamatan</th><th>Desa</th><th>Alamat</th><th>Tanggal Terima</th><th>Tanggal Selesai</th><th>Keterangan</th><th>Foto</th>  
+          <th>No.</th><th>Kejadian</th><th>Kecamatan</th><th>Desa</th><th>Nama & Nomor Telepon Pelapor</th><th>Alamat</th><th>Tanggal Terima</th><th>Tanggal Selesai</th><th>Keterangan</th><th>Foto</th>  
           </tr>';
 $dari_bulan = $_GET['dari_bulan'];
 $sampai_bulan = $_GET['sampai_bulan'];
@@ -94,6 +94,7 @@ while($hasil = mysqli_fetch_assoc($tampil)) {
   $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
   $desa2 = mysqli_fetch_array($desa1);
   $html .= ''.$desa2['nama_desa'].'</td>
+            <td valign="top" width="10%">'.$hasil['nama_pelapor'].'<br>'.$hasil['noTelp_pelapor'].'</td>
             <td valign="top" width="10%">'.$hasil['alamat'].'</td>
             <td valign="top" width="10%">'.$hasil['tanggal_terima'].'</td>
             <td valign="top" width="10%">'.$hasil['tanggal_selesai'].'</td>           
@@ -102,14 +103,14 @@ while($hasil = mysqli_fetch_assoc($tampil)) {
   $id_lokasi=$hasil['id'];
   $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_lokasi'");
   while($foto1 = mysqli_fetch_array($lokasi_foto)) {
-    $html .= '<img width="200" style="padding:2px;" src="foto/'.$foto1['nama_foto'].'" />';                           
+    $html .= '<img width="145" style="padding:2px;" src="foto/'.$foto1['nama_foto'].'" />';                           
   }
   $html .= '</td>
             </tr>';
 }
 $html .= '
 <tr style="background-color: #eee!important;">
-<td colspan="9" align="center" style="padding: 5px;"><b>Jumlah Kejadian : '.$jumlah.'</b></td>
+<td colspan="10" align="center" style="padding: 5px;"><b>Jumlah Kejadian : '.$jumlah.'</b></td>
 </tr>';
 $html .= '</table><br/><center style="font-size:12px;"><div>Copyright © 2022 Diskominfo Sumenep</div><div>https://112.sumenepkab.go.id</div></center>';
 $html .= "</html>";
