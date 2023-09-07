@@ -47,7 +47,6 @@ $html = '
 </style>
 ';
 
-$html .= '<div>Hak Akses: ' . $_SESSION['hak_akses'] . '</div>';
 $html .= '<center><div><img src="112.jpg" width="100"></div><h4 style="text-transform: uppercase;">DATA KEJADIAN DARURAT CALL CENTER 112 KAB. SUMENEP';
 if($_GET['dari_bulan'] || $_GET['sampai_bulan']) {
   if(empty($_GET['th'] && $_GET['kej'])) {
@@ -89,32 +88,39 @@ if($hak_akses=='Admin'){
   if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th'] && $_GET['kej']){
     $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th' and kejadian='$kej' order by id desc ");
   }
-}elseif($hak_akses=='Tim'){
+}elseif ($hak_akses == 'Tim') {
   $kejadian = $_SESSION['kejadian'];
   $data = explode(",", $kejadian);
   // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
   $whereClause = "";
   foreach ($data as $value) {
-    $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
-    if ($whereClause !== "") {
-        $whereClause .= " OR ";
-    }
-    $whereClause .= "kejadian = '$value'";
+      $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
+      if ($whereClause !== "") {
+          $whereClause .= " OR ";
+      }
+      $whereClause .= "kejadian = '$value'";
   }
   $dari_bulan = $_GET['dari_bulan'];
   $sampai_bulan = $_GET['sampai_bulan'];
   $th = $_GET['th'];
-  if($_GET['dari_bulan'] && $_GET['th']) {
-    $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th'  order by id desc ");
+  
+  // Mengubah query SQL untuk memasukkan tahun yang dipilih oleh pengguna
+  $tahunClause = "";
+  if (!empty($th)) {
+      $tahunClause = " AND tahun = '$th'";
   }
-  if($_GET['dari_bulan'] && $_GET['th'] && $whereClause){
-    $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th' and $whereClause order by id desc ");
+
+  if ($_GET['dari_bulan'] && $_GET['th']) {
+      $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE bulan='$dari_bulan' $tahunClause ORDER BY id DESC");
   }
-  if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th']){
-    $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th'  order by id desc ");
+  if ($_GET['dari_bulan'] && $_GET['th'] && $whereClause) {
+      $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE bulan='$dari_bulan' $tahunClause AND ($whereClause) ORDER BY id DESC");
   }
-  if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th'] && $whereClause){
-    $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th' and $whereClause order by id desc ");
+  if ($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th']) {
+      $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE bulan BETWEEN '$dari_bulan' AND '$sampai_bulan' $tahunClause ORDER BY id DESC");
+  }
+  if ($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th'] && $whereClause) {
+      $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE bulan BETWEEN '$dari_bulan' AND '$sampai_bulan' $tahunClause AND ($whereClause) ORDER BY id DESC");
   }
 }
 $nomor=1;
