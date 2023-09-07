@@ -10,19 +10,6 @@ if (empty($_SESSION['112_username'])){
 include 'dbconfig.php';
 include 'compress.php';
 switch ($_GET['action']) {
-    case 'simpan_survey':
-        $nama   = $_POST['nama'];
-        $alamat = $_POST['alamat'];
-        $hp     = $_POST['hp'];
-        $res1   = $_POST['res1'];
-        $res2   = $_POST['res2'];
-        $res3   = $_POST['res3'];
-        //input data
-        $insert_survey = mysqli_query($kominfo, "INSERT into survey set nama='$nama',alamat='$alamat',hp='$hp', res1='$res1',res2='$res2',res3='$res3' ");
-        if ($insert_survey) {
-            echo "Data responden anda berhasil disimpan";
-        }
-        break;
     case 'edit_foto':
         $file = $_GET['file'];
         $location = 'foto/'.$file;
@@ -146,7 +133,7 @@ switch ($_GET['action']) {
         }
         // Pastikan Anda telah mengisi nomor telepon dan token yang sesuai
         $target = "081235184908";
-        $token = "ju#zj+FKNiVrwU2yBo6H";
+        $token = "8Y2hL2qgYz45oiPAAapW";
         // Proses pengiriman pesan melalui API
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -324,21 +311,11 @@ switch ($_GET['action']) {
     case 'hapus_opd':
         $id_opd = $_POST['id_opd'];
         //input data
-        $hapus_opd = mysqli_query($kominfo, " DELETE FROM `opd_tekait` WHERE id='$id_opd' ");
+        $hapus_opd = mysqli_query($kominfo, " DELETE FROM `opd_terkait` WHERE id='$id_opd' ");
         if ($hapus_opd) {
             echo "Hapus OPD Berhasil";
         } else {
             echo "Hapus OPD Gagal :" . mysqli_error($kominfo);
-        }
-        break;
-    case 'hapus_survey':
-        $id_survey = $_POST['id_survey'];
-        //input data
-        $hapus_survey = mysqli_query($kominfo, " DELETE FROM `survey` WHERE id='$id_survey' ");
-        if ($hapus_survey) {
-            echo "Hapus Survey Berhasil";
-        } else {
-            echo "Hapus Survey Gagal :" . mysqli_error($kominfo);
         }
         break;
     case 'simpan_user':
@@ -382,6 +359,47 @@ switch ($_GET['action']) {
             echo "Hapus User Berhasil";
         } else {
             echo "Hapus User Gagal :" . mysqli_error($kominfo);
+        }
+        break;
+    case 'simpan_survey':
+        $nama   = $_POST['nama'];
+        $alamat = $_POST['alamat'];
+        $hp     = $_POST['hp'];
+        $res1   = $_POST['res1'];
+        $res2   = $_POST['res2'];
+        $res3   = $_POST['res3'];
+        //input data
+        $insert_survey = mysqli_query($kominfo, "INSERT into survey set nama='$nama', alamat='$alamat', hp='$hp', res1='$res1', res2='$res2', res3='$res3' ");
+        if ($insert_survey) {
+            echo "Tambah Survey Berhasil";
+        } else {
+            echo "Tambah Survey Gagal :" . mysqli_error($kominfo);
+        }
+        break;
+    case 'edit_survey':
+        $id_survey  = $_POST['id'];
+        $nama       = $_POST['nama'];
+        $alamat     = $_POST['alamat'];
+        $hp         = $_POST['hp'];
+        $res1       = $_POST['res1'];
+        $res2       = $_POST['res2'];
+        $res3       = $_POST['res3'];
+        //edit data kec
+        $update_survey = mysqli_query($kominfo, " UPDATE `survey` SET nama='$nama', alamat='$alamat', hp='$hp', res1='$res1', res2='$res2', res3='$res3' WHERE id='$id_survey' ");
+        if ($update_survey) {
+            echo "Edit Survey Berhasil";
+        } else {
+            echo "Edit Survey Gagal :" . mysqli_error($kominfo);
+        }
+        break;
+    case 'hapus_survey':
+        $id_survey = $_POST['id_survey'];
+        //input data
+        $hapus_survey = mysqli_query($kominfo, " DELETE FROM `survey` WHERE id='$id_survey' ");
+        if ($hapus_survey) {
+            echo "Hapus Survey Berhasil";
+        } else {
+            echo "Hapus Survey Gagal :" . mysqli_error($kominfo);
         }
         break;
 }
