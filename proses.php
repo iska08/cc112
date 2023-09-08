@@ -163,23 +163,36 @@ switch ($_GET['action']) {
         curl_close($curl);
         break;
     case 'edit_lokasi':
-        $id_lokasi          = $_POST['id'];
-        $lat_long           = $_POST['latlong'];
-        $alamat             = $_POST['alamat'];
-        $desa               = $_POST['desa'];
-        $kec                = $_POST['kec'];
-        $kejadian           = $_POST['kejadian'];
-        $ket                = $_POST['ket'];
-        $tanggal_terima     = $_POST['tanggal_terima'];
-        $tanggal_selesai    = $_POST['tanggal_selesai'];
-        $nama_pelapor       = $_POST['nama_pelapor'];
-        $noTelp_pelapor     = $_POST['noTelp_pelapor'];
-        //input data
-        $update_lokasi = mysqli_query($kominfo, "UPDATE `lokasi` SET lat_long='$lat_long',alamat='$alamat',desa='$desa',tanggal_terima='$tanggal_terima',tanggal_selesai='$tanggal_selesai',kec='$kec',kejadian='$kejadian',ket='$ket',nama_pelapor='$nama_pelapor',noTelp_pelapor='$noTelp_pelapor' WHERE id='$id_lokasi' ");
-        if ($update_lokasi) {
-            echo "Edit Lokasi Berhasil";
-        } else {
-            echo "Edit Lokasi Gagal :" . mysqli_error($kominfo);
+        $hak_akses = $_SESSION['hak_akses'];
+        if($hak_akses=='Admin'){
+            $id_lokasi          = $_POST['id'];
+            $lat_long           = $_POST['latlong'];
+            $alamat             = $_POST['alamat'];
+            $desa               = $_POST['desa'];
+            $kec                = $_POST['kec'];
+            $kejadian           = $_POST['kejadian'];
+            $ket                = $_POST['ket'];
+            $tanggal_terima     = $_POST['tanggal_terima'];
+            $tanggal_selesai    = $_POST['tanggal_selesai'];
+            $nama_pelapor       = $_POST['nama_pelapor'];
+            $noTelp_pelapor     = $_POST['noTelp_pelapor'];
+            //input data
+            $update_lokasi = mysqli_query($kominfo, "UPDATE `lokasi` SET lat_long='$lat_long',alamat='$alamat',desa='$desa',tanggal_terima='$tanggal_terima',tanggal_selesai='$tanggal_selesai',kec='$kec',kejadian='$kejadian',ket='$ket',nama_pelapor='$nama_pelapor',noTelp_pelapor='$noTelp_pelapor' WHERE id='$id_lokasi' ");
+            if ($update_lokasi) {
+                echo "Edit Lokasi Berhasil";
+            } else {
+                echo "Edit Lokasi Gagal :" . mysqli_error($kominfo);
+            }
+        }elseif($hak_akses=='Tim'){
+            $id_lokasi          = $_POST['id'];
+            $laporan            = $_POST['laporan'];
+            //input data
+            $update_lokasi = mysqli_query($kominfo, "UPDATE `lokasi` SET laporan='$laporan' WHERE id='$id_lokasi' ");
+            if ($update_lokasi) {
+                echo "Input Laporan Kejadian Berhasil";
+            } else {
+                echo "Input Laporan Kejadian Gagal :" . mysqli_error($kominfo);
+            }
         }
         break;
     case 'hapus_lokasi':

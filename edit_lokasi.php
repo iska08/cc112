@@ -5,6 +5,7 @@ if (empty($_SESSION['112_username'])){
 }
 //koneksi
 include 'dbconfig.php';
+$hak_akses = $_SESSION['hak_akses'];
 ?>
 
 <style>
@@ -13,111 +14,148 @@ include 'dbconfig.php';
     height: 600px;width:100%;
   }
 </style>
-
 <?php 
 if(isset($_GET['id_lokasi'])){
   $id_lokasi=$_GET['id_lokasi'];
-?>
+  ?>
   <div class="card card-primary card-outline">
-    <div class="card-header ">
-      <h5 class="card-title">Edit Lokasi Kejadian</h5>
-    </div>
-    <div class="card-body ">
-      <div class="row"> <!-- class row digunakan sebelum membuat column  -->
-        <div class="col-md-4"> <!-- ukuruan layar dengan bootstrap adalah 12 kolom, bagian kiri dibuat sebesar 4 kolom-->
-          <form  id="form_edit_lokasi" method="post">
-            <?php
-            $tampil_lokasi = mysqli_query($kominfo, "select * from lokasi where id='$id_lokasi' "); //ambil data dari tabel lokasi
-            $hasil_lokasi = mysqli_fetch_array($tampil_lokasi)
-            ?>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Latitude, Longitude</label>
-              <input type="text" class="form-control" id="latlong" name="latlong" value="<?php echo $hasil_lokasi['lat_long']; ?>">
-              <input hidden type="text" name="id" value="<?php echo $hasil_lokasi['id']; ?>">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Kejadian</label>
-              <select class="form-control" name="kejadian">
-                <option value="<?php echo $hasil_lokasi['kejadian']; ?>"><?php echo $hasil_lokasi['kejadian']; ?></option>
-                <option disabled >== Pilih Kejadian ==</option>
-                <?php
-                $tampil_per = mysqli_query($kominfo, "select * from kejadian"); //ambil data dari tabel kecamatan
-                while($hasil_per = mysqli_fetch_array($tampil_per)){
-                ?>
-                  <option value="<?php echo $hasil_per['nama_kejadian']; ?>"><?php echo $hasil_per['nama_kejadian']; ?></option>
-                <?php
-                }
-                ?>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Kecamatan</label>
-              <select class="form-control" id="kecamatan" name="kec">
-                <?php
-                $id_kec=$hasil_lokasi['kec'];
-                $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
-                $kec2 = mysqli_fetch_array($kec1)?>
-                <option value="<?php echo $kec2['id']; ?>"><?php echo $kec2['nama_kecamatan']; ?></option>
-                <option disabled >== Pilih Kecamatan ==</option>
-                <?php
-                $tampil_kec = mysqli_query($kominfo, "select * from kecamatan"); //ambil data dari tabel kecamatan
-                while($hasil_kec = mysqli_fetch_array($tampil_kec)){
-                ?>
-                  <option value="<?php echo $hasil_kec['id']; ?>"><?php echo $hasil_kec['nama_kecamatan']; ?></option>
-                <?php
-                }
-                ?>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Desa</label>
-              <select class="form-control" id="desa" name="desa">
-                <?php
-                $id_desa=$hasil_lokasi['desa'];
-                $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
-                $desa2 = mysqli_fetch_array($desa1)?>
-                <option value="<?php echo $desa2['id']; ?>"><?php echo $desa2['nama_desa']; ?></option>
-                <option disabled >== Pilih Desa ==</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Nama Pelapor</label>
-              <input type="text" class="form-control" name="nama_pelapor" value="<?php echo $hasil_lokasi['nama_pelapor']; ?>">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Nomor Telepon Pelapor</label>
-              <input type="text" class="form-control" name="noTelp_pelapor" value="<?php echo $hasil_lokasi['noTelp_pelapor']; ?>">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Tanggal Terima</label>
-              <input type="text" class="form-control" id="tanggal_terima" name="tanggal_terima" value="<?php echo $hasil_lokasi['tanggal_terima']; ?>">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Tanggal Selesai</label>
-              <input type="text" class="form-control" id="tanggal_selesai" name="tanggal_selesai" value="<?php echo $hasil_lokasi['tanggal_selesai']; ?>">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Alamat</label>
-              <input type="text" class="form-control" name="alamat" value="<?php echo $hasil_lokasi['alamat']; ?>">
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Keterangan</label>
-              <textarea class="form-control" name="ket" cols="30" rows="5"><?php echo $hasil_lokasi['ket']; ?></textarea>
-            </div>
-            <div class="form-group">
-              <button type="submit" name="edit_lokasi" class="btn btn-info btn-sm">Edit</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
-            </div>
-          </form>
-        </div>
-        <br/>
-        <div class="col-md-8">
-          <!-- ukuruan layar dengan bootstrap adalah 12 kolom, bagian kiri dibuat sebesar 4 kolom-->
-          <!-- peta akan ditampilkan dengan id = mapid -->
-          <div id="mapid"></div>
+    <?php if($hak_akses=='Admin'){
+      ?>
+      <div class="card-header ">
+        <h5 class="card-title">Edit Lokasi Kejadian</h5>
+      </div>
+      <div class="card-body ">
+        <div class="row"> <!-- class row digunakan sebelum membuat column  -->
+          <div class="col-md-4"> <!-- ukuruan layar dengan bootstrap adalah 12 kolom, bagian kiri dibuat sebesar 4 kolom-->
+            <form  id="form_edit_lokasi" method="post">
+              <?php
+              $tampil_lokasi = mysqli_query($kominfo, "select * from lokasi where id='$id_lokasi' "); //ambil data dari tabel lokasi
+              $hasil_lokasi = mysqli_fetch_array($tampil_lokasi)
+              ?>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Latitude, Longitude</label>
+                <input type="text" class="form-control" id="latlong" name="latlong" value="<?php echo $hasil_lokasi['lat_long']; ?>">
+                <input hidden type="text" name="id" value="<?php echo $hasil_lokasi['id']; ?>">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Kejadian</label>
+                <select class="form-control" name="kejadian">
+                  <option value="<?php echo $hasil_lokasi['kejadian']; ?>"><?php echo $hasil_lokasi['kejadian']; ?></option>
+                  <option disabled >== Pilih Kejadian ==</option>
+                  <?php
+                  $tampil_per = mysqli_query($kominfo, "select * from kejadian"); //ambil data dari tabel kecamatan
+                  while($hasil_per = mysqli_fetch_array($tampil_per)){
+                  ?>
+                    <option value="<?php echo $hasil_per['nama_kejadian']; ?>"><?php echo $hasil_per['nama_kejadian']; ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Kecamatan</label>
+                <select class="form-control" id="kecamatan" name="kec">
+                  <?php
+                  $id_kec=$hasil_lokasi['kec'];
+                  $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
+                  $kec2 = mysqli_fetch_array($kec1)?>
+                  <option value="<?php echo $kec2['id']; ?>"><?php echo $kec2['nama_kecamatan']; ?></option>
+                  <option disabled >== Pilih Kecamatan ==</option>
+                  <?php
+                  $tampil_kec = mysqli_query($kominfo, "select * from kecamatan"); //ambil data dari tabel kecamatan
+                  while($hasil_kec = mysqli_fetch_array($tampil_kec)){
+                  ?>
+                    <option value="<?php echo $hasil_kec['id']; ?>"><?php echo $hasil_kec['nama_kecamatan']; ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Desa</label>
+                <select class="form-control" id="desa" name="desa">
+                  <?php
+                  $id_desa=$hasil_lokasi['desa'];
+                  $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
+                  $desa2 = mysqli_fetch_array($desa1)?>
+                  <option value="<?php echo $desa2['id']; ?>"><?php echo $desa2['nama_desa']; ?></option>
+                  <option disabled >== Pilih Desa ==</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Nama Pelapor</label>
+                <input type="text" class="form-control" name="nama_pelapor" value="<?php echo $hasil_lokasi['nama_pelapor']; ?>">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Nomor Telepon Pelapor</label>
+                <input type="text" class="form-control" name="noTelp_pelapor" value="<?php echo $hasil_lokasi['noTelp_pelapor']; ?>">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Tanggal Terima</label>
+                <input type="text" class="form-control" id="tanggal_terima" name="tanggal_terima" value="<?php echo $hasil_lokasi['tanggal_terima']; ?>">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Tanggal Selesai</label>
+                <input type="text" class="form-control" id="tanggal_selesai" name="tanggal_selesai" value="<?php echo $hasil_lokasi['tanggal_selesai']; ?>">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Alamat</label>
+                <input type="text" class="form-control" name="alamat" value="<?php echo $hasil_lokasi['alamat']; ?>">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Keterangan</label>
+                <textarea class="form-control" name="ket" cols="30" rows="5"><?php echo $hasil_lokasi['ket']; ?></textarea>
+              </div>
+              <div class="form-group">
+                <button type="submit" name="edit_lokasi" class="btn btn-info btn-sm">Edit</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
+              </div>
+            </form>
+          </div>
           <br/>
+          <div class="col-md-8">
+            <!-- ukuruan layar dengan bootstrap adalah 12 kolom, bagian kiri dibuat sebesar 4 kolom-->
+            <!-- peta akan ditampilkan dengan id = mapid -->
+            <div id="mapid"></div>
+            <br/>
+          </div>
         </div>
       </div>
-    </div>
+      <?php
+    }elseif($hak_akses=='Tim'){
+      ?>
+      <div class="card-header ">
+        <h5 class="card-title">Input Laporan Kejadian</h5>
+      </div>
+      <div class="card-body ">
+        <div class="row"> <!-- class row digunakan sebelum membuat column  -->
+          <div class="col-md-4"> <!-- ukuruan layar dengan bootstrap adalah 12 kolom, bagian kiri dibuat sebesar 4 kolom-->
+            <form  id="form_edit_lokasi" method="post">
+              <?php
+              $tampil_lokasi = mysqli_query($kominfo, "select * from lokasi where id='$id_lokasi' "); //ambil data dari tabel lokasi
+              $hasil_lokasi = mysqli_fetch_array($tampil_lokasi)
+              ?>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Laporan Kejadian</label>
+                <textarea class="form-control" name="laporan" cols="30" rows="5"><?php echo $hasil_lokasi['laporan']; ?></textarea>
+                <input hidden type="text" name="id" value="<?php echo $hasil_lokasi['id']; ?>">
+              </div>
+              <div class="form-group">
+                <button type="submit" name="edit_lokasi" class="btn btn-info btn-sm">Input Laporan</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
+              </div>
+            </form>
+          </div>
+          <br/>
+          <div class="col-md-8">
+            <!-- ukuruan layar dengan bootstrap adalah 12 kolom, bagian kiri dibuat sebesar 4 kolom-->
+            <!-- peta akan ditampilkan dengan id = mapid -->
+            <div id="mapid"></div>
+            <br/>
+          </div>
+        </div>
+      </div>
+      <?php
+    }
+    ?>
   </div>
   <script>
     //setting maps menggunakan api mapbox bukan google maps, daftar dan dapatkan token

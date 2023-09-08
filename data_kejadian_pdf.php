@@ -1,12 +1,6 @@
 <?php
-session_start(); // Pastikan session sudah dimulai
+session_start();
 
-// Cek apakah pengguna memiliki hak akses
-if (!isset($_SESSION['hak_akses'])) {
-    // Pengguna tidak memiliki hak akses, redirect atau tampilkan pesan kesalahan
-    echo "Anda tidak memiliki izin untuk mengakses file ini.";
-    exit();
-}
 include 'dbconfig.php';
 include 'fungsi_bulan.php';
 require_once("dompdf/autoload.inc.php");
@@ -15,7 +9,8 @@ $dompdf = new Dompdf();
 $html = '
 <style type="text/css">
   @page {
-    margin-top:10px; margin-bottom:10px;
+    margin-top:10px;
+    margin-bottom:10px;
   }
   @media print{
     #tbl1 {
@@ -78,7 +73,15 @@ if(empty($_GET)) {
 }
 $html .= '</div></h4></center><table>';
 $html .= '<tr>
-          <th>No.</th><th>Kejadian</th><th>Kecamatan</th><th>Desa</th><th>Nama & Nomor Telepon Pelapor</th><th>Alamat</th><th>Tanggal Terima</th><th>Tanggal Selesai</th><th>Keterangan</th><th>Foto</th>  
+          <th>No.</th>
+          <th>Kejadian</th>
+          <th>Kecamatan dan Desa</th>
+          <th>Nama & Nomor Telepon Pelapor</th>
+          <th>Alamat</th>
+          <th>Tanggal Terima dan Selesai</th>
+          <th>Keterangan</th>
+          <th>Laporan</th>
+          <th>Foto</th>  
           </tr>';
 if($hak_akses=='Admin'){
   $dari_bulan = $_GET['dari_bulan'];
@@ -138,33 +141,33 @@ while($hasil = mysqli_fetch_assoc($tampil)) {
   $html .= '<tr>
             <td valign="top" width="3%">'.$nomor++.' </td> 
             <td valign="top" width="10%">'.$hasil['kejadian'].'</td>
-            <td valign="top" width="10%">';
+            <td valign="top" width="10%"><strong>Kecamatan:</strong><br>';
   $id_kec=$hasil['kec'];
   $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
   $kec2 = mysqli_fetch_array($kec1);
-  $html .= ''.$kec2['nama_kecamatan'].'</td>
-            <td valign="top" width="10%">';
+  $html .= ''.$kec2['nama_kecamatan'].'<br><br><strong>Desa:</strong><br>';
   $id_desa=$hasil['desa'];
   $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
   $desa2 = mysqli_fetch_array($desa1);
   $html .= ''.$desa2['nama_desa'].'</td>
-            <td valign="top" width="10%">Nama: '.$hasil['nama_pelapor'].'<br>No. Telp: '.$hasil['noTelp_pelapor'].'</td>
+            <td valign="top" width="10%"><strong>Nama Pelapor:</strong><br>'.$hasil['nama_pelapor'].'<br><br><strong>No. Telp Pelapor:</strong><br>'.$hasil['noTelp_pelapor'].'</td>
             <td valign="top" width="10%">'.$hasil['alamat'].'</td>
-            <td valign="top" width="10%">'.$hasil['tanggal_terima'].'</td>
-            <td valign="top" width="10%">'.$hasil['tanggal_selesai'].'</td>           
+            <td valign="top" width="10%"><strong>Tanggal Terima:</strong><br>'.$hasil['tanggal_terima'].'<br><br><strong>Tanggal Selesai:</strong><br>'.$hasil['tanggal_selesai'].'</td>
             <td valign="top">'.$hasil['ket'].'</td>
+            <td valign="top">'.$hasil['laporan'].'</td>
             <td valign="top">';
   $id_lokasi=$hasil['id'];
   $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_lokasi'");
   while($foto1 = mysqli_fetch_array($lokasi_foto)) {
-    $html .= '<img width="145" style="padding:2px;" src="foto/'.$foto1['nama_foto'].'" />';                           
+    $html .= '<img width="165" style="padding:2px;" src="foto/'.$foto1['nama_foto'].'" />';                           
   }
   $html .= '</td>
             </tr>';
 }
 $html .= '
 <tr style="background-color: #eee!important;">
-<td colspan="10" align="center" style="padding: 5px;"><b>Jumlah Kejadian : '.$jumlah.'</b></td>
+<td colspan="9" align="center" style="padding: 5px;">
+<b>Jumlah Kejadian : '.$jumlah.'</b></td>
 </tr>';
 $html .= '</table><br/><center style="font-size:12px;"><div>Copyright © ' . date("Y") . ' Diskominfo Sumenep</div><div>https://112.sumenepkab.go.id</div></center>';
 $html .= "</html>";

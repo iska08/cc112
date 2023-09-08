@@ -234,11 +234,12 @@ $nama = $_SESSION['nama'];
                                     <th>Kejadian</th>
                                     <th>Kecamatan</th>
                                     <th>Desa</th>
-                                    <th>Nama & Nomor Telepon Pelapor</th>
+                                    <th>Nama dan Nomor Telepon Pelapor</th>
                                     <th>Alamat</th>
                                     <th>Tanggal Terima</th>
                                     <th>Tanggal Selesai</th>
                                     <th>Keterangan</th>
+                                    <th>Laporan</th>
                                     <th>Foto</th>
                                 </thead>
                                 <tbody>
@@ -319,11 +320,15 @@ $nama = $_SESSION['nama'];
                                                     echo $desa2['nama_desa'];
                                                     ?>
                                                 </td>
-                                                <td>Nama: <?php echo $hasil['nama_pelapor']; ?><br>No. Telp: <?php echo $hasil['noTelp_pelapor']; ?></td>
+                                                <td>
+                                                    <strong>Nama Pelapor:</strong><br><?php echo $hasil['nama_pelapor']; ?><br><br>
+                                                    <strong>No. Telp Pelapor:</strong><br><?php echo $hasil['noTelp_pelapor']; ?>
+                                                </td>
                                                 <td><?php echo $hasil['alamat']; ?></td>
                                                 <td><?php echo $hasil['tanggal_terima']; ?></td>
                                                 <td><?php echo $hasil['tanggal_selesai']; ?></td>
                                                 <td><?php echo $hasil['ket']; ?></td>
+                                                <td><?php echo $hasil['laporan']; ?></td>
                                                 <td width="20%">
                                                     <div class="row">
                                                         <?php
@@ -403,11 +408,15 @@ $nama = $_SESSION['nama'];
                                                     $desa2 = mysqli_fetch_array($desa1);
                                                     echo $desa2['nama_desa']; ?>
                                                 </td>
-                                                <td>Nama: <?php echo $hasil['nama_pelapor']; ?><br>No. Telp<?php echo $hasil['noTelp_pelapor']; ?></td>
+                                                <td>
+                                                    <strong>Nama Pelapor:</strong><br><?php echo $hasil['nama_pelapor']; ?><br><br>
+                                                    <strong>No. Telp Pelapor:</strong><br><?php echo $hasil['noTelp_pelapor']; ?>
+                                                </td>
                                                 <td><?php echo $hasil['alamat']; ?></td>
                                                 <td><?php echo $hasil['tanggal_terima']; ?></td>
                                                 <td><?php echo $hasil['tanggal_selesai']; ?></td>
                                                 <td><?php echo $hasil['ket']; ?></td>
+                                                <td><?php echo $hasil['laporan']; ?></td>
                                                 <td width="20%">
                                                     <div class="row">
                                                         <?php
@@ -437,8 +446,7 @@ $nama = $_SESSION['nama'];
                                 </tbody>
                                 <hr />
                                 <tr>
-                                    <td colspan="8" align="center"><b>Jumlah Kejadian</b></td>
-                                    <td><b><?php echo $jumlah; ?></b></td>
+                                    <td colspan="10" align="center"><b>Jumlah Kejadian: <?php echo $jumlah; ?></b></td>
                                     <td colspan="2" align="center">
                                         <a target="blank" href="data_kejadian_pdf.php?<?php  echo "dari_bulan=" .$_GET['dari_bulan']; echo "&sampai_bulan=" .$_GET['sampai_bulan']; echo "&th=" .$_GET['th']; echo "&kej=" .$_GET['kej'];?>" aria-label="pdf" style="color:red;"><i class="far fa-file-pdf"></i></i></a>
                                     </td>

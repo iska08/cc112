@@ -47,11 +47,12 @@ $akses = $_SESSION['hak_akses'];
                 <th>Kejadian</th>
                 <th>Kecamatan</th>
                 <th>Desa</th>
-                <th>Nama & Nomor Telepon Pelapor</th>
+                <th>Nama dan Nomor Telepon Pelapor</th>
                 <th>Tanggal Terima</th>
                 <th>Tanggal Selesai</th>
                 <th>Alamat</th>
                 <th>Keterangan</th>
+                <th>Laporan</th>
                 <th>Approve</th>
                 <th>Foto</th>
                 <th>Aksi</th>
@@ -98,11 +99,15 @@ $akses = $_SESSION['hak_akses'];
                       $desa2 = mysqli_fetch_array($desa1);
                       echo $desa2['nama_desa']; ?>
                     </td>
-                    <td>Nama: <?php echo $hasil['nama_pelapor']; ?><br>No. Telp: <?php echo $hasil['noTelp_pelapor']; ?></td>
+                    <td>
+                      <strong>Nama Pelapor:</strong><br><?php echo $hasil['nama_pelapor']; ?><br><br>
+                      <strong>No. Telp Pelapor:</strong><br><?php echo $hasil['noTelp_pelapor']; ?>
+                    </td>
                     <td><?php echo $hasil['tanggal_terima']; ?></td>
                     <td><?php echo $hasil['tanggal_selesai']; ?></td>
                     <td><?php echo $hasil['alamat']; ?></td>
                     <td><?php echo $hasil['ket']; ?></td>
+                    <td><?php echo $hasil['laporan']; ?></td>
                     <td>
                       <?php
                       if ($hasil['approve'] == "0") {
@@ -224,6 +229,7 @@ $akses = $_SESSION['hak_akses'];
                       <strong>Kejadian:</strong><br>
                       <?php echo $hasil['kejadian']; ?>
                       <br>
+                      <br>
                       <strong>Kecamatan:</strong><br>
                       <?php
                       $id_kec=$hasil['kec'];
@@ -232,6 +238,7 @@ $akses = $_SESSION['hak_akses'];
                       echo $kec2['nama_kecamatan'];
                       ?>
                       <br>
+                      <br>
                       <strong>Desa:</strong><br>
                       <?php
                       $id_desa=$hasil['desa'];
@@ -239,14 +246,18 @@ $akses = $_SESSION['hak_akses'];
                       $desa2 = mysqli_fetch_array($desa1);
                       echo $desa2['nama_desa']; ?>
                       <br>
-                      <strong>Nama:</strong><br>
+                      <br>
+                      <strong>Nama Pelapor:</strong><br>
                       <?php echo $hasil['nama_pelapor']; ?>
                       <br>
-                      <strong>No. Telp:</strong><br>
+                      <br>
+                      <strong>No. Telp Pelapor:</strong><br>
                       <?php echo $hasil['noTelp_pelapor']; ?>
+                      <br>
                       <br>
                       <strong>Alamat:</strong><br>
                       <?php echo $hasil['alamat']; ?>
+                      <br>
                       <br>
                       <strong>Keterangan:</strong><br>
                       <?php echo $hasil['ket']; ?>
