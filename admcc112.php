@@ -94,7 +94,7 @@ if (empty($_SESSION['112_username'])){
                         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
-                        <a href="timcc112.php" class="nav-link">Home</a>
+                        <a href="admcc112.php" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
                         <a href="logout.php" class="nav-link">Log Out</a>
