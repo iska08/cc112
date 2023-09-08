@@ -71,7 +71,7 @@ include 'fungsi_bulan.php';
 <body>
   <div class="fixed-top container" style="background-color: #fff;">
     <center>
-      <a href="http://cc112sumenep.com/">
+      <a href="http://www.sumenepkab.go.id/">
         <img src="img/cc112_ok1.jpg" class="img-fluid">
       </a>
       <ul class="nav-tem d-none d-sm-inline-block">

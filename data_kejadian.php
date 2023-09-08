@@ -210,8 +210,7 @@ include 'fungsi_bulan.php';
                                     <th>Kejadian</th>
                                     <th>Kecamatan</th>
                                     <th>Desa</th>
-                                    <th>Nama Pelapor</th>
-                                    <th>Nomor Telepon Pelapor</th>
+                                    <th>Nama & Nomor Telepon Pelapor</th>
                                     <th>Alamat</th>
                                     <th>Tanggal Terima</th>
                                     <th>Tanggal Selesai</th>
@@ -296,8 +295,7 @@ include 'fungsi_bulan.php';
                                                     echo $desa2['nama_desa'];
                                                     ?>
                                                 </td>
-                                                <td><?php echo $hasil['nama_pelapor']; ?></td>
-                                                <td><?php echo $hasil['noTelp_pelapor']; ?></td>
+                                                <td>Nama: <?php echo $hasil['nama_pelapor']; ?><br>No. Telp: <?php echo $hasil['noTelp_pelapor']; ?></td>
                                                 <td><?php echo $hasil['alamat']; ?></td>
                                                 <td><?php echo $hasil['tanggal_terima']; ?></td>
                                                 <td><?php echo $hasil['tanggal_selesai']; ?></td>
@@ -381,8 +379,7 @@ include 'fungsi_bulan.php';
                                                     $desa2 = mysqli_fetch_array($desa1);
                                                     echo $desa2['nama_desa']; ?>
                                                 </td>
-                                                <td><?php echo $hasil['nama_pelapor']; ?></td>
-                                                <td><?php echo $hasil['noTelp_pelapor']; ?></td>
+                                                <td>Nama: <?php echo $hasil['nama_pelapor']; ?><br>No. Telp<?php echo $hasil['noTelp_pelapor']; ?></td>
                                                 <td><?php echo $hasil['alamat']; ?></td>
                                                 <td><?php echo $hasil['tanggal_terima']; ?></td>
                                                 <td><?php echo $hasil['tanggal_selesai']; ?></td>
@@ -416,7 +413,7 @@ include 'fungsi_bulan.php';
                                 </tbody>
                                 <hr />
                                 <tr>
-                                    <td colspan="9" align="center"><b>Jumlah Kejadian</b></td>
+                                    <td colspan="8" align="center"><b>Jumlah Kejadian</b></td>
                                     <td><b><?php echo $jumlah; ?></b></td>
                                     <td colspan="2" align="center">
                                         <a target="blank" href="data_kejadian_pdf.php?<?php  echo "dari_bulan=" .$_GET['dari_bulan']; echo "&sampai_bulan=" .$_GET['sampai_bulan']; echo "&th=" .$_GET['th']; echo "&kej=" .$_GET['kej'];?>" aria-label="pdf" style="color:red;"><i class="far fa-file-pdf"></i></i></a>

@@ -139,7 +139,7 @@ while($hasil = mysqli_fetch_assoc($tampil)) {
   $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
   $desa2 = mysqli_fetch_array($desa1);
   $html .= ''.$desa2['nama_desa'].'</td>
-            <td valign="top" width="10%">'.$hasil['nama_pelapor'].'<br>'.$hasil['noTelp_pelapor'].'</td>
+            <td valign="top" width="10%">Nama: '.$hasil['nama_pelapor'].'<br>No. Telp: '.$hasil['noTelp_pelapor'].'</td>
             <td valign="top" width="10%">'.$hasil['alamat'].'</td>
             <td valign="top" width="10%">'.$hasil['tanggal_terima'].'</td>
             <td valign="top" width="10%">'.$hasil['tanggal_selesai'].'</td>           

@@ -36,8 +36,7 @@ $akses = $_SESSION['hak_akses'];
                 <th>Kejadian</th>
                 <th>Kecamatan</th>
                 <th>Desa</th>
-                <th>Nama Pelapor</th>
-                <th>Nomor Telepon Pelapor</th>
+                <th>Nama & Nomor Telepon Pelapor</th>
                 <th>Tanggal Terima</th>
                 <th>Tanggal Selesai</th>
                 <th>Alamat</th>
@@ -88,8 +87,7 @@ $akses = $_SESSION['hak_akses'];
                       $desa2 = mysqli_fetch_array($desa1);
                       echo $desa2['nama_desa']; ?>
                     </td>
-                    <td><?php echo $hasil['nama_pelapor']; ?></td>
-                    <td><?php echo $hasil['noTelp_pelapor']; ?></td>
+                    <td>Nama: <?php echo $hasil['nama_pelapor']; ?><br>No. Telp: <?php echo $hasil['noTelp_pelapor']; ?></td>
                     <td><?php echo $hasil['tanggal_terima']; ?></td>
                     <td><?php echo $hasil['tanggal_selesai']; ?></td>
                     <td><?php echo $hasil['alamat']; ?></td>
@@ -180,8 +178,7 @@ $akses = $_SESSION['hak_akses'];
                 <th>Kejadian</th>
                 <th>Kecamatan</th>
                 <th>Desa</th>
-                <th>Nama Pelapor</th>
-                <th>Nomor Telepon Pelapor</th>
+                <th>Nama & Nomor Telepon Pelapor</th>
                 <th>Tanggal Terima</th>
                 <th>Tanggal Selesai</th>
                 <th>Alamat</th>
@@ -230,8 +227,7 @@ $akses = $_SESSION['hak_akses'];
                       $desa2 = mysqli_fetch_array($desa1);
                       echo $desa2['nama_desa']; ?>
                     </td>
-                    <td><?php echo $hasil['nama_pelapor']; ?></td>
-                    <td><?php echo $hasil['noTelp_pelapor']; ?></td>
+                    <td>Nama: <?php echo $hasil['nama_pelapor']; ?><br>No. Telp: <?php echo $hasil['noTelp_pelapor']; ?></td>
                     <td><?php echo $hasil['tanggal_terima']; ?></td>
                     <td><?php echo $hasil['tanggal_selesai']; ?></td>
                     <td><?php echo $hasil['alamat']; ?></td>

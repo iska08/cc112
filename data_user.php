@@ -126,6 +126,7 @@ $id_user = $_GET['id_user'];
                         ?>
                     </tbody>
                 </table>
+                NB: Default Password adalah 'password'
             </div>
         </div>
     </div>
