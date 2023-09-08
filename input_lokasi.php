@@ -104,7 +104,7 @@ include 'dbconfig.php';
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Foto Kejadian</label>
-            <input type="file" class="form-control" name="foto" data-icon="false" multiple required>
+            <input type="file" class="form-control" name="foto" data-icon="false" multiple>
             <input hidden type="text" name="id" value="<?php echo $hasil['id']; ?>">
             <input hidden type="text" name="kej" value="<?php echo $hasil['kejadian']; ?>">
           </div>

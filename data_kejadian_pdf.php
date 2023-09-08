@@ -47,10 +47,16 @@ $html = '
 </style>
 ';
 
+$hak_akses = $_SESSION['hak_akses'];
+$nama = $_SESSION['nama'];
 $html .= '<center><div><img src="112.jpg" width="100"></div><h4 style="text-transform: uppercase;">DATA KEJADIAN DARURAT CALL CENTER 112 KAB. SUMENEP';
 if($_GET['dari_bulan'] || $_GET['sampai_bulan']) {
   if(empty($_GET['th'] && $_GET['kej'])) {
-    $html .= ' <div>Semua kejadian Kedaruratan</div> ';
+    if($hak_akses=='Admin'){
+      $html .= ' <div>Semua kejadian Kedaruratan</div> ';
+    }elseif($hak_akses=='Tim'){
+      $html .= ' <div>Semua kejadian '.$nama.'</div> ';
+    }
   } else {
     $html .= ' <div> KEJADIAN : '.$_GET['kej'].' </div>';
   }
@@ -64,13 +70,16 @@ if($_GET['th']) {
 }
 if($_GET['kej']) {}
 if(empty($_GET)) {
-  $html .= ' <div>Semua kejadian Kedaruratan</div> ';
+  if($hak_akses=='Admin'){
+    $html .= ' <div>Semua kejadian Kedaruratan</div> ';
+  }elseif($hak_akses=='Tim'){
+    $html .= ' <div>Semua kejadian '.$nama.'</div> ';
+  }
 }
 $html .= '</div></h4></center><table>';
 $html .= '<tr>
           <th>No.</th><th>Kejadian</th><th>Kecamatan</th><th>Desa</th><th>Nama & Nomor Telepon Pelapor</th><th>Alamat</th><th>Tanggal Terima</th><th>Tanggal Selesai</th><th>Keterangan</th><th>Foto</th>  
           </tr>';
-$hak_akses = $_SESSION['hak_akses'];
 if($hak_akses=='Admin'){
   $dari_bulan = $_GET['dari_bulan'];
   $sampai_bulan = $_GET['sampai_bulan'];

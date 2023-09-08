@@ -27,7 +27,10 @@ include 'fungsi_bulan.php';
         border: 1px solid #ddd;
     }
 </style>
-
+<?php
+$hak_akses = $_SESSION['hak_akses'];
+$nama = $_SESSION['nama'];
+?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <div class="row">
     <div class="col-12">
@@ -40,7 +43,17 @@ include 'fungsi_bulan.php';
                         if($_GET['dari_bulan'] || $_GET['sampai_bulan']) {
                             if(empty($_GET['th'] && $_GET['kej'])){
                                 ?>
-                                <div>Semua Kejadian Kedaruratan</div>
+                                <?php
+                                if($hak_akses=='Admin'){
+                                    ?>
+                                    <div>Semua Kejadian Kedaruratan</div>
+                                    <?php
+                                }elseif($hak_akses=='Tim'){
+                                    ?>
+                                    <div>Semua Kejadian <?php echo $nama ?></div>
+                                    <?php
+                                }
+                                ?>
                                 <?php
                             } else {
                                 ?>
