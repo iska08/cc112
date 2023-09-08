@@ -13,6 +13,17 @@ $akses = $_SESSION['hak_akses'];
   #mapid {
     height: 600px;width:100%;
   }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th {
+    text-align: center; /* Rata tengah secara horizontal */
+    vertical-align: middle; /* Rata tengah secara vertikal */
+    background-color: #f2f2f2;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
 </style>
 
 <script src="js/jquery.Jcrop.js"></script>
