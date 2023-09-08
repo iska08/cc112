@@ -35,12 +35,12 @@ $akses = $_SESSION['hak_akses'];
   <div class="card-body">
     <div class="row">
       <div class="col-md-12">
-        <div>
-          <button class="btn btn-info btn-sm" id="add_lokasi">Input Lokasi</button>
-        </div>
-        <br/>
-        <div class="table-responsive">
-          <?php if($akses=='Admin'){ ?>
+        <?php if($akses=='Admin'){ ?>
+          <div>
+            <button class="btn btn-info btn-sm" id="add_lokasi">Input Lokasi</button>
+          </div>
+          <br/>
+          <div class="table-responsive">
             <table id="tower" class="table table-bordered">
               <thead>
                 <th>No.</th>
@@ -181,20 +181,18 @@ $akses = $_SESSION['hak_akses'];
               </tbody>
             </table>
             <?php
-          }elseif($akses=='Tim'){
-            ?>
+        }elseif($akses=='Tim'){
+          ?>
+          <div class="table-responsive">
             <table id="tower" class="table table-bordered">
               <thead>
                 <th>No.</th>
                 <th>Kejadian</th>
-                <th>Kecamatan</th>
-                <th>Desa</th>
-                <th>Nama & Nomor Telepon Pelapor</th>
                 <th>Tanggal Terima</th>
                 <th>Tanggal Selesai</th>
-                <th>Alamat</th>
-                <th>Keterangan</th>
+                <th>Laporan</th>
                 <th>Foto</th>
+                <th>Aksi</th>
               </thead>
               <tbody>
                 <?php
@@ -222,27 +220,40 @@ $akses = $_SESSION['hak_akses'];
                 ?>
                   <tr>
                     <td><?php echo $nomor++; ?></td>
-                    <td><?php echo $hasil['kejadian']; ?></td>
                     <td>
+                      <strong>Kejadian:</strong><br>
+                      <?php echo $hasil['kejadian']; ?>
+                      <br>
+                      <strong>Kecamatan:</strong><br>
                       <?php
                       $id_kec=$hasil['kec'];
                       $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
                       $kec2 = mysqli_fetch_array($kec1);
                       echo $kec2['nama_kecamatan'];
                       ?>
-                    </td>
-                    <td>
+                      <br>
+                      <strong>Desa:</strong><br>
                       <?php
                       $id_desa=$hasil['desa'];
                       $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
                       $desa2 = mysqli_fetch_array($desa1);
                       echo $desa2['nama_desa']; ?>
+                      <br>
+                      <strong>Nama:</strong><br>
+                      <?php echo $hasil['nama_pelapor']; ?>
+                      <br>
+                      <strong>No. Telp:</strong><br>
+                      <?php echo $hasil['noTelp_pelapor']; ?>
+                      <br>
+                      <strong>Alamat:</strong><br>
+                      <?php echo $hasil['alamat']; ?>
+                      <br>
+                      <strong>Keterangan:</strong><br>
+                      <?php echo $hasil['ket']; ?>
                     </td>
-                    <td>Nama: <?php echo $hasil['nama_pelapor']; ?><br>No. Telp: <?php echo $hasil['noTelp_pelapor']; ?></td>
                     <td><?php echo $hasil['tanggal_terima']; ?></td>
                     <td><?php echo $hasil['tanggal_selesai']; ?></td>
-                    <td><?php echo $hasil['alamat']; ?></td>
-                    <td><?php echo $hasil['ket']; ?></td>
+                    <td><?php echo $hasil['laporan']; ?></td>
                     <td width="20%">
                       <div class="row">
                         <?php
@@ -295,6 +306,11 @@ $akses = $_SESSION['hak_akses'];
                         <br/>
                         <button type="submit" class="btn btn-info btn-sm" id="inputGroupFileAddon04">Upload</button>
                       </form>
+                    </td>
+                    <td width="5%">
+                      <div class="btn-group">
+                        <a class="btn btn-info btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Input Laporan</a>
+                      </div>
                     </td>
                   </tr>
                 <?php
