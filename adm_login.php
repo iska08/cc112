@@ -111,12 +111,18 @@
     <footer class="py-5" id="footer-main">
       <div class="container">
         <div class="copyright text-center " style="color:#fff;">
-          &copy; 2022 Bidang TI Diskominfo Sumenep
+          Copyright &copy; <span id="current-year"></span> Bidang TI Kominfo Sumenep
         </div>
       </div>
     </footer>
     <!-- Argon Scripts -->
     <!-- Core -->
+    <script>
+      // Mengambil tahun saat ini
+      var currentYear = new Date().getFullYear();
+      // Menampilkan tahun saat ini dalam elemen dengan id "current-year"
+      document.getElementById('current-year').textContent = currentYear;
+    </script>
     <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/js-cookie/js.cookie.js"></script>
