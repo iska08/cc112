@@ -7,6 +7,21 @@ include 'fungsi_bulan.php';
 <link href="https://getbootstrap.com/docs/4.0/examples/navbar-fixed/navbar-top-fixed.css" rel="stylesheet">
 <link rel="stylesheet" href="css/wizard.css">
 <style type="text/css">
+  .login-button {
+    background-color: #17a2b8; /* Warna latar belakang */
+    border: 1px solid #17a2b8; /* Garis tepi dengan warna yang sama */
+    color: #fff; /* Warna teks */
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  /* Efek hover untuk tombol */
+  .login-button:hover {
+    background-color: #1497a3; /* Warna latar belakang saat dihover */
+    border: 1px solid #1497a3; /* Garis tepi saat dihover */
+  }
   @media screen and (max-width: 1000px) {
     .mobile-space {
       margin-top: 50px;
@@ -75,7 +90,7 @@ include 'fungsi_bulan.php';
         <img src="img/cc112_ok1.jpg" class="img-fluid">
       </a>
       <ul class="nav-tem d-none d-sm-inline-block">
-        <a href="adm_login.php" class="nav-link">Login</a>
+        <a href="adm_login.php" class="nav-link login-button">Login</a>
       </ul>
       <!-- <ul class="nav-tem d-none d-sm-inline-block">
         <a href="inputLaporan.php" class="nav-link">Laporan Masyarakat</a>
@@ -175,6 +190,8 @@ include 'fungsi_bulan.php';
           <?php
         } else {
           ?>
+          <br/>
+          <br/>
           <br/>
           <div class="card card-primary card-outline mobile-space_1">
             <div class="card-header">
