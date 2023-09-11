@@ -323,7 +323,7 @@ $akses = $_SESSION['hak_akses'];
                     </td>
                     <td width="5%">
                       <div class="btn-group">
-                        <a class="btn btn-info btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Input Laporan</a>
+                        <a class="btn btn-info btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Input Laporan dan Tanggal Selesai</a>
                       </div>
                     </td>
                   </tr>
