@@ -335,7 +335,8 @@ include 'fungsi_bulan.php';
           </div>
           <script>
             //setting maps menggunakan api mapbox bukan google maps, daftar dan dapatkan token
-            var mbAttr = '&copy; 2022 Bidang TI Kominfo Sumenep';
+            $year = new Date().getFullYear();
+            var mbAttr = '&copy; ' + $year + ' Bidang TI Kominfo Sumenep';
             var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
             var jalan = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
             var googlemap = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{ maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'],attribution: mbAttr });
