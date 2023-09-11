@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Sep 2023 pada 04.29
--- Versi server: 10.4.22-MariaDB
--- Versi PHP: 7.4.28
+-- Generation Time: Sep 11, 2023 at 04:09 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `counterdb`
+-- Table structure for table `counterdb`
 --
 
 CREATE TABLE `counterdb` (
@@ -36,7 +36,7 @@ CREATE TABLE `counterdb` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `counterdb`
+-- Dumping data for table `counterdb`
 --
 
 INSERT INTO `counterdb` (`id`, `tanggal`, `ip_address`, `counter`, `browser`) VALUES
@@ -56,7 +56,7 @@ INSERT INTO `counterdb` (`id`, `tanggal`, `ip_address`, `counter`, `browser`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `desa`
+-- Table structure for table `desa`
 --
 
 CREATE TABLE `desa` (
@@ -66,7 +66,7 @@ CREATE TABLE `desa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `desa`
+-- Dumping data for table `desa`
 --
 
 INSERT INTO `desa` (`id`, `id_kecamatan`, `nama_desa`) VALUES
@@ -408,7 +408,7 @@ INSERT INTO `desa` (`id`, `id_kecamatan`, `nama_desa`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dusun`
+-- Table structure for table `dusun`
 --
 
 CREATE TABLE `dusun` (
@@ -418,7 +418,7 @@ CREATE TABLE `dusun` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `dusun`
+-- Dumping data for table `dusun`
 --
 
 INSERT INTO `dusun` (`id`, `id_desa`, `nama_dusun`) VALUES
@@ -569,7 +569,7 @@ INSERT INTO `dusun` (`id`, `id_desa`, `nama_dusun`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `foto`
+-- Table structure for table `foto`
 --
 
 CREATE TABLE `foto` (
@@ -579,7 +579,7 @@ CREATE TABLE `foto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `foto`
+-- Dumping data for table `foto`
 --
 
 INSERT INTO `foto` (`id`, `id_lokasi`, `nama_foto`) VALUES
@@ -835,7 +835,7 @@ INSERT INTO `foto` (`id`, `id_lokasi`, `nama_foto`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kecamatan`
+-- Table structure for table `kecamatan`
 --
 
 CREATE TABLE `kecamatan` (
@@ -844,7 +844,7 @@ CREATE TABLE `kecamatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kecamatan`
+-- Dumping data for table `kecamatan`
 --
 
 INSERT INTO `kecamatan` (`id`, `nama_kecamatan`) VALUES
@@ -879,7 +879,7 @@ INSERT INTO `kecamatan` (`id`, `nama_kecamatan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kejadian`
+-- Table structure for table `kejadian`
 --
 
 CREATE TABLE `kejadian` (
@@ -889,7 +889,7 @@ CREATE TABLE `kejadian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kejadian`
+-- Dumping data for table `kejadian`
 --
 
 INSERT INTO `kejadian` (`id`, `nama_kejadian`, `opd_terkait`) VALUES
@@ -912,7 +912,7 @@ INSERT INTO `kejadian` (`id`, `nama_kejadian`, `opd_terkait`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `lokasi`
+-- Table structure for table `lokasi`
 --
 
 CREATE TABLE `lokasi` (
@@ -933,7 +933,7 @@ CREATE TABLE `lokasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `lokasi`
+-- Dumping data for table `lokasi`
 --
 
 INSERT INTO `lokasi` (`id`, `lat_long`, `alamat`, `desa`, `kec`, `kejadian`, `tanggal_terima`, `tanggal_selesai`, `approve`, `ket`, `nama_pelapor`, `noTelp_pelapor`, `bulan`, `tahun`) VALUES
@@ -1146,7 +1146,7 @@ INSERT INTO `lokasi` (`id`, `lat_long`, `alamat`, `desa`, `kec`, `kejadian`, `ta
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `opd_terkait`
+-- Table structure for table `opd_terkait`
 --
 
 CREATE TABLE `opd_terkait` (
@@ -1155,7 +1155,7 @@ CREATE TABLE `opd_terkait` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `opd_terkait`
+-- Dumping data for table `opd_terkait`
 --
 
 INSERT INTO `opd_terkait` (`id`, `nama_opd`) VALUES
@@ -1171,7 +1171,7 @@ INSERT INTO `opd_terkait` (`id`, `nama_opd`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `survey`
+-- Table structure for table `survey`
 --
 
 CREATE TABLE `survey` (
@@ -1185,7 +1185,7 @@ CREATE TABLE `survey` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `survey`
+-- Dumping data for table `survey`
 --
 
 INSERT INTO `survey` (`id`, `nama`, `alamat`, `hp`, `res1`, `res2`, `res3`) VALUES
@@ -1210,7 +1210,7 @@ INSERT INTO `survey` (`id`, `nama`, `alamat`, `hp`, `res1`, `res2`, `res3`) VALU
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -1220,148 +1220,149 @@ CREATE TABLE `user` (
   `nama` varchar(255) DEFAULT NULL,
   `noTelp` varchar(50) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `hak_akses` enum('Admin','Tim') DEFAULT NULL,
+  `hak_akses` enum('Admin','Tim','Call Center') DEFAULT NULL,
   `kejadian` varchar(300) NOT NULL,
   `online` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `nama`, `noTelp`, `email`, `hak_akses`, `kejadian`, `online`) VALUES
 (1, 'cc112admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Arief Santoso, ST', '', 'admin@gmail.com', 'Admin', 'KECELAKAAN LAUT,KECELAKAAN KERJA,GIAT EVAKUASI,ORANG DENGAN GANGGUAN JIWA (ODGJ),KRIMINALITAS,COVID 19,BANJIR,KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,KEAMANAN DAN KETERTIBAN MASYARAKAT,TIANG LISTRIK RUBUH,KECELAKAAN LALU LINTAS,PERMINTAAN AMBULAN,POHON TUMBANG,BENCANA ALAM', '1'),
-(26, 'damkarcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'DAMKAR', '', 'damkarcc112@gmail.com', 'Tim', 'KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,POHON TUMBANG', '0'),
+(26, 'damkarcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'PEMADAM KEBAKARAN', '0816522086', 'damkarcc112@gmail.com', 'Tim', 'KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,POHON TUMBANG', '0'),
 (28, 'satpolppcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'SATPOL PP', '', 'satpolppcc112@gmail.com', 'Tim', 'ORANG DENGAN GANGGUAN JIWA (ODGJ),KEAMANAN DAN KETERTIBAN MASYARAKAT', '0'),
-(29, 'bpbdcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'BPBD', '', 'bpbdcc112@gmail.com', 'Tim', 'GIAT EVAKUASI,COVID 19,BANJIR,BENCANA ALAM', '0');
+(29, 'bpbdcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'BPBD', '', 'bpbdcc112@gmail.com', 'Tim', 'GIAT EVAKUASI,COVID 19,BANJIR,BENCANA ALAM', '0'),
+(31, 'callcenter112', '5f4dcc3b5aa765d61d8327deb882cf99', 'Call Center 112', '', 'callcenter112@gmail.com', 'Call Center', 'KECELAKAAN LAUT,KECELAKAAN KERJA,GIAT EVAKUASI,ORANG DENGAN GANGGUAN JIWA (ODGJ),KRIMINALITAS,COVID 19,BANJIR,KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,KEAMANAN DAN KETERTIBAN MASYARAKAT,TIANG LISTRIK RUBUH,KECELAKAAN LALU LINTAS,PERMINTAAN AMBULAN,POHON TUMBANG,BENCANA ALAM', '0');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `counterdb`
+-- Indexes for table `counterdb`
 --
 ALTER TABLE `counterdb`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `desa`
+-- Indexes for table `desa`
 --
 ALTER TABLE `desa`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `dusun`
+-- Indexes for table `dusun`
 --
 ALTER TABLE `dusun`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `foto`
+-- Indexes for table `foto`
 --
 ALTER TABLE `foto`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `kecamatan`
+-- Indexes for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `kejadian`
+-- Indexes for table `kejadian`
 --
 ALTER TABLE `kejadian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `lokasi`
+-- Indexes for table `lokasi`
 --
 ALTER TABLE `lokasi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `opd_terkait`
+-- Indexes for table `opd_terkait`
 --
 ALTER TABLE `opd_terkait`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `survey`
+-- Indexes for table `survey`
 --
 ALTER TABLE `survey`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `counterdb`
+-- AUTO_INCREMENT for table `counterdb`
 --
 ALTER TABLE `counterdb`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43296;
 
 --
--- AUTO_INCREMENT untuk tabel `desa`
+-- AUTO_INCREMENT for table `desa`
 --
 ALTER TABLE `desa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=346;
 
 --
--- AUTO_INCREMENT untuk tabel `dusun`
+-- AUTO_INCREMENT for table `dusun`
 --
 ALTER TABLE `dusun`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
--- AUTO_INCREMENT untuk tabel `foto`
+-- AUTO_INCREMENT for table `foto`
 --
 ALTER TABLE `foto`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=583;
 
 --
--- AUTO_INCREMENT untuk tabel `kecamatan`
+-- AUTO_INCREMENT for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
--- AUTO_INCREMENT untuk tabel `kejadian`
+-- AUTO_INCREMENT for table `kejadian`
 --
 ALTER TABLE `kejadian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT untuk tabel `lokasi`
+-- AUTO_INCREMENT for table `lokasi`
 --
 ALTER TABLE `lokasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=578;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=581;
 
 --
--- AUTO_INCREMENT untuk tabel `opd_terkait`
+-- AUTO_INCREMENT for table `opd_terkait`
 --
 ALTER TABLE `opd_terkait`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `survey`
+-- AUTO_INCREMENT for table `survey`
 --
 ALTER TABLE `survey`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
