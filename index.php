@@ -89,19 +89,14 @@ include 'fungsi_bulan.php';
       <a href="http://www.sumenepkab.go.id/">
         <img src="img/cc112_ok1.jpg" class="img-fluid">
       </a>
-      <ul class="nav-tem d-none d-sm-inline-block">
-        <a href="adm_login.php" class="nav-link login-button">Login</a>
-      </ul>
-      <!-- <ul class="nav-tem d-none d-sm-inline-block">
-        <a href="inputLaporan.php" class="nav-link">Laporan Masyarakat</a>
-      </ul> -->
+      <a href="adm_login.php" class="nav-link login-button">Login</a>
     </center>   
     <form action="index.php" method="GET">
       <div class="input-group input-group-sm">                        
         <input hidden name="hal" value="data_kej"> 
         <input type="text" class="form-control"  name="cari" placeholder="Cari kejadian dan lokasi">
         <span class="input-group-append">
-        <button type="submit" class="btn btn-info btn-flat">Cari</button>
+          <button type="submit" class="btn btn-info btn-flat">Cari</button>
         </span>   
       </div>
     </form>
