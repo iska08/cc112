@@ -135,9 +135,13 @@ if(isset($_GET['id_lokasi'])){
               $hasil_lokasi = mysqli_fetch_array($tampil_lokasi)
               ?>
               <div class="form-group">
+                <label for="exampleFormControlInput1">Tanggal Selesai</label>
+                <input type="text" class="form-control" id="tanggal_selesai" name="tanggal_selesai" value="<?php echo $hasil_lokasi['tanggal_selesai']; ?>">
+                <input hidden type="text" name="id" value="<?php echo $hasil_lokasi['id']; ?>">
+              </div>
+              <div class="form-group">
                 <label for="exampleFormControlInput1">Laporan Kejadian</label>
                 <textarea class="form-control" name="laporan" cols="30" rows="5"><?php echo $hasil_lokasi['laporan']; ?></textarea>
-                <input hidden type="text" name="id" value="<?php echo $hasil_lokasi['id']; ?>">
               </div>
               <div class="form-group">
                 <button type="submit" name="edit_lokasi" class="btn btn-info btn-sm">Input Laporan</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>

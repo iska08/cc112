@@ -35,7 +35,9 @@ $akses = $_SESSION['hak_akses'];
   <div class="card-body">
     <div class="row">
       <div class="col-md-12">
-        <?php if($akses=='Admin'){ ?>
+        <?php
+        if($akses=='Admin'){
+          ?>
           <div>
             <button class="btn btn-info btn-sm" id="add_lokasi">Input Lokasi</button>
           </div>
@@ -66,11 +68,11 @@ $akses = $_SESSION['hak_akses'];
                 // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
                 $whereClause = "";
                 foreach ($data as $value) {
-                    $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
-                    if ($whereClause !== "") {
-                        $whereClause .= " OR ";
-                    }
-                    $whereClause .= "kejadian = '$value'";
+                  $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
+                  if ($whereClause !== "") {
+                      $whereClause .= " OR ";
+                  }
+                  $whereClause .= "kejadian = '$value'";
                 }
                 $hak_akses = $_SESSION['hak_akses'];
                 if($hak_akses=='Admin'){
@@ -185,7 +187,8 @@ $akses = $_SESSION['hak_akses'];
                 ?>
               </tbody>
             </table>
-            <?php
+          </div>
+          <?php
         }elseif($akses=='Tim'){
           ?>
           <div class="table-responsive">
@@ -329,6 +332,85 @@ $akses = $_SESSION['hak_akses'];
                 ?>
               </tbody>
             </table>
+            <?php
+          }elseif($akses=='Call Center'){
+            ?>
+            <div>
+              <button class="btn btn-info btn-sm" id="add_lokasi">Input Lokasi</button>
+            </div>
+            <br/>
+            <div class="table-responsive">
+              <table id="tower" class="table table-bordered">
+                <thead>
+                  <th>No.</th>
+                  <th>Kejadian</th>
+                  <th>Kecamatan</th>
+                  <th>Desa</th>
+                  <th>Nama dan Nomor Telepon Pelapor</th>
+                  <th>Tanggal Terima</th>
+                  <th>Tanggal Selesai</th>
+                  <th>Alamat</th>
+                  <th>Keterangan</th>
+                </thead>
+                <tbody>
+                  <?php
+                  $nomor = 1;
+                  $kejadian = $_SESSION['kejadian'];
+                  $data = explode(",", $kejadian);
+                  // print_r($data);
+                  // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
+                  $whereClause = "";
+                  foreach ($data as $value) {
+                    $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
+                    if ($whereClause !== "") {
+                        $whereClause .= " OR ";
+                    }
+                    $whereClause .= "kejadian = '$value'";
+                  }
+                  $hak_akses = $_SESSION['hak_akses'];
+                  if($hak_akses=='Admin'){
+                    $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi ORDER BY id DESC");
+                  }elseif($hak_akses=='Tim'){
+                    $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE $whereClause ORDER BY id DESC");
+                  }elseif($hak_akses=='Call Center'){
+                    $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi ORDER BY id DESC");
+                  }
+                  // $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE $whereClause ORDER BY id DESC");
+                  while($hasil = mysqli_fetch_array($tampil)){
+                  ?>
+                    <tr>
+                      <td><?php echo $nomor++; ?></td>
+                      <td><?php echo $hasil['kejadian']; ?></td>
+                      <td>
+                        <?php
+                        $id_kec=$hasil['kec'];
+                        $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
+                        $kec2 = mysqli_fetch_array($kec1);
+                        echo $kec2['nama_kecamatan'];
+                        ?>
+                      </td>
+                      <td>
+                        <?php
+                        $id_desa=$hasil['desa'];
+                        $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
+                        $desa2 = mysqli_fetch_array($desa1);
+                        echo $desa2['nama_desa']; ?>
+                      </td>
+                      <td>
+                        <strong>Nama Pelapor:</strong><br><?php echo $hasil['nama_pelapor']; ?><br><br>
+                        <strong>No. Telp Pelapor:</strong><br><?php echo $hasil['noTelp_pelapor']; ?>
+                      </td>
+                      <td><?php echo $hasil['tanggal_terima']; ?></td>
+                      <td><?php echo $hasil['tanggal_selesai']; ?></td>
+                      <td><?php echo $hasil['alamat']; ?></td>
+                      <td><?php echo $hasil['ket']; ?></td>
+                    </tr>
+                  <?php
+                  }
+                  ?>
+                </tbody>
+              </table>
+            </div>
             <?php
           }
           ?>

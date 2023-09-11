@@ -51,6 +51,7 @@ $id_user = $_GET['id_user'];
                             </option>
                             <option value="Admin">Admin</option>
                             <option value="Tim">Tim</option>
+                            <option value="Call Center">Call Center</option>
                         </select>
                     </div>
                     <div class="form-group">

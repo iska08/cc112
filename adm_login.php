@@ -66,6 +66,7 @@
                     if($data['hak_akses']=="Admin"){
                       $_SESSION['112_username']   = $username;
                       $_SESSION['hak_akses']  = "Admin";
+                      $_SESSION['nama'] = $nama;
                       $login_on = mysqli_query($kominfo,"update user set online ='1' where username='$username'");
                       // alihkan ke halaman dashboard admin
                       echo "<script>window.location='admcc112.php';</script>";
@@ -78,6 +79,14 @@
                       $login_on = mysqli_query($kominfo,"update user set online ='1' where username='$username'");
                       // alihkan ke halaman dashboard admin
                       echo "<script>window.location='timcc112.php?hal=lokasi';</script>";
+                    }elseif($data['hak_akses']=='Call Center'){
+                      $_SESSION['112_username']   = $username;
+                      $_SESSION['hak_akses']  = "Call Center";
+                      $_SESSION['kejadian'] = $kejadian;
+                      $_SESSION['nama'] = $nama;
+                      $login_on = mysqli_query($kominfo,"update user set online ='1' where username='$username'");
+                      // alihkan ke halaman dashboard admin
+                      echo "<script>window.location='cc112.php?hal=lokasi';</script>";
                     } else {
                       echo '<div class="alert alert-warning" role="alert"><strong>Akun anda belum aktif atau belum terdaftar!</strong></div>';
                     }
