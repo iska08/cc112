@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2023 at 04:09 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.28
+-- Waktu pembuatan: 12 Sep 2023 pada 06.30
+-- Versi server: 10.4.22-MariaDB
+-- Versi PHP: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `counterdb`
+-- Struktur dari tabel `counterdb`
 --
 
 CREATE TABLE `counterdb` (
@@ -36,7 +36,7 @@ CREATE TABLE `counterdb` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `counterdb`
+-- Dumping data untuk tabel `counterdb`
 --
 
 INSERT INTO `counterdb` (`id`, `tanggal`, `ip_address`, `counter`, `browser`) VALUES
@@ -56,7 +56,7 @@ INSERT INTO `counterdb` (`id`, `tanggal`, `ip_address`, `counter`, `browser`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `desa`
+-- Struktur dari tabel `desa`
 --
 
 CREATE TABLE `desa` (
@@ -66,7 +66,7 @@ CREATE TABLE `desa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `desa`
+-- Dumping data untuk tabel `desa`
 --
 
 INSERT INTO `desa` (`id`, `id_kecamatan`, `nama_desa`) VALUES
@@ -408,7 +408,7 @@ INSERT INTO `desa` (`id`, `id_kecamatan`, `nama_desa`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dusun`
+-- Struktur dari tabel `dusun`
 --
 
 CREATE TABLE `dusun` (
@@ -418,7 +418,7 @@ CREATE TABLE `dusun` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `dusun`
+-- Dumping data untuk tabel `dusun`
 --
 
 INSERT INTO `dusun` (`id`, `id_desa`, `nama_dusun`) VALUES
@@ -569,7 +569,7 @@ INSERT INTO `dusun` (`id`, `id_desa`, `nama_dusun`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `foto`
+-- Struktur dari tabel `foto`
 --
 
 CREATE TABLE `foto` (
@@ -579,7 +579,7 @@ CREATE TABLE `foto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `foto`
+-- Dumping data untuk tabel `foto`
 --
 
 INSERT INTO `foto` (`id`, `id_lokasi`, `nama_foto`) VALUES
@@ -835,7 +835,7 @@ INSERT INTO `foto` (`id`, `id_lokasi`, `nama_foto`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kecamatan`
+-- Struktur dari tabel `kecamatan`
 --
 
 CREATE TABLE `kecamatan` (
@@ -844,7 +844,7 @@ CREATE TABLE `kecamatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kecamatan`
+-- Dumping data untuk tabel `kecamatan`
 --
 
 INSERT INTO `kecamatan` (`id`, `nama_kecamatan`) VALUES
@@ -879,7 +879,7 @@ INSERT INTO `kecamatan` (`id`, `nama_kecamatan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kejadian`
+-- Struktur dari tabel `kejadian`
 --
 
 CREATE TABLE `kejadian` (
@@ -889,30 +889,30 @@ CREATE TABLE `kejadian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kejadian`
+-- Dumping data untuk tabel `kejadian`
 --
 
 INSERT INTO `kejadian` (`id`, `nama_kejadian`, `opd_terkait`) VALUES
-(3, 'BENCANA ALAM', 'BPBD'),
-(4, 'POHON TUMBANG', 'DAMKAR'),
+(3, 'BENCANA ALAM', 'BADAN PENANGGULANGAN BENCANA DAERAH'),
+(4, 'POHON TUMBANG', 'PEMADAM KEBAKARAN'),
 (5, 'PERMINTAAN AMBULAN', 'PUSKESMAS '),
 (6, 'KECELAKAAN LALU LINTAS', 'PUSKESMAS '),
 (7, 'TIANG LISTRIK RUBUH', 'PLN'),
 (8, 'KEAMANAN DAN KETERTIBAN MASYARAKAT', 'SATPOLL PP'),
-(9, 'EVAKUASI HEWAN LIAR/BUAS', 'DAMKAR'),
-(18, 'KEBAKARAN', 'DAMKAR'),
-(19, 'BANJIR', 'BPBD'),
-(20, 'COVID 19', 'BPBD'),
+(9, 'EVAKUASI HEWAN LIAR/BUAS', 'PEMADAM KEBAKARAN'),
+(18, 'KEBAKARAN', 'PEMADAM KEBAKARAN'),
+(19, 'BANJIR', 'BADAN PENANGGULANGAN BENCANA DAERAH'),
+(20, 'COVID 19', 'BADAN PENANGGULANGAN BENCANA DAERAH'),
 (21, 'KRIMINALITAS', 'SATPOLL PP'),
 (25, 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', 'SATPOLL PP'),
-(26, 'GIAT EVAKUASI', 'BPBD'),
-(27, 'KECELAKAAN KERJA', 'DAMKAR'),
+(26, 'GIAT EVAKUASI', 'BADAN PENANGGULANGAN BENCANA DAERAH'),
+(27, 'KECELAKAAN KERJA', 'PEMADAM KEBAKARAN'),
 (28, 'KECELAKAAN LAUT', 'DINAS PERHUBUNGAN');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lokasi`
+-- Struktur dari tabel `lokasi`
 --
 
 CREATE TABLE `lokasi` (
@@ -933,7 +933,7 @@ CREATE TABLE `lokasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `lokasi`
+-- Dumping data untuk tabel `lokasi`
 --
 
 INSERT INTO `lokasi` (`id`, `lat_long`, `alamat`, `desa`, `kec`, `kejadian`, `tanggal_terima`, `tanggal_selesai`, `approve`, `ket`, `nama_pelapor`, `noTelp_pelapor`, `bulan`, `tahun`) VALUES
@@ -1146,7 +1146,7 @@ INSERT INTO `lokasi` (`id`, `lat_long`, `alamat`, `desa`, `kec`, `kejadian`, `ta
 -- --------------------------------------------------------
 
 --
--- Table structure for table `opd_terkait`
+-- Struktur dari tabel `opd_terkait`
 --
 
 CREATE TABLE `opd_terkait` (
@@ -1155,14 +1155,14 @@ CREATE TABLE `opd_terkait` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `opd_terkait`
+-- Dumping data untuk tabel `opd_terkait`
 --
 
 INSERT INTO `opd_terkait` (`id`, `nama_opd`) VALUES
 (1, 'SATPOLL PP'),
-(2, 'BPBD'),
-(3, 'DAMKAR'),
-(4, 'DLH'),
+(2, 'BADAN PENANGGULANGAN BENCANA DAERAH'),
+(3, 'PEMADAM KEBAKARAN'),
+(4, 'DINAS LINGKUNGAN HIDUP'),
 (5, 'DINAS PERHUBUNGAN'),
 (6, 'PUSKESMAS '),
 (7, 'PLN'),
@@ -1171,7 +1171,7 @@ INSERT INTO `opd_terkait` (`id`, `nama_opd`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `survey`
+-- Struktur dari tabel `survey`
 --
 
 CREATE TABLE `survey` (
@@ -1185,7 +1185,7 @@ CREATE TABLE `survey` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `survey`
+-- Dumping data untuk tabel `survey`
 --
 
 INSERT INTO `survey` (`id`, `nama`, `alamat`, `hp`, `res1`, `res2`, `res3`) VALUES
@@ -1210,7 +1210,7 @@ INSERT INTO `survey` (`id`, `nama`, `alamat`, `hp`, `res1`, `res2`, `res3`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -1220,149 +1220,155 @@ CREATE TABLE `user` (
   `nama` varchar(255) DEFAULT NULL,
   `noTelp` varchar(50) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `hak_akses` enum('Admin','Tim','Call Center') DEFAULT NULL,
+  `hak_akses` enum('Admin','Call Center','Tim') DEFAULT NULL,
   `kejadian` varchar(300) NOT NULL,
   `online` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `nama`, `noTelp`, `email`, `hak_akses`, `kejadian`, `online`) VALUES
-(1, 'cc112admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Arief Santoso, ST', '', 'admin@gmail.com', 'Admin', 'KECELAKAAN LAUT,KECELAKAAN KERJA,GIAT EVAKUASI,ORANG DENGAN GANGGUAN JIWA (ODGJ),KRIMINALITAS,COVID 19,BANJIR,KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,KEAMANAN DAN KETERTIBAN MASYARAKAT,TIANG LISTRIK RUBUH,KECELAKAAN LALU LINTAS,PERMINTAAN AMBULAN,POHON TUMBANG,BENCANA ALAM', '1'),
-(26, 'damkarcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'PEMADAM KEBAKARAN', '0816522086', 'damkarcc112@gmail.com', 'Tim', 'KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,POHON TUMBANG', '0'),
-(28, 'satpolppcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'SATPOL PP', '', 'satpolppcc112@gmail.com', 'Tim', 'ORANG DENGAN GANGGUAN JIWA (ODGJ),KEAMANAN DAN KETERTIBAN MASYARAKAT', '0'),
-(29, 'bpbdcc112', '5f4dcc3b5aa765d61d8327deb882cf99', 'BPBD', '', 'bpbdcc112@gmail.com', 'Tim', 'GIAT EVAKUASI,COVID 19,BANJIR,BENCANA ALAM', '0'),
-(31, 'callcenter112', '5f4dcc3b5aa765d61d8327deb882cf99', 'Call Center 112', '', 'callcenter112@gmail.com', 'Call Center', 'KECELAKAAN LAUT,KECELAKAAN KERJA,GIAT EVAKUASI,ORANG DENGAN GANGGUAN JIWA (ODGJ),KRIMINALITAS,COVID 19,BANJIR,KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,KEAMANAN DAN KETERTIBAN MASYARAKAT,TIANG LISTRIK RUBUH,KECELAKAAN LALU LINTAS,PERMINTAAN AMBULAN,POHON TUMBANG,BENCANA ALAM', '0');
+(1, 'cc112Admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Arief Santoso., ST.', '', 'admin@gmail.com', 'Admin', 'KECELAKAAN LAUT,KECELAKAAN KERJA,GIAT EVAKUASI,ORANG DENGAN GANGGUAN JIWA (ODGJ),KRIMINALITAS,COVID 19,BANJIR,KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,KEAMANAN DAN KETERTIBAN MASYARAKAT,TIANG LISTRIK RUBUH,KECELAKAAN LALU LINTAS,PERMINTAAN AMBULAN,POHON TUMBANG,BENCANA ALAM', '0'),
+(26, 'damkar_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'PEMADAM KEBAKARAN', '0816522086', 'damkarcc112@gmail.com', 'Tim', 'KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,POHON TUMBANG', '1'),
+(28, 'satpolPP_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'SATPOL PP', '', 'satpolppcc112@gmail.com', 'Tim', 'ORANG DENGAN GANGGUAN JIWA (ODGJ),KEAMANAN DAN KETERTIBAN MASYARAKAT', '0'),
+(29, 'bpbd_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'BPBD', '', 'bpbdcc112@gmail.com', 'Tim', 'GIAT EVAKUASI,COVID 19,BANJIR,BENCANA ALAM', '0'),
+(31, '1CallCenter112', '5f4dcc3b5aa765d61d8327deb882cf99', 'Call Center 112 (1)', '', '1callcenter112@gmail.com', 'Call Center', 'KECELAKAAN LAUT,KECELAKAAN KERJA,GIAT EVAKUASI,ORANG DENGAN GANGGUAN JIWA (ODGJ),KRIMINALITAS,COVID 19,BANJIR,KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,KEAMANAN DAN KETERTIBAN MASYARAKAT,TIANG LISTRIK RUBUH,KECELAKAAN LALU LINTAS,PERMINTAAN AMBULAN,POHON TUMBANG,BENCANA ALAM', '0'),
+(32, '2CallCenter112', '5f4dcc3b5aa765d61d8327deb882cf99', 'Call Center 112 (2)', '', '2callcenter112@gmail.com', 'Call Center', 'KECELAKAAN LAUT,KECELAKAAN KERJA,GIAT EVAKUASI,ORANG DENGAN GANGGUAN JIWA (ODGJ),KRIMINALITAS,COVID 19,BANJIR,KEBAKARAN,EVAKUASI HEWAN LIAR/BUAS,KEAMANAN DAN KETERTIBAN MASYARAKAT,TIANG LISTRIK RUBUH,KECELAKAAN LALU LINTAS,PERMINTAAN AMBULAN,POHON TUMBANG,BENCANA ALAM', '0'),
+(33, 'dlh_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'DINAS LINGKUNGAN HIDUP', '', 'dlhcc112@gmail.com', 'Tim', '', '0'),
+(34, 'dishub_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'DINAS PERHUBUNGAN', '', 'dishubcc112@gmail.com', 'Tim', '', '0'),
+(35, 'puskesmas_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'PUSKESMAS', '', 'puskesmascc112@gmail.com', 'Tim', '', '0'),
+(36, 'pln_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'PLN', '', 'plncc112@gmail.com', 'Tim', '', '0'),
+(37, 'telkom_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'TELKOM', '', 'telkomcc112@gmail.com', 'Tim', '', '0');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `counterdb`
+-- Indeks untuk tabel `counterdb`
 --
 ALTER TABLE `counterdb`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `desa`
+-- Indeks untuk tabel `desa`
 --
 ALTER TABLE `desa`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `dusun`
+-- Indeks untuk tabel `dusun`
 --
 ALTER TABLE `dusun`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `foto`
+-- Indeks untuk tabel `foto`
 --
 ALTER TABLE `foto`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `kecamatan`
+-- Indeks untuk tabel `kecamatan`
 --
 ALTER TABLE `kecamatan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `kejadian`
+-- Indeks untuk tabel `kejadian`
 --
 ALTER TABLE `kejadian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `lokasi`
+-- Indeks untuk tabel `lokasi`
 --
 ALTER TABLE `lokasi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `opd_terkait`
+-- Indeks untuk tabel `opd_terkait`
 --
 ALTER TABLE `opd_terkait`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `survey`
+-- Indeks untuk tabel `survey`
 --
 ALTER TABLE `survey`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `counterdb`
+-- AUTO_INCREMENT untuk tabel `counterdb`
 --
 ALTER TABLE `counterdb`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43296;
 
 --
--- AUTO_INCREMENT for table `desa`
+-- AUTO_INCREMENT untuk tabel `desa`
 --
 ALTER TABLE `desa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=346;
 
 --
--- AUTO_INCREMENT for table `dusun`
+-- AUTO_INCREMENT untuk tabel `dusun`
 --
 ALTER TABLE `dusun`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
--- AUTO_INCREMENT for table `foto`
+-- AUTO_INCREMENT untuk tabel `foto`
 --
 ALTER TABLE `foto`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=583;
 
 --
--- AUTO_INCREMENT for table `kecamatan`
+-- AUTO_INCREMENT untuk tabel `kecamatan`
 --
 ALTER TABLE `kecamatan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
--- AUTO_INCREMENT for table `kejadian`
+-- AUTO_INCREMENT untuk tabel `kejadian`
 --
 ALTER TABLE `kejadian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT for table `lokasi`
+-- AUTO_INCREMENT untuk tabel `lokasi`
 --
 ALTER TABLE `lokasi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=581;
 
 --
--- AUTO_INCREMENT for table `opd_terkait`
+-- AUTO_INCREMENT untuk tabel `opd_terkait`
 --
 ALTER TABLE `opd_terkait`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `survey`
+-- AUTO_INCREMENT untuk tabel `survey`
 --
 ALTER TABLE `survey`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
