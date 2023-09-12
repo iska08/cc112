@@ -19,6 +19,7 @@ describe('test_lokasi_datakejadian', () => {
       cy.get('.btn').click()
       cy.get('#data_kej_filter > label > .form-control').type('KEBAKARAN')
       cy.get('.custom-select').type('10')
+      cy.get('.main-header > :nth-child(1) > :nth-child(3) > .nav-link').click()//logout
 
     })
 })
