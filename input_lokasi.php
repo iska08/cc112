@@ -21,97 +21,181 @@ include 'dbconfig.php';
   <div class="card-body ">
     <div class="row"> <!-- class row digunakan sebelum membuat column  -->
       <div class="col-md-3"> <!-- ukuruan layar dengan bootstrap adalah 12 kolom, bagian kiri dibuat sebesar 4 kolom-->
-        <form id="form_tambah_lokasi" method="post" enctype="multipart/form-data">
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Latitude, Longitude</label>
-            <input type="text" class="form-control" id="latlong" name="latlong" required>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Kejadian</label>
-            <select class="form-control select2-danger " name="kejadian" required>
-              <option disabled selected>== Pilih Kejadian ==</option>
-              <?php
-              $kejadian = $_SESSION['kejadian'];
-              $data = explode(",", $kejadian);
-              // print_r($data);
-              // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
-              $whereClause = "";
-              foreach ($data as $value) {
-                  $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
-                  if ($whereClause !== "") {
-                      $whereClause .= " OR ";
-                  }
-                  $whereClause .= "nama_kejadian = '$value'";
-              }
-              $hak_akses = $_SESSION['hak_akses'];
-              if($hak_akses=='Admin'){
-                  $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian");
-              }elseif($hak_akses=='Tim'){
-                  $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian WHERE $whereClause");
-              }
-              // $tampil_kej = mysqli_query($kominfo, "select * from kejadian where $whereClause");
-              while($hasil_kej = mysqli_fetch_array($tampil_kej)) {
-              ?>
-                <option value="<?php echo $hasil_kej['nama_kejadian']; ?>"><?php echo $hasil_kej['nama_kejadian']; ?></option>
-              <?php
-              }
-              ?>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Kecamatan</label>
-            <select class="form-control" id="kecamatan" name="kec" required>
-              <option disabled selected>== Pilih Kecamatan ==</option>
-              <?php
-              $tampil_kec = mysqli_query($kominfo, "select * from kecamatan"); //ambil data dari tabel kecamatan
-              while($hasil_kec = mysqli_fetch_array($tampil_kec)) {
-              ?>
-                <option value="<?php echo $hasil_kec['id']; ?>"><?php echo $hasil_kec['nama_kecamatan']; ?></option>
-              <?php
-              }
-              ?>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Desa</label>
-            <select class="form-control" id="desa" name="desa" required>
-              <option disabled selected>== Pilih Desa ==</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Nama Pelapor</label>
-            <input type="text" class="form-control" id="nama_pelapor" name="nama_pelapor" required>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Nomor Telepon Pelapor</label>
-            <input type="text" class="form-control" id="noTelp_pelapor" name="noTelp_pelapor" required>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Tanggal Terima</label>
-            <input type="text" class="form-control" id="tanggal_terima" name="tanggal_terima" required>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Tanggal Selesai</label>
-            <input type="text" class="form-control" id="tanggal_selesai" name="tanggal_selesai">
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Alamat</label>
-            <input type="text" class="form-control" name="alamat" required>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Keterangan</label>
-            <textarea class="form-control" name="ket" cols="30" rows="5"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Foto Kejadian</label>
-            <input type="file" class="form-control" name="foto" data-icon="false" multiple required>
-            <input hidden type="text" name="id" value="<?php echo $hasil['id']; ?>">
-            <input hidden type="text" name="kej" value="<?php echo $hasil['kejadian']; ?>">
-          </div>
-          <div class="form-group">
-            <button type="submit" name="tambah_lokasi" class="btn btn-info btn-sm">Tambah</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
-          </div>
-        </form>
+        <?php
+        $hak_akses = $_SESSION['hak_akses'];
+        if($hak_akses=='Admin'){
+          ?>
+          <form id="form_tambah_lokasi" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Latitude, Longitude</label>
+              <input type="text" class="form-control" id="latlong" name="latlong" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Kejadian</label>
+              <select class="form-control select2-danger " name="kejadian" required>
+                <option disabled selected>== Pilih Kejadian ==</option>
+                <?php
+                $kejadian = $_SESSION['kejadian'];
+                $data = explode(",", $kejadian);
+                // print_r($data);
+                // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
+                $whereClause = "";
+                foreach ($data as $value) {
+                    $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
+                    if ($whereClause !== "") {
+                        $whereClause .= " OR ";
+                    }
+                    $whereClause .= "nama_kejadian = '$value'";
+                }
+                if($hak_akses=='Admin'){
+                    $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian");
+                }elseif($hak_akses=='Tim'){
+                    $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian WHERE $whereClause");
+                }
+                // $tampil_kej = mysqli_query($kominfo, "select * from kejadian where $whereClause");
+                while($hasil_kej = mysqli_fetch_array($tampil_kej)) {
+                ?>
+                  <option value="<?php echo $hasil_kej['nama_kejadian']; ?>"><?php echo $hasil_kej['nama_kejadian']; ?></option>
+                <?php
+                }
+                ?>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Kecamatan</label>
+              <select class="form-control" id="kecamatan" name="kec" required>
+                <option disabled selected>== Pilih Kecamatan ==</option>
+                <?php
+                $tampil_kec = mysqli_query($kominfo, "select * from kecamatan"); //ambil data dari tabel kecamatan
+                while($hasil_kec = mysqli_fetch_array($tampil_kec)) {
+                ?>
+                  <option value="<?php echo $hasil_kec['id']; ?>"><?php echo $hasil_kec['nama_kecamatan']; ?></option>
+                <?php
+                }
+                ?>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Desa</label>
+              <select class="form-control" id="desa" name="desa" required>
+                <option disabled selected>== Pilih Desa ==</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Nama Pelapor</label>
+              <input type="text" class="form-control" id="nama_pelapor" name="nama_pelapor" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Nomor Telepon Pelapor</label>
+              <input type="text" class="form-control" id="noTelp_pelapor" name="noTelp_pelapor" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Tanggal Terima</label>
+              <input type="text" class="form-control" id="tanggal_terima" name="tanggal_terima" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Tanggal Selesai</label>
+              <input type="text" class="form-control" id="tanggal_selesai" name="tanggal_selesai">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Alamat</label>
+              <input type="text" class="form-control" name="alamat" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Keterangan</label>
+              <textarea class="form-control" name="ket" cols="30" rows="5"></textarea>
+            </div>
+            <!-- <div class="form-group">
+              <label for="exampleFormControlInput1">Foto Kejadian</label>
+              <input type="file" class="form-control" name="foto" data-icon="false" multiple>
+              <input hidden type="text" name="id" value="<?php echo $hasil['id']; ?>">
+              <input hidden type="text" name="kej" value="<?php echo $hasil['kejadian']; ?>">
+            </div> -->
+            <div class="form-group">
+              <button type="submit" name="tambah_lokasi" class="btn btn-info btn-sm">Tambah</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
+            </div>
+          </form>
+          <?php
+        }elseif($hak_akses=='Call Center'){
+          ?>
+          <form id="form_tambah_lokasi" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Latitude, Longitude</label>
+              <input type="text" class="form-control" id="latlong" name="latlong" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Kejadian</label>
+              <select class="form-control select2-danger " name="kejadian" required>
+                <option disabled selected>== Pilih Kejadian ==</option>
+                <?php
+                $kejadian = $_SESSION['kejadian'];
+                $data = explode(",", $kejadian);
+                // print_r($data);
+                // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
+                $whereClause = "";
+                foreach ($data as $value) {
+                    $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
+                    if ($whereClause !== "") {
+                        $whereClause .= " OR ";
+                    }
+                    $whereClause .= "nama_kejadian = '$value'";
+                }
+                $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian");
+                while($hasil_kej = mysqli_fetch_array($tampil_kej)) {
+                ?>
+                  <option value="<?php echo $hasil_kej['nama_kejadian']; ?>"><?php echo $hasil_kej['nama_kejadian']; ?></option>
+                <?php
+                }
+                ?>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Kecamatan</label>
+              <select class="form-control" id="kecamatan" name="kec" required>
+                <option disabled selected>== Pilih Kecamatan ==</option>
+                <?php
+                $tampil_kec = mysqli_query($kominfo, "select * from kecamatan"); //ambil data dari tabel kecamatan
+                while($hasil_kec = mysqli_fetch_array($tampil_kec)) {
+                ?>
+                  <option value="<?php echo $hasil_kec['id']; ?>"><?php echo $hasil_kec['nama_kecamatan']; ?></option>
+                <?php
+                }
+                ?>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Desa</label>
+              <select class="form-control" id="desa" name="desa" required>
+                <option disabled selected>== Pilih Desa ==</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Nama Pelapor</label>
+              <input type="text" class="form-control" id="nama_pelapor" name="nama_pelapor" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Nomor Telepon Pelapor</label>
+              <input type="text" class="form-control" id="noTelp_pelapor" name="noTelp_pelapor" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Tanggal Terima</label>
+              <input type="text" class="form-control" id="tanggal_terima" name="tanggal_terima" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Alamat</label>
+              <input type="text" class="form-control" name="alamat" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Keterangan</label>
+              <textarea class="form-control" name="ket" cols="30" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+              <button type="submit" name="tambah_lokasi" class="btn btn-info btn-sm">Tambah</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
+            </div>
+          </form>
+          <?php
+        }
+        ?>
       </div>
       <br/>
       <div class="col-md-9">

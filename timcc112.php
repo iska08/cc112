@@ -98,13 +98,6 @@ if (empty($_SESSION['112_username'])){
                     <li class="nav-item d-none d-sm-inline-block">
                         <a href="logout.php" class="nav-link">Log Out</a>
                     </li>
-                    <!-- <li class="dropdown">
-                        <button type="button" class="btn btn-primary" data-toggle="dropdown">
-                            <span class="fa fa-bell" id="notif"></span>
-                        </button>
-                        <div id="pesan" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        </div>
-                    </li> -->
                 </ul>
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
@@ -114,11 +107,11 @@ if (empty($_SESSION['112_username'])){
                             <i class="fas fa-expand-arrows-alt"></i>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
                             <i class="fas fa-th-large"></i>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
                 <strong>
                     <?php
@@ -219,7 +212,7 @@ if (empty($_SESSION['112_username'])){
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content">
-                    <br />
+                    <h3>Selamat Datang, <strong><?php echo $_SESSION['nama'];?></strong></h3>
                     <?php
                     if(isset($_GET['hal'])){
                         $page = $_GET['hal'];
@@ -246,8 +239,15 @@ if (empty($_SESSION['112_username'])){
                 <div class="float-right d-none d-sm-block">
                     <b>Designer Arief</b>
                 </div>
-                <strong>Copyright &copy; 2022 Bidang TI Kominfo Sumenep.</strong> All rights reserved.
+                <strong>Copyright &copy; <span id="current-year"></span> Bidang TI Kominfo Sumenep.</strong> All rights reserved.
             </footer>
+        </div>
+        <script>
+            // Mengambil tahun saat ini
+            var currentYear = new Date().getFullYear();
+            // Menampilkan tahun saat ini dalam elemen dengan id "current-year"
+            document.getElementById('current-year').textContent = currentYear;
+        </script>
         </div>
         <!-- ./wrapper -->
         <!-- jQuery -->

@@ -61,10 +61,12 @@
                     $data = mysqli_fetch_assoc($login);
                     $username = $data['username'];
                     $kejadian = $data['kejadian'];
+                    $nama     = $data['nama'];
                     // cek jika user login sebagai admin
                     if($data['hak_akses']=="Admin"){
                       $_SESSION['112_username']   = $username;
                       $_SESSION['hak_akses']  = "Admin";
+                      $_SESSION['nama'] = $nama;
                       $login_on = mysqli_query($kominfo,"update user set online ='1' where username='$username'");
                       // alihkan ke halaman dashboard admin
                       echo "<script>window.location='admcc112.php';</script>";
@@ -73,9 +75,18 @@
                       $_SESSION['112_username']   = $username;
                       $_SESSION['hak_akses']  = "Tim";
                       $_SESSION['kejadian'] = $kejadian;
+                      $_SESSION['nama'] = $nama;
                       $login_on = mysqli_query($kominfo,"update user set online ='1' where username='$username'");
                       // alihkan ke halaman dashboard admin
                       echo "<script>window.location='timcc112.php?hal=lokasi';</script>";
+                    }elseif($data['hak_akses']=='Call Center'){
+                      $_SESSION['112_username']   = $username;
+                      $_SESSION['hak_akses']  = "Call Center";
+                      $_SESSION['kejadian'] = $kejadian;
+                      $_SESSION['nama'] = $nama;
+                      $login_on = mysqli_query($kominfo,"update user set online ='1' where username='$username'");
+                      // alihkan ke halaman dashboard admin
+                      echo "<script>window.location='cc112.php?hal=lokasi';</script>";
                     } else {
                       echo '<div class="alert alert-warning" role="alert"><strong>Akun anda belum aktif atau belum terdaftar!</strong></div>';
                     }
@@ -111,12 +122,18 @@
     <footer class="py-5" id="footer-main">
       <div class="container">
         <div class="copyright text-center " style="color:#fff;">
-          &copy; 2022 Bidang TI Diskominfo Sumenep
+          Copyright &copy; <span id="current-year"></span> Bidang TI Kominfo Sumenep
         </div>
       </div>
     </footer>
     <!-- Argon Scripts -->
     <!-- Core -->
+    <script>
+      // Mengambil tahun saat ini
+      var currentYear = new Date().getFullYear();
+      // Menampilkan tahun saat ini dalam elemen dengan id "current-year"
+      document.getElementById('current-year').textContent = currentYear;
+    </script>
     <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/js-cookie/js.cookie.js"></script>

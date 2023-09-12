@@ -7,6 +7,21 @@ include 'fungsi_bulan.php';
 <link href="https://getbootstrap.com/docs/4.0/examples/navbar-fixed/navbar-top-fixed.css" rel="stylesheet">
 <link rel="stylesheet" href="css/wizard.css">
 <style type="text/css">
+  .login-button {
+    background-color: #17a2b8; /* Warna latar belakang */
+    border: 1px solid #17a2b8; /* Garis tepi dengan warna yang sama */
+    color: #fff; /* Warna teks */
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  /* Efek hover untuk tombol */
+  .login-button:hover {
+    background-color: #1497a3; /* Warna latar belakang saat dihover */
+    border: 1px solid #1497a3; /* Garis tepi saat dihover */
+  }
   @media screen and (max-width: 1000px) {
     .mobile-space {
       margin-top: 50px;
@@ -71,22 +86,17 @@ include 'fungsi_bulan.php';
 <body>
   <div class="fixed-top container" style="background-color: #fff;">
     <center>
-      <a href="https://ekominfo.sumenepkab.go.id/cc112/">
+      <a href="http://www.sumenepkab.go.id/">
         <img src="img/cc112_ok1.jpg" class="img-fluid">
       </a>
-      <ul class="nav-tem d-none d-sm-inline-block">
-        <a href="adm_login.php" class="nav-link">Login</a>
-      </ul>
-      <!-- <ul class="nav-tem d-none d-sm-inline-block">
-        <a href="inputLaporan.php" class="nav-link">Laporan Masyarakat</a>
-      </ul> -->
+      <a href="adm_login.php" class="nav-link login-button">Login</a>
     </center>   
     <form action="index.php" method="GET">
       <div class="input-group input-group-sm">                        
         <input hidden name="hal" value="data_kej"> 
         <input type="text" class="form-control"  name="cari" placeholder="Cari kejadian dan lokasi">
         <span class="input-group-append">
-        <button type="submit" class="btn btn-info btn-flat">Cari</button>
+          <button type="submit" class="btn btn-info btn-flat">Cari</button>
         </span>   
       </div>
     </form>
@@ -175,6 +185,8 @@ include 'fungsi_bulan.php';
           <?php
         } else {
           ?>
+          <br/>
+          <br/>
           <br/>
           <div class="card card-primary card-outline mobile-space_1">
             <div class="card-header">
@@ -318,7 +330,8 @@ include 'fungsi_bulan.php';
           </div>
           <script>
             //setting maps menggunakan api mapbox bukan google maps, daftar dan dapatkan token
-            var mbAttr = '&copy; 2022 Bidang TI Kominfo Sumenep';
+            $year = new Date().getFullYear();
+            var mbAttr = '&copy; ' + $year + ' Bidang TI Kominfo Sumenep';
             var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
             var jalan = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
             var googlemap = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{ maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'],attribution: mbAttr });

@@ -83,41 +83,41 @@ switch ($_GET['action']) {
         $insert_lokasi = mysqli_query($kominfo, "INSERT INTO `lokasi` SET lat_long='$lat_long', alamat='$alamat', desa='$desa', tanggal_terima='$tanggal_terima', tanggal_selesai='$tanggal_selesai', kec='$kec', kejadian='$kejadian', ket='$ket',approve='$approve', bulan='$bulan', tahun='$tahun', nama_pelapor='$nama_pelapor', noTelp_pelapor='$noTelp_pelapor' ");
         if ($insert_lokasi) {
             echo "Simpan Lokasi Berhasil\n";
-            // Simpan Foto
-            if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-                $rand = rand(10000000, 20000000);
-                $id = mysqli_insert_id($kominfo);
-                $kej = str_replace(" ", "_", $_POST['kej']);
-                $foto_kej = $rand . "." . pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
-                $foto = $_FILES['foto']['name'];
-                $nama_foto = $_FILES['foto']['tmp_name'];
-                $extension = pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION);
-                // Izinkan hanya foto dengan ekstensi tertentu (contoh: jpg, jpeg)
-                $allowed_extensions = array('jpg', 'jpeg');
-                if (in_array($extension, $allowed_extensions)) {
-                    // Pastikan direktori "foto/" sudah ada
-                    if (!is_dir("foto/")) {
-                        mkdir("foto/");
-                    }
-                    // Simpan foto ke direktori "foto/"
-                    if (move_uploaded_file($nama_foto, "foto/$foto_kej")) {
-                        // Simpan informasi foto ke tabel foto
-                        $input_foto = mysqli_query($kominfo, "INSERT INTO foto SET id_lokasi='$id', nama_foto='$foto_kej' ");
+            // // Simpan Foto
+            // if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {
+            //     $rand = rand(10000000, 20000000);
+            //     $id = mysqli_insert_id($kominfo);
+            //     $kej = str_replace(" ", "_", $_POST['kej']);
+            //     $foto_kej = $rand . "." . pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
+            //     $foto = $_FILES['foto']['name'];
+            //     $nama_foto = $_FILES['foto']['tmp_name'];
+            //     $extension = pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION);
+            //     // Izinkan hanya foto dengan ekstensi tertentu (contoh: jpg, jpeg)
+            //     $allowed_extensions = array('jpg', 'jpeg');
+            //     if (in_array($extension, $allowed_extensions)) {
+            //         // Pastikan direktori "foto/" sudah ada
+            //         if (!is_dir("foto/")) {
+            //             mkdir("foto/");
+            //         }
+            //         // Simpan foto ke direktori "foto/"
+            //         if (move_uploaded_file($nama_foto, "foto/$foto_kej")) {
+            //             // Simpan informasi foto ke tabel foto
+            //             $input_foto = mysqli_query($kominfo, "INSERT INTO foto SET id_lokasi='$id', nama_foto='$foto_kej' ");
                         
-                        if ($input_foto) {
-                            echo "Simpan Foto Berhasil\n";
-                        } else {
-                            echo "Gagal menyimpan informasi foto ke database\n";
-                        }
-                    } else {
-                        echo "Gagal menyimpan foto\n";
-                    }
-                } else {
-                    echo "Ekstensi foto tidak diizinkan\n";
-                }
-            } else {
-                echo "Gagal mengunggah foto\n";
-            }
+            //             if ($input_foto) {
+            //                 echo "Simpan Foto Berhasil\n";
+            //             } else {
+            //                 echo "Gagal menyimpan informasi foto ke database\n";
+            //             }
+            //         } else {
+            //             echo "Gagal menyimpan foto\n";
+            //         }
+            //     } else {
+            //         echo "Ekstensi foto tidak diizinkan\n";
+            //     }
+            // } else {
+            //     echo "Gagal mengunggah foto\n";
+            // }
         } else {
             echo "Simpan Lokasi Masuk Gagal: " . mysqli_error($kominfo) . "\n";
         }
@@ -163,32 +163,54 @@ switch ($_GET['action']) {
         curl_close($curl);
         break;
     case 'edit_lokasi':
-        $id_lokasi          = $_POST['id'];
-        $lat_long           = $_POST['latlong'];
-        $alamat             = $_POST['alamat'];
-        $desa               = $_POST['desa'];
-        $kec                = $_POST['kec'];
-        $kejadian           = $_POST['kejadian'];
-        $ket                = $_POST['ket'];
-        $tanggal_terima     = $_POST['tanggal_terima'];
-        $tanggal_selesai    = $_POST['tanggal_selesai'];
-        $nama_pelapor       = $_POST['nama_pelapor'];
-        $noTelp_pelapor     = $_POST['noTelp_pelapor'];
-        //input data
-        $update_lokasi = mysqli_query($kominfo, "UPDATE `lokasi` SET lat_long='$lat_long',alamat='$alamat',desa='$desa',tanggal_terima='$tanggal_terima',tanggal_selesai='$tanggal_selesai',kec='$kec',kejadian='$kejadian',ket='$ket',nama_pelapor='$nama_pelapor',noTelp_pelapor='$noTelp_pelapor' WHERE id='$id_lokasi' ");
-        if ($update_lokasi) {
-            echo "Edit Lokasi Berhasil";
-        } else {
-            echo "Edit Lokasi Gagal :" . mysqli_error($kominfo);
+        $hak_akses = $_SESSION['hak_akses'];
+        if($hak_akses=='Admin'){
+            $id_lokasi          = $_POST['id'];
+            $lat_long           = $_POST['latlong'];
+            $alamat             = $_POST['alamat'];
+            $desa               = $_POST['desa'];
+            $kec                = $_POST['kec'];
+            $kejadian           = $_POST['kejadian'];
+            $ket                = $_POST['ket'];
+            $tanggal_terima     = $_POST['tanggal_terima'];
+            $tanggal_selesai    = $_POST['tanggal_selesai'];
+            $nama_pelapor       = $_POST['nama_pelapor'];
+            $noTelp_pelapor     = $_POST['noTelp_pelapor'];
+            //input data
+            $update_lokasi = mysqli_query($kominfo, "UPDATE `lokasi` SET lat_long='$lat_long',alamat='$alamat',desa='$desa',tanggal_terima='$tanggal_terima',tanggal_selesai='$tanggal_selesai',kec='$kec',kejadian='$kejadian',ket='$ket',nama_pelapor='$nama_pelapor',noTelp_pelapor='$noTelp_pelapor' WHERE id='$id_lokasi' ");
+            if ($update_lokasi) {
+                echo "Edit Lokasi Berhasil";
+            } else {
+                echo "Edit Lokasi Gagal :" . mysqli_error($kominfo);
+            }
+        }elseif($hak_akses=='Tim'){
+            $id_lokasi          = $_POST['id'];
+            $laporan            = $_POST['laporan'];
+            //input data
+            $update_lokasi = mysqli_query($kominfo, "UPDATE `lokasi` SET laporan='$laporan' WHERE id='$id_lokasi' ");
+            if ($update_lokasi) {
+                echo "Input Laporan Kejadian Berhasil";
+            } else {
+                echo "Input Laporan Kejadian Gagal :" . mysqli_error($kominfo);
+            }
         }
         break;
     case 'hapus_lokasi':
         $id = $_POST['id_lokasi'];
-        $query = mysqli_query($kominfo, "DELETE FROM lokasi WHERE id='$id'");
-        if ($query) {
+        // Mengambil semua foto terkait dengan lokasi yang akan dihapus
+        $lokasi_foto = mysqli_query($kominfo, "SELECT * FROM foto WHERE id_lokasi='$id'");
+        // Menghapus foto-foto dan rekamannya dari database
+        while ($foto = mysqli_fetch_array($lokasi_foto)) {
+            $file_path = 'foto/' . $foto["nama_foto"];
+            unlink($file_path);
+        }
+        // Setelah menghapus foto-foto, hapus lokasi itu sendiri
+        $hapus_foto_query = mysqli_query($kominfo, "DELETE FROM foto WHERE id_lokasi='$id'");
+        $hapus_lokasi_query = mysqli_query($kominfo, "DELETE FROM lokasi WHERE id='$id'");
+        if ($hapus_foto_query && $hapus_lokasi_query) {
             echo "Hapus Lokasi Berhasil";
         } else {
-            echo "Hapus Lokasi Gagal :" . mysqli_error($kominfo);
+            echo "Hapus Lokasi Gagal: " . mysqli_error($kominfo);
         }
         break;
     case 'simpan_kec':

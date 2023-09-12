@@ -10,13 +10,27 @@ include 'fungsi_bulan.php';
 ?>
 
 <style>
-/* ukuran peta */
-#mapid {
-    height: 600px;
-    width: 100%;
-}
+    /* ukuran peta */
+    #mapid {
+        height: 600px;
+        width: 100%;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th {
+        text-align: center; /* Rata tengah secara horizontal */
+        vertical-align: middle; /* Rata tengah secara vertikal */
+        background-color: #f2f2f2;
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
 </style>
-
+<?php
+$hak_akses = $_SESSION['hak_akses'];
+$nama = $_SESSION['nama'];
+?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <div class="row">
     <div class="col-12">
@@ -29,7 +43,17 @@ include 'fungsi_bulan.php';
                         if($_GET['dari_bulan'] || $_GET['sampai_bulan']) {
                             if(empty($_GET['th'] && $_GET['kej'])){
                                 ?>
-                                <div>Semua Kejadian Kedaruratan</div>
+                                <?php
+                                if($hak_akses=='Admin'){
+                                    ?>
+                                    <div>Semua Kejadian Kedaruratan</div>
+                                    <?php
+                                }elseif($hak_akses=='Tim'){
+                                    ?>
+                                    <div>Semua Kejadian <?php echo $nama ?></div>
+                                    <?php
+                                }
+                                ?>
                                 <?php
                             } else {
                                 ?>
@@ -210,12 +234,12 @@ include 'fungsi_bulan.php';
                                     <th>Kejadian</th>
                                     <th>Kecamatan</th>
                                     <th>Desa</th>
-                                    <th>Nama Pelapor</th>
-                                    <th>Nomor Telepon Pelapor</th>
+                                    <th>Nama dan Nomor Telepon Pelapor</th>
                                     <th>Alamat</th>
                                     <th>Tanggal Terima</th>
                                     <th>Tanggal Selesai</th>
                                     <th>Keterangan</th>
+                                    <th>Laporan</th>
                                     <th>Foto</th>
                                 </thead>
                                 <tbody>
@@ -296,12 +320,15 @@ include 'fungsi_bulan.php';
                                                     echo $desa2['nama_desa'];
                                                     ?>
                                                 </td>
-                                                <td><?php echo $hasil['nama_pelapor']; ?></td>
-                                                <td><?php echo $hasil['noTelp_pelapor']; ?></td>
+                                                <td>
+                                                    <strong>Nama Pelapor:</strong><br><?php echo $hasil['nama_pelapor']; ?><br><br>
+                                                    <strong>No. Telp Pelapor:</strong><br><?php echo $hasil['noTelp_pelapor']; ?>
+                                                </td>
                                                 <td><?php echo $hasil['alamat']; ?></td>
                                                 <td><?php echo $hasil['tanggal_terima']; ?></td>
                                                 <td><?php echo $hasil['tanggal_selesai']; ?></td>
                                                 <td><?php echo $hasil['ket']; ?></td>
+                                                <td><?php echo $hasil['laporan']; ?></td>
                                                 <td width="20%">
                                                     <div class="row">
                                                         <?php
@@ -381,10 +408,15 @@ include 'fungsi_bulan.php';
                                                     $desa2 = mysqli_fetch_array($desa1);
                                                     echo $desa2['nama_desa']; ?>
                                                 </td>
+                                                <td>
+                                                    <strong>Nama Pelapor:</strong><br><?php echo $hasil['nama_pelapor']; ?><br><br>
+                                                    <strong>No. Telp Pelapor:</strong><br><?php echo $hasil['noTelp_pelapor']; ?>
+                                                </td>
                                                 <td><?php echo $hasil['alamat']; ?></td>
                                                 <td><?php echo $hasil['tanggal_terima']; ?></td>
                                                 <td><?php echo $hasil['tanggal_selesai']; ?></td>
                                                 <td><?php echo $hasil['ket']; ?></td>
+                                                <td><?php echo $hasil['laporan']; ?></td>
                                                 <td width="20%">
                                                     <div class="row">
                                                         <?php
@@ -414,8 +446,7 @@ include 'fungsi_bulan.php';
                                 </tbody>
                                 <hr />
                                 <tr>
-                                    <td colspan="9" align="center"><b>Jumlah Kejadian</b></td>
-                                    <td><b><?php echo $jumlah; ?></b></td>
+                                    <td colspan="10" align="center"><b>Jumlah Kejadian: <?php echo $jumlah; ?></b></td>
                                     <td colspan="2" align="center">
                                         <a target="blank" href="data_kejadian_pdf.php?<?php  echo "dari_bulan=" .$_GET['dari_bulan']; echo "&sampai_bulan=" .$_GET['sampai_bulan']; echo "&th=" .$_GET['th']; echo "&kej=" .$_GET['kej'];?>" aria-label="pdf" style="color:red;"><i class="far fa-file-pdf"></i></i></a>
                                     </td>

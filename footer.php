@@ -5,9 +5,15 @@
         <i class="fas fa-arrow-up"></i>
       </button>
     </p>
-    <p class="mb-1">Copyright &copy; 2022 Diskominfo Sumenep</p>
+    <strong>Copyright &copy; <span id="current-year"></span> Bidang TI Kominfo Sumenep</strong>
   </div>
 </footer>
+<script>
+  // Mengambil tahun saat ini
+  var currentYear = new Date().getFullYear();
+  // Menampilkan tahun saat ini dalam elemen dengan id "current-year"
+  document.getElementById('current-year').textContent = currentYear;
+</script>
 <!-- ./wrapper -->
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>

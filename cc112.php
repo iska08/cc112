@@ -9,7 +9,7 @@ if (empty($_SESSION['112_username'])){
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Call Center 112 | Admin Dashboard</title>
+        <title>Call Center 112 | Tim Dashboard</title>
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome -->
@@ -57,7 +57,6 @@ if (empty($_SESSION['112_username'])){
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <style type="text/css">
         .page-link {
             position: relative;
@@ -94,7 +93,7 @@ if (empty($_SESSION['112_username'])){
                         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
-                        <a href="admcc112.php" class="nav-link">Home</a>
+                        <a href="timcc112.php" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item d-none d-sm-inline-block">
                         <a href="logout.php" class="nav-link">Log Out</a>
@@ -175,62 +174,10 @@ if (empty($_SESSION['112_username'])){
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
-                                <a href="admcc112.php" class="nav-link">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p class="text">Dashboard</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="?hal=lokasi" class="nav-link">
                                     <i class="nav-icon fas fa-globe"></i>
-                                    <p>
-                                        Lokasi
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
+                                    <p>Data Lokasi</p>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="?hal=lokasi" class="nav-link">
-                                            <i class="nav-icon far fa-circle"></i>
-                                            <p>Data Lokasi</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="?hal=data_kej" class="nav-link">
-                                            <i class="nav-icon far fa-circle"></i>
-                                            <p>Data Kejadian</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-briefcase"></i>
-                                    <p>
-                                        Data
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <!-- <li class="nav-item">
-                                        <a href="?hal=survey" class="nav-link">
-                                            <i class="nav-icon far fa-circle"></i>
-                                            <p>Survey</p>
-                                        </a>
-                                    </li> -->
-                                    <li class="nav-item">
-                                        <a href="?hal=data" class="nav-link">
-                                            <i class="nav-icon far fa-circle"></i>
-                                            <p>Input Data</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="?hal=counter" class="nav-link">
-                                            <i class="nav-icon far fa-circle"></i>
-                                            <p>Data Counter</p>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
                             <li class="nav-item">
                                 <a href="logout.php" class="nav-link">
@@ -284,6 +231,7 @@ if (empty($_SESSION['112_username'])){
             // Menampilkan tahun saat ini dalam elemen dengan id "current-year"
             document.getElementById('current-year').textContent = currentYear;
         </script>
+        </div>
         <!-- ./wrapper -->
         <!-- jQuery -->
         <script src="plugins/jquery/jquery.min.js"></script>
