@@ -6,7 +6,7 @@ if (empty($_SESSION['112_username'])){
 ?>
 <script>
     $(document).ready(function() {
-        //load data mahasiswa saat aplikasi dijalankan 
+        //load data mahasiswa saat aplikasi dijalankan
         lokasi();
         //Load form add
         $("#lokasi").on("click", "#add_lokasi", function() {
@@ -18,7 +18,7 @@ if (empty($_SESSION['112_username'])){
                 }
             });
         });
-        //Load form edit 
+        //Load form edit
         $("#lokasi").on("click", "#edit_lokasi", function() {
             var id_lokasi = $(this).attr("value");
             $.ajax({
@@ -32,7 +32,7 @@ if (empty($_SESSION['112_username'])){
                 }
             });
         });
-        //simpan 
+        //simpan
         $("#lokasi").on("submit", "#form_tambah_lokasi", function(e) {
             e.preventDefault();
             $.ajax({
@@ -48,7 +48,7 @@ if (empty($_SESSION['112_username'])){
                 }
             });
         });
-        //simpan 
+        //simpan
         $("#lokasi").on("submit", "#upload_foto", function(e) {
             e.preventDefault();
             $.ajax({
@@ -71,7 +71,7 @@ if (empty($_SESSION['112_username'])){
                 }
             });
         });
-        //simpan 
+        //simpan
         $("#lokasi").on("submit", "#edit_foto", function(e) {
             e.preventDefault();
             $.ajax({
@@ -103,7 +103,7 @@ if (empty($_SESSION['112_username'])){
                 }
             });
         });
-        //edit data 
+        //edit data
         $("#lokasi").on("submit", "#form_edit_lokasi", function(e) {
             e.preventDefault();
             $.ajax({
