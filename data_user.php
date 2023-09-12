@@ -104,7 +104,7 @@ $id_user = $_GET['id_user'];
                     </thead>
                     <tbody>
                         <?php
-                        $no=1; $tampil_user = mysqli_query($kominfo, "select * from user order by id desc");
+                        $no=1; $tampil_user = mysqli_query($kominfo, "select * from user order by hak_akses asc");
                         while($hasil_user = mysqli_fetch_array($tampil_user)){
                         ?>
                             <tr>
