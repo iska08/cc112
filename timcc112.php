@@ -212,7 +212,7 @@ if (empty($_SESSION['112_username'])){
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content">
-                    <br />
+                    <h3>Selamat Datang, <strong><?php echo $_SESSION['nama'];?></strong></h3>
                     <?php
                     if(isset($_GET['hal'])){
                         $page = $_GET['hal'];
