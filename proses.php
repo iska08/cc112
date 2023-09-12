@@ -197,11 +197,20 @@ switch ($_GET['action']) {
         break;
     case 'hapus_lokasi':
         $id = $_POST['id_lokasi'];
-        $query = mysqli_query($kominfo, "DELETE FROM lokasi WHERE id='$id'");
-        if ($query) {
+        // Mengambil semua foto terkait dengan lokasi yang akan dihapus
+        $lokasi_foto = mysqli_query($kominfo, "SELECT * FROM foto WHERE id_lokasi='$id'");
+        // Menghapus foto-foto dan rekamannya dari database
+        while ($foto = mysqli_fetch_array($lokasi_foto)) {
+            $file_path = 'foto/' . $foto["nama_foto"];
+            unlink($file_path);
+        }
+        // Setelah menghapus foto-foto, hapus lokasi itu sendiri
+        $hapus_foto_query = mysqli_query($kominfo, "DELETE FROM foto WHERE id_lokasi='$id'");
+        $hapus_lokasi_query = mysqli_query($kominfo, "DELETE FROM lokasi WHERE id='$id'");
+        if ($hapus_foto_query && $hapus_lokasi_query) {
             echo "Hapus Lokasi Berhasil";
         } else {
-            echo "Hapus Lokasi Gagal :" . mysqli_error($kominfo);
+            echo "Hapus Lokasi Gagal: " . mysqli_error($kominfo);
         }
         break;
     case 'simpan_kec':
