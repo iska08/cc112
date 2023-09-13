@@ -323,7 +323,21 @@ $akses = $_SESSION['hak_akses'];
                     </td>
                     <td width="5%">
                       <div class="btn-group">
-                        <a class="btn btn-info btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Input Laporan dan Tanggal Selesai</a>
+                        <?php
+                        $tglSelesai = $hasil['tanggal_selesai'];
+                        $lap        = $hasil['laporan'];
+                        if($tglSelesai === "" && $lap === ""){
+                          ?>
+                          <a class="btn btn-info btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Input Laporan dan Tanggal Selesai</a>
+                          <?php
+                        }else{
+                          ?>
+                          <a class="btn btn-warning btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Edit Laporan dan Tanggal Selesai</a>
+                          <a class="btn btn-danger btn-sm" id="hapus_lokasi" value="<?php echo $hasil['id']; ?>">Hapus Laporan dan Tanggal Selesai</a>
+                          <a class="btn btn-success btn-sm " target="blank" href="laporan.php?<?php  echo "dari_bulan=" .$_GET['dari_bulan']; echo "&sampai_bulan=" .$_GET['sampai_bulan']; echo "&th=" .$_GET['th']; echo "&kej=" .$_GET['kej'];?>" aria-label="pdf" style="color:yellow;">Unduh Laporan<br><i class="far fa-file-pdf"></i></a>
+                          <?php
+                        }
+                        ?>
                       </div>
                     </td>
                   </tr>
