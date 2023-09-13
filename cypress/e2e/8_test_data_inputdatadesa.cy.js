@@ -20,6 +20,7 @@ describe('test_data_inputdatadesa', () => {
       cy.get(':nth-child(1) > [width="5%"] > .btn-group > #hapus_desa').click() //hapus desa
       cy.get('.swal2-confirm').click()
       cy.get('.swal2-confirm').click()
+      cy.get('.main-header > :nth-child(1) > :nth-child(3) > .nav-link').click()//logout
 
     })
 })

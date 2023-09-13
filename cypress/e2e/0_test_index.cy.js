@@ -1,9 +1,9 @@
-describe('test_data_survey', () => {
+describe('test_index', () => {
     Cypress.on('uncaught:exception', (err, runnable) => {
       console.log(err);
       return false;
     })
-    it('', () => {
+    it('test index', () => {
       
       cy.visit('http://localhost/cc112/')
       cy.get('[name="bulan"]').select('Januari')
