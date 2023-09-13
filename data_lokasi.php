@@ -267,7 +267,24 @@ $akses = $_SESSION['hak_akses'];
                     </td>
                     <td><?php echo $hasil['tanggal_terima']; ?></td>
                     <td><?php echo $hasil['tanggal_selesai']; ?></td>
-                    <td><?php echo $hasil['laporan']; ?></td>
+                    <?php
+                    $tglSelesai = $hasil['tanggal_selesai'];
+                    $lap        = $hasil['laporan'];
+                    if($tglSelesai === "" && $lap === ""){
+                      ?>
+                      <td></td>
+                      <?php
+                    }else{
+                      ?>
+                      <td>
+                        <strong>Laporan:</strong><br>
+                        <?php echo $hasil['laporan']; ?><br><br>
+                        <strong>Tim yang Terlibat:</strong><br>
+                        <?php echo $hasil['tim']; ?>
+                      </td>
+                      <?php
+                    }
+                    ?>
                     <td width="20%">
                       <div class="row">
                         <?php
