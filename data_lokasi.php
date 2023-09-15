@@ -112,14 +112,9 @@ $akses = $_SESSION['hak_akses'];
                     <?php
                     $tglSelesai = $hasil['tanggal_selesai'];
                     $lap        = $hasil['laporan'];
-                    if($tglSelesai == "" && $lap == ""){
+                    if(empty($tglSelesai) && empty($lap)){
                       ?>
-                      <td>
-                        <strong>Laporan:</strong><br>
-                        <?php echo $hasil['laporan']; ?><br><br>
-                        <strong>Tim yang Terlibat:</strong><br>
-                        <?php echo $hasil['tim']; ?><br><br>
-                      </td>
+                      <td></td>
                       <?php
                     }else{
                       ?>
@@ -293,14 +288,9 @@ $akses = $_SESSION['hak_akses'];
                     <?php
                     $tglSelesai = $hasil['tanggal_selesai'];
                     $lap        = $hasil['laporan'];
-                    if($tglSelesai == "" && $lap == ""){
+                    if(empty($tglSelesai) && empty($lap)){
                       ?>
-                      <td>
-                        <strong>Laporan:</strong><br>
-                        <?php echo $hasil['laporan']; ?><br><br>
-                        <strong>Tim yang Terlibat:</strong><br>
-                        <?php echo $hasil['tim']; ?><br><br>
-                      </td>
+                      <td></td>
                       <?php
                     }else{
                       ?>
@@ -372,7 +362,7 @@ $akses = $_SESSION['hak_akses'];
                         <?php
                         $tglSelesai = $hasil['tanggal_selesai'];
                         $lap        = $hasil['laporan'];
-                        if($tglSelesai == "" && $lap == ""){
+                        if(empty($tglSelesai) && empty($lap)){
                           ?>
                           <a class="btn btn-info btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Input Laporan dan Tanggal Selesai</a>
                           <?php
