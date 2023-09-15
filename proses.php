@@ -187,7 +187,7 @@ switch ($_GET['action']) {
             $id_lokasi          = $_POST['id'];
             $tanggal_selesai    = $_POST['tanggal_selesai'];
             $laporan            = $_POST['laporan'];
-            $tim                = $_POST['tim'];
+            $tim                = implode(",", $_POST['tim']);
             //input data
             $update_lokasi = mysqli_query($kominfo, "UPDATE `lokasi` SET tanggal_selesai='$tanggal_selesai',laporan='$laporan',tim='$tim' WHERE id='$id_lokasi' ");
             if ($update_lokasi) {

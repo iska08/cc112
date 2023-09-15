@@ -174,7 +174,7 @@ $html .= "</html>";
 $dompdf->loadHtml($html);
 $dompdf->set_option('isFontSubsettingEnabled', true);
 // Setting ukuran dan orientasi kertas
-$dompdf->setPaper('Folio', 'landscape');
+$dompdf->setPaper('A4', 'portrait');
 // Rendering dari HTML Ke PDF
 $dompdf->render();
 // Melakukan output file Pdf
