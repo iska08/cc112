@@ -44,7 +44,7 @@ $html = '
 
 $hak_akses = $_SESSION['hak_akses'];
 $nama = $_SESSION['nama'];
-$html .= '<center><div><img src="112.jpg" width="100"></div><h4 style="text-transform: uppercase;">DATA KEJADIAN DARURAT CALL CENTER 112 KAB. SUMENEP';
+$html .= '<center><div><img src="logo/sumenep.png" width="100"></div><h4 style="text-transform: uppercase;">PEMERINTAH KABUPATEN SUMENEP';
 if($_GET['dari_bulan'] || $_GET['sampai_bulan']) {
   if(empty($_GET['th'] && $_GET['kej'])) {
     if($hak_akses=='Admin'){
