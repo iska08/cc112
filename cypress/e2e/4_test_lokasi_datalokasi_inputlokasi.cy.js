@@ -18,7 +18,7 @@ describe('test_lokasi_datalokasi_inputlokasi', () => {
     cy.get('#kecamatan').select('Kalianget')
     cy.get('#desa').select('Kalimook')
     cy.get('#nama_pelapor').type('tono')
-    cy.get('#noTelp_pelapor').type('08121')
+    cy.get('#noTelp_pelapor').type('081216305051')
     cy.get('#tanggal_terima').click()//tanggal terima
     cy.get('.open > .flatpickr-innerContainer > .flatpickr-rContainer > .flatpickr-days > .dayContainer > .today').click()
     cy.get('.col-md-9').click()
@@ -27,9 +27,9 @@ describe('test_lokasi_datalokasi_inputlokasi', () => {
     cy.get('.col-md-9').click()
     cy.get(':nth-child(9) > .form-control').type('jalan raya kalianget sumenep')
     cy.get(':nth-child(10) > .form-control').type('terjadi bencana banjir dipemukiman warga ')
-    cy.get(':nth-child(11) > .form-control').selectFile('cypress/fixtures/10039948.jpeg')
     cy.get('.btn-info').click()
     cy.get('.swal2-confirm').click()
+    cy.get('.main-header > :nth-child(1) > :nth-child(3) > .nav-link').click() //logout
     // cy.get('#tanggal_terima').click()//tanggal terima
     // cy.get('.open > .flatpickr-innerContainer > .flatpickr-rContainer > .flatpickr-days > .dayContainer > .today').click()
     // cy.get('.col-md-9').click()

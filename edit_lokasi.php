@@ -144,14 +144,24 @@ if(isset($_GET['id_lokasi'])){
                 <textarea class="form-control" name="laporan" cols="30" rows="5"><?php echo $hasil_lokasi['laporan']; ?></textarea>
               </div>
               <div class="form-group">
+                <label for="exampleFormControlInput1">Tim yang Terlibat</label>
+                <div id="tim-container">
+                  <?php
+                  $tim = explode(',', $hasil_lokasi['tim']);
+                  foreach ($tim as $anggota) {
+                    echo '<input type="text" class="form-control" name="tim[]" value="' . $anggota . '">';
+                  }
+                  ?>
+                </div>
+                <button type="button" id="add-tim" class="btn btn-primary">+</button>
+              </div>
+              <div class="form-group">
                 <button type="submit" name="edit_lokasi" class="btn btn-info btn-sm">Input Laporan</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
               </div>
             </form>
           </div>
           <br/>
           <div class="col-md-8">
-            <!-- ukuruan layar dengan bootstrap adalah 12 kolom, bagian kiri dibuat sebesar 4 kolom-->
-            <!-- peta akan ditampilkan dengan id = mapid -->
             <div id="mapid"></div>
             <br/>
           </div>
@@ -161,6 +171,33 @@ if(isset($_GET['id_lokasi'])){
     }
     ?>
   </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+      $(document).ready(function() {
+        // Menangani klik pada tombol tambah input
+        $("#add-tim").on("click", function() {
+          const timContainer = $("#tim-container");
+          const newInput = $("<input>").attr({
+            type: "text",
+            class: "form-control",
+            name: "tim[]",
+            cols: "30",
+            rows: "5"
+          });
+          timContainer.append(newInput);
+          // Handle hapus anggota tim
+          newInput.on("focusout", function() {
+            const timInputs = timContainer.find("input");
+            const timArray = timInputs
+              .map(function() {
+                return $(this).val();
+              })
+              .get();
+            $("#tim").val(timArray.join(","));
+          });
+        });
+      });
+  </script>
   <script>
     //setting maps menggunakan api mapbox bukan google maps, daftar dan dapatkan token
     var mbAttr = 'Map data &copy; Designer : Bidang TI Kominfo Sumenep';
