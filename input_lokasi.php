@@ -98,19 +98,13 @@ include 'dbconfig.php';
               <input type="text" class="form-control" id="tanggal_selesai" name="tanggal_selesai">
             </div>
             <div class="form-group">
-              <label for="exampleFormControlInput1">Alamat</label>
+              <label for="exampleFormControlInput1">Alamat Kejadian</label>
               <input type="text" class="form-control" name="alamat" required>
             </div>
             <div class="form-group">
               <label for="exampleFormControlInput1">Keterangan</label>
               <textarea class="form-control" name="ket" cols="30" rows="5"></textarea>
             </div>
-            <!-- <div class="form-group">
-              <label for="exampleFormControlInput1">Foto Kejadian</label>
-              <input type="file" class="form-control" name="foto" data-icon="false" multiple>
-              <input hidden type="text" name="id" value="<?php echo $hasil['id']; ?>">
-              <input hidden type="text" name="kej" value="<?php echo $hasil['kejadian']; ?>">
-            </div> -->
             <div class="form-group">
               <button type="submit" name="tambah_lokasi" class="btn btn-info btn-sm">Tambah</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
             </div>
@@ -182,7 +176,7 @@ include 'dbconfig.php';
               <input type="text" class="form-control" id="tanggal_terima" name="tanggal_terima" required>
             </div>
             <div class="form-group">
-              <label for="exampleFormControlInput1">Alamat</label>
+              <label for="exampleFormControlInput1">Alamat Kejadian</label>
               <input type="text" class="form-control" name="alamat" required>
             </div>
             <div class="form-group">

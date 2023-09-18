@@ -58,7 +58,7 @@ $id_opd = $_GET['id_opd'];
           <tbody>
             <?php
             $nooo=1;
-            $tampil_opd = mysqli_query($kominfo, "select * from opd_terkait"); //ambil data dari tabel lokasi
+            $tampil_opd = mysqli_query($kominfo, "select * from opd_terkait order by nama_opd"); //ambil data dari tabel lokasi
             while($hasil_opd = mysqli_fetch_array($tampil_opd)) {
             ?>
               <tr>

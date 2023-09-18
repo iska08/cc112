@@ -58,7 +58,7 @@ $id_kec = $_GET['id_kec'];
                     </thead>
                     <tbody>
                         <?php
-                        $no=1; $tampil_kec = mysqli_query($kominfo, "select * from kecamatan order by id desc"); //ambil data dari tabel lokasi
+                        $no=1; $tampil_kec = mysqli_query($kominfo, "select * from kecamatan order by nama_kecamatan"); //ambil data dari tabel lokasi
                         while($hasil_kec = mysqli_fetch_array($tampil_kec)){
                         ?>
                             <tr>

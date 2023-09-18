@@ -39,7 +39,7 @@ $id_desa = $_GET['id_desa'];
                 <option disabled selected>== Pilih Kecamatan ==</option>
               <?php } ?>
               <?php
-              $tampil_kec = mysqli_query($kominfo, "select * from kecamatan"); //ambil data dari tabel kecamatan
+              $tampil_kec = mysqli_query($kominfo, "select * from kecamatan order by nama_kecamatan"); //ambil data dari tabel kecamatan
               while($hasil_kec = mysqli_fetch_array($tampil_kec)){
               ?>
                 <option value="<?php echo $hasil_kec['id']; ?>"><?php echo $hasil_kec['nama_kecamatan']; ?></option>
@@ -74,7 +74,7 @@ $id_desa = $_GET['id_desa'];
           <tbody>
             <?php
             $noo=1;
-            $tampil_desa = mysqli_query($kominfo, "select * from desa"); //ambil data dari tabel lokasi
+            $tampil_desa = mysqli_query($kominfo, "select * from desa order by nama_desa"); //ambil data dari tabel lokasi
             while($hasil_desa = mysqli_fetch_array($tampil_desa)){
             ?>
               <tr>

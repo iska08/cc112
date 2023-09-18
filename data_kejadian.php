@@ -232,14 +232,12 @@ $nama = $_SESSION['nama'];
                                 <thead class="">
                                     <th width="1%">No.</th>
                                     <th>Kejadian</th>
-                                    <th>Kecamatan</th>
-                                    <th>Desa</th>
-                                    <th>Nama dan Nomor Telepon Pelapor</th>
-                                    <th>Alamat</th>
-                                    <th>Tanggal Terima</th>
-                                    <th>Tanggal Selesai</th>
+                                    <th>Kecamatan dan Desa</th>
+                                    <th>Data Pelapor</th>
+                                    <th>Alamat Kejadian</th>
+                                    <th>Tanggal</th>
                                     <th>Keterangan</th>
-                                    <th>Laporan</th>
+                                    <th>Laporan Penyelesaian</th>
                                     <th>Foto</th>
                                 </thead>
                                 <tbody>
@@ -305,14 +303,15 @@ $nama = $_SESSION['nama'];
                                                 <td><?php echo $nomor++; ?></td>
                                                 <td><?php echo $hasil['kejadian']; ?></td>
                                                 <td>
+                                                    <strong>Kecamatan:</strong><br>
                                                     <?php
                                                     $id_kec=$hasil['kec'];
                                                     $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
                                                     $kec2 = mysqli_fetch_array($kec1);
                                                     echo $kec2['nama_kecamatan'];
                                                     ?>
-                                                </td>
-                                                <td>
+                                                    <br><br>
+                                                    <strong>Desa:</strong><br>
                                                     <?php
                                                     $id_desa=$hasil['desa'];
                                                     $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
@@ -325,8 +324,13 @@ $nama = $_SESSION['nama'];
                                                     <strong>No. Telp Pelapor:</strong><br><?php echo $hasil['noTelp_pelapor']; ?>
                                                 </td>
                                                 <td><?php echo $hasil['alamat']; ?></td>
-                                                <td><?php echo $hasil['tanggal_terima']; ?></td>
-                                                <td><?php echo $hasil['tanggal_selesai']; ?></td>
+                                                <td>
+                                                    <strong>Tanggal Terima:</strong><br>
+                                                    <?php echo $hasil['tanggal_terima']; ?>
+                                                    <br><br>
+                                                    <strong>Tanggal Selesai:</strong><br>
+                                                    <?php echo $hasil['tanggal_selesai']; ?>
+                                                </td>
                                                 <td><?php echo $hasil['ket']; ?></td>
                                                 <td><?php echo $hasil['laporan']; ?></td>
                                                 <td width="20%">
@@ -397,12 +401,13 @@ $nama = $_SESSION['nama'];
                                                 <td><?php echo $nomor++; ?></td>
                                                 <td><?php echo $hasil['kejadian']; ?></td>
                                                 <td>
+                                                    <strong>Kecamatan:</strong><br>
                                                     <?php $id_kec=$hasil['kec'];
                                                     $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
                                                     $kec2 = mysqli_fetch_array($kec1);
                                                     echo $kec2['nama_kecamatan']; ?>
-                                                </td>
-                                                <td>
+                                                    <br><br>
+                                                    <strong>Desa:</strong><br>
                                                     <?php $id_desa=$hasil['desa'];
                                                     $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
                                                     $desa2 = mysqli_fetch_array($desa1);
@@ -413,8 +418,13 @@ $nama = $_SESSION['nama'];
                                                     <strong>No. Telp Pelapor:</strong><br><?php echo $hasil['noTelp_pelapor']; ?>
                                                 </td>
                                                 <td><?php echo $hasil['alamat']; ?></td>
-                                                <td><?php echo $hasil['tanggal_terima']; ?></td>
-                                                <td><?php echo $hasil['tanggal_selesai']; ?></td>
+                                                <td>
+                                                    <strong>Tanggal Terima:</strong><br>
+                                                    <?php echo $hasil['tanggal_terima']; ?>
+                                                    <br><br>
+                                                    <strong>Tanggal Selesai:</strong><br>
+                                                    <?php echo $hasil['tanggal_selesai']; ?>
+                                                </td>
                                                 <td><?php echo $hasil['ket']; ?></td>
                                                 <td><?php echo $hasil['laporan']; ?></td>
                                                 <td width="20%">
@@ -446,7 +456,7 @@ $nama = $_SESSION['nama'];
                                 </tbody>
                                 <hr />
                                 <tr>
-                                    <td colspan="10" align="center"><b>Jumlah Kejadian: <?php echo $jumlah; ?></b></td>
+                                    <td colspan="8" align="center"><b>Jumlah Kejadian: <?php echo $jumlah; ?></b></td>
                                     <td colspan="2" align="center">
                                         <a target="blank" href="data_kejadian_pdf.php?<?php  echo "dari_bulan=" .$_GET['dari_bulan']; echo "&sampai_bulan=" .$_GET['sampai_bulan']; echo "&th=" .$_GET['th']; echo "&kej=" .$_GET['kej'];?>" aria-label="pdf" style="color:red;"><i class="far fa-file-pdf"></i></i></a>
                                     </td>

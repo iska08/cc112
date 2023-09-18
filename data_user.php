@@ -50,15 +50,15 @@ $id_user = $_GET['id_user'];
                                 <?php echo $hasil_id_user['hak_akses']; ?>
                             </option>
                             <option value="Admin">Admin</option>
-                            <option value="Tim">Tim</option>
                             <option value="Call Center">Call Center</option>
+                            <option value="Tim">Tim</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Kejadian</label>
                         <?php
                         $selected_kejadian = explode(",", $hasil_id_user['kejadian']);
-                        $tampil_kejadian = mysqli_query($kominfo, "SELECT * FROM kejadian ORDER BY id DESC");
+                        $tampil_kejadian = mysqli_query($kominfo, "SELECT * FROM kejadian ORDER BY nama_kejadian");
                         while($hasil_kejadian = mysqli_fetch_array($tampil_kejadian)){
                             $checked = (in_array($hasil_kejadian['nama_kejadian'], $selected_kejadian)) ? "checked" : "";
                             ?>

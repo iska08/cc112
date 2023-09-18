@@ -76,11 +76,11 @@ $html .= '<tr>
           <th>No.</th>
           <th>Kejadian</th>
           <th>Kecamatan dan Desa</th>
-          <th>Nama & Nomor Telepon Pelapor</th>
-          <th>Alamat</th>
-          <th>Tanggal Terima dan Selesai</th>
+          <th>Data Pelapor</th>
+          <th>Alamat Kejadian</th>
+          <th>Tanggal</th>
           <th>Keterangan</th>
-          <th>Laporan</th>
+          <th>Laporan Penyelesaian</th>
           <th>Foto</th>  
           </tr>';
 if($hak_akses=='Admin'){

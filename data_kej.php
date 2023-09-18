@@ -39,7 +39,7 @@ $id_kej = $_GET['id_kej'];
                 <option disabled selected>== Pilih OPD Terkait ==</option>
               <?php } ?>
               <?php
-              $tampil_opd = mysqli_query($kominfo, "select * from opd_terkait");
+              $tampil_opd = mysqli_query($kominfo, "select * from opd_terkait order by nama_opd");
               while($hasil_opd = mysqli_fetch_array($tampil_opd)){
               ?>
                 <option value="<?php echo $hasil_opd['nama_opd']; ?>"><?php echo $hasil_opd['nama_opd']; ?></option>
@@ -82,7 +82,7 @@ $id_kej = $_GET['id_kej'];
           <tbody>
             <?php
             $noooo=1;
-            $tampil_kej = mysqli_query($kominfo, "select * from kejadian order by id desc"); //ambil data dari tabel lokasi
+            $tampil_kej = mysqli_query($kominfo, "select * from kejadian order by nama_kejadian"); //ambil data dari tabel lokasi
             while($hasil_kej = mysqli_fetch_array($tampil_kej)){
             ?>
               <tr>

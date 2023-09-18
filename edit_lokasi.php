@@ -99,7 +99,7 @@ if(isset($_GET['id_lokasi'])){
                 <input type="text" class="form-control" id="tanggal_selesai" name="tanggal_selesai" value="<?php echo $hasil_lokasi['tanggal_selesai']; ?>">
               </div>
               <div class="form-group">
-                <label for="exampleFormControlInput1">Alamat</label>
+                <label for="exampleFormControlInput1">Alamat Kejadian</label>
                 <input type="text" class="form-control" name="alamat" value="<?php echo $hasil_lokasi['alamat']; ?>">
               </div>
               <div class="form-group">
@@ -140,11 +140,11 @@ if(isset($_GET['id_lokasi'])){
                 <input hidden type="text" name="id" value="<?php echo $hasil_lokasi['id']; ?>">
               </div>
               <div class="form-group">
-                <label for="exampleFormControlInput1">Laporan Kejadian</label>
+                <label for="exampleFormControlInput1">Laporan Penyelesaian</label>
                 <textarea class="form-control" name="laporan" cols="30" rows="5"><?php echo $hasil_lokasi['laporan']; ?></textarea>
               </div>
               <div class="form-group">
-                <label for="exampleFormControlInput1">Tim yang Terlibat</label>
+                <label for="exampleFormControlInput1">Anggota yang Terlibat</label>
                 <div id="tim-container">
                   <?php
                   $tim = explode(',', $hasil_lokasi['tim']);
@@ -156,7 +156,17 @@ if(isset($_GET['id_lokasi'])){
                 <button type="button" id="add-tim" class="btn btn-primary">+</button>
               </div>
               <div class="form-group">
-                <button type="submit" name="edit_lokasi" class="btn btn-info btn-sm">Input Laporan</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
+                <?php
+                if(empty($tglSelesai) && empty($lap) && empty($tim)){
+                  ?>
+                  <button type="submit" name="edit_lokasi" class="btn btn-info btn-sm">Input Laporan</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
+                  <?php
+                }else{
+                  ?>
+                  <button type="submit" name="edit_lokasi" class="btn btn-info btn-sm">Edit Laporan</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
+                  <?php
+                }
+                ?>
               </div>
             </form>
           </div>

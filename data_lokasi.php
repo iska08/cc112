@@ -47,12 +47,10 @@ $akses = $_SESSION['hak_akses'];
               <thead>
                 <th>No.</th>
                 <th>Kejadian</th>
-                <th>Kecamatan</th>
-                <th>Desa</th>
-                <th>Nama dan Nomor Telepon Pelapor</th>
-                <th>Tanggal Terima</th>
-                <th>Tanggal Selesai</th>
-                <th>Alamat</th>
+                <th>Kecamatan dan Desa</th>
+                <th>Data Pelapor</th>
+                <th>Alamat Kejadian</th>
+                <th>Tanggal</th>
                 <th>Keterangan</th>
                 <th>Laporan</th>
                 <th>Approve</th>
@@ -87,14 +85,15 @@ $akses = $_SESSION['hak_akses'];
                     <td><?php echo $nomor++; ?></td>
                     <td><?php echo $hasil['kejadian']; ?></td>
                     <td>
+                      <strong>Kecamatan:</strong><br>
                       <?php
                       $id_kec=$hasil['kec'];
                       $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
                       $kec2 = mysqli_fetch_array($kec1);
                       echo $kec2['nama_kecamatan'];
                       ?>
-                    </td>
-                    <td>
+                      <br><br>
+                      <strong>Desa:</strong><br>
                       <?php
                       $id_desa=$hasil['desa'];
                       $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
@@ -105,9 +104,14 @@ $akses = $_SESSION['hak_akses'];
                       <strong>Nama Pelapor:</strong><br><?php echo $hasil['nama_pelapor']; ?><br><br>
                       <strong>No. Telp Pelapor:</strong><br><?php echo $hasil['noTelp_pelapor']; ?>
                     </td>
-                    <td><?php echo $hasil['tanggal_terima']; ?></td>
-                    <td><?php echo $hasil['tanggal_selesai']; ?></td>
                     <td><?php echo $hasil['alamat']; ?></td>
+                    <td>
+                      <strong>Tanggal Terima:</strong><br>
+                      <?php echo $hasil['tanggal_terima']; ?>
+                      <br><br>
+                      <strong>Tanggal Selesai:</strong><br>
+                      <?php echo $hasil['tanggal_selesai']; ?>
+                    </td>
                     <td><?php echo $hasil['ket']; ?></td>
                     <?php
                     $tglSelesai = $hasil['tanggal_selesai'];
@@ -119,9 +123,9 @@ $akses = $_SESSION['hak_akses'];
                     }else{
                       ?>
                       <td>
-                        <strong>Laporan:</strong><br>
+                        <strong>Laporan Penyelesaian:</strong><br>
                         <?php echo $hasil['laporan']; ?><br><br>
-                        <strong>Tim yang Terlibat:</strong><br>
+                        <strong>Anggota yang Terlibat:</strong><br>
                         <?php echo $hasil['tim']; ?><br><br>
                         <a class="btn btn-success btn-sm " target="blank" href="laporan.php?<?php  echo "dari_bulan=" .$_GET['dari_bulan']; echo "&sampai_bulan=" .$_GET['sampai_bulan']; echo "&th=" .$_GET['th']; echo "&kej=" .$_GET['kej'];?>" aria-label="pdf" style="color:white;">Unduh Laporan<br><i class="far fa-file-pdf"></i></a>
                       </td>
@@ -276,7 +280,7 @@ $akses = $_SESSION['hak_akses'];
                       <?php echo $hasil['noTelp_pelapor']; ?>
                       <br>
                       <br>
-                      <strong>Alamat:</strong><br>
+                      <strong>Alamat Kejadian:</strong><br>
                       <?php echo $hasil['alamat']; ?>
                       <br>
                       <br>
@@ -295,9 +299,9 @@ $akses = $_SESSION['hak_akses'];
                     }else{
                       ?>
                       <td>
-                        <strong>Laporan:</strong><br>
+                        <strong>Laporan Penyelesaian:</strong><br>
                         <?php echo $hasil['laporan']; ?><br><br>
-                        <strong>Tim yang Terlibat:</strong><br>
+                        <strong>Anggota yang Terlibat:</strong><br>
                         <?php echo $hasil['tim']; ?><br><br>
                         <a class="btn btn-success btn-sm " target="blank" href="laporan.php?<?php  echo "dari_bulan=" .$_GET['dari_bulan']; echo "&sampai_bulan=" .$_GET['sampai_bulan']; echo "&th=" .$_GET['th']; echo "&kej=" .$_GET['kej'];?>" aria-label="pdf" style="color:white;">Unduh Laporan<br><i class="far fa-file-pdf"></i></a>
                       </td>
@@ -364,12 +368,12 @@ $akses = $_SESSION['hak_akses'];
                         $lap        = $hasil['laporan'];
                         if(empty($tglSelesai) && empty($lap)){
                           ?>
-                          <a class="btn btn-info btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Input Laporan dan Tanggal Selesai</a>
+                          <a class="btn btn-info btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Input Laporan Penyelesaian</a>
                           <?php
                         }else{
                           ?>
-                          <a class="btn btn-warning btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Edit Laporan dan Tanggal Selesai</a>
-                          <a class="btn btn-danger btn-sm" id="hapus_lokasi" value="<?php echo $hasil['id']; ?>">Hapus Laporan dan Tanggal Selesai</a>
+                          <a class="btn btn-warning btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Edit</a>
+                          <a class="btn btn-danger btn-sm" id="hapus_lokasi" value="<?php echo $hasil['id']; ?>">Hapus</a>
                           <?php
                         }
                         ?>
@@ -395,10 +399,10 @@ $akses = $_SESSION['hak_akses'];
                   <th>Kejadian</th>
                   <th>Kecamatan</th>
                   <th>Desa</th>
-                  <th>Nama dan Nomor Telepon Pelapor</th>
+                  <th>Data Pelapor</th>
                   <th>Tanggal Terima</th>
                   <th>Tanggal Selesai</th>
-                  <th>Alamat</th>
+                  <th>Alamat Kejadian</th>
                   <th>Keterangan</th>
                 </thead>
                 <tbody>
