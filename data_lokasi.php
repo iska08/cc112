@@ -127,7 +127,7 @@ $akses = $_SESSION['hak_akses'];
                         <?php echo $hasil['laporan']; ?><br><br>
                         <strong>Anggota yang Terlibat:</strong><br>
                         <?php echo $hasil['tim']; ?><br><br>
-                        <a class="btn btn-success btn-sm " target="blank" href="laporan.php?<?php  echo "dari_bulan=" .$_GET['dari_bulan']; echo "&sampai_bulan=" .$_GET['sampai_bulan']; echo "&th=" .$_GET['th']; echo "&kej=" .$_GET['kej'];?>" aria-label="pdf" style="color:white;">Unduh Laporan<br><i class="far fa-file-pdf"></i></a>
+                        <a class="btn btn-success btn-sm " target="blank" href="laporan.php?id=<?php echo $hasil['id']; ?>" aria-label="pdf" style="color:white;">Unduh Laporan<br><i class="far fa-file-pdf"></i></a>
                       </td>
                       <?php
                     }
@@ -303,7 +303,7 @@ $akses = $_SESSION['hak_akses'];
                         <?php echo $hasil['laporan']; ?><br><br>
                         <strong>Anggota yang Terlibat:</strong><br>
                         <?php echo $hasil['tim']; ?><br><br>
-                        <a class="btn btn-success btn-sm " target="blank" href="laporan.php?<?php  echo "dari_bulan=" .$_GET['dari_bulan']; echo "&sampai_bulan=" .$_GET['sampai_bulan']; echo "&th=" .$_GET['th']; echo "&kej=" .$_GET['kej'];?>" aria-label="pdf" style="color:white;">Unduh Laporan<br><i class="far fa-file-pdf"></i></a>
+                        <a class="btn btn-success btn-sm " target="blank" href="laporan.php?<?php echo "id=" .$hasil['id'];?>" aria-label="pdf" style="color:white;">Unduh Laporan<br><i class="far fa-file-pdf"></i></a>
                       </td>
                       <?php
                     }

@@ -9,32 +9,57 @@ $dompdf = new Dompdf();
 $html = '
 <style type="text/css">
   @page {
-    margin-top:10px;
-    margin-bottom:10px;
+    margin: 0;
+    size: A4;
   }
-  @media print{
-    #tbl1 {
-      -webkit-print-color-adjust: exact !important;
-    }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: 12pt;
+  }
+  #header {
+    width: 100%;
+    color: black;
+    text-align: center;
+    padding: 10px 0;
+    line-height: 1;
+  }
+  #header h4,
+  #header h3,
+  #header h5 {
+    margin: 5px 0;
+    line-height: 1;
+  }
+  #logo1 {
+    float: left;
+    margin-left: 20px;
+  }
+  #logo2 {
+    float: right;
+    margin-right: 20px;
+  }
+  #content {
+    padding: 20px;
   }
   table {
-    display: table;
-    table-layout: fixed;
-    border-collapse: separate;
-    width: 100% !important;
-    max-width: 100%;
-    border-spacing: 0;
-    border-bottom: none;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  .detail {
+    padding-left: 20px;
+    font-family: Times New Roman, Times, serif;
+    font-size: 10pt;
+  }
+  .detail table {
+    width: 400px;
   }
   th {
-    border: 1px solid #000;background-color: #eee!important;
-    padding: 5px;font-size:14px;border-collapse: collapse;
-  }
-  td {
-    page-break-inside: avoid;
-    page-break-after: auto;
-    border: 1px solid #000;font-size:13px;
-    padding: 5px;
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+    background-color: #eee;
   }
   .page_break {
     page-break-before: always;
@@ -44,131 +69,69 @@ $html = '
 
 $hak_akses = $_SESSION['hak_akses'];
 $nama = $_SESSION['nama'];
-$html .= '<center><div><img src="logo/sumenep.png" width="100"></div><h4 style="text-transform: uppercase;">PEMERINTAH KABUPATEN SUMENEP';
-if($_GET['dari_bulan'] || $_GET['sampai_bulan']) {
-  if(empty($_GET['th'] && $_GET['kej'])) {
-    if($hak_akses=='Admin'){
-      $html .= ' <div>Semua kejadian Kedaruratan</div> ';
-    }elseif($hak_akses=='Tim'){
-      $html .= ' <div>Semua kejadian '.$nama.'</div> ';
-    }
-  } else {
-    $html .= ' <div> KEJADIAN : '.$_GET['kej'].' </div>';
-  }
-  $html .= ' <div> BULAN : '.kebulan($_GET['dari_bulan']).'';
-  if($_GET['sampai_bulan']) {
-    $html .= ' - '.kebulan($_GET['sampai_bulan']).'';
-  }
-}
-if($_GET['th']) {
-  $html .= ' '.$_GET['th'].'</div> ';
-}
-if($_GET['kej']) {}
-if(empty($_GET)) {
-  if($hak_akses=='Admin'){
-    $html .= ' <div>Semua kejadian Kedaruratan</div> ';
-  }elseif($hak_akses=='Tim'){
-    $html .= ' <div>Semua kejadian '.$nama.'</div> ';
-  }
-}
-$html .= '</div></h4></center><table>';
-$html .= '<tr>
-          <th>No.</th>
-          <th>Kejadian</th>
-          <th>Kecamatan dan Desa</th>
-          <th>Nama & Nomor Telepon Pelapor</th>
-          <th>Alamat</th>
-          <th>Tanggal Terima dan Selesai</th>
-          <th>Keterangan</th>
-          <th>Laporan</th>
-          <th>Foto</th>  
-          </tr>';
-if($hak_akses=='Admin'){
-  $dari_bulan = $_GET['dari_bulan'];
-  $sampai_bulan = $_GET['sampai_bulan'];
-  $th = $_GET['th'];
-  $kej = $_GET['kej'];
-  if($_GET['dari_bulan'] && $_GET['th']) {
-    $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th'  order by id desc ");
-  }
-  if($_GET['dari_bulan'] && $_GET['th'] && $_GET['kej']){
-    $tampil = mysqli_query($kominfo, "select * from lokasi  where  bulan='$dari_bulan' and tahun='$th' and kejadian='$kej' order by id desc ");
-  }
-  if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th']){
-    $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th'  order by id desc ");
-  }
-  if($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th'] && $_GET['kej']){
-    $tampil = mysqli_query($kominfo, "select * from lokasi  where bulan between '$dari_bulan' and '$sampai_bulan' and tahun='$th' and kejadian='$kej' order by id desc ");
-  }
-}elseif ($hak_akses == 'Tim') {
-  $kejadian = $_SESSION['kejadian'];
-  $data = explode(",", $kejadian);
-  // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
-  $whereClause = "";
-  foreach ($data as $value) {
-      $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
-      if ($whereClause !== "") {
-          $whereClause .= " OR ";
-      }
-      $whereClause .= "kejadian = '$value'";
-  }
-  $dari_bulan = $_GET['dari_bulan'];
-  $sampai_bulan = $_GET['sampai_bulan'];
-  $th = $_GET['th'];
-  
-  // Mengubah query SQL untuk memasukkan tahun yang dipilih oleh pengguna
-  $tahunClause = "";
-  if (!empty($th)) {
-      $tahunClause = " AND tahun = '$th'";
-  }
-
-  if ($_GET['dari_bulan'] && $_GET['th']) {
-      $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE bulan='$dari_bulan' $tahunClause ORDER BY id DESC");
-  }
-  if ($_GET['dari_bulan'] && $_GET['th'] && $whereClause) {
-      $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE bulan='$dari_bulan' $tahunClause AND ($whereClause) ORDER BY id DESC");
-  }
-  if ($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th']) {
-      $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE bulan BETWEEN '$dari_bulan' AND '$sampai_bulan' $tahunClause ORDER BY id DESC");
-  }
-  if ($_GET['dari_bulan'] && $_GET['sampai_bulan'] && $_GET['th'] && $whereClause) {
-      $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE bulan BETWEEN '$dari_bulan' AND '$sampai_bulan' $tahunClause AND ($whereClause) ORDER BY id DESC");
-  }
-}
-$nomor=1;
-while($hasil = mysqli_fetch_assoc($tampil)) { 
-  $jumlah = mysqli_num_rows($tampil);
-  $html .= '<tr>
-            <td valign="top" width="3%">'.$nomor++.' </td> 
-            <td valign="top" width="10%">'.$hasil['kejadian'].'</td>
-            <td valign="top" width="10%"><strong>Kecamatan:</strong><br>';
-  $id_kec=$hasil['kec'];
-  $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
-  $kec2 = mysqli_fetch_array($kec1);
-  $html .= ''.$kec2['nama_kecamatan'].'<br><br><strong>Desa:</strong><br>';
-  $id_desa=$hasil['desa'];
-  $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
-  $desa2 = mysqli_fetch_array($desa1);
-  $html .= ''.$desa2['nama_desa'].'</td>
-            <td valign="top" width="10%"><strong>Nama Pelapor:</strong><br>'.$hasil['nama_pelapor'].'<br><br><strong>No. Telp Pelapor:</strong><br>'.$hasil['noTelp_pelapor'].'</td>
-            <td valign="top" width="10%">'.$hasil['alamat'].'</td>
-            <td valign="top" width="10%"><strong>Tanggal Terima:</strong><br>'.$hasil['tanggal_terima'].'<br><br><strong>Tanggal Selesai:</strong><br>'.$hasil['tanggal_selesai'].'</td>
-            <td valign="top">'.$hasil['ket'].'</td>
-            <td valign="top">'.$hasil['laporan'].'</td>
-            <td valign="top">';
-  $id_lokasi=$hasil['id'];
-  $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_lokasi'");
-  while($foto1 = mysqli_fetch_array($lokasi_foto)) {
-    $html .= '<img width="165" style="padding:2px;" src="foto/'.$foto1['nama_foto'].'" />';                           
-  }
-  $html .= '</td>
-            </tr>';
-}
 $html .= '
-<tr style="background-color: #eee!important;">
-<td colspan="9" align="center" style="padding: 5px;">
-<b>Jumlah Kejadian : '.$jumlah.'</b></td>
-</tr>';
+<div id="header">
+  <img id="logo1" src="logo/sumenep.png" width="75">
+  <img id="logo2" src="logo/white.png" width="75">
+  <h4>PEMERINTAH KABUPATEN SUMENEP</h4>
+  <h3>DINAS KOMUNIKASI DAN INFORMATIKA</h3>
+  <h5>Jl. KH. Mansyur No. 71 Telp. (0328) 662635 Fax. 663984</h5>
+  <h4><u>SUMENEP</u></h4>
+  <br>
+  <h4>DAFTAR HADIR PENANGANAN KEDARURATAN CALL CENTER 112 SUMENEP</h4>
+  <h4>TAHUN ' . date("Y") . '</h4>
+</div>';
+
+// Periksa apakah 'id' ada dalam URL
+if(isset($_GET['id'])) {
+  $id = $_GET['id'];
+  $sql = "SELECT * FROM lokasi WHERE id = $id";
+  $result = $kominfo->query($sql);
+  
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $kej = $row['kejadian'];
+    $alamat = $row['alamat'];
+    $tgl_terima = $row['tanggal_terima'];
+  } else {
+    echo "Data tidak ditemukan.";
+    exit; // Hentikan eksekusi jika data tidak ditemukan
+  }
+  
+  $html .='
+  <div class="detail">
+    <table>
+      <tr>
+        <td>KEJADIAN</td>
+        <td>:</td>
+        <td>' . $kej .'</td>
+      </tr>
+      <tr>
+        <td>LOKASI</td>
+        <td>:</td>
+        <td>' . $alamat . '</td>
+      </tr>
+      <tr>
+        <td>TANGGAL</td>
+        <td>:</td>
+        <td>' . $tgl_terima . '</td>
+      </tr>
+      <tr>
+        <td>PUKUL</td>
+        <td>:</td>
+        <td>.....................................................</td>
+      </tr>
+    </table>
+  </div>';
+} else {
+  echo "ID tidak ditemukan.";
+  exit; // Hentikan eksekusi jika ID tidak ditemukan
+}
+
+// Lanjutkan dengan konten PDF
+$html .= '
+<div id="content">
+<table>';
 $html .= '</table><br/><center style="font-size:12px;"><div>Copyright © ' . date("Y") . ' Diskominfo Sumenep</div><div>https://112.sumenepkab.go.id</div></center>';
 $html .= "</html>";
 $dompdf->loadHtml($html);

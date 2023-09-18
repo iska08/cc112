@@ -1,34 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>KOP SURAT</title>
-  </head>
-  <body>
-    <div>
-      <h3>SURAT</h3>
-      <table>
-        <tr>
-          <td>KEJADIAN</td>
-          <td>:</td>
-          <td>.....................................................</td>
-        </tr>
-        <tr>
-          <td>LOKASI</td>
-          <td>:</td>
-          <td>.....................................................</td>
-        </tr>
-        <tr>
-          <td>TANGGAL</td>
-          <td>:</td>
-          <td>.....................................................</td>
-        </tr>
-        <tr>
-          <td>PUKUL</td>
-          <td>:</td>
-          <td>.....................................................</td>
-        </tr>
-      </table>
+<html>
+<head>
+    <style type="text/css">
+        @page {
+            margin: 0;
+            size: A4;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            font-size: 12pt;
+        }
+        #header {
+            width: 100%;
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        #logo {
+            float: left;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+        #content {
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #eee;
+        }
+        .page_break {
+            page-break-before: always;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <img id="logo" src="logo/sumenep.png" width="100">
+        <h4>PEMERINTAH KABUPATEN SUMENEP</h4>
     </div>
-  </body>
+    <div id="content">
+        <!-- Isi konten surat disini -->
+        <table>
+            <tr>
+                <th>No.</th>
+                <th>Kejadian</th>
+                <th>Kecamatan dan Desa</th>
+                <th>Nama & Nomor Telepon Pelapor</th>
+                <th>Alamat</th>
+                <th>Tanggal Terima dan Selesai</th>
+                <th>Keterangan</th>
+                <th>Laporan</th>
+                <th>Foto</th>
+            </tr>
+            <!-- Data tabel disini -->
+        </table>
+    </div>
+    <div class="page_break"></div>
+    <div id="footer">
+        <p style="text-align: center; font-size: 12px;">
+            Copyright &copy; <?php echo date("Y"); ?> Diskominfo Sumenep<br>
+            <a href="https://112.sumenepkab.go.id">https://112.sumenepkab.go.id</a>
+        </p>
+    </div>
+</body>
 </html>
