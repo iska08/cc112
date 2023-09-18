@@ -25,7 +25,7 @@ describe('test_tim_callcenter', () => {
       cy.get('.swal2-confirm').click()
       cy.get('.main-header > :nth-child(1) > :nth-child(3) > .nav-link').click() //logout
     })
-    it('tim damkar ', () => {
+    it('tim bpbd ', () => {
       cy.visit('http://localhost/cc112/')
       cy.get('.nav-link').click()
       cy.get('.mb-3 > .form-control').type('bpbd_CC112')
@@ -38,7 +38,8 @@ describe('test_tim_callcenter', () => {
       cy.get('#tanggal_selesai').click() //tanggal selesai
       cy.get('.today').click()
       cy.get('.leaflet-control-zoom-in').click()
-      cy.get(':nth-child(2) > .form-control').type('banjir terjadi di perumahan')
+      cy.get(':nth-child(2) > .form-control').type('banjir terjadi di perumahan') //laporan
       cy.get('.btn-info').click()
+      cy.get('.swal2-confirm').click()
     })
   })
