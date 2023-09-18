@@ -146,7 +146,12 @@ if(isset($_GET['id_lokasi'])){
               <div class="form-group">
                 <label for="exampleFormControlInput1">Tim yang Terlibat</label>
                 <div id="tim-container">
-                  <input type="text" class="form-control" name="tim[]" value="<?php echo $hasil_lokasi['tim']; ?>">
+                  <?php
+                  $tim = explode(',', $hasil_lokasi['tim']);
+                  foreach ($tim as $anggota) {
+                    echo '<input type="text" class="form-control" name="tim[]" value="' . $anggota . '">';
+                  }
+                  ?>
                 </div>
                 <button type="button" id="add-tim" class="btn btn-primary">+</button>
               </div>
@@ -169,18 +174,28 @@ if(isset($_GET['id_lokasi'])){
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
       $(document).ready(function() {
-          // Menangani klik pada tombol tambah input
-          $("#add-tim").on("click", function () {
-              const timContainer = $("#tim-container");
-              const newInput = $("<input>").attr({
-                  type: "text",
-                  class: "form-control",
-                  name: "tim[]",
-                  cols: "30",
-                  rows: "5"
-              });
-              timContainer.append(newInput);
+        // Menangani klik pada tombol tambah input
+        $("#add-tim").on("click", function() {
+          const timContainer = $("#tim-container");
+          const newInput = $("<input>").attr({
+            type: "text",
+            class: "form-control",
+            name: "tim[]",
+            cols: "30",
+            rows: "5"
           });
+          timContainer.append(newInput);
+          // Handle hapus anggota tim
+          newInput.on("focusout", function() {
+            const timInputs = timContainer.find("input");
+            const timArray = timInputs
+              .map(function() {
+                return $(this).val();
+              })
+              .get();
+            $("#tim").val(timArray.join(","));
+          });
+        });
       });
   </script>
   <script>
