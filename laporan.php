@@ -45,15 +45,15 @@ $html = '
   table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 10px;
   }
   .detail {
-    padding-left: 20px;
+    padding-left: 30px;
     font-family: Times New Roman, Times, serif;
     font-size: 10pt;
   }
   .detail table {
-    width: 400px;
+    width: auto;
   }
   th {
     border: 1px solid #000;
@@ -92,6 +92,12 @@ if(isset($_GET['id'])) {
     $row = $result->fetch_assoc();
     $kej = $row['kejadian'];
     $alamat = $row['alamat'];
+    $id_desa = $row['desa'];
+    $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
+    $desa2 = mysqli_fetch_array($desa1);
+    $id_kec = $row['kec'];
+    $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
+    $kec2 = mysqli_fetch_array($kec1);
     $tgl_terima = $row['tanggal_terima'];
   } else {
     echo "Data tidak ditemukan.";
@@ -109,7 +115,7 @@ if(isset($_GET['id'])) {
       <tr>
         <td>LOKASI</td>
         <td>:</td>
-        <td>' . $alamat . '</td>
+        <td>' . $alamat . ', ' . $desa2['nama_desa'] . ', ' . $kec2['nama_kecamatan'] . '</td>
       </tr>
       <tr>
         <td>TANGGAL</td>
@@ -122,7 +128,8 @@ if(isset($_GET['id'])) {
         <td>.....................................................</td>
       </tr>
     </table>
-  </div>';
+  </div>
+  ';
 } else {
   echo "ID tidak ditemukan.";
   exit; // Hentikan eksekusi jika ID tidak ditemukan
