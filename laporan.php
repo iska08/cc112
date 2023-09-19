@@ -42,12 +42,10 @@ $html = '
   #content {
     padding: 20px;
   }
-  table {
+  .detail {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
-  }
-  .detail {
     padding-left: 30px;
     font-family: Times New Roman, Times, serif;
     font-size: 10pt;
@@ -55,11 +53,35 @@ $html = '
   .detail table {
     width: auto;
   }
-  th {
+  .detail table th {
     border: 1px solid #000;
     padding: 8px;
     text-align: left;
     background-color: #eee;
+  }
+  .tim table {
+    padding-left: 30px;
+    padding-right: 30px;
+    display: table;
+    table-layout: fixed;
+    border-collapse: separate;
+    width: 100% !important;
+    max-width: 100%;
+    border-spacing: 0;
+    border-bottom: none;
+  }
+  .tim table th {
+    border: 1px solid #000;
+    background-color: #eee!important;
+    padding: 5px;
+    font-size:14px;
+    border-collapse: collapse;
+  }
+  .tim table td {
+    page-break-inside: avoid;
+    page-break-after: auto;
+    border: 1px solid #000;font-size:13px;
+    padding: 5px;
   }
   .page_break {
     page-break-before: always;
@@ -82,7 +104,6 @@ $html .= '
   <h4>TAHUN ' . date("Y") . '</h4>
 </div>';
 
-// Periksa apakah 'id' ada dalam URL
 if(isset($_GET['id'])) {
   $id = $_GET['id'];
   $sql = "SELECT * FROM lokasi WHERE id = $id";
@@ -90,6 +111,7 @@ if(isset($_GET['id'])) {
   
   if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
+    $tim = explode(',', $row['tim']);
     $kej = $row['kejadian'];
     $alamat = $row['alamat'];
     $id_desa = $row['desa'];
@@ -101,53 +123,72 @@ if(isset($_GET['id'])) {
     $tgl_terima = $row['tanggal_terima'];
   } else {
     echo "Data tidak ditemukan.";
-    exit; // Hentikan eksekusi jika data tidak ditemukan
+    exit;
   }
   
   $html .='
   <div class="detail">
     <table>
       <tr>
-        <td>KEJADIAN</td>
+        <td>NAMA KEJADIAN</td>
         <td>:</td>
         <td>' . $kej .'</td>
       </tr>
       <tr>
-        <td>LOKASI</td>
+        <td>LOKASI KEJADIAN</td>
         <td>:</td>
         <td>' . $alamat . ', ' . $desa2['nama_desa'] . ', ' . $kec2['nama_kecamatan'] . '</td>
       </tr>
       <tr>
-        <td>TANGGAL</td>
+        <td>WAKTU KEJADIAN</td>
         <td>:</td>
         <td>' . $tgl_terima . '</td>
       </tr>
-      <tr>
-        <td>PUKUL</td>
-        <td>:</td>
-        <td>.....................................................</td>
-      </tr>
     </table>
   </div>
+  <br>
+  <br>
+  <div class="tim">
+    <table>
+      <tr>
+        <th>NO</th>
+        <th>NAMA</th>
+        <th>TIM/OPD</th>
+        <th>TANDA TANGAN</th>
+      </tr>';
+$nomor=1;
+$ttd=1;
+$nama = $_SESSION['nama'];
+foreach ($tim as $anggota) {
+  $html .= '
+      <tr>
+        <td width="5%"><center>'.$nomor++.'<center></td>
+        <td>'.$anggota.'</td>
+        <td>'.$nama.'</td>
+        <td>';
+  if($ttd % 2 == 0 ){
+    $html .= '<center>'.$ttd++.'</center>';
+  }else{
+    $html .= $ttd++;
+  }
+  $html .= '</td>
+      </tr>';
+}
+$html.='
+    </table>
+  </div>
+  <br>
+  <br>
   ';
 } else {
   echo "ID tidak ditemukan.";
-  exit; // Hentikan eksekusi jika ID tidak ditemukan
+  exit;
 }
-
-// Lanjutkan dengan konten PDF
-$html .= '
-<div id="content">
-<table>';
-$html .= '</table><br/><center style="font-size:12px;"><div>Copyright © ' . date("Y") . ' Diskominfo Sumenep</div><div>https://112.sumenepkab.go.id</div></center>';
 $html .= "</html>";
 $dompdf->loadHtml($html);
 $dompdf->set_option('isFontSubsettingEnabled', true);
-// Setting ukuran dan orientasi kertas
 $dompdf->setPaper('A4', 'portrait');
-// Rendering dari HTML Ke PDF
 $dompdf->render();
-// Melakukan output file Pdf
 $dari_bulan = $_GET['dari_bulan'];
 $sampai_bulan = $_GET['sampai_bulan'];
 $th = $_GET['th'];
