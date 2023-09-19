@@ -47,7 +47,7 @@ $html = '
     border-collapse: collapse;
     margin-top: 10px;
     padding-left: 30px;
-    font-family: Times New Roman, Times, serif;
+    font-family: Arial, sans-serif;
     font-size: 10pt;
   }
   .detail table {
@@ -85,6 +85,25 @@ $html = '
   }
   .page_break {
     page-break-before: always;
+  }
+  .ttd {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    padding-left: 30px;
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+  }
+  .ttd table {
+    float: right;
+    margin-right: 30px;
+    width: auto;
+  }
+  .ttd table th {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+    background-color: #eee;
   }
 </style>
 ';
@@ -187,19 +206,20 @@ $html.='
 $html .= '
   <div class="ttd">
     <table>
-      <tr><td>KEPALA DINAS KOMUNIKASI DAN INFORMATIKA</td></tr>
+      <tr><td><center>KEPALA DINAS KOMUNIKASI DAN INFORMATIKA</center></td></tr>
       <tr>
         <td>
-          KABUPATEN SUMENEP
+          <center>KABUPATEN SUMENEP</center>
+          <br>
           <br>
           <br>
           <br>
           <br>
         </td>
       </tr>
-      <tr><td><u>FERDIANSYAH TETRAJAYA, SH.</u></td></tr>
-      <tr><td>Pembina Utama Muda</td></tr>
-      <tr><td>NIP. 19680227 199703 1 005</td></tr>
+      <tr><td><u><center>FERDIANSYAH TETRAJAYA., SH.</center></u></td></tr>
+      <tr><td><center>Pembina Utama Muda</center></td></tr>
+      <tr><td><center>NIP. 19680227 199703 1 005</center></td></tr>
     </table>
   </div>
 ';
