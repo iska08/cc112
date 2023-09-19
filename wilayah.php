@@ -3,7 +3,7 @@
 include 'dbconfig.php';
 if (isset($_POST['kec_id']) && !empty($_POST['kec_id'])) {
     // Fetch state name base on country id
-    $query = "SELECT * FROM desa WHERE  id_kecamatan = ".$_POST['kec_id']."  ";
+    $query = "SELECT * FROM desa WHERE  id_kecamatan = ".$_POST['kec_id']."  ORDER BY nama_desa";
     $result = $kominfo->query($query);
     if ($result->num_rows > 0) {
         echo '<option value="">== Pilih Desa ==</option>';
@@ -15,7 +15,7 @@ if (isset($_POST['kec_id']) && !empty($_POST['kec_id'])) {
     }
 } elseif (isset($_POST['desa_id']) && !empty($_POST['desa_id'])) {
     // Fetch city name base on state id
-    $query = "SELECT * FROM dusun WHERE  id_desa = ".$_POST['desa_id'];
+    $query = "SELECT * FROM dusun WHERE  id_desa = ".$_POST['desa_id']. " ORDER BY nama_dusun";
     $result = $kominfo->query($query);
     if ($result->num_rows > 0) {
         echo '<option value="">== Pilih Dusun ==</option>';

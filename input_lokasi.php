@@ -48,9 +48,9 @@ include 'dbconfig.php';
                     $whereClause .= "nama_kejadian = '$value'";
                 }
                 if($hak_akses=='Admin'){
-                    $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian");
+                    $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian ORDER BY nama_kejadian");
                 }elseif($hak_akses=='Tim'){
-                    $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian WHERE $whereClause");
+                    $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian WHERE $whereClause ORDER BY nama_kejadian");
                 }
                 // $tampil_kej = mysqli_query($kominfo, "select * from kejadian where $whereClause");
                 while($hasil_kej = mysqli_fetch_array($tampil_kej)) {
@@ -66,7 +66,7 @@ include 'dbconfig.php';
               <select class="form-control" id="kecamatan" name="kec" required>
                 <option disabled selected>== Pilih Kecamatan ==</option>
                 <?php
-                $tampil_kec = mysqli_query($kominfo, "select * from kecamatan"); //ambil data dari tabel kecamatan
+                $tampil_kec = mysqli_query($kominfo, "select * from kecamatan order by nama_kecamatan"); //ambil data dari tabel kecamatan
                 while($hasil_kec = mysqli_fetch_array($tampil_kec)) {
                 ?>
                   <option value="<?php echo $hasil_kec['id']; ?>"><?php echo $hasil_kec['nama_kecamatan']; ?></option>
@@ -134,7 +134,7 @@ include 'dbconfig.php';
                     }
                     $whereClause .= "nama_kejadian = '$value'";
                 }
-                $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian");
+                $tampil_kej = mysqli_query($kominfo, "SELECT * FROM kejadian ORDER BY nama_kejadian");
                 while($hasil_kej = mysqli_fetch_array($tampil_kej)) {
                 ?>
                   <option value="<?php echo $hasil_kej['nama_kejadian']; ?>"><?php echo $hasil_kej['nama_kejadian']; ?></option>
@@ -148,7 +148,7 @@ include 'dbconfig.php';
               <select class="form-control" id="kecamatan" name="kec" required>
                 <option disabled selected>== Pilih Kecamatan ==</option>
                 <?php
-                $tampil_kec = mysqli_query($kominfo, "select * from kecamatan"); //ambil data dari tabel kecamatan
+                $tampil_kec = mysqli_query($kominfo, "select * from kecamatan order by nama_kecamatan"); //ambil data dari tabel kecamatan
                 while($hasil_kec = mysqli_fetch_array($tampil_kec)) {
                 ?>
                   <option value="<?php echo $hasil_kec['id']; ?>"><?php echo $hasil_kec['nama_kecamatan']; ?></option>
