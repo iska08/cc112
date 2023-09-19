@@ -184,6 +184,25 @@ $html.='
   echo "ID tidak ditemukan.";
   exit;
 }
+$html .= '
+  <div class="ttd">
+    <table>
+      <tr><td>KEPALA DINAS KOMUNIKASI DAN INFORMATIKA</td></tr>
+      <tr>
+        <td>
+          KABUPATEN SUMENEP
+          <br>
+          <br>
+          <br>
+          <br>
+        </td>
+      </tr>
+      <tr><td><u>FERDIANSYAH TETRAJAYA, SH.</u></td></tr>
+      <tr><td>Pembina Utama Muda</td></tr>
+      <tr><td>NIP. 19680227 199703 1 005</td></tr>
+    </table>
+  </div>
+';
 $html .= "</html>";
 $dompdf->loadHtml($html);
 $dompdf->set_option('isFontSubsettingEnabled', true);
