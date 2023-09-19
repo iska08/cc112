@@ -74,13 +74,14 @@ switch ($_GET['action']) {
         $kec                = $_POST['kec'];
         $kejadian           = $_POST['kejadian'];
         $ket                = $_POST['ket'];
+        $jumlah_tim         = $_POST['jumlah_tim'] = 1;
         $approve            = $_POST['approve'] = 0;
         $tanggal_terima     = $_POST['tanggal_terima'];
         $tanggal_selesai    = $_POST['tanggal_selesai'];
         $nama_pelapor       = $_POST['nama_pelapor'];
         $noTelp_pelapor     = $_POST['noTelp_pelapor'];
         // Input data
-        $insert_lokasi = mysqli_query($kominfo, "INSERT INTO `lokasi` SET lat_long='$lat_long', alamat='$alamat', desa='$desa', tanggal_terima='$tanggal_terima', tanggal_selesai='$tanggal_selesai', kec='$kec', kejadian='$kejadian', ket='$ket',approve='$approve', bulan='$bulan', tahun='$tahun', nama_pelapor='$nama_pelapor', noTelp_pelapor='$noTelp_pelapor' ");
+        $insert_lokasi = mysqli_query($kominfo, "INSERT INTO `lokasi` SET lat_long='$lat_long', alamat='$alamat', desa='$desa', tanggal_terima='$tanggal_terima', tanggal_selesai='$tanggal_selesai', kec='$kec', kejadian='$kejadian', ket='$ket', jumlah_tim='$jumlah_tim', approve='$approve', bulan='$bulan', tahun='$tahun', nama_pelapor='$nama_pelapor', noTelp_pelapor='$noTelp_pelapor' ");
         if ($insert_lokasi) {
             echo "Simpan Lokasi Berhasil\n";
             // // Simpan Foto
@@ -172,12 +173,13 @@ switch ($_GET['action']) {
             $kec                = $_POST['kec'];
             $kejadian           = $_POST['kejadian'];
             $ket                = $_POST['ket'];
+            $jumlah_tim         = $_POST['jumlah_tim'];
             $tanggal_terima     = $_POST['tanggal_terima'];
             $tanggal_selesai    = $_POST['tanggal_selesai'];
             $nama_pelapor       = $_POST['nama_pelapor'];
             $noTelp_pelapor     = $_POST['noTelp_pelapor'];
             //input data
-            $update_lokasi = mysqli_query($kominfo, "UPDATE `lokasi` SET lat_long='$lat_long',alamat='$alamat',desa='$desa',tanggal_terima='$tanggal_terima',tanggal_selesai='$tanggal_selesai',kec='$kec',kejadian='$kejadian',ket='$ket',nama_pelapor='$nama_pelapor',noTelp_pelapor='$noTelp_pelapor' WHERE id='$id_lokasi' ");
+            $update_lokasi = mysqli_query($kominfo, "UPDATE `lokasi` SET lat_long='$lat_long', alamat='$alamat', desa='$desa', tanggal_terima='$tanggal_terima', tanggal_selesai='$tanggal_selesai', kec='$kec', kejadian='$kejadian', ket='$ket', jumlah_tim='$jumlah_tim', nama_pelapor='$nama_pelapor', noTelp_pelapor='$noTelp_pelapor' WHERE id='$id_lokasi' ");
             if ($update_lokasi) {
                 echo "Edit Lokasi Berhasil";
             } else {

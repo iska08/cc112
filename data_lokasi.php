@@ -52,6 +52,7 @@ $akses = $_SESSION['hak_akses'];
                 <th>Alamat Kejadian</th>
                 <th>Tanggal</th>
                 <th>Keterangan</th>
+                <th>Jumlah Tim</th>
                 <th>Laporan</th>
                 <th>Approve</th>
                 <th>Foto</th>
@@ -113,6 +114,7 @@ $akses = $_SESSION['hak_akses'];
                       <?php echo $hasil['tanggal_selesai']; ?>
                     </td>
                     <td><?php echo $hasil['ket']; ?></td>
+                    <td><?php echo $hasil['jumlah_tim']; ?></td>
                     <?php
                     $tglSelesai = $hasil['tanggal_selesai'];
                     $lap        = $hasil['laporan'];
@@ -220,6 +222,7 @@ $akses = $_SESSION['hak_akses'];
                 <th>Kejadian</th>
                 <th>Tanggal Terima</th>
                 <th>Tanggal Selesai</th>
+                <th>Jumlah Tim</th>
                 <th>Laporan</th>
                 <th>Foto</th>
                 <th>Aksi</th>
@@ -289,6 +292,7 @@ $akses = $_SESSION['hak_akses'];
                     </td>
                     <td><?php echo $hasil['tanggal_terima']; ?></td>
                     <td><?php echo $hasil['tanggal_selesai']; ?></td>
+                    <td><?php echo $hasil['jumlah_tim']; ?></td>
                     <?php
                     $tglSelesai = $hasil['tanggal_selesai'];
                     $lap        = $hasil['laporan'];

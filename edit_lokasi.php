@@ -103,6 +103,10 @@ if(isset($_GET['id_lokasi'])){
                 <input type="text" class="form-control" name="alamat" value="<?php echo $hasil_lokasi['alamat']; ?>">
               </div>
               <div class="form-group">
+                <label for="exampleFormControlInput1">Jumlah Tim</label>
+                <input type="number" class="form-control" name="jumlah_tim" value="<?php echo $hasil_lokasi['jumlah_tim']; ?>">
+              </div>
+              <div class="form-group">
                 <label for="exampleFormControlInput1">Keterangan</label>
                 <textarea class="form-control" name="ket" cols="30" rows="5"><?php echo $hasil_lokasi['ket']; ?></textarea>
               </div>
@@ -113,8 +117,6 @@ if(isset($_GET['id_lokasi'])){
           </div>
           <br/>
           <div class="col-md-8">
-            <!-- ukuruan layar dengan bootstrap adalah 12 kolom, bagian kiri dibuat sebesar 4 kolom-->
-            <!-- peta akan ditampilkan dengan id = mapid -->
             <div id="mapid"></div>
             <br/>
           </div>
@@ -144,22 +146,25 @@ if(isset($_GET['id_lokasi'])){
                 <textarea class="form-control" name="laporan" cols="30" rows="5"><?php echo $hasil_lokasi['laporan']; ?></textarea>
               </div>
               <div class="form-group">
-                  <label for="exampleFormControlInput1">Anggota yang Terlibat</label>
-                  <div id="tim-container">
-                      <?php
-                      $tim = explode(',', $hasil_lokasi['tim']);
-                      foreach ($tim as $anggota) {
-                          echo '<div class="input-group mb-3">';
-                          echo '<input type="text" class="form-control" name="tim[]" value="' . $anggota . '">';
-                          echo '<div class="input-group-append">';
-                          echo '<button type="button" class="btn btn-danger remove-tim">-</button>';
-                          echo '</div>';
-                          echo '</div>';
-                      }
-                      ?>
-                  </div>
-                  <button type="button" id="add-tim" class="btn btn-primary">+</button>
-              </div>
+    <label for="exampleFormControlInput1">Anggota yang Terlibat</label>
+    <div id="tim-container">
+        <?php
+        $tim = explode(',', $hasil_lokasi['tim']);
+        $maxTim = intval($hasil_lokasi['jumlah_tim']); // Ambil batas maksimal dari tabel lokasi
+        $timCount = count($tim); // Hitung jumlah anggota tim saat ini
+
+        foreach ($tim as $anggota) {
+            echo '<div class="input-group mb-3">';
+            echo '<input type="text" class="form-control" name="tim[]" value="' . $anggota . '">';
+            echo '<div class="input-group-append">';
+            echo '<button type="button" class="btn btn-danger remove-tim">-</button>';
+            echo '</div>';
+            echo '</div>';
+        }
+        ?>
+    </div>
+    <button type="button" id="add-tim" class="btn btn-primary" <?php echo ($timCount >= $maxTim) ? 'disabled' : ''; ?>>+</button>
+</div>
               <div class="form-group">
                 <?php
                 if(empty($tglSelesai) && empty($lap) && empty($tim)){
@@ -188,29 +193,34 @@ if(isset($_GET['id_lokasi'])){
   </div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    document.getElementById("add-tim").addEventListener("click", function () {
-      var container = document.getElementById("tim-container");
-      var newInput = document.createElement("div");
-      newInput.classList.add("input-group", "mb-3");
-      newInput.innerHTML = `
-        <input type="text" class="form-control" name="tim[]" value="">
-        <div class="input-group-append">
-          <button type="button" class="btn btn-danger remove-tim">-</button>
-        </div>`;
-      container.appendChild(newInput);
-      var removeButtons = document.querySelectorAll(".remove-tim");
-      removeButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-          container.removeChild(newInput);
-        });
+    $(document).ready(function () {
+      var maxTim = <?php echo $maxTim; ?>;
+      var timCount = <?php echo $timCount; ?>;
+      $("#add-tim").click(function () {
+        if (timCount < maxTim) {
+          // Tambahkan input anggota tim
+          var inputGroup = '<div class="input-group mb-3">';
+          inputGroup += '<input type="text" class="form-control" name="tim[]">';
+          inputGroup += '<div class="input-group-append">';
+          inputGroup += '<button type="button" class="btn btn-danger remove-tim">-</button>';
+          inputGroup += '</div>';
+          inputGroup += '</div>';
+          $("#tim-container").append(inputGroup);
+          timCount++;
+          // Disable tombol tambah jika sudah mencapai batas maksimal
+          if (timCount >= maxTim) {
+            $("#add-tim").prop("disabled", true);
+          }
+        }
       });
-    });
-    var removeButtons = document.querySelectorAll(".remove-tim");
-    removeButtons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        var container = document.getElementById("tim-container");
-        var inputGroup = button.closest(".input-group");
-        container.removeChild(inputGroup);
+      // Hapus input anggota tim
+      $("#tim-container").on("click", ".remove-tim", function () {
+        $(this).closest(".input-group").remove();
+        timCount--;
+        // Aktifkan kembali tombol tambah jika masih di bawah batas maksimal
+        if (timCount < maxTim) {
+          $("#add-tim").prop("disabled", false);
+        }
       });
     });
   </script>
@@ -282,64 +292,64 @@ if(isset($_GET['id_lokasi'])){
     }
     ?>
   </script>
-<?php
-}
-?>
-<script type="text/javascript">
-  $(document).ready(function() {
-    // program dependent ajax
-    $("#kecamatan").on("change",function() {
-      var kec_id = $(this).val();
-      $.ajax({
-        url :"wilayah.php",
-        type:"POST",
-        cache:false,
-        data:{kec_id:kec_id},
-        success:function(data) {
-          $("#desa").html(data);
-          $('#dusun').html('<option value="">== Pilih Dusun ==</option>');
-         }
+  <?php
+  }
+  ?>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      // program dependent ajax
+      $("#kecamatan").on("change",function() {
+        var kec_id = $(this).val();
+        $.ajax({
+          url :"wilayah.php",
+          type:"POST",
+          cache:false,
+          data:{kec_id:kec_id},
+          success:function(data) {
+            $("#desa").html(data);
+            $('#dusun').html('<option value="">== Pilih Dusun ==</option>');
+          }
+        });
+      });
+      // kegiatan dependent ajax
+      $("#desa").on("change", function() {
+        var desa_id = $(this).val();
+        $.ajax({
+          url :"wilayah.php",
+          type:"POST",
+          cache:false,
+          data:{desa_id:desa_id},
+          success:function(data) {
+            $("#dusun").html(data);
+          }
+        });
+      });
+      // sub kegiatan dependent ajax
+      $("#dusun").on("change", function() {
+        var dusun_id = $(this).val();
+        $.ajax({
+          url :"wilayah.php",
+          type:"POST",
+          cache:false,
+          data:{dusun_id:dusun_id},
+          success:function(data) {
+            $("#").html(data);
+          }
+        });
       });
     });
-    // kegiatan dependent ajax
-    $("#desa").on("change", function() {
-      var desa_id = $(this).val();
-      $.ajax({
-        url :"wilayah.php",
-        type:"POST",
-        cache:false,
-        data:{desa_id:desa_id},
-        success:function(data) {
-          $("#dusun").html(data);
-        }
-      });
+  </script>
+  <script>
+    flatpickr("#tanggal_terima", {
+      enableTime: true,
+      dateFormat: "d F Y H:i",
+      "locale": "id"
     });
-    // sub kegiatan dependent ajax
-    $("#dusun").on("change", function() {
-      var dusun_id = $(this).val();
-      $.ajax({
-        url :"wilayah.php",
-        type:"POST",
-        cache:false,
-        data:{dusun_id:dusun_id},
-        success:function(data) {
-          $("#").html(data);
-        }
-      });
+  </script>
+  <script>
+    flatpickr("#tanggal_selesai", {
+      enableTime: true,
+      dateFormat: "d F Y H:i",
+      "locale": "id"
     });
-  });
-</script>
-<script>
-  flatpickr("#tanggal_terima", {
-    enableTime: true,
-    dateFormat: "d F Y H:i",
-    "locale": "id"
-  });
-</script>
-<script>
-  flatpickr("#tanggal_selesai", {
-    enableTime: true,
-    dateFormat: "d F Y H:i",
-    "locale": "id"
-  });
-</script>
+  </script>
