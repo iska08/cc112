@@ -43,7 +43,7 @@ if(isset($_GET['id_lokasi'])){
                   <option value="<?php echo $hasil_lokasi['kejadian']; ?>"><?php echo $hasil_lokasi['kejadian']; ?></option>
                   <option disabled >== Pilih Kejadian ==</option>
                   <?php
-                  $tampil_per = mysqli_query($kominfo, "select * from kejadian"); //ambil data dari tabel kecamatan
+                  $tampil_per = mysqli_query($kominfo, "select * from kejadian order by nama_kejadian"); //ambil data dari tabel kecamatan
                   while($hasil_per = mysqli_fetch_array($tampil_per)){
                   ?>
                     <option value="<?php echo $hasil_per['nama_kejadian']; ?>"><?php echo $hasil_per['nama_kejadian']; ?></option>
@@ -57,12 +57,12 @@ if(isset($_GET['id_lokasi'])){
                 <select class="form-control" id="kecamatan" name="kec">
                   <?php
                   $id_kec=$hasil_lokasi['kec'];
-                  $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
+                  $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec' order by nama_kecamatan");
                   $kec2 = mysqli_fetch_array($kec1)?>
                   <option value="<?php echo $kec2['id']; ?>"><?php echo $kec2['nama_kecamatan']; ?></option>
                   <option disabled >== Pilih Kecamatan ==</option>
                   <?php
-                  $tampil_kec = mysqli_query($kominfo, "select * from kecamatan"); //ambil data dari tabel kecamatan
+                  $tampil_kec = mysqli_query($kominfo, "select * from kecamatan order by nama_kecamatan"); //ambil data dari tabel kecamatan
                   while($hasil_kec = mysqli_fetch_array($tampil_kec)){
                   ?>
                     <option value="<?php echo $hasil_kec['id']; ?>"><?php echo $hasil_kec['nama_kecamatan']; ?></option>
@@ -76,7 +76,7 @@ if(isset($_GET['id_lokasi'])){
                 <select class="form-control" id="desa" name="desa">
                   <?php
                   $id_desa=$hasil_lokasi['desa'];
-                  $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
+                  $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa' order by nama_desa");
                   $desa2 = mysqli_fetch_array($desa1)?>
                   <option value="<?php echo $desa2['id']; ?>"><?php echo $desa2['nama_desa']; ?></option>
                   <option disabled >== Pilih Desa ==</option>
