@@ -9,7 +9,7 @@ if (empty($_SESSION['112_username'])){
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Call Center 112 | Tim Dashboard</title>
+        <title>Call Center 112 | Call Center Dashboard</title>
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome -->
