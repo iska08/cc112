@@ -237,7 +237,7 @@ $akses = $_SESSION['hak_akses'];
                       if ($whereClause !== "") {
                           $whereClause .= " OR ";
                       }
-                      $whereClause .= "kejadian = '$value'";
+                      $whereClause .= "kejadian = '$value' and approve = '1'";
                   }
                   $hak_akses = $_SESSION['hak_akses'];
                   if($hak_akses=='Admin'){
@@ -415,7 +415,7 @@ $akses = $_SESSION['hak_akses'];
                       if ($whereClause !== "") {
                           $whereClause .= " OR ";
                       }
-                      $whereClause .= "kejadian = '$value'";
+                      $whereClause .= "kejadian = '$value' and approve = '1'";
                   }
                   $hak_akses = $_SESSION['hak_akses'];
                   if($hak_akses=='Admin'){
