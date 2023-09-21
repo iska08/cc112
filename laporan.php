@@ -193,35 +193,35 @@ foreach ($tim as $anggota) {
   $html .= '
         </td>
       </tr>
-      <tr>
-        <td width="5%"><center>'.$nomor++.'</center></td>
-        <td></td>
-        <td>Call Center 112</td>
-        <td>';
-  if($ttd % 2 == 0 ){
-    $html .= '<center>'.$ttd++.'</center>';
-  }else{
-    $html .= $ttd++;
-  }
-  $html .= '
-        </td>
-      </tr>
-      <tr>
-        <td width="5%"><center>'.$nomor++.'</center></td>
-        <td></td>
-        <td>Call Center 112</td>
-        <td>';
-  if($ttd % 2 == 0 ){
-    $html .= '<center>'.$ttd++.'</center>';
-  }else{
-    $html .= $ttd++;
-  }
-  $html .= '
-        </td>
-      </tr>
       ';
-}
-$html.='
+    }
+    $html.='
+      <tr>
+        <td width="5%"><center>'.$nomor++.'</center></td>
+        <td></td>
+        <td>Call Center 112</td>
+        <td>';
+  if($ttd % 2 == 0 ){
+    $html .= '<center>'.$ttd++.'</center>';
+  }else{
+    $html .= $ttd++;
+  }
+  $html .= '
+        </td>
+      </tr>
+      <tr>
+        <td width="5%"><center>'.$nomor++.'</center></td>
+        <td></td>
+        <td>Call Center 112</td>
+        <td>';
+  if($ttd % 2 == 0 ){
+    $html .= '<center>'.$ttd++.'</center>';
+  }else{
+    $html .= $ttd++;
+  }
+  $html .= '
+        </td>
+      </tr>
     </table>
   </div>
   <br>
