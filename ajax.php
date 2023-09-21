@@ -95,18 +95,16 @@ if (empty($_SESSION['112_username'])){
         //simpan tim
         $("#lokasi").on("submit", "#form_tambah_tim", function(e) {
             e.preventDefault();
-            var formData = new FormData(this);
             $.ajax({
                 url: 'proses.php?action=simpan_tim',
                 type: 'post',
-                data: formData,
+                data: new FormData(this),
                 contentType: false,
                 cache: false,
                 processData: false,
                 success: function(data) {
-                    Swal.fire(data, '', 'success')
-                    // Setelah berhasil menyimpan data, arahkan pengguna ke URL "?lokasi"
-                    window.location.href = "?hal=lokasi";
+                    Swal.fire((data), '', 'success')
+                    lokasi();
                 }
             });
         });

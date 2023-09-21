@@ -99,7 +99,8 @@ $akses = $_SESSION['hak_akses'];
                       $id_desa=$hasil['desa'];
                       $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
                       $desa2 = mysqli_fetch_array($desa1);
-                      echo $desa2['nama_desa']; ?>
+                      echo $desa2['nama_desa'];
+                      ?>
                     </td>
                     <td>
                       <strong>Nama Pelapor:</strong><br><?php echo $hasil['nama_pelapor']; ?><br><br>
@@ -118,9 +119,28 @@ $akses = $_SESSION['hak_akses'];
                     <?php
                     $tglSelesai = $hasil['tanggal_selesai'];
                     $lap        = $hasil['laporan'];
+                    $id         = $hasil['id'];
+                    $dataTim1   = mysqli_query($kominfo, "select * from tim where id='$id'");
+                    $dataTim2 = mysqli_fetch_array($dataTim1);
                     if(empty($tglSelesai) && empty($lap)){
                       ?>
                       <td>
+                        <strong>Daftar OPD Bantuan</strong><br>
+                        Nama OPD Bantuan:
+                        <u>
+                          <?php
+                          $id_opd = $dataTim2['opd_terkait'];
+                          $opd1 = mysqli_query($kominfo, "select * from desa where id='$id_opd'");
+                          $opd2 = mysqli_fetch_array($opd1);
+                          echo $opd2['nama_opd'];
+                          ?>
+                        </u>
+                        <br><br>
+                        Jumlah Anggota: <u><?php echo $dataTim2['jumlah_tim']; ?></u>
+                        <br><br>
+                        Nama-nama Anggota:<br>
+                        <u><?php echo $dataTim2['nama_anggota']; ?></u>
+                        <br><br>
                         <button class="btn btn-info btn-sm" id="add_tim">Input Tim</button>
                       </td>
                       <?php
@@ -132,6 +152,22 @@ $akses = $_SESSION['hak_akses'];
                         <strong>Anggota yang Terlibat:</strong><br>
                         <?php echo $hasil['tim']; ?><br><br>
                         <a class="btn btn-success btn-sm " target="blank" href="laporan.php?id=<?php echo $hasil['id']; ?>" aria-label="pdf" style="color:white;">Unduh Laporan<br><i class="far fa-file-pdf"></i></a>
+                        <br><br>
+                        <strong>Daftar OPD Bantuan</strong><br>
+                        Nama OPD Bantuan:
+                        <u>
+                          <?php
+                          $id_opd = $dataTim2['opd_terkait'];
+                          $opd1 = mysqli_query($kominfo, "select * from desa where id='$id_opd'");
+                          $opd2 = mysqli_fetch_array($opd1);
+                          echo $opd2['nama_opd'];
+                          ?>
+                        </u>
+                        <br><br>
+                        Jumlah Anggota: <u><?php echo $dataTim2['jumlah_tim']; ?></u>
+                        <br><br>
+                        Nama-nama Anggota:<br>
+                        <u><?php echo $dataTim2['nama_anggota']; ?></u>
                         <br><br>
                         <button class="btn btn-info btn-sm" id="add_tim">Input Tim</button>
                       </td>

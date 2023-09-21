@@ -401,12 +401,10 @@ switch ($_GET['action']) {
         // Input data
         $insert_tim = mysqli_query($kominfo, "INSERT INTO `tim` SET id_lokasi='$id_lokasi', opd_terkait='$opd_terkait', jumlah_tim='$jumlah_tim', ket='$ket' ");
         if ($insert_tim) {
-            // Setelah menyimpan data, arahkan pengguna ke URL "?lokasi"
-            header("Location: ?hal=lokasi");
-            exit; // Keluar dari skrip setelah mengarahkan
+            echo "Simpan Tim Berhasil";
         } else {
             echo "Simpan Tim Masuk Gagal: " . mysqli_error($kominfo);
         }
-        break;
+        break;        
 }
 ?>

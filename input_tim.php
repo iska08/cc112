@@ -48,8 +48,7 @@ include 'dbconfig.php';
           $tampil_kej_tim = mysqli_query($kominfo, "select * from lokasi where id='$tim' ");
           $hasil_kej_tim = mysqli_fetch_array($tampil_kej_tim);
           ?>
-          <form id="form_tambah_tim" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id_lokasi" value="<?php echo $tim['id']; ?>">
+          <form>
             <div class="form-group">
               <label for="exampleFormControlInput1">Latitude, Longitude</label>
               <input disabled type="text" value="<?php echo $hasil_kej_tim['lat_long']; ?>" class="form-control" id="latlong" name="latlong" required>
@@ -96,6 +95,9 @@ include 'dbconfig.php';
               <label for="exampleFormControlInput1">Alamat Kejadian</label>
               <input type="text" disabled value="<?php echo $hasil_kej_tim['alamat']; ?>" class="form-control" id="tanggal_terima" name="alamat" required>
             </div>
+          </form>
+          <form id="form_tambah_tim" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id_lokasi" value="<?php echo $tim['id']; ?>">
             <div class="form-group">
               <label for="exampleFormControlInput1">Tim Bantuan</label>
               <select class="form-control" id="opd_terkait" name="opd_terkait" required>
@@ -116,7 +118,7 @@ include 'dbconfig.php';
             </div>
             <div class="form-group">
               <label for="exampleFormControlInput1">Keterangan</label>
-              <textarea class="form-control" name="ket" cols="30" rows="5"></textarea>
+              <textarea class="form-control" name="ket" cols="30" rows="5" required></textarea>
             </div>
             <div class="form-group">
               <button type="submit" name="tambah_tim" class="btn btn-info btn-sm">Tambah</button> <a href="?hal=lokasi" class="btn btn-warning btn-sm" id="batal_tim">Batal</a>
