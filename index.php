@@ -104,7 +104,8 @@ include 'fungsi_bulan.php';
   <main role="main" class="mobile-space">
     <div class="container-fluid">
       <div class="container">
-        <?php if($_GET['cari']){
+        <?php
+        if($_GET['cari']){
           $cari = $_GET['cari'];?>
           <br/>
           <div class="card card-primary card-outline">

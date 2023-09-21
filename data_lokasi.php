@@ -120,7 +120,9 @@ $akses = $_SESSION['hak_akses'];
                     $lap        = $hasil['laporan'];
                     if(empty($tglSelesai) && empty($lap)){
                       ?>
-                      <td></td>
+                      <td>
+                        <button class="btn btn-info btn-sm" id="add_tim">Input Tim</button>
+                      </td>
                       <?php
                     }else{
                       ?>
@@ -130,6 +132,8 @@ $akses = $_SESSION['hak_akses'];
                         <strong>Anggota yang Terlibat:</strong><br>
                         <?php echo $hasil['tim']; ?><br><br>
                         <a class="btn btn-success btn-sm " target="blank" href="laporan.php?id=<?php echo $hasil['id']; ?>" aria-label="pdf" style="color:white;">Unduh Laporan<br><i class="far fa-file-pdf"></i></a>
+                        <br><br>
+                        <button class="btn btn-info btn-sm" id="add_tim">Input Tim</button>
                       </td>
                       <?php
                     }

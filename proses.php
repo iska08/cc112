@@ -83,46 +83,11 @@ switch ($_GET['action']) {
         // Input data
         $insert_lokasi = mysqli_query($kominfo, "INSERT INTO `lokasi` SET lat_long='$lat_long', alamat='$alamat', desa='$desa', tanggal_terima='$tanggal_terima', tanggal_selesai='$tanggal_selesai', kec='$kec', kejadian='$kejadian', ket='$ket', jumlah_tim='$jumlah_tim', approve='$approve', bulan='$bulan', tahun='$tahun', nama_pelapor='$nama_pelapor', noTelp_pelapor='$noTelp_pelapor' ");
         if ($insert_lokasi) {
-            echo "Simpan Lokasi Berhasil\n";
-            // // Simpan Foto
-            // if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-            //     $rand = rand(10000000, 20000000);
-            //     $id = mysqli_insert_id($kominfo);
-            //     $kej = str_replace(" ", "_", $_POST['kej']);
-            //     $foto_kej = $rand . "." . pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
-            //     $foto = $_FILES['foto']['name'];
-            //     $nama_foto = $_FILES['foto']['tmp_name'];
-            //     $extension = pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION);
-            //     // Izinkan hanya foto dengan ekstensi tertentu (contoh: jpg, jpeg)
-            //     $allowed_extensions = array('jpg', 'jpeg');
-            //     if (in_array($extension, $allowed_extensions)) {
-            //         // Pastikan direktori "foto/" sudah ada
-            //         if (!is_dir("foto/")) {
-            //             mkdir("foto/");
-            //         }
-            //         // Simpan foto ke direktori "foto/"
-            //         if (move_uploaded_file($nama_foto, "foto/$foto_kej")) {
-            //             // Simpan informasi foto ke tabel foto
-            //             $input_foto = mysqli_query($kominfo, "INSERT INTO foto SET id_lokasi='$id', nama_foto='$foto_kej' ");
-                        
-            //             if ($input_foto) {
-            //                 echo "Simpan Foto Berhasil\n";
-            //             } else {
-            //                 echo "Gagal menyimpan informasi foto ke database\n";
-            //             }
-            //         } else {
-            //             echo "Gagal menyimpan foto\n";
-            //         }
-            //     } else {
-            //         echo "Ekstensi foto tidak diizinkan\n";
-            //     }
-            // } else {
-            //     echo "Gagal mengunggah foto\n";
-            // }
+            echo "Simpan Lokasi Berhasil";
         } else {
-            echo "Simpan Lokasi Masuk Gagal: " . mysqli_error($kominfo) . "\n";
+            echo "Simpan Lokasi Masuk Gagal: " . mysqli_error($kominfo);
         }
-        break;        
+        break;
     case 'edit_approve':
         $id_lokasi  = $_POST['id'];
         $approve    = $_POST['approve'];
@@ -426,6 +391,21 @@ switch ($_GET['action']) {
             echo "Hapus Survey Berhasil";
         } else {
             echo "Hapus Survey Gagal :" . mysqli_error($kominfo);
+        }
+        break;
+    case 'simpan_tim':
+        $id_lokasi      = $_POST['id_lokasi'];
+        $opd_terkait    = $_POST['opd_terkait'];
+        $jumlah_tim     = $_POST['jumlah_tim'];
+        $ket            = $_POST['ket'];
+        // Input data
+        $insert_tim = mysqli_query($kominfo, "INSERT INTO `tim` SET id_lokasi='$id_lokasi', opd_terkait='$opd_terkait', jumlah_tim='$jumlah_tim', ket='$ket' ");
+        if ($insert_tim) {
+            // Setelah menyimpan data, arahkan pengguna ke URL "?lokasi"
+            header("Location: ?hal=lokasi");
+            exit; // Keluar dari skrip setelah mengarahkan
+        } else {
+            echo "Simpan Tim Masuk Gagal: " . mysqli_error($kominfo);
         }
         break;
 }

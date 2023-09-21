@@ -146,25 +146,24 @@ if(isset($_GET['id_lokasi'])){
                 <textarea class="form-control" name="laporan" cols="30" rows="5"><?php echo $hasil_lokasi['laporan']; ?></textarea>
               </div>
               <div class="form-group">
-    <label for="exampleFormControlInput1">Anggota yang Terlibat</label>
-    <div id="tim-container">
-        <?php
-        $tim = explode(',', $hasil_lokasi['tim']);
-        $maxTim = intval($hasil_lokasi['jumlah_tim']); // Ambil batas maksimal dari tabel lokasi
-        $timCount = count($tim); // Hitung jumlah anggota tim saat ini
-
-        foreach ($tim as $anggota) {
-            echo '<div class="input-group mb-3">';
-            echo '<input type="text" class="form-control" name="tim[]" value="' . $anggota . '">';
-            echo '<div class="input-group-append">';
-            echo '<button type="button" class="btn btn-danger remove-tim">-</button>';
-            echo '</div>';
-            echo '</div>';
-        }
-        ?>
-    </div>
-    <button type="button" id="add-tim" class="btn btn-primary" <?php echo ($timCount >= $maxTim) ? 'disabled' : ''; ?>>+</button>
-</div>
+                <label for="exampleFormControlInput1">Anggota yang Terlibat</label>
+                <div id="tim-container">
+                  <?php
+                  $tim = explode(',', $hasil_lokasi['tim']);
+                  $maxTim = intval($hasil_lokasi['jumlah_tim']);
+                  $timCount = count($tim);
+                  foreach ($tim as $anggota) {
+                    echo '<div class="input-group mb-3">';
+                    echo '<input type="text" class="form-control" name="tim[]" value="' . $anggota . '">';
+                    echo '<div class="input-group-append">';
+                    echo '<button type="button" class="btn btn-danger remove-tim">-</button>';
+                    echo '</div>';
+                    echo '</div>';
+                  }
+                  ?>
+                </div>
+                <button type="button" id="add-tim" class="btn btn-primary" <?php echo ($timCount >= $maxTim) ? 'disabled' : ''; ?>>+</button>
+              </div>
               <div class="form-group">
                 <?php
                 if(empty($tglSelesai) && empty($lap) && empty($tim)){

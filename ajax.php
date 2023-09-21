@@ -59,13 +59,8 @@ if (empty($_SESSION['112_username'])){
                 cache: false,
                 processData: false,
                 success: function(data) {
-                    // Di sini, Anda dapat menambahkan kode untuk menampilkan foto.
-                    // Saya asumsikan bahwa "data" yang dikembalikan berisi URL gambar dari database.
-                    var imageUrl = data; // Ubah sesuai dengan struktur data yang Anda kembalikan.
-                    
-                    // Ubah sumber atribut "src" pada elemen <img> untuk menampilkan gambar.
-                    $("#gambar").attr("src", imageUrl); // "gambar" adalah ID elemen <img> yang akan menampilkan foto.
-
+                    var imageUrl = data;
+                    $("#gambar").attr("src", imageUrl);
                     Swal.fire((data), '', 'success');
                     lokasi();
                 }
@@ -84,6 +79,34 @@ if (empty($_SESSION['112_username'])){
                 success: function(data) {
                     alert((data), '', 'success')
                     lokasi();
+                }
+            });
+        });
+        //add tim
+        $("#lokasi").on("click", "#add_tim", function() {
+            $.ajax({
+                url: 'input_tim.php',
+                type: 'get',
+                success: function(data) {
+                    $('#lokasi').html(data);
+                }
+            });
+        });
+        //simpan tim
+        $("#lokasi").on("submit", "#form_tambah_tim", function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url: 'proses.php?action=simpan_tim',
+                type: 'post',
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    Swal.fire(data, '', 'success')
+                    // Setelah berhasil menyimpan data, arahkan pengguna ke URL "?lokasi"
+                    window.location.href = "?hal=lokasi";
                 }
             });
         });

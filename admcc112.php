@@ -262,6 +262,7 @@ if (empty($_SESSION['112_username'])){
                             case 'data': include "data.php"; break;
                             case 'survey': include "data_survey.php"; break;
                             case 'counter': include "data_counter.php"; break;
+                            case 'input_tim': include "input_tim.php"; break;
                             default: echo "<center><h3>Maaf. Halaman tidak di temukan !</h3></center>"; break;
                         }
                     } else {
