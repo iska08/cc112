@@ -33,11 +33,11 @@ $html = '
   }
   #logo1 {
     float: left;
-    margin-left: 20px;
+    margin-left: 100px;
   }
   #logo2 {
     float: right;
-    margin-right: 20px;
+    margin-right: 100px;
   }
   #content {
     padding: 20px;
@@ -112,7 +112,7 @@ $hak_akses = $_SESSION['hak_akses'];
 $nama = $_SESSION['nama'];
 $html .= '
 <div id="header">
-  <img id="logo1" src="logo/sumenep.png" width="75">
+  <img id="logo1" src="logo/sumenep_gray.png" width="75">
   <img id="logo2" src="logo/white.png" width="75">
   <h4>PEMERINTAH KABUPATEN SUMENEP</h4>
   <h3>DINAS KOMUNIKASI DAN INFORMATIKA</h3>
@@ -181,7 +181,7 @@ $nama = $_SESSION['nama'];
 foreach ($tim as $anggota) {
   $html .= '
       <tr>
-        <td width="5%"><center>'.$nomor++.'<center></td>
+        <td width="5%"><center>'.$nomor++.'</center></td>
         <td>'.$anggota.'</td>
         <td>'.$nama.'</td>
         <td>';
@@ -190,8 +190,36 @@ foreach ($tim as $anggota) {
   }else{
     $html .= $ttd++;
   }
-  $html .= '</td>
-      </tr>';
+  $html .= '
+        </td>
+      </tr>
+      <tr>
+        <td width="5%"><center>'.$nomor++.'</center></td>
+        <td></td>
+        <td>Call Center 112</td>
+        <td>';
+  if($ttd % 2 == 0 ){
+    $html .= '<center>'.$ttd++.'</center>';
+  }else{
+    $html .= $ttd++;
+  }
+  $html .= '
+        </td>
+      </tr>
+      <tr>
+        <td width="5%"><center>'.$nomor++.'</center></td>
+        <td></td>
+        <td>Call Center 112</td>
+        <td>';
+  if($ttd % 2 == 0 ){
+    $html .= '<center>'.$ttd++.'</center>';
+  }else{
+    $html .= $ttd++;
+  }
+  $html .= '
+        </td>
+      </tr>
+      ';
 }
 $html.='
     </table>
