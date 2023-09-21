@@ -46,7 +46,7 @@ Alamat Kejadian : $alamat
 Tanggal Terima : $tanggal_terima
 Nama Pelapor : $nama_pelapor
 No. Telp Pelapor : $noTelp_pelapor
-Login Tim : https://cc112sumenep.com/adm_login.php";
+Login Tim : https://cc112sumenep.com/login.php";
     $countryCode = '62';
     foreach ($targetNumbers as $target) {
       $token = "8Y2hL2qgYz45oiPAAapW";

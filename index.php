@@ -89,7 +89,7 @@ include 'fungsi_bulan.php';
       <a href="http://www.sumenepkab.go.id/">
         <img src="img/cc112_ok1.jpg" class="img-fluid">
       </a>
-      <a href="login.php" class="nav-link login-button">Login</a>
+      <!-- <a href="login.php" class="nav-link login-button">Login</a> -->
     </center>   
     <form action="index.php" method="GET">
       <div class="input-group input-group-sm">                        
