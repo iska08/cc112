@@ -186,8 +186,6 @@ include 'fungsi_bulan.php';
         } else {
           ?>
           <br/>
-          <br/>
-          <br/>
           <div class="card card-primary card-outline mobile-space_1">
             <div class="card-header">
               <h3 class="card-title">

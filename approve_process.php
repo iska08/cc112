@@ -30,16 +30,18 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
   } else {
     die("Error: " . mysqli_error($kominfo));
   }
-  // Mengirim pesan ke nomor telepon
-  $noTim = mysqli_query($kominfo, "SELECT noTelp FROM user WHERE hak_akses = 'Tim' OR hak_akses = 'Admin' AND kejadian LIKE '%$kejadian%'");
-  if ($noTim) {
-    $targetNumbers = [];
-    while ($dataNo = mysqli_fetch_assoc($noTim)) {
-      $targetNumbers[] = $dataNo['noTelp'];
-    }
-    // Ubah format URL peta untuk perangkat seluler
-    $maps_mobile = 'https://www.google.com/maps/search/?api=1&query=' . $kordinat;
-    $message = "*Laporan Kejadian Terbaru*
+  if ($action === 'approve') {
+    $approveStatus = 1;
+    // Mengirim pesan ke nomor telepon
+    $noTim = mysqli_query($kominfo, "SELECT noTelp FROM user WHERE hak_akses = 'Tim' OR hak_akses = 'Admin' AND kejadian LIKE '%$kejadian%'");
+    if ($noTim) {
+      $targetNumbers = [];
+      while ($dataNo = mysqli_fetch_assoc($noTim)) {
+        $targetNumbers[] = $dataNo['noTelp'];
+      }
+      // Ubah format URL peta untuk perangkat seluler
+      $maps_mobile = 'https://www.google.com/maps/search/?api=1&query=' . $kordinat;
+      $message = "*Laporan Kejadian Terbaru*
 Lokasi Kejadian : $maps_mobile
 Kejadian : $kejadian
 Alamat Kejadian : $alamat
@@ -47,36 +49,34 @@ Tanggal Terima : $tanggal_terima
 Nama Pelapor : $nama_pelapor
 No. Telp Pelapor : $noTelp_pelapor
 Login Tim : https://cc112sumenep.com/login.php";
-    $countryCode = '62';
-    foreach ($targetNumbers as $target) {
-      $token = "8Y2hL2qgYz45oiPAAapW";
-      $curl = curl_init();
-      curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://api.fonnte.com/send',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => array(
-          'target' => $target,
-          'message' => $message,
-          'countryCode' => $countryCode, //optional
-        ),
-        CURLOPT_HTTPHEADER => array(
-          "Authorization: $token"
-        ),
-      ));
-      $response = curl_exec($curl);
-      curl_close($curl);
+      $countryCode = '62';
+      foreach ($targetNumbers as $target) {
+        $token = "8Y2hL2qgYz45oiPAAapW";
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://api.fonnte.com/send',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS => array(
+            'target' => $target,
+            'message' => $message,
+            'countryCode' => $countryCode, //optional
+          ),
+          CURLOPT_HTTPHEADER => array(
+            "Authorization: $token"
+          ),
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
+      }
+    } else {
+      die("Error: " . mysqli_error($kominfo));
     }
-  } else {
-    die("Error: " . mysqli_error($kominfo));
-  }
-  if ($action === 'approve') {
-    $approveStatus = 1;
   } elseif ($action === 'reject') {
     $approveStatus = 2;
   } else {
