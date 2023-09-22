@@ -40,6 +40,7 @@ $akses = $_SESSION['hak_akses'];
           ?>
           <div>
             <button class="btn btn-info btn-sm" id="add_lokasi">Input Lokasi</button>
+            <button class="btn btn-info btn-sm" id="add_tim">Input Tim</button>
           </div>
           <br/>
           <div class="table-responsive">
@@ -127,21 +128,19 @@ $akses = $_SESSION['hak_akses'];
                       <td>
                         <strong>Daftar OPD Bantuan</strong><br>
                         Nama OPD Bantuan:
-                        <u>
+                        <i>
                           <?php
                           $id_opd = $dataTim2['opd_terkait'];
                           $opd1 = mysqli_query($kominfo, "select * from desa where id='$id_opd'");
                           $opd2 = mysqli_fetch_array($opd1);
                           echo $opd2['nama_opd'];
                           ?>
-                        </u>
+                        </i>
                         <br><br>
-                        Jumlah Anggota: <u><?php echo $dataTim2['jumlah_tim']; ?></u>
+                        Jumlah Anggota: <i><?php echo $dataTim2['jumlah_tim']; ?></i>
                         <br><br>
                         Nama-nama Anggota:<br>
-                        <u><?php echo $dataTim2['nama_anggota']; ?></u>
-                        <br><br>
-                        <button class="btn btn-info btn-sm" id="add_tim">Input Tim</button>
+                        <i><?php echo $dataTim2['nama_anggota']; ?></i>
                       </td>
                       <?php
                     }else{
@@ -155,21 +154,19 @@ $akses = $_SESSION['hak_akses'];
                         <br><br>
                         <strong>Daftar OPD Bantuan</strong><br>
                         Nama OPD Bantuan:
-                        <u>
+                        <i>
                           <?php
                           $id_opd = $dataTim2['opd_terkait'];
                           $opd1 = mysqli_query($kominfo, "select * from desa where id='$id_opd'");
                           $opd2 = mysqli_fetch_array($opd1);
                           echo $opd2['nama_opd'];
                           ?>
-                        </u>
+                        </i>
                         <br><br>
-                        Jumlah Anggota: <u><?php echo $dataTim2['jumlah_tim']; ?></u>
+                        Jumlah Anggota: <i><?php echo $dataTim2['jumlah_tim']; ?></i>
                         <br><br>
                         Nama-nama Anggota:<br>
-                        <u><?php echo $dataTim2['nama_anggota']; ?></u>
-                        <br><br>
-                        <button class="btn btn-info btn-sm" id="add_tim">Input Tim</button>
+                        <i><?php echo $dataTim2['nama_anggota']; ?></i>
                       </td>
                       <?php
                     }

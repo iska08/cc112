@@ -6,12 +6,14 @@ if (empty($_SESSION['112_username'])){
 //koneksi
 include 'dbconfig.php';
 ?>
+
 <style>
   /* ukuran peta */
   #mapid {
     height: 600px;width:100%;
   }
 </style>
+
 <div class="card card-primary card-outline">
   <div class="card-header">
     <h5 class="card-title">Tambah Tim Bantuan</h5>
