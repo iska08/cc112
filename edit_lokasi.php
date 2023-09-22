@@ -58,7 +58,8 @@ if(isset($_GET['id_lokasi'])){
                   <?php
                   $id_kec=$hasil_lokasi['kec'];
                   $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec' order by nama_kecamatan");
-                  $kec2 = mysqli_fetch_array($kec1)?>
+                  $kec2 = mysqli_fetch_array($kec1)
+                  ?>
                   <option value="<?php echo $kec2['id']; ?>"><?php echo $kec2['nama_kecamatan']; ?></option>
                   <option disabled >== Pilih Kecamatan ==</option>
                   <?php

@@ -6,7 +6,6 @@ if (empty($_SESSION['112_username'])){
 ?>
 <script>
     $(document).ready(function() {
-        //load data mahasiswa saat aplikasi dijalankan
         lokasi();
         //Load form add
         $("#lokasi").on("click", "#add_lokasi", function() {
@@ -78,32 +77,6 @@ if (empty($_SESSION['112_username'])){
                 processData: false,
                 success: function(data) {
                     alert((data), '', 'success')
-                    lokasi();
-                }
-            });
-        });
-        //add tim
-        $("#lokasi").on("click", "#add_tim", function() {
-            $.ajax({
-                url: 'input_tim.php',
-                type: 'get',
-                success: function(data) {
-                    $('#lokasi').html(data);
-                }
-            });
-        });
-        //simpan tim
-        $("#lokasi").on("submit", "#form_tambah_tim", function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: 'proses.php?action=simpan_tim',
-                type: 'post',
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    Swal.fire((data), '', 'success')
                     lokasi();
                 }
             });
@@ -204,6 +177,92 @@ if (empty($_SESSION['112_username'])){
             type: 'get',
             success: function(data) {
                 $('#lokasi').html(data);
+            }
+        });
+    }
+</script>
+<script>
+    $(document).ready(function() {
+        support();
+        //add tim
+        $("#support").on("click", "#add_support", function() {
+            $.ajax({
+                url: 'input_support.php',
+                type: 'get',
+                success: function(data) {
+                    $('#support').html(data);
+                }
+            });
+        });
+        //simpan tim
+        $("#support").on("submit", "#form_tambah_support", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'proses.php?action=simpan_support',
+                type: 'post',
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    Swal.fire((data), '', 'success')
+                    support();
+                }
+            });
+        });
+        $("#lokasi").on("submit", "#form_edit_lokasi", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'proses.php?action=edit_lokasi',
+                type: 'post',
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    Swal.fire((data), '', 'success')
+                    lokasi();
+                }
+            });
+        });
+        //button batal
+        $("#lokasi").on("click", "#batal_lokasi", function() {
+            lokasi();
+        });
+        //hapus
+        $("#lokasi").on("click", "#hapus_lokasi", function() {
+            Swal.fire({
+                title: 'Perhatian!',
+                text: "Anda mau menghapus lokasi?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var id_lokasi = $(this).attr("value");
+                    $.ajax({
+                        url: 'proses.php?action=hapus_lokasi',
+                        type: 'post',
+                        data: {
+                            id_lokasi: id_lokasi
+                        },
+                        success: function(data) {
+                            Swal.fire((data), '', 'warning')
+                            lokasi();
+                        }
+                    });
+                }
+            });
+        });
+    })
+    function support() {
+        $.ajax({
+            url: 'data_support.php',
+            type: 'get',
+            success: function(data) {
+                $('#support').html(data);
             }
         });
     }

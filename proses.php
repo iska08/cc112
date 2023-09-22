@@ -393,7 +393,7 @@ switch ($_GET['action']) {
             echo "Hapus Survey Gagal :" . mysqli_error($kominfo);
         }
         break;
-    case 'simpan_tim':
+    case 'simpan_support':
         $id_lokasi      = $_POST['id_lokasi'];
         $opd_terkait    = $_POST['opd_terkait'];
         $jumlah_tim     = $_POST['jumlah_tim'];

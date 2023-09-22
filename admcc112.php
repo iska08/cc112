@@ -201,6 +201,12 @@ if (empty($_SESSION['112_username'])){
                                             <p>Data Kejadian</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="?hal=support" class="nav-link">
+                                            <i class="nav-icon far fa-circle"></i>
+                                            <p>Data Support</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -262,7 +268,9 @@ if (empty($_SESSION['112_username'])){
                             case 'data': include "data.php"; break;
                             case 'survey': include "data_survey.php"; break;
                             case 'counter': include "data_counter.php"; break;
-                            case 'input_tim': include "input_tim.php"; break;
+                            case 'support': include "support.php"; break;
+                            case 'input_support': include "input_support.php"; break;
+                            case 'edit_support': include "edit_support.php"; break;
                             default: echo "<center><h3>Maaf. Halaman tidak di temukan !</h3></center>"; break;
                         }
                     } else {
