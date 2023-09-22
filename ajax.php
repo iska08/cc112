@@ -210,10 +210,23 @@ if (empty($_SESSION['112_username'])){
                 }
             });
         });
-        $("#lokasi").on("submit", "#form_edit_lokasi", function(e) {
+        $("#support").on("click", "#edit_support", function() {
+            var id_support = $(this).attr("value");
+            $.ajax({
+                url: 'edit_support.php',
+                type: 'get',
+                data: {
+                    id_support: id_support
+                },
+                success: function(data) {
+                    $('#support').html(data);
+                }
+            });
+        });
+        $("#support").on("submit", "#form_edit_support", function(e) {
             e.preventDefault();
             $.ajax({
-                url: 'proses.php?action=edit_lokasi',
+                url: 'proses.php?action=edit_support',
                 type: 'post',
                 data: new FormData(this),
                 contentType: false,
@@ -221,19 +234,19 @@ if (empty($_SESSION['112_username'])){
                 processData: false,
                 success: function(data) {
                     Swal.fire((data), '', 'success')
-                    lokasi();
+                    support();
                 }
             });
         });
         //button batal
-        $("#lokasi").on("click", "#batal_lokasi", function() {
-            lokasi();
+        $("#support").on("click", "#batal_support", function() {
+            support();
         });
         //hapus
-        $("#lokasi").on("click", "#hapus_lokasi", function() {
+        $("#support").on("click", "#hapus_support", function() {
             Swal.fire({
                 title: 'Perhatian!',
-                text: "Anda mau menghapus lokasi?",
+                text: "Anda mau menghapus support?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
@@ -241,16 +254,16 @@ if (empty($_SESSION['112_username'])){
                 confirmButtonText: 'Hapus'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    var id_lokasi = $(this).attr("value");
+                    var id_support = $(this).attr("value");
                     $.ajax({
-                        url: 'proses.php?action=hapus_lokasi',
+                        url: 'proses.php?action=hapus_support',
                         type: 'post',
                         data: {
-                            id_lokasi: id_lokasi
+                            id_support: id_support
                         },
                         success: function(data) {
                             Swal.fire((data), '', 'warning')
-                            lokasi();
+                            support();
                         }
                     });
                 }

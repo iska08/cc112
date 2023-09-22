@@ -394,7 +394,7 @@ switch ($_GET['action']) {
         }
         break;
     case 'simpan_support':
-        $id_lokasi      = $_POST['id_lokasi'];
+        $id_lokasi      = $_POST['id_lokasi_hidden'];
         $opd_terkait    = $_POST['opd_terkait'];
         $jumlah_tim     = $_POST['jumlah_tim'];
         $ket            = $_POST['ket'];
@@ -405,6 +405,43 @@ switch ($_GET['action']) {
         } else {
             echo "Simpan Tim Masuk Gagal: " . mysqli_error($kominfo);
         }
-        break;        
+        break;
+    case 'edit_support':
+        $hak_akses = $_SESSION['hak_akses'];
+        if($hak_akses=='Admin'){
+            $id_support     = $_POST['id'];
+            $opd_terkait    = $_POST['opd_terkait'];
+            $jumlah_tim     = $_POST['jumlah_tim'];
+            $ket            = $_POST['ket'];
+            //input data
+            $update_support = mysqli_query($kominfo, "UPDATE `tim` SET opd_terkait='$opd_terkait', jumlah_tim='$jumlah_tim', ket='$ket' WHERE id='$id_support' ");
+            if ($update_support) {
+                echo "Edit Support Berhasil";
+            } else {
+                echo "Edit Support Gagal :" . mysqli_error($kominfo);
+            }
+        }elseif($hak_akses=='Tim'){
+            $id_lokasi          = $_POST['id'];
+            $tanggal_selesai    = $_POST['tanggal_selesai'];
+            $laporan            = $_POST['laporan'];
+            $tim                = implode(",", $_POST['tim']);
+            //input data
+            $update_lokasi = mysqli_query($kominfo, "UPDATE `lokasi` SET tanggal_selesai='$tanggal_selesai',laporan='$laporan',tim='$tim' WHERE id='$id_lokasi' ");
+            if ($update_lokasi) {
+                echo "Update Laporan Kejadian Berhasil";
+            } else {
+                echo "Update Laporan Kejadian Gagal :" . mysqli_error($kominfo);
+            }
+        }
+        break;
+    case 'hapus_support':
+        $id = $_POST['id_support'];
+        $hapus_support_query = mysqli_query($kominfo, "DELETE FROM tim WHERE id='$id'");
+        if ($hapus_support_query) {
+            echo "Hapus Support Berhasil";
+        } else {
+            echo "Hapus Support Gagal: " . mysqli_error($kominfo);
+        }
+        break;
 }
 ?>

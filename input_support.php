@@ -43,7 +43,7 @@ include 'dbconfig.php';
             <button type="submit" class="btn btn-info btn-flat">Cari</button>
           </form>
           <hr>
-          <form id="form_tambah_support" method="post" enctype="multipart/form-data">
+          <form>
             <div class="form-group">
               <label for="exampleFormControlInput1">Latitude, Longitude</label>
               <input disabled type="text" class="form-control" id="latlong" name="latlong" value="<?php echo $hasil_tgl['lat_long']; ?>" required>
@@ -82,6 +82,9 @@ include 'dbconfig.php';
               <label for="exampleFormControlInput1">Alamat Kejadian</label>
               <input disabled type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $hasil_tgl['alamat']; ?>" required>
             </div>
+          </form>
+          <form id="form_tambah_support" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="id_lokasi_hidden" name="id_lokasi_hidden" value="">
             <div class="form-group">
               <label for="exampleFormControlInput1">Tim Bantuan</label>
               <select class="form-control" id="opd_terkait" name="opd_terkait" required>
@@ -94,7 +97,7 @@ include 'dbconfig.php';
                   <?php
                 }
                 ?>
-              </select>  
+              </select>
             </div>
             <div class="form-group">
               <label for="exampleFormControlInput1">Jumlah Tim</label>
@@ -127,6 +130,7 @@ include 'dbconfig.php';
                   document.getElementById('nama_pelapor').value = data.nama_pelapor;
                   document.getElementById('noTelp_pelapor').value = data.noTelp_pelapor;
                   document.getElementById('alamat').value = data.alamat;
+                  document.getElementById('id_lokasi_hidden').value = id_lokasi;
                 },
                 error: function () {
                   alert('Terjadi kesalahan saat mengambil data.');
