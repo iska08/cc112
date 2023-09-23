@@ -269,6 +269,66 @@ if (empty($_SESSION['112_username'])){
                 }
             });
         });
+        //simpan foto
+        $("#support").on("submit", "#upload_foto_support", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'proses.php?action=simpan_foto_support',
+                type: 'post',
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    var imageUrl = data;
+                    $("#gambar").attr("src", imageUrl);
+                    Swal.fire((data), '', 'success');
+                    support();
+                }
+            });
+        });
+        //simpan
+        $("#support").on("submit", "#edit_foto_support", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'proses.php?action=edit_foto_support',
+                type: 'post',
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    alert((data), '', 'success')
+                    support();
+                }
+            });
+        });
+        $("#support").on("click", "#hapus_foto_support", function() {
+            Swal.fire({
+                title: 'Perhatian!',
+                text: "Anda mau menghapus foto support?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var id = $(this).attr("value");
+                    $.ajax({
+                        url: 'proses.php?action=hapus_foto_support',
+                        type: 'post',
+                        data: {
+                            id: id
+                        },
+                        success: function(data) {
+                            Swal.fire((data), '', 'warning')
+                            support();
+                        }
+                    });
+                }
+            });
+        });
     })
     function support() {
         $.ajax({

@@ -40,7 +40,6 @@ $akses = $_SESSION['hak_akses'];
           ?>
           <div>
             <button class="btn btn-info btn-sm" id="add_lokasi">Input Lokasi</button>
-            <button class="btn btn-info btn-sm" id="add_tim">Input Tim</button>
           </div>
           <br/>
           <div class="table-responsive">
@@ -149,24 +148,15 @@ $akses = $_SESSION['hak_akses'];
                         <strong>Laporan Penyelesaian:</strong><br>
                         <?php echo $hasil['laporan']; ?><br><br>
                         <strong>Anggota yang Terlibat:</strong><br>
-                        <?php echo $hasil['tim']; ?><br><br>
+                        <?php
+                        $noTim = 1;
+                        $tim = explode(',', $hasil['tim']);
+                        foreach ($tim as $anggota) {
+                          echo '<strong>' . $noTim++ . '.</strong> ' . $anggota . '<br>';
+                        }
+                        ?>
+                        <br><br>
                         <a class="btn btn-success btn-sm " target="blank" href="laporan.php?id=<?php echo $hasil['id']; ?>" aria-label="pdf" style="color:white;">Unduh Laporan<br><i class="far fa-file-pdf"></i></a>
-                        <br><br>
-                        <strong>Daftar OPD Bantuan</strong><br>
-                        Nama OPD Bantuan:
-                        <i>
-                          <?php
-                          $id_opd = $dataTim2['opd_terkait'];
-                          $opd1 = mysqli_query($kominfo, "select * from desa where id='$id_opd'");
-                          $opd2 = mysqli_fetch_array($opd1);
-                          echo $opd2['nama_opd'];
-                          ?>
-                        </i>
-                        <br><br>
-                        Jumlah Anggota: <i><?php echo $dataTim2['jumlah_tim']; ?></i>
-                        <br><br>
-                        Nama-nama Anggota:<br>
-                        <i><?php echo $dataTim2['nama_anggota']; ?></i>
                       </td>
                       <?php
                     }
@@ -342,7 +332,14 @@ $akses = $_SESSION['hak_akses'];
                           <strong>Laporan Penyelesaian:</strong><br>
                           <?php echo $hasil['laporan']; ?><br><br>
                           <strong>Anggota yang Terlibat:</strong><br>
-                          <?php echo $hasil['tim']; ?><br><br>
+                          <?php
+                          $noTim = 1;
+                          $tim = explode(',', $hasil['tim']);
+                          foreach ($tim as $anggota) {
+                            echo '<strong>' . $noTim++ . '.</strong> ' . $anggota . '<br>';
+                          }
+                          ?>
+                          <br><br>
                           <a class="btn btn-success btn-sm " target="blank" href="laporan.php?<?php echo "id=" .$hasil['id'];?>" aria-label="pdf" style="color:white;">Unduh Laporan<br><i class="far fa-file-pdf"></i></a>
                           <?php
                         }
@@ -518,7 +515,14 @@ $akses = $_SESSION['hak_akses'];
                           <strong>Laporan Penyelesaian:</strong><br>
                           <?php echo $hasil['laporan']; ?><br><br>
                           <strong>Anggota yang Terlibat:</strong><br>
-                          <?php echo $hasil['tim']; ?><br><br>
+                          <?php
+                          $noTim = 1;
+                          $tim = explode(',', $hasil['tim']);
+                          foreach ($tim as $anggota) {
+                            echo '<strong>' . $noTim++ . '.</strong> ' . $anggota . '<br>';
+                          }
+                          ?>
+                          <br><br>
                           <a class="btn btn-success btn-sm " target="blank" href="laporan.php?<?php echo "id=" .$hasil['id'];?>" aria-label="pdf" style="color:white;">Unduh Laporan<br><i class="far fa-file-pdf"></i></a>
                         </td>
                         <?php

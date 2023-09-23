@@ -36,7 +36,7 @@ $akses = $_SESSION['hak_akses'];
     <div class="row">
       <div class="col-md-12">
         <?php
-        if($akses=='Admin'){
+        if($akses == 'Admin'){
           ?>
           <div>
             <button class="btn btn-info btn-sm" id="add_support">Input Tim</button>
@@ -54,6 +54,7 @@ $akses = $_SESSION['hak_akses'];
                 <th>OPD Terkait</th>
                 <th>Detail Tim</th>
                 <th>Keterangan</th>
+                <th>Bantuan</th>
                 <th>Foto</th>
                 <th>Aksi</th>
               </thead>
@@ -75,16 +76,16 @@ $akses = $_SESSION['hak_akses'];
                       <strong>Kecamatan:</strong><br>
                       <?php
                       $id_kec = $lokasi2['kec'];
-                      $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
-                      $kec2 = mysqli_fetch_array($kec1);
+                      $kec1   = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
+                      $kec2   = mysqli_fetch_array($kec1);
                       echo $kec2['nama_kecamatan'];
                       ?>
                       <br><br>
                       <strong>Desa:</strong><br>
                       <?php
-                      $id_desa = $lokasi2['desa'];
-                      $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
-                      $desa2 = mysqli_fetch_array($desa1);
+                      $id_desa  = $lokasi2['desa'];
+                      $desa1    = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
+                      $desa2    = mysqli_fetch_array($desa1);
                       echo $desa2['nama_desa'];
                       ?>
                     </td>
@@ -102,9 +103,9 @@ $akses = $_SESSION['hak_akses'];
                     </td>
                     <td>
                       <?php
-                      $id_opd=$hasil['opd_terkait'];
-                      $opd1 = mysqli_query($kominfo, "select * from opd_terkait where id='$id_opd'");
-                      $opd2 = mysqli_fetch_array($opd1);
+                      $id_opd = $hasil['opd_terkait'];
+                      $opd1   = mysqli_query($kominfo, "select * from opd_terkait where id='$id_opd'");
+                      $opd2   = mysqli_fetch_array($opd1);
                       echo $opd2['nama_opd'];
                       ?>
                     </td>
@@ -116,18 +117,29 @@ $akses = $_SESSION['hak_akses'];
                       <?php echo $hasil['nama_anggota']; ?>
                     </td>
                     <td><?php echo $hasil['ket']; ?></td>
+                    <td>
+                      <?php
+                      if ($hasil['bantuan'] == "0") {
+                        echo '<a class="btn btn-info btn-sm" href="bantuan.php?id=' . $hasil['id'] . '&action=bantuan">Kirim Bantuan</a>';
+                      } elseif ($hasil['bantuan'] == "1") {
+                        echo '<a class="btn btn-success btn-sm">Clear</a>';
+                      }
+                      ?>
+                    </td>
                     <td width="20%">
                       <div class="row">
                         <?php
-                        $lokasi_foto = mysqli_query($kominfo, "select * from tim where id_lokasi='$id_lokasi'");
-                        while($foto1 = mysqli_fetch_array($lokasi_foto)){
+                        $id_tim       = $hasil['id'];
+                        $lokasi_foto  = mysqli_query($kominfo, "select * from foto_tim where id_tim='$id_tim'");
+                        while($foto1  = mysqli_fetch_array($lokasi_foto)){
                         ?>
                           <div class="col text-center">
                             <div>
                               <a href="foto/<?php echo $foto1['nama_foto'] ?>" data-toggle="lightbox">
                                 <img class="img-thumbnail" src="foto/<?php echo $foto1['nama_foto'] ?>" />
                               </a>
-                              <a style="position:absolute;top:10px;right:20px;" class="btn btn-danger btn-sm " id="hapus_foto" value="<?php echo $foto1['id']; ?>">Hapus</a><a style="position:absolute;top:10px;left:20px;" class="btn btn-danger btn-sm " data-target="#crop-modal_<?php echo $foto1['id']; ?>" data-toggle="modal">Edit</a>
+                              <a style="position:absolute;top:10px;right:20px;" class="btn btn-danger btn-sm " id="hapus_foto_support" value="<?php echo $foto1['id']; ?>">Hapus</a>
+                              <a style="position:absolute;top:10px;left:20px;" class="btn btn-danger btn-sm " data-target="#crop-modal_<?php echo $foto1['id']; ?>" data-toggle="modal">Edit</a>
                             </div>
                             <!-- Crop Modal -->
                             <div id="crop-modal_<?php echo $foto1['id']; ?>" class="modal fade" tabindex="-1">
@@ -159,10 +171,10 @@ $akses = $_SESSION['hak_akses'];
                       </div>
                       <br/>
                       <!-- <form method="post" id="upload_foto"> -->
-                      <form method="post" enctype="multipart/form-data" id="upload_foto" action="upload.php">
+                      <form method="post" enctype="multipart/form-data" id="upload_foto_support" action="upload_support.php">
                         <input type="file" name="foto" data-icon="false" required>
-                        <input hidden type="text" name="id" value="<?php echo $lokasi2['id']; ?>">
-                        <input hidden type="text" name="kej" value="<?php echo $lokasi2['kejadian']; ?>">
+                        <input hidden type="text" name="id" value="<?php echo $hasil['id']; ?>">
+                        <input hidden type="text" name="kej" value="<?php echo $hasil['kejadian']; ?>">
                         <br/>
                         <br/>
                         <button type="submit" class="btn btn-info btn-sm" id="inputGroupFileAddon04">Upload</button>
@@ -182,7 +194,7 @@ $akses = $_SESSION['hak_akses'];
             </table>
           </div>
           <?php
-        }elseif($akses=='Tim'){
+        }elseif($akses == 'Tim'){
           ?>
           <div class="table-responsive">
             <?php
@@ -198,75 +210,68 @@ $akses = $_SESSION['hak_akses'];
                 <tbody>
                   <?php
                   $nomor = 1;
-                  $kejadian = $_SESSION['kejadian'];
-                  $data = explode(",", $kejadian);
-                  $whereClause = "";
-                  foreach ($data as $value) {
-                      $value = mysqli_real_escape_string($kominfo, $value);
-                      if ($whereClause !== "") {
-                          $whereClause .= " OR ";
-                      }
-                      $whereClause .= "kejadian = '$value' and approve = '1'";
-                  }
-                  $hak_akses = $_SESSION['hak_akses'];
-                  if($hak_akses=='Admin'){
-                    $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi ORDER BY id DESC");
-                  }elseif($hak_akses=='Tim'){
-                    $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE $whereClause ORDER BY id DESC");
-                  }
+                  $nama = $_SESSION['nama'];
+                  $tampil = mysqli_query($kominfo,
+                            "SELECT t.id, t.id_lokasi, t.opd_terkait, t.jumlah_tim, t.nama_anggota, t.ket, t.laporan, t.bulan, t.tahun
+                            FROM tim AS t
+                            INNER JOIN opd_terkait AS o ON t.opd_terkait = o.id
+                            WHERE o.nama_opd = '$nama'
+                            ORDER BY id DESC");
                   while($hasil = mysqli_fetch_array($tampil)){
                   ?>
                     <tr>
                       <td><?php echo $nomor++; ?></td>
+                      <?php
+                      $id       = $hasil['id_lokasi'];
+                      $lokasi1  = mysqli_query($kominfo, "select * from lokasi where id='$id'");
+                      $lokasi2  = mysqli_fetch_array($lokasi1);
+                      ?>
                       <td>
                         <strong>Kejadian:</strong><br>
-                        <?php echo $hasil['kejadian']; ?>
+                        <?php echo $lokasi2['kejadian']; ?>
                         <br><br>
                         <strong>Kecamatan:</strong><br>
                         <?php
-                        $id_kec=$hasil['kec'];
-                        $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
-                        $kec2 = mysqli_fetch_array($kec1);
+                        $id_kec = $lokasi2['kec'];
+                        $kec1   = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
+                        $kec2   = mysqli_fetch_array($kec1);
                         echo $kec2['nama_kecamatan'];
                         ?>
                         <br><br>
                         <strong>Desa:</strong><br>
                         <?php
-                        $id_desa=$hasil['desa'];
-                        $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
-                        $desa2 = mysqli_fetch_array($desa1);
+                        $id_desa  = $lokasi2['desa'];
+                        $desa1    = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
+                        $desa2    = mysqli_fetch_array($desa1);
                         echo $desa2['nama_desa'];
                         ?>
                         <br><br>
                         <strong>Nama Pelapor:</strong><br>
-                        <?php echo $hasil['nama_pelapor']; ?>
+                        <?php echo $lokasi2['nama_pelapor']; ?>
                         <br><br>
                         <strong>No. Telp Pelapor:</strong><br>
-                        <?php echo $hasil['noTelp_pelapor']; ?>
+                        <?php echo $lokasi2['noTelp_pelapor']; ?>
                         <br><br>
                         <strong>Alamat Kejadian:</strong><br>
-                        <?php echo $hasil['alamat']; ?>
+                        <?php echo $lokasi2['alamat']; ?>
+                        <br><br>
+                        <strong>Tanggal Terima:</strong><br>
+                        <?php echo $lokasi2['tanggal_terima']; ?>
+                        <br><br>
+                        <strong>Tanggal Selesai:</strong><br>
+                        <?php echo $lokasi2['tanggal_selesai']; ?>
                         <br><br>
                         <strong>Keterangan:</strong><br>
                         <?php echo $hasil['ket']; ?>
-                        <br><br>
-                        <strong>Tanggal Terima:</strong><br>
-                        <?php echo $hasil['tanggal_terima']; ?>
-                        <br><br>
-                        <strong>Tanggal Selesai:</strong><br>
-                        <?php echo $hasil['tanggal_selesai']; ?>
                         <br><br>
                         <strong>Jumlah Tim:</strong><br>
                         <?php echo $hasil['jumlah_tim']; ?>
                         <br><br>
                         <?php
-                        $tglSelesai = $hasil['tanggal_selesai'];
-                        $lap        = $hasil['laporan'];
-                        if(empty($tglSelesai) && empty($lap)){
+                        $lap = $hasil['laporan'];
+                        if(empty($lap)){
                           ?>
                           <strong>Laporan Penyelesaian:</strong><br>
-                          Belum Diisi<br><br>
-                          <strong>Anggota yang Terlibat:</strong><br>
                           Belum Diisi<br><br>
                           <?php
                         }else{
@@ -274,8 +279,14 @@ $akses = $_SESSION['hak_akses'];
                           <strong>Laporan Penyelesaian:</strong><br>
                           <?php echo $hasil['laporan']; ?><br><br>
                           <strong>Anggota yang Terlibat:</strong><br>
-                          <?php echo $hasil['tim']; ?><br><br>
-                          <a class="btn btn-success btn-sm " target="blank" href="laporan.php?<?php echo "id=" .$hasil['id'];?>" aria-label="pdf" style="color:white;">Unduh Laporan<br><i class="far fa-file-pdf"></i></a>
+                          <?php
+                          $tim = explode(',', $hasil['nama_anggota']);
+                          foreach ($tim as $anggota) {
+                            echo '- ' . $anggota . '<br>';
+                          }
+                          ?>
+                          <br><br>
+                          <a class="btn btn-success btn-sm " target="blank" href="laporan_support.php?<?php echo "id=" .$hasil['id'];?>" aria-label="pdf" style="color:white;">Unduh Laporan<br><i class="far fa-file-pdf"></i></a>
                           <?php
                         }
                         ?>
@@ -283,8 +294,8 @@ $akses = $_SESSION['hak_akses'];
                         <strong>Foto Kejadian:</strong><br>
                         <div class="row">
                           <?php
-                          $id_lokasi=$hasil['id'];
-                          $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_lokasi'");
+                          $id_tim = $hasil['id'];
+                          $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_tim='$id_tim'");
                           while($foto1 = mysqli_fetch_array($lokasi_foto)){
                           ?>
                             <div class="col text-center">
@@ -336,16 +347,15 @@ $akses = $_SESSION['hak_akses'];
                       <td width="5%">
                         <div class="btn-group">
                           <?php
-                          $tglSelesai = $hasil['tanggal_selesai'];
-                          $lap        = $hasil['laporan'];
-                          if(empty($tglSelesai) && empty($lap)){
+                          $lap = $hasil['laporan'];
+                          if(empty($lap)){
                             ?>
-                            <a class="btn btn-info btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Input Laporan Penyelesaian</a>
+                            <a class="btn btn-info btn-sm" id="edit_support" value="<?php echo $hasil['id']; ?>">Input Laporan Penyelesaian</a>
                             <?php
                           }else{
                             ?>
-                            <a class="btn btn-warning btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Edit</a>
-                            <a class="btn btn-danger btn-sm" id="hapus_lokasi" value="<?php echo $hasil['id']; ?>">Hapus</a>
+                            <a class="btn btn-warning btn-sm" id="edit_support" value="<?php echo $hasil['id']; ?>">Edit</a>
+                            <a class="btn btn-danger btn-sm" id="hapus_support" value="<?php echo $hasil['id']; ?>">Hapus</a>
                             <?php
                           }
                           ?>
@@ -374,75 +384,67 @@ $akses = $_SESSION['hak_akses'];
                 <tbody>
                   <?php
                   $nomor = 1;
-                  $kejadian = $_SESSION['kejadian'];
-                  $data = explode(",", $kejadian);
-                  // print_r($data);
-                  // Membuat bagian WHERE untuk mengambil data berdasarkan nilai dalam array
-                  $whereClause = "";
-                  foreach ($data as $value) {
-                      $value = mysqli_real_escape_string($kominfo, $value); // Hindari SQL injection
-                      if ($whereClause !== "") {
-                          $whereClause .= " OR ";
-                      }
-                      $whereClause .= "kejadian = '$value' and approve = '1'";
-                  }
-                  $hak_akses = $_SESSION['hak_akses'];
-                  if($hak_akses=='Admin'){
-                    $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi ORDER BY id DESC");
-                  }elseif($hak_akses=='Tim'){
-                    $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE $whereClause ORDER BY id DESC");
-                  }
-                  // $tampil = mysqli_query($kominfo, "SELECT * FROM lokasi WHERE $whereClause ORDER BY id DESC");
+                  $nama = $_SESSION['nama'];
+                  $tampil = mysqli_query($kominfo,
+                            "SELECT t.id, t.id_lokasi, t.opd_terkait, t.jumlah_tim, t.nama_anggota, t.ket, t.laporan, t.bulan, t.tahun
+                            FROM tim AS t
+                            INNER JOIN opd_terkait AS o ON t.opd_terkait = o.id
+                            WHERE o.nama_opd = '$nama'
+                            ORDER BY id DESC");
                   while($hasil = mysqli_fetch_array($tampil)){
                   ?>
                     <tr>
                       <td><?php echo $nomor++; ?></td>
+                      <?php
+                      $id       = $hasil['id_lokasi'];
+                      $lokasi1  = mysqli_query($kominfo, "select * from lokasi where id='$id'");
+                      $lokasi2  = mysqli_fetch_array($lokasi1);
+                      ?>
                       <td>
                         <strong>Kejadian:</strong><br>
-                        <?php echo $hasil['kejadian']; ?>
+                        <?php echo $lokasi2['kejadian']; ?>
                         <br>
                         <br>
                         <strong>Kecamatan:</strong><br>
                         <?php
-                        $id_kec=$hasil['kec'];
-                        $kec1 = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
-                        $kec2 = mysqli_fetch_array($kec1);
+                        $id_kec = $lokasi2['kec'];
+                        $kec1   = mysqli_query($kominfo, "select * from kecamatan where id='$id_kec'");
+                        $kec2   = mysqli_fetch_array($kec1);
                         echo $kec2['nama_kecamatan'];
                         ?>
                         <br>
                         <br>
                         <strong>Desa:</strong><br>
                         <?php
-                        $id_desa=$hasil['desa'];
-                        $desa1 = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
-                        $desa2 = mysqli_fetch_array($desa1);
+                        $id_desa  = $lokasi2['desa'];
+                        $desa1    = mysqli_query($kominfo, "select * from desa where id='$id_desa'");
+                        $desa2    = mysqli_fetch_array($desa1);
                         echo $desa2['nama_desa']; ?>
                         <br>
                         <br>
                         <strong>Nama Pelapor:</strong><br>
-                        <?php echo $hasil['nama_pelapor']; ?>
+                        <?php echo $lokasi2['nama_pelapor']; ?>
                         <br>
                         <br>
                         <strong>No. Telp Pelapor:</strong><br>
-                        <?php echo $hasil['noTelp_pelapor']; ?>
+                        <?php echo $lokasi2['noTelp_pelapor']; ?>
                         <br>
                         <br>
                         <strong>Alamat Kejadian:</strong><br>
-                        <?php echo $hasil['alamat']; ?>
+                        <?php echo $lokasi2['alamat']; ?>
                         <br>
                         <br>
                         <strong>Keterangan:</strong><br>
                         <?php echo $hasil['ket']; ?>
                       </td>
-                      <td><?php echo $hasil['tanggal_terima']; ?></td>
-                      <td><?php echo $hasil['tanggal_selesai']; ?></td>
+                      <td><?php echo $lokasi2['tanggal_terima']; ?></td>
+                      <td><?php echo $lokasi2['tanggal_selesai']; ?></td>
                       <td><?php echo $hasil['jumlah_tim']; ?></td>
                       <?php
-                      $tglSelesai = $hasil['tanggal_selesai'];
-                      $lap        = $hasil['laporan'];
-                      if(empty($tglSelesai) && empty($lap)){
+                      $lap = $hasil['laporan'];
+                      if(empty($lap)){
                         ?>
-                        <td></td>
+                        <td>Belum ada Laporan</td>
                         <?php
                       }else{
                         ?>
@@ -450,8 +452,14 @@ $akses = $_SESSION['hak_akses'];
                           <strong>Laporan Penyelesaian:</strong><br>
                           <?php echo $hasil['laporan']; ?><br><br>
                           <strong>Anggota yang Terlibat:</strong><br>
-                          <?php echo $hasil['tim']; ?><br><br>
-                          <a class="btn btn-success btn-sm " target="blank" href="laporan.php?<?php echo "id=" .$hasil['id'];?>" aria-label="pdf" style="color:white;">Unduh Laporan<br><i class="far fa-file-pdf"></i></a>
+                          <?php
+                          $tim = explode(',', $hasil['nama_anggota']);
+                          foreach ($tim as $anggota) {
+                            echo '- ' . $anggota . '<br>';
+                          }
+                          ?>
+                          <br><br>
+                          <a class="btn btn-success btn-sm " target="blank" href="laporan_support.php?<?php echo "id=" .$hasil['id'];?>" aria-label="pdf" style="color:white;">Unduh Laporan<br><i class="far fa-file-pdf"></i></a>
                         </td>
                         <?php
                       }
@@ -459,8 +467,8 @@ $akses = $_SESSION['hak_akses'];
                       <td width="20%">
                         <div class="row">
                           <?php
-                          $id_lokasi=$hasil['id'];
-                          $lokasi_foto = mysqli_query($kominfo, "select * from foto where id_lokasi='$id_lokasi'");
+                          $id_tim = $hasil['id'];
+                          $lokasi_foto = mysqli_query($kominfo, "select * from foto_tim where id_tim='$id_tim'");
                           while($foto1 = mysqli_fetch_array($lokasi_foto)){
                           ?>
                             <div class="col text-center">
@@ -512,16 +520,15 @@ $akses = $_SESSION['hak_akses'];
                       <td width="5%">
                         <div class="btn-group">
                           <?php
-                          $tglSelesai = $hasil['tanggal_selesai'];
-                          $lap        = $hasil['laporan'];
-                          if(empty($tglSelesai) && empty($lap)){
+                          $lap = $hasil['laporan'];
+                          if(empty($lap)){
                             ?>
-                            <a class="btn btn-info btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Input Laporan Penyelesaian</a>
+                            <a class="btn btn-info btn-sm" id="edit_support" value="<?php echo $hasil['id']; ?>">Input Laporan Penyelesaian</a>
                             <?php
                           }else{
                             ?>
-                            <a class="btn btn-warning btn-sm" id="edit_lokasi" value="<?php echo $hasil['id']; ?>">Edit</a>
-                            <a class="btn btn-danger btn-sm" id="hapus_lokasi" value="<?php echo $hasil['id']; ?>">Hapus</a>
+                            <a class="btn btn-warning btn-sm" id="edit_support" value="<?php echo $hasil['id']; ?>">Edit</a>
+                            <a class="btn btn-danger btn-sm" id="hapus_support" value="<?php echo $hasil['id']; ?>">Hapus</a>
                             <?php
                           }
                           ?>

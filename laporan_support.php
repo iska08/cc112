@@ -120,12 +120,22 @@ $html .= '
 
 if(isset($_GET['id'])) {
   $id = $_GET['id'];
-  $sql = "SELECT * FROM lokasi WHERE id = $id";
+  $sql = 
+        "SELECT
+            l.kejadian,
+            l.alamat,
+            l.desa,
+            l.kec,
+            l.tanggal_terima,
+            t.nama_anggota
+        FROM tim AS t
+        INNER JOIN lokasi AS l ON t.id_lokasi = l.id
+        WHERE t.id = $id";
   $result = $kominfo->query($sql);
   
   if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $tim = explode(',', $row['tim']);
+    $tim = explode(',', $row['nama_anggota']);
     $kej = $row['kejadian'];
     $alamat = $row['alamat'];
     $id_desa = $row['desa'];

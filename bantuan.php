@@ -13,7 +13,18 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
   $id = $_GET['id'];
   $action = $_GET['action'];
   // Ambil data dari database
-  $query = "SELECT kejadian, alamat, tanggal_terima, nama_pelapor, noTelp_pelapor, lat_long FROM lokasi WHERE id = $id";
+  $query = "SELECT
+        l.lat_long,
+        l.kejadian,
+        l.alamat,
+        l.tanggal_terima,
+        l.nama_pelapor,
+        l.noTelp_pelapor,
+        t.opd_terkait,
+        t.ket
+        FROM lokasi AS l
+        INNER JOIN tim AS t ON l.id = t.id_lokasi
+        WHERE t.id = $id";
   $result = mysqli_query($kominfo, $query);
   if ($result) {
     $data = mysqli_fetch_assoc($result);
@@ -27,13 +38,19 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
     $tanggal_terima = $data['tanggal_terima'];
     $nama_pelapor = $data['nama_pelapor'];
     $noTelp_pelapor = $data['noTelp_pelapor'];
+    $opd_terkait = $data['opd_terkait'];
+    $ket = $data['ket'];
+
+    $namaOPD1 = mysqli_query($kominfo, "SELECT nama_opd FROM opd_terkait WHERE id='$opd_terkait'");
+    $namaOPD2 = mysqli_fetch_array($namaOPD1);
   } else {
     die("Error: " . mysqli_error($kominfo));
   }
-  if ($action === 'approve') {
-    $approveStatus = 1;
-    // Mengirim pesan ke nomor telepon
-    $noTim = mysqli_query($kominfo, "SELECT noTelp FROM user WHERE hak_akses = 'Tim' OR hak_akses = 'Admin' AND kejadian LIKE '%$kejadian%'");
+  if ($action === 'bantuan') {
+    $bantuan = 1;
+    // Mengirim pesan ke nomor telepon hanya jika belum dikirim sebelumnya
+    $pesanTelahDikirim = false;
+    $noTim = mysqli_query($kominfo, "SELECT noTelp FROM user WHERE hak_akses = 'Tim' OR hak_akses = 'Admin' AND nama LIKE '%$namaOPD2%'");
     if ($noTim) {
       $targetNumbers = [];
       while ($dataNo = mysqli_fetch_assoc($noTim)) {
@@ -41,18 +58,18 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
       }
       // Ubah format URL peta untuk perangkat seluler
       $maps_mobile = 'https://www.google.com/maps/search/?api=1&query=' . $kordinat;
-      $message = "*Laporan Kejadian Terbaru*
+      $message = "*Laporan Butuh Bantuan*
 Lokasi Kejadian : $maps_mobile
 Kejadian : $kejadian
 Alamat Kejadian : $alamat
 Tanggal Terima : $tanggal_terima
 Nama Pelapor : $nama_pelapor
 No. Telp Pelapor : $noTelp_pelapor
+Keterangan : $ket
 Login Tim : https://cc112sumenep.com/login.php";
       $countryCode = '62';
       foreach ($targetNumbers as $target) {
-        if (!in_array($target, $sentNumbers)) {
-          $sentNumbers[] = $target; // Tambahkan nomor ke dalam array
+        if (!$pesanTelahDikirim) {
           $token = "8Y2hL2qgYz45oiPAAapW";
           $curl = curl_init();
           curl_setopt_array($curl, array(
@@ -75,20 +92,20 @@ Login Tim : https://cc112sumenep.com/login.php";
           ));
           $response = curl_exec($curl);
           curl_close($curl);
+          // Set pesan telah dikirim agar tidak mengirim lagi
+          $pesanTelahDikirim = true;
         }
       }
     } else {
       die("Error: " . mysqli_error($kominfo));
     }
-  } elseif ($action === 'reject') {
-    $approveStatus = 2;
   } else {
     die("Aksi tidak valid!");
   }
   // Update status approve di database
-  $query = "UPDATE lokasi SET approve = $approveStatus WHERE id = $id";
+  $query = "UPDATE tim SET bantuan = $bantuan WHERE id = $id";
   if (mysqli_query($kominfo, $query)) {
-    header('Location: admcc112.php?hal=lokasi');
+    header('Location: admcc112.php?hal=support');
     exit();
   } else {
     echo "Error: " . mysqli_error($kominfo);

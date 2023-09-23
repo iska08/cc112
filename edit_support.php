@@ -131,30 +131,26 @@ if(isset($_GET['id_support'])){
       <div class="card-body ">
         <div class="row"> <!-- class row digunakan sebelum membuat column  -->
           <div class="col-md-4"> <!-- ukuruan layar dengan bootstrap adalah 12 kolom, bagian kiri dibuat sebesar 4 kolom-->
-            <form  id="form_edit_lokasi" method="post">
+            <form  id="form_edit_support" method="post">
               <?php
-              $tampil_lokasi = mysqli_query($kominfo, "select * from lokasi where id='$id_lokasi' "); //ambil data dari tabel lokasi
-              $hasil_lokasi = mysqli_fetch_array($tampil_lokasi)
+              $tampil_support = mysqli_query($kominfo, "select * from tim where id='$id_support' "); //ambil data dari tabel lokasi
+              $hasil_support  = mysqli_fetch_array($tampil_support)
               ?>
               <div class="form-group">
-                <label for="exampleFormControlInput1">Tanggal Selesai</label>
-                <input type="text" class="form-control" id="tanggal_selesai" name="tanggal_selesai" value="<?php echo $hasil_lokasi['tanggal_selesai']; ?>">
-                <input hidden type="text" name="id" value="<?php echo $hasil_lokasi['id']; ?>">
-              </div>
-              <div class="form-group">
                 <label for="exampleFormControlInput1">Laporan Penyelesaian</label>
-                <textarea class="form-control" name="laporan" cols="30" rows="5"><?php echo $hasil_lokasi['laporan']; ?></textarea>
+                <textarea class="form-control" name="laporan" cols="30" rows="5"><?php echo $hasil_support['laporan']; ?></textarea>
+                <input hidden type="text" name="id" value="<?php echo $hasil_support['id']; ?>">
               </div>
               <div class="form-group">
                 <label for="exampleFormControlInput1">Anggota yang Terlibat</label>
                 <div id="tim-container">
                   <?php
-                  $tim = explode(',', $hasil_lokasi['tim']);
-                  $maxTim = intval($hasil_lokasi['jumlah_tim']);
+                  $tim = explode(',', $hasil_support['nama_anggota']);
+                  $maxTim = intval($hasil_support['jumlah_tim']);
                   $timCount = count($tim);
                   foreach ($tim as $anggota) {
                     echo '<div class="input-group mb-3">';
-                    echo '<input type="text" class="form-control" name="tim[]" value="' . $anggota . '">';
+                    echo '<input type="text" class="form-control" name="nama_anggota[]" value="' . $anggota . '">';
                     echo '<div class="input-group-append">';
                     echo '<button type="button" class="btn btn-danger remove-tim">-</button>';
                     echo '</div>';
@@ -166,13 +162,13 @@ if(isset($_GET['id_support'])){
               </div>
               <div class="form-group">
                 <?php
-                if(empty($tglSelesai) && empty($lap) && empty($tim)){
+                if(empty($lap) && empty($tim)){
                   ?>
-                  <button type="submit" name="edit_lokasi" class="btn btn-info btn-sm">Input Laporan</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
+                  <button type="submit" name="edit_support" class="btn btn-info btn-sm">Input Laporan</button> <a class="btn btn-warning btn-sm" id="batal_support">Batal</a>
                   <?php
                 }else{
                   ?>
-                  <button type="submit" name="edit_lokasi" class="btn btn-info btn-sm">Edit Laporan</button> <a class="btn btn-warning btn-sm" id="batal_lokasi">Batal</a>
+                  <button type="submit" name="edit_support" class="btn btn-info btn-sm">Edit Laporan</button> <a class="btn btn-warning btn-sm" id="batal_support">Batal</a>
                   <?php
                 }
                 ?>
@@ -199,7 +195,7 @@ if(isset($_GET['id_support'])){
         if (timCount < maxTim) {
           // Tambahkan input anggota tim
           var inputGroup = '<div class="input-group mb-3">';
-          inputGroup += '<input type="text" class="form-control" name="tim[]">';
+          inputGroup += '<input type="text" class="form-control" name="nama_anggota[]">';
           inputGroup += '<div class="input-group-append">';
           inputGroup += '<button type="button" class="btn btn-danger remove-tim">-</button>';
           inputGroup += '</div>';

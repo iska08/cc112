@@ -394,12 +394,15 @@ switch ($_GET['action']) {
         }
         break;
     case 'simpan_support':
+        $tahun          = date("Y");
+        $bulan          = date("m");
         $id_lokasi      = $_POST['id_lokasi_hidden'];
         $opd_terkait    = $_POST['opd_terkait'];
         $jumlah_tim     = $_POST['jumlah_tim'];
         $ket            = $_POST['ket'];
+        $bantuan        = $_POST['bantuan'] = 0;
         // Input data
-        $insert_tim = mysqli_query($kominfo, "INSERT INTO `tim` SET id_lokasi='$id_lokasi', opd_terkait='$opd_terkait', jumlah_tim='$jumlah_tim', ket='$ket' ");
+        $insert_tim = mysqli_query($kominfo, "INSERT INTO `tim` SET id_lokasi='$id_lokasi', opd_terkait='$opd_terkait', jumlah_tim='$jumlah_tim', ket='$ket', bantuan='$bantuan', bulan='$bulan', tahun='$tahun' ");
         if ($insert_tim) {
             echo "Simpan Tim Berhasil";
         } else {
@@ -421,13 +424,12 @@ switch ($_GET['action']) {
                 echo "Edit Support Gagal :" . mysqli_error($kominfo);
             }
         }elseif($hak_akses=='Tim'){
-            $id_lokasi          = $_POST['id'];
-            $tanggal_selesai    = $_POST['tanggal_selesai'];
-            $laporan            = $_POST['laporan'];
-            $tim                = implode(",", $_POST['tim']);
+            $id_support     = $_POST['id'];
+            $laporan        = $_POST['laporan'];
+            $nama_anggota   = implode(",", $_POST['nama_anggota']);
             //input data
-            $update_lokasi = mysqli_query($kominfo, "UPDATE `lokasi` SET tanggal_selesai='$tanggal_selesai',laporan='$laporan',tim='$tim' WHERE id='$id_lokasi' ");
-            if ($update_lokasi) {
+            $update_support = mysqli_query($kominfo, "UPDATE `tim` SET laporan='$laporan', nama_anggota='$nama_anggota' WHERE id='$id_support' ");
+            if ($update_support) {
                 echo "Update Laporan Kejadian Berhasil";
             } else {
                 echo "Update Laporan Kejadian Gagal :" . mysqli_error($kominfo);
@@ -436,11 +438,71 @@ switch ($_GET['action']) {
         break;
     case 'hapus_support':
         $id = $_POST['id_support'];
-        $hapus_support_query = mysqli_query($kominfo, "DELETE FROM tim WHERE id='$id'");
-        if ($hapus_support_query) {
+        // Mengambil semua foto terkait dengan lokasi yang akan dihapus
+        $lokasi_foto = mysqli_query($kominfo, "SELECT * FROM foto_tim WHERE id_tim='$id'");
+        // Menghapus foto-foto dan rekamannya dari database
+        while ($foto = mysqli_fetch_array($lokasi_foto)) {
+            $file_path = 'foto/' . $foto["nama_foto"];
+            unlink($file_path);
+        }
+        // Setelah menghapus foto-foto, hapus lokasi itu sendiri
+        $hapus_foto_query = mysqli_query($kominfo, "DELETE FROM foto_tim WHERE id_tim='$id'");
+        $hapus_tim_query = mysqli_query($kominfo, "DELETE FROM tim WHERE id='$id'");
+        if ($hapus_foto_query && $hapus_tim_query) {
             echo "Hapus Support Berhasil";
         } else {
             echo "Hapus Support Gagal: " . mysqli_error($kominfo);
+        }
+        break;
+    case 'simpan_foto_support':
+        $rand = rand(10000000, 20000000);
+        $id = $_POST['id'];
+        $kej = str_replace(" ", "_", $_POST['kej']);
+        $foto_kej = $rand . "." . pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
+        $foto = $_FILES['foto']['name'];
+        $nama_foto = $_FILES['foto']['tmp_name'];
+        $extension = strtolower(pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION));
+        $allowed_extensions = array("jpg", "jpeg");
+        if (in_array($extension, $allowed_extensions)) {
+            $upload_folder = "foto/";
+            $upload_path = $upload_folder . $foto_kej;
+            if (move_uploaded_file($nama_foto, $upload_path)) {
+                $input_foto = mysqli_query($kominfo, "INSERT INTO foto_tim (id_tim, nama_foto) VALUES ('$id', '$foto_kej')");
+                if ($input_foto) {
+                    echo "Simpan Foto Berhasil";
+                } else {
+                    echo "Gagal menyimpan informasi foto ke database";
+                }
+            } else {
+                echo "Gagal mengunggah foto ke folder";
+            }
+        } else {
+            echo "Ekstensi file tidak diizinkan. Hanya file JPG/JPEG yang diperbolehkan.";
+        }
+        break;
+    case 'edit_foto_support':
+        $file = $_GET['file'];
+        $location = 'foto/'.$file;
+        $newFile = $file;
+        $targ_w = $targ_h = 400;
+        $img_r = imagecreatefromjpeg($location);
+        $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+        imagecopyresampled($dst_r,$img_r,0,0,$_POST['x'],$_POST['y'],
+        $targ_w,$targ_h,$_POST['w'],$_POST['h']);
+        $edit_foto = imagejpeg($dst_r, 'foto/'.$newFile);
+        if ($edit_foto) {
+            echo "Edit Foto Berhasil";
+        }
+        break;
+    case 'hapus_foto_support':
+        $id = $_POST["id"];
+        $lokasi_foto = mysqli_query($kominfo, "select * from foto_tim where id='$id'");
+        $foto1 = mysqli_fetch_array($lokasi_foto);
+        $file_path = 'foto/' . $foto1["nama_foto"];
+        unlink($file_path);
+        $hapus_foto =  mysqli_query($kominfo, "DELETE FROM foto_tim WHERE id = '$id' ");
+        if ($hapus_foto) {
+            echo "Hapus Foto Berhasil";
         }
         break;
 }

@@ -114,7 +114,15 @@ $id_user = $_GET['id_user'];
                                 <td><?php echo $hasil_user['noTelp']; ?></td>
                                 <td><?php echo $hasil_user['email']; ?></td>
                                 <td><?php echo $hasil_user['hak_akses']; ?></td>
-                                <td><?php echo $hasil_user['kejadian']; ?></td>
+                                <td>
+                                    <?php
+                                    $noKej = 1;
+                                    $kejadian = explode(',', $hasil_user['kejadian']);
+                                    foreach ($kejadian as $kej) {
+                                        echo '<strong>' . $noKej++ . '.</strong> ' . $kej . '<br>';
+                                    }
+                                    ?>
+                                </td>
                                 <td width="5%">
                                     <div class="btn-group">
                                         <a id="edit_user" value="<?php echo $hasil_user['id']; ?>" class="btn btn-info btn-sm btn-sm">Edit</a>
