@@ -13,17 +13,19 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
   $id = $_GET['id'];
   $action = $_GET['action'];
   // Ambil data dari database
-  $query = "SELECT
-        l.lat_long,
-        l.kejadian,
-        l.alamat,
-        l.tanggal_terima,
-        l.nama_pelapor,
-        l.noTelp_pelapor,
-        t.opd_terkait,
-        t.ket
+  $query = 
+        "SELECT
+            l.lat_long,
+            l.kejadian,
+            l.alamat,
+            l.tanggal_terima,
+            l.nama_pelapor,
+            l.noTelp_pelapor,
+            t.ket,
+            opd.nama_opd
         FROM lokasi AS l
         INNER JOIN tim AS t ON l.id = t.id_lokasi
+        INNER JOIN opd_terkait AS opd ON t.opd_terkait = opd.id
         WHERE t.id = $id";
   $result = mysqli_query($kominfo, $query);
   if ($result) {
@@ -38,19 +40,15 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
     $tanggal_terima = $data['tanggal_terima'];
     $nama_pelapor = $data['nama_pelapor'];
     $noTelp_pelapor = $data['noTelp_pelapor'];
-    $opd_terkait = $data['opd_terkait'];
     $ket = $data['ket'];
-
-    $namaOPD1 = mysqli_query($kominfo, "SELECT nama_opd FROM opd_terkait WHERE id='$opd_terkait'");
-    $namaOPD2 = mysqli_fetch_array($namaOPD1);
+    $nama = $data['nama_opd'];
   } else {
     die("Error: " . mysqli_error($kominfo));
   }
   if ($action === 'bantuan') {
     $bantuan = 1;
-    // Mengirim pesan ke nomor telepon hanya jika belum dikirim sebelumnya
-    $pesanTelahDikirim = false;
-    $noTim = mysqli_query($kominfo, "SELECT noTelp FROM user WHERE hak_akses = 'Tim' OR hak_akses = 'Admin' AND nama LIKE '%$namaOPD2%'");
+    // Mengirim pesan ke nomor telepon
+    $noTim = mysqli_query($kominfo, "SELECT noTelp FROM user WHERE hak_akses = 'Tim' AND nama LIKE '%$nama%' OR hak_akses = 'Admin' AND kejadian LIKE '%$kejadian%'");
     if ($noTim) {
       $targetNumbers = [];
       while ($dataNo = mysqli_fetch_assoc($noTim)) {
@@ -69,7 +67,8 @@ Keterangan : $ket
 Login Tim : https://cc112sumenep.com/login.php";
       $countryCode = '62';
       foreach ($targetNumbers as $target) {
-        if (!$pesanTelahDikirim) {
+        if (!in_array($target, $sentNumbers)) {
+          $sentNumbers[] = $target; // Tambahkan nomor ke dalam array
           $token = "8Y2hL2qgYz45oiPAAapW";
           $curl = curl_init();
           curl_setopt_array($curl, array(
@@ -92,8 +91,6 @@ Login Tim : https://cc112sumenep.com/login.php";
           ));
           $response = curl_exec($curl);
           curl_close($curl);
-          // Set pesan telah dikirim agar tidak mengirim lagi
-          $pesanTelahDikirim = true;
         }
       }
     } else {
@@ -102,7 +99,6 @@ Login Tim : https://cc112sumenep.com/login.php";
   } else {
     die("Aksi tidak valid!");
   }
-  // Update status approve di database
   $query = "UPDATE tim SET bantuan = $bantuan WHERE id = $id";
   if (mysqli_query($kominfo, $query)) {
     header('Location: admcc112.php?hal=support');
