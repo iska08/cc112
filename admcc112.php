@@ -207,6 +207,12 @@ if (empty($_SESSION['112_username'])){
                                             <p>Data Support</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="?hal=data_sup" class="nav-link">
+                                            <i class="nav-icon far fa-circle"></i>
+                                            <p>Data Support Kejadian</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -265,6 +271,7 @@ if (empty($_SESSION['112_username'])){
                             case 'lokasi': include "lokasi.php"; break;
                             case 'hapus': include "proses.php"; break;
                             case 'data_kej': include "data_kejadian.php"; break;
+                            case 'data_sup': include "data_sup.php"; break;
                             case 'data': include "data.php"; break;
                             case 'survey': include "data_survey.php"; break;
                             case 'counter': include "data_counter.php"; break;

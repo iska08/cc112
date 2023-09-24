@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Sep 2023 pada 12.39
+-- Waktu pembuatan: 24 Sep 2023 pada 08.32
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -757,6 +757,8 @@ INSERT INTO `foto` (`id`, `id_lokasi`, `nama_foto`) VALUES
 (441, '478', '16985257.jpeg'),
 (443, '480', '13225765.jpeg'),
 (444, '479', '11023515.jpeg'),
+(452, '5', '11974736.jpg'),
+(453, '5', '19175092.phpjpg'),
 (455, '477', '14753736.jpeg'),
 (456, '482', '19919561.jpeg'),
 (457, '483', '19701999.jpeg'),
@@ -805,32 +807,27 @@ INSERT INTO `foto` (`id`, `id_lokasi`, `nama_foto`) VALUES
 (514, '529', '10564150.jpeg'),
 (515, '530', '10233837.jpeg'),
 (516, '531', '18366077.jpeg'),
-(530, '550', '14583912.jpeg'),
-(532, '551', '15262621.jpeg'),
-(534, '552', '10981044.jpeg'),
-(535, '553', '13885291.jpeg'),
-(536, '555', '14783307.jpeg'),
-(537, '556', '13615736.jpeg'),
-(538, '557', '10643782.jpeg'),
-(539, '558', '13995258.jpeg'),
-(540, '559', '17397049.jpeg'),
-(541, '560', '16925672.jpeg'),
-(542, '561', '16895031.jpeg'),
-(543, '562', '16992566.jpeg'),
-(544, '563', '14542593.jpg'),
-(545, '564', '12850658.jpeg'),
-(546, '565', '11559536.jpeg'),
-(547, '566', '17983766.jpeg'),
-(548, '567', '14961889.jpeg'),
-(549, '568', '14828262.jpg'),
-(550, '569', '16578486.jpeg'),
-(551, '570', '10823063.jpg'),
-(552, '571', '14496029.jpeg'),
-(553, '572', '10620756.jpg'),
-(554, '573', '19546710.jpeg'),
-(555, '574', '11352927.jpeg'),
-(580, '576', '19079804.jpeg'),
-(582, '577', '15565916.jpeg');
+(517, '533', '11595594.jpeg'),
+(518, '534', '17144502.jpeg'),
+(519, '535', '10167737.jpeg'),
+(520, '536', '15221806.jpeg'),
+(521, '537', '15795256.jpeg'),
+(522, '538', '13009130.jpeg'),
+(523, '539', '15213848.jpeg'),
+(524, '540', '10849530.jpeg'),
+(525, '541', '17124520.jpeg');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `foto_tim`
+--
+
+CREATE TABLE `foto_tim` (
+  `id` int(11) NOT NULL,
+  `id_tim` int(11) DEFAULT NULL,
+  `nama_foto` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -1144,7 +1141,16 @@ INSERT INTO `lokasi` (`id`, `lat_long`, `alamat`, `desa`, `kec`, `kejadian`, `ta
 (528, 'LatLng(-7.045697, 113.930197)', 'Desa Kalianget Barat', '3', '1', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '07 Juni 2023 14:00', '', 1, 'CC112 Tim Satpol PP mengevakuasi ODGI ke RSUD H. Moh. Anwar Sumenep\r\nPelapor : Juhari', '-', '-', '-', '-', '-', '06', '2023'),
 (529, 'LatLng(-6.886453, 113.663306)', 'Desa Panaongan', '274', '14', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '09 Juni 2023 11:30', '', 1, 'CC112 Tim Satpol PP mengevakuasi ODGJ di Puskesmas Pasongsongan atas laporan dari kepala desa Soddere ', '-', '-', '-', '-', '-', '06', '2023'),
 (530, 'LatLng(-7.026945, 113.854065)', 'Jl. Trunojoyo (Pertigaan linkar timur)', '216', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '13 Juni 2023 19:00', '', 1, 'CC112 Tim Satpol PP mengevakuasi oarang terlantar di desa babbalan (pertigaan linkar timur) ke RPS Dinsos Sumenep\r\nPelapor : Ibu Shinta', '-', '-', '-', '-', '-', '06', '2023'),
-(531, 'LatLng(-7.004925, 113.868409)', 'Jl. Agus Salim Perempatan Jati mas', '210', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '20 Juni 2023 15:30', '', 1, 'CC112 Tim Satpol PP mengevakuasi orang terlantar dan terduga ODGJ di perempatan Jl. Agus Salim ke RPS Dinsos\r\nPelopor : Bapak Agus', '-', '-', '-', '-', '-', '06', '2023');
+(531, 'LatLng(-7.004925, 113.868409)', 'Jl. Agus Salim Perempatan Jati mas', '210', '2', 'KEAMANAN DAN KETERTIBAN MASYARAKAT', '20 Juni 2023 15:30', '', 1, 'CC112 Tim Satpol PP mengevakuasi orang terlantar dan terduga ODGJ di perempatan Jl. Agus Salim ke RPS Dinsos\r\nPelopor : Bapak Agus', '-', '-', '-', '-', '-', '06', '2023'),
+(533, 'LatLng(-7.005871, 113.812373)', 'Desa Batuan ', '68', '3', 'KEBAKARAN', '17 Juli 2023 11:00', '17 Juli 2023 14:00', 1, 'CC112 Tim Damkar memadamkan kebakaran di TPA Batuan', '-', '-', '-', '-', '-', '09', '2023'),
+(534, 'LatLng(-7.044077, 113.946934)', 'Desa Kalianget Timur', '2', '1', 'KEBAKARAN', '18 Juli 2023 01:30', '18 Juli 2023 04:00', 1, 'Cc112 Tim Damkar memadamkan kebakaran perahu di pelabuahan Gersik Putih ', '-', '-', '-', '-', '-', '09', '2023'),
+(535, 'LatLng(-7.0507, 113.935368)', 'Jl. Raya Pelabuhan', '2', '1', 'KEBAKARAN', '23 Juli 2023 09:00', '23 Juli 2023 14:00', 1, 'CC112 Tim Damkar memadamkan kebakaran lahan di kantor PT. Garam kalianget', '-', '-', '-', '-', '-', '09', '2023'),
+(536, 'LatLng(-7.008662, 113.995401)', 'Pelabuhan Bintaro', '164', '15', 'KEBAKARAN', '24 Juli 2023 04:00', '24 Juli 2023 05:00', 1, 'CC112 Tim Damkar memadamkan kebakaran di pelabuhan Bintaro Desa Longos Kec. Gapura', '-', '-', '-', '-', '-', '09', '2023'),
+(537, 'LatLng(-7.02303, 113.86978)', 'Perum Satelit ', '224', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '25 Juli 2023 12:00', '25 Juli 2023 13:00', 1, 'CC112 Tim Satpol PP mengevakuasi ODGJ di Perum Satelit Desa Pabian Kec. Kota Sumenep', '-', '-', '-', '-', '-', '09', '2023'),
+(538, 'LatLng(-7.021206, 113.872572)', 'Perum Satelit ', '224', '2', 'ORANG DENGAN GANGGUAN JIWA (ODGJ)', '27 Juli 2023 07:30', '27 Juli 2023 08:00', 1, 'CC112 Tim Satpol PP mengevakuasi ODGJ di Perum Satelit Desa Pabian Kec. Kota Sumenep', '-', '-', '-', '-', '-', '09', '2023'),
+(539, 'LatLng(-6.994829, 113.841587)', 'Jl. Asta Tinggi', '250', '4', 'KEBAKARAN', '27 Juli 2023 12:00', '27 Juli 2023 14:00', 1, 'CC112 Tim Damkar memadamkan kebakarandi depan WPS Desa Kasengan Kec. Manding', '-', '-', '-', '-', '-', '09', '2023'),
+(540, 'LatLng(-7.007909, 113.867031)', 'jl. Hos Cokroaminoto', '215', '2', 'KEBAKARAN', '27 Juli 2023 14:00', '27 Juli 2023 15:00', 1, 'CC112 Tim Damkar memdamkan kebakaran lahan di Kelurahan Pajagalan Kec. Kota Sumenep', '-', '-', '-', '-', '-', '09', '2023'),
+(541, 'LatLng(-7.007474, 113.870318)', 'Desa Pangarangan ( Depan Hotel Kaberas)', '210', '2', 'KEBAKARAN', '28 Juli 2023 07:00', '28 Juli 2023 07:30', 1, 'CC112 Tim Damkar memadamkan kebakaran di desa Pangarangan Kec. Kota Sumenep', '-', '-', '-', '-', '-', '09', '2023');
 
 -- --------------------------------------------------------
 
@@ -1213,6 +1219,25 @@ INSERT INTO `survey` (`id`, `nama`, `alamat`, `hp`, `res1`, `res2`, `res3`) VALU
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tim`
+--
+
+CREATE TABLE `tim` (
+  `id` int(11) NOT NULL,
+  `id_lokasi` int(11) NOT NULL,
+  `opd_terkait` int(11) NOT NULL,
+  `jumlah_tim` int(11) DEFAULT NULL,
+  `nama_anggota` text DEFAULT NULL,
+  `ket` varchar(255) DEFAULT NULL,
+  `laporan` text DEFAULT NULL,
+  `bulan` varchar(11) DEFAULT NULL,
+  `tahun` varchar(50) DEFAULT NULL,
+  `bantuan` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `user`
 --
 
@@ -1239,7 +1264,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `nama`, `noTelp`, `email`, `ha
 (29, 'bpbd_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'BPBD', '', 'bpbdcc112@gmail.com', 'Tim', 'GIAT EVAKUASI,COVID 19,BANJIR,BENCANA ALAM', '0'),
 (31, '1CallCenter112', '5f4dcc3b5aa765d61d8327deb882cf99', 'Call Center 112 (1)', '', '1callcenter112@gmail.com', 'Call Center', 'BANJIR,BENCANA ALAM,COVID 19,EVAKUASI HEWAN LIAR/BUAS,GIAT EVAKUASI,KEAMANAN DAN KETERTIBAN MASYARAKAT,KEBAKARAN,KECELAKAAN KERJA,KECELAKAAN LALU LINTAS,KECELAKAAN LAUT,KRIMINALITAS,ORANG DENGAN GANGGUAN JIWA (ODGJ),PERMINTAAN AMBULAN,POHON TUMBANG,TIANG LISTRIK RUBUH', '0'),
 (32, '2CallCenter112', '5f4dcc3b5aa765d61d8327deb882cf99', 'Call Center 112 (2)', '', '2callcenter112@gmail.com', 'Call Center', 'BANJIR,BENCANA ALAM,COVID 19,EVAKUASI HEWAN LIAR/BUAS,GIAT EVAKUASI,KEAMANAN DAN KETERTIBAN MASYARAKAT,KEBAKARAN,KECELAKAAN KERJA,KECELAKAAN LALU LINTAS,KECELAKAAN LAUT,KRIMINALITAS,ORANG DENGAN GANGGUAN JIWA (ODGJ),PERMINTAAN AMBULAN,POHON TUMBANG,TIANG LISTRIK RUBUH', '0'),
-(33, 'dlh_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'DINAS LINGKUNGAN HIDUP', '', 'dlhcc112@gmail.com', 'Tim', '', '0'),
+(33, 'dlh_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'DINAS LINGKUNGAN HIDUP', '081235184908', 'dlhcc112@gmail.com', 'Tim', '', '0'),
 (34, 'dishub_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'DINAS PERHUBUNGAN', '', 'dishubcc112@gmail.com', 'Tim', '', '0'),
 (35, 'puskesmas_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'PUSKESMAS', '', 'puskesmascc112@gmail.com', 'Tim', '', '0'),
 (36, 'pln_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'PLN', '', 'plncc112@gmail.com', 'Tim', '', '0'),
@@ -1274,6 +1299,12 @@ ALTER TABLE `foto`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `foto_tim`
+--
+ALTER TABLE `foto_tim`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `kecamatan`
 --
 ALTER TABLE `kecamatan`
@@ -1301,6 +1332,12 @@ ALTER TABLE `opd_terkait`
 -- Indeks untuk tabel `survey`
 --
 ALTER TABLE `survey`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tim`
+--
+ALTER TABLE `tim`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1338,6 +1375,12 @@ ALTER TABLE `foto`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=583;
 
 --
+-- AUTO_INCREMENT untuk tabel `foto_tim`
+--
+ALTER TABLE `foto_tim`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT untuk tabel `kecamatan`
 --
 ALTER TABLE `kecamatan`
@@ -1353,7 +1396,7 @@ ALTER TABLE `kejadian`
 -- AUTO_INCREMENT untuk tabel `lokasi`
 --
 ALTER TABLE `lokasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=585;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=587;
 
 --
 -- AUTO_INCREMENT untuk tabel `opd_terkait`
@@ -1366,6 +1409,12 @@ ALTER TABLE `opd_terkait`
 --
 ALTER TABLE `survey`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT untuk tabel `tim`
+--
+ALTER TABLE `tim`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
