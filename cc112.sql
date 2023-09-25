@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Sep 2023 pada 08.32
+-- Waktu pembuatan: 25 Sep 2023 pada 05.32
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -1168,12 +1168,12 @@ CREATE TABLE `opd_terkait` (
 --
 
 INSERT INTO `opd_terkait` (`id`, `nama_opd`) VALUES
-(1, 'SATPOLL PP'),
+(1, 'SATPOL PP'),
 (2, 'BADAN PENANGGULANGAN BENCANA DAERAH'),
 (3, 'PEMADAM KEBAKARAN'),
 (4, 'DINAS LINGKUNGAN HIDUP'),
 (5, 'DINAS PERHUBUNGAN'),
-(6, 'PUSKESMAS '),
+(6, 'PUSKESMAS'),
 (7, 'PLN'),
 (8, 'TELKOM');
 
@@ -1235,6 +1235,14 @@ CREATE TABLE `tim` (
   `bantuan` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `tim`
+--
+
+INSERT INTO `tim` (`id`, `id_lokasi`, `opd_terkait`, `jumlah_tim`, `nama_anggota`, `ket`, `laporan`, `bulan`, `tahun`, `bantuan`) VALUES
+(14, 541, 6, 2, NULL, 'ambulan', NULL, '09', '2023', 1),
+(15, 541, 1, 6, NULL, 'Pengamanan', NULL, '09', '2023', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -1258,15 +1266,15 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `nama`, `noTelp`, `email`, `hak_akses`, `kejadian`, `online`) VALUES
-(1, 'cc112Admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Arief Santoso., ST.', '088803820248', 'admin@gmail.com', 'Admin', 'BANJIR,BENCANA ALAM,COVID 19,EVAKUASI HEWAN LIAR/BUAS,GIAT EVAKUASI,KEAMANAN DAN KETERTIBAN MASYARAKAT,KEBAKARAN,KECELAKAAN KERJA,KECELAKAAN LALU LINTAS,KECELAKAAN LAUT,KRIMINALITAS,ORANG DENGAN GANGGUAN JIWA (ODGJ),PERMINTAAN AMBULAN,POHON TUMBANG,TIANG LISTRIK RUBUH', '0'),
+(1, 'cc112Admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Arief Santoso., ST.', '088803820248', 'admin@gmail.com', 'Admin', 'BANJIR,BENCANA ALAM,COVID 19,EVAKUASI HEWAN LIAR/BUAS,GIAT EVAKUASI,KEAMANAN DAN KETERTIBAN MASYARAKAT,KEBAKARAN,KECELAKAAN KERJA,KECELAKAAN LALU LINTAS,KECELAKAAN LAUT,KRIMINALITAS,ORANG DENGAN GANGGUAN JIWA (ODGJ),PERMINTAAN AMBULAN,POHON TUMBANG,TIANG LISTRIK RUBUH', '1'),
 (26, 'damkar_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'PEMADAM KEBAKARAN', '081235184908', 'damkarcc112@gmail.com', 'Tim', 'EVAKUASI HEWAN LIAR/BUAS,KEBAKARAN,POHON TUMBANG', '0'),
-(28, 'satpolPP_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'SATPOL PP', '', 'satpolppcc112@gmail.com', 'Tim', 'ORANG DENGAN GANGGUAN JIWA (ODGJ),KEAMANAN DAN KETERTIBAN MASYARAKAT', '0'),
+(28, 'satpolPP_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'SATPOL PP', '081216305051', 'satpolppcc112@gmail.com', 'Tim', 'KEAMANAN DAN KETERTIBAN MASYARAKAT,ORANG DENGAN GANGGUAN JIWA (ODGJ)', '0'),
 (29, 'bpbd_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'BPBD', '', 'bpbdcc112@gmail.com', 'Tim', 'GIAT EVAKUASI,COVID 19,BANJIR,BENCANA ALAM', '0'),
 (31, '1CallCenter112', '5f4dcc3b5aa765d61d8327deb882cf99', 'Call Center 112 (1)', '', '1callcenter112@gmail.com', 'Call Center', 'BANJIR,BENCANA ALAM,COVID 19,EVAKUASI HEWAN LIAR/BUAS,GIAT EVAKUASI,KEAMANAN DAN KETERTIBAN MASYARAKAT,KEBAKARAN,KECELAKAAN KERJA,KECELAKAAN LALU LINTAS,KECELAKAAN LAUT,KRIMINALITAS,ORANG DENGAN GANGGUAN JIWA (ODGJ),PERMINTAAN AMBULAN,POHON TUMBANG,TIANG LISTRIK RUBUH', '0'),
 (32, '2CallCenter112', '5f4dcc3b5aa765d61d8327deb882cf99', 'Call Center 112 (2)', '', '2callcenter112@gmail.com', 'Call Center', 'BANJIR,BENCANA ALAM,COVID 19,EVAKUASI HEWAN LIAR/BUAS,GIAT EVAKUASI,KEAMANAN DAN KETERTIBAN MASYARAKAT,KEBAKARAN,KECELAKAAN KERJA,KECELAKAAN LALU LINTAS,KECELAKAAN LAUT,KRIMINALITAS,ORANG DENGAN GANGGUAN JIWA (ODGJ),PERMINTAAN AMBULAN,POHON TUMBANG,TIANG LISTRIK RUBUH', '0'),
 (33, 'dlh_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'DINAS LINGKUNGAN HIDUP', '081235184908', 'dlhcc112@gmail.com', 'Tim', '', '0'),
 (34, 'dishub_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'DINAS PERHUBUNGAN', '', 'dishubcc112@gmail.com', 'Tim', '', '0'),
-(35, 'puskesmas_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'PUSKESMAS', '', 'puskesmascc112@gmail.com', 'Tim', '', '0'),
+(35, 'puskesmas_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'PUSKESMAS', '081235184908', 'puskesmascc112@gmail.com', 'Tim', '', '0'),
 (36, 'pln_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'PLN', '', 'plncc112@gmail.com', 'Tim', '', '0'),
 (37, 'telkom_CC112', '5f4dcc3b5aa765d61d8327deb882cf99', 'TELKOM', '', 'telkomcc112@gmail.com', 'Tim', '', '0');
 
@@ -1414,7 +1422,7 @@ ALTER TABLE `survey`
 -- AUTO_INCREMENT untuk tabel `tim`
 --
 ALTER TABLE `tim`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

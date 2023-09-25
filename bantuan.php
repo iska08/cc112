@@ -48,7 +48,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
   if ($action === 'bantuan') {
     $bantuan = 1;
     // Mengirim pesan ke nomor telepon
-    $noTim = mysqli_query($kominfo, "SELECT noTelp FROM user WHERE (hak_akses = 'Tim' AND nama LIKE '%$nama%') OR (hak_akses = 'Admin' AND kejadian LIKE '%$kejadian%')");
+    $noTim = mysqli_query($kominfo, "SELECT noTelp FROM user WHERE (hak_akses = 'Tim' AND nama LIKE '%$nama%') OR (hak_akses = 'Admin')");
     if ($noTim) {
       $targetNumbers = [];
       while ($dataNo = mysqli_fetch_assoc($noTim)) {
@@ -56,7 +56,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
       }
       // Ubah format URL peta untuk perangkat seluler
       $maps_mobile = 'https://www.google.com/maps/search/?api=1&query=' . $kordinat;
-      $message = "*Laporan Butuh Bantuan*
+      $message = "*Laporan Butuh Bantuan Untuk $nama*
 Lokasi Kejadian : $maps_mobile
 Kejadian : $kejadian
 Alamat Kejadian : $alamat
