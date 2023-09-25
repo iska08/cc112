@@ -5,8 +5,7 @@ describe('test_lokasi_datakejadian', () => {
     })
     it('data kejadian', () => {
       // Login Admin
-      cy.visit('http://localhost/cc112/')
-      cy.get('.nav-link').click()
+      cy.visit('http://localhost/cc112/login.php')
       cy.get('.mb-3 > .form-control').type('cc112admin')
       cy.get(':nth-child(2) > .form-control').type('password')
       cy.get('.btn').click()
@@ -17,9 +16,15 @@ describe('test_lokasi_datakejadian', () => {
       cy.get('#th').select('2021')
       cy.get('#kej').select('KEBAKARAN')
       cy.get('.btn').click()
+
+
+
       // cy.get('#data_kej_filter > label > .form-control').type('KEBAKARAN')
       // cy.get('.custom-select').type('10')
+
+
       cy.get('.main-header > :nth-child(1) > :nth-child(3) > .nav-link').click()//logout
 
     })
+    
 })
