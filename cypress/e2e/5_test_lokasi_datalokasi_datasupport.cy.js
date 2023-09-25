@@ -11,9 +11,19 @@ describe('test_lokasi_datalokasi_datasupport', () => {
         cy.get('.nav-pills > :nth-child(2) > [href="#"]').click()
         cy.get('.menu-is-opening > .nav > :nth-child(3) > .nav-link').click()
         cy.get('#add_support').click()//tambah data support
-        cy.get('#id_lokasi').select('25 September 2023 12:00 - KEBAKARAN')
         
+        //cari data
+        cy.get('#id_lokasi').select('28 Juli 2023 07:00 - KEBAKARAN')
         cy.get('#form_pencarian > .btn').click()
+
+        //tambah data
+        cy.get('#opd_terkait').select('SATPOL PP')
+        cy.get('#jumlah_tim').type('6')
+        cy.get('#form_tambah_support > :nth-child(4) > .form-control').type('Pengamanan Lalu Lintas')
+        cy.get(':nth-child(5) > .btn-info').click()
+
+        cy.get('.swal2-confirm').click()
+        cy.get('.nav-pills > :nth-child(4) > .nav-link').click()
     })
 
 })
