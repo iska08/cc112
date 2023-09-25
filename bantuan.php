@@ -48,7 +48,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
   if ($action === 'bantuan') {
     $bantuan = 1;
     // Mengirim pesan ke nomor telepon
-    $noTim = mysqli_query($kominfo, "SELECT noTelp FROM user WHERE hak_akses = 'Tim' AND nama LIKE '%$nama%' OR hak_akses = 'Admin' AND kejadian LIKE '%$kejadian%'");
+    $noTim = mysqli_query($kominfo, "SELECT noTelp FROM user WHERE (hak_akses = 'Tim' AND nama LIKE '%$nama%') OR (hak_akses = 'Admin' AND kejadian LIKE '%$kejadian%')");
     if ($noTim) {
       $targetNumbers = [];
       while ($dataNo = mysqli_fetch_assoc($noTim)) {
