@@ -33,7 +33,7 @@ if (isset($_GET['id']) && isset($_GET['action'])) {
   if ($action === 'approve') {
     $approveStatus = 1;
     // Mengirim pesan ke nomor telepon
-    $noTim = mysqli_query($kominfo, "SELECT noTelp FROM user WHERE hak_akses = 'Tim' OR hak_akses = 'Admin' AND kejadian LIKE '%$kejadian%'");
+    $noTim = mysqli_query($kominfo, "SELECT noTelp FROM user WHERE kejadian LIKE '%$kejadian%' AND hak_akses = 'Tim' OR hak_akses = 'Admin'");
     if ($noTim) {
       $targetNumbers = [];
       while ($dataNo = mysqli_fetch_assoc($noTim)) {
